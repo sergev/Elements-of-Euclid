@@ -2,7 +2,7 @@
 
 #chapter([Book 13], [ELEMENTS BOOK 13])
 
-== _The Platonic Solids#footnote[The five regular solids---the cube, tetrahedron (i.e., pyramid), octahedron, icosahedron, and dodecahedron---were problably discovered by the school of Pythagoras. They are generally termed "Platonic" solids because they feature prominently in Plato's famous dialogue \#emph[Timaeus]. Many of the theorems contained in this book---particularly those which pertain to the last two solids---are ascribed to Theaetetus of Athens.]_
+== _The Platonic Solids#footnote[The five regular solids---the cube, tetrahedron (i.e., pyramid), octahedron, icosahedron, and dodecahedron---were probably discovered by the school of Pythagoras. They are generally termed "Platonic" solids because they feature prominently in Plato's famous dialogue \#emph[Timaeus]. Many of the theorems contained in this book---particularly those which pertain to the last two solids---are ascribed to Theaetetus of Athens.]_
 
 #no-footer()
 

@@ -4,12 +4,12 @@
   #parallel-proposition(24)
   #parallel(
     [Ἐὰν στερεὸν ὑπὸ παραλλήλων ἐπιπέδων περιέχηται, τὰ ἀπεναντίον αὐτοῦ ἐπίπεδα ἴσα τε καὶ παραλληλόγραμμά ἐστιν.],
-    [If a solid (figure) is contained by (six) parallel planes then its opposite planes are both equal and parallelogrammic.],
+    [If a solid (figure) is contained by (six) parallel planes then its opposite planes are both equal and parallelogramic.],
   )
   #parallel-image("/Book11/fig24", 1.5in)
   #parallel(
     [Στερεὸν γὰρ τὸ ΓΔΘΗ ὑπὸ παραλλήλων ἐπιπέδων περιεχέσθω τῶν ΑΓ, ΗΖ, ΑΘ, ΔΖ, ΒΖ, ΑΕ· λέγω, ὅτι τὰ ἀπεναντίον αὐτοῦ ἐπίπεδα ἴσα τε καὶ παραλληλόγραμμά ἐστιν.],
-    [For let the solid (figure) $C D H G$ be contained by the parallel planes $A C$, $G F$, and $A H$, $D F$, and $B F$, $A E$. I say that its opposite planes are both equal and parallelogrammic.],
+    [For let the solid (figure) $C D H G$ be contained by the parallel planes $A C$, $G F$, and $A H$, $D F$, and $B F$, $A E$. I say that its opposite planes are both equal and parallelogramic.],
   )
   #parallel(
     [Ἐπεὶ γὰρ δύο ἐπίπεδα παράλληλα τὰ ΒΗ, ΓΕ ὑπὸ ἐπιπέδου τοῦ ΑΓ τέμνεται, αἱ κοιναὶ αὐτῶν τομαὶ παράλληλοί εἰσιν. παράλληλος ἄρα ἐστὶν ἡ ΑΒ τῇ ΔΓ. πάλιν, ἑπεὶ δύο ἐπίπεδα παράλληλα τὰ ΒΖ, ΑΕ ὑπὸ ἐπιπέδου τοῦ ΑΓ τέμνεται, αἱ κοιναὶ αὐτῶν τομαὶ παράλληλοί εἰσιν. παράλληλος ἄρα ἐστὶν ἡ ΒΓ τῇ ΑΔ. ἐδείχθη δὲ καὶ ἡ ΑΒ τῇ ΔΓ παράλληλος· παραλληλόγραμμον ἄρα ἐστὶ τὸ ΑΓ. ὁμοίως δὴ δείξομεν, ὅτι καὶ ἕκαστον τῶν ΔΖ, ΖΗ, ΗΒ, ΒΖ, ΑΕ παραλληλόγραμμόν ἐστιν.],
@@ -21,6 +21,6 @@
   )
   #parallel(
     [Ἐὰν ἄρα στερεὸν ὑπὸ παραλλήλων ἐπιπέδων περιέχηται, τὰ ἀπεναντίον αὐτοῦ ἐπίπεδα ἴσα τε καὶ παραλληλόγραμμά ἐστιν· ὅπερ ἔδει δεῖξαι.],
-    [Thus, if a solid (figure) is contained by (six) parallel planes then its opposite planes are both equal and parallelogrammic. (Which is) the very thing it was required to show.],
+    [Thus, if a solid (figure) is contained by (six) parallel planes then its opposite planes are both equal and parallelogramic. (Which is) the very thing it was required to show.],
   )
 ]
