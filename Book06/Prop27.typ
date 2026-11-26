@@ -4,7 +4,7 @@
   #parallel-proposition(27)
   #parallel(
     [Πάντων τῶν παρὰ τὴν αὐτὴν εὐθεῖαν παραβαλλομένων παραλληλογράμμων καὶ ἐλλειπόντων εἴδεσι παραλληλογράμμοις ὁμοίοις τε καὶ ὁμοίως κειμένοις τῷ ἀπὸ τῆς ἡμισείας ἀναγραφομένῳ μέγιστόν ἐστι τὸ ἀπὸ τῆς ἡμισείας παραβαλλόμενον [παραλληλόγραμμον] ὅμοιον ὂν τῷ ἐλλείμμαντι.],
-    [Of all the parallelograms applied to the same straight-line, and falling short by parallelogrammic figures similar, and similarly laid out, to the (parallelogram) described on half (the straight-line), the greatest is the [parallelogram] applied to half (the straight-line) which (is) similar to (that parallelogram) by which it falls short.],
+    [Of all the parallelograms applied to the same straight-line, and falling short by parallelogramic figures similar, and similarly laid out, to the (parallelogram) described on half (the straight-line), the greatest is the [parallelogram] applied to half (the straight-line) which (is) similar to (that parallelogram) by which it falls short.],
   )
   #parallel(
     [Ἔστω εὐθεῖα ἡ ΑΒ καὶ τετμήσθω δίχα κατὰ τὸ Γ, καὶ παραβεβλήσθω παρὰ τὴν ΑΒ εὐθεῖαν τὸ ΑΔ παραλληλόγραμμον ἐλλεῖπον εἴδει παραλληλογράμμῳ τῷ ΔΒ ἀναγραφέντι ἀπὸ τῆς ἡμισείας τῆς ΑΒ, τουτέστι τῆς ΓΒ· λέγω, ὅτι πάντων τῶν παρὰ τὴν ΑΒ παραβαλλομένων παραλληλογράμμων καὶ ἐλλειπόντων εἴδεσι [παραλληλογράμμοις] ὁμοίοις τε καὶ ὁμοίως κειμένοις τῷ ΔΒ μέγιστόν ἐστι τὸ ΑΔ. παραβεβλήσθω γὰρ παρὰ τὴν ΑΒ εὐθεῖαν τὸ ΑΖ παραλληλόγραμμον ἐλλεῖπον εἴδει παραλληλογράμμῳ τῷ ΖΒ ὁμοίῳ τε καὶ ὁμοίως κειμένῳ τῷ ΔΒ· λέγω, ὅτι μεῖζόν ἐστι τὸ ΑΔ τοῦ ΑΖ.],
