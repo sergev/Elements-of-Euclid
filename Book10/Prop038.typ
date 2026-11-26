@@ -4,7 +4,7 @@
   #parallel-proposition(38)
   #parallel(
     [Ἐὰν δύο μέσαι δυνάμει μόνον σύμμετροι συντεθῶσι μέσον περιέχουσαι, ἡ ὅλη ἄλογός ἐστιν, καλείσθω δὲ ἐκ δύο μέσων δυετέρα.],
-    [If two medial (straight-lines), commensurable in square only, which contain a medial (area), are added together then the whole (straight-line) is irrational---let it be called a second bimedial (straight-line)#content-box-note[Literally, "second from two medials".].],
+    [If two medial (straight-lines), commensurable in square only, which contain a medial (area), are added together then the whole (straight-line) is irrational---let it be called a second bimedial (straight-line).#content-box-note[Literally, "second from two medials".]],
   )
   #parallel-image("/Book10/fig038", 1.7in)
   #parallel(

@@ -13,7 +13,7 @@
   )
   #parallel(
     [Εὕρηνται ἄρα δύο μέσαι δυνάμει μόνον σύμμετροι αἱ Δ, Ε μέσον περιέχουσαι, ὥστε τὴν μείζονα τῆς ἐλάσσονος μεῖζον δύνασθαι τῷ ἀπὸ συμμέτρου ἑαυτῇ.],
-    [Thus, two medial (straight-lines), $D$ and $E$, commensurable in square only, (and) containing a medial (area), have been found such that the square on the greater is larger than the (square on the) lesser by the (square) on (some straight-line) commensurable (in length) with the greater.#content-box-note[$D$ and $E$ have lengths $k'^(1 \/ 4)$ and $k'^(1 \/ 4) sqrt(1-k^2)$ times that of $A$, respectively, where the length of $B$ is $k'^(1 \/ 2)$ times that of $A$, and $k$ is defined in the footnote to Prop.~10.29.].],
+    [Thus, two medial (straight-lines), $D$ and $E$, commensurable in square only, (and) containing a medial (area), have been found such that the square on the greater is larger than the (square on the) lesser by the (square) on (some straight-line) commensurable (in length) with the greater.#content-box-note[$D$ and $E$ have lengths $k'^(1 \/ 4)$ and $k'^(1 \/ 4) sqrt(1-k^2)$ times that of $A$, respectively, where the length of $B$ is $k'^(1 \/ 2)$ times that of $A$, and $k$ is defined in the footnote to Prop.~10.29.]],
   )
   #parallel(
     [Ὁμοίως δὴ πάλιν διεχθήσεται καὶ τῷ ἀπὸ ἀσυμμέτρου, ὅταν ἡ Α τῆς Γ μεῖζον δύνηται τῷ ἀπὸ ἀσυμμέτρου ἑαυτῃ.],
