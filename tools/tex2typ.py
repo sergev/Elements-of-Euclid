@@ -81,14 +81,14 @@ def math(t):
     t = t.replace('\\,', ' thin ').replace('\\!', '').replace('\\;', ' med ')
     repl = {'\\ldots': ' dots ', '\\cdots': ' dots.c ', '\\gtreqqless': ' gt.eq.lt ',
             '\\cos': ' cos ', '\\times': ' times ', '\\pm': ' plus.minus ',
-            '\\ne': ' eq.not ', '\\leq': ' lt.eq ', '\\geq': ' gt.eq ',
+            '\\neq': ' eq.not ', '\\ne': ' eq.not ', '\\leq': ' lt.eq ', '\\geq': ' gt.eq ',
             '\\le': ' lt.eq ', '\\ge': ' gt.eq ', '\\infty': ' infinity '}
     for k, v in repl.items():
         t = re.sub(re.escape(k) + r'(?![a-zA-Z])', v, t)
     for g in GREEK_LETTERS:
         t = re.sub(r'\\' + g + r'(?![a-zA-Z])', ' ' + g + ' ', t)
     # keep '/' as a slash, not a fraction
-    t = t.replace('/', ' \\/ ')
+    t = t.replace('/', ' \x10 ')
     # separate single-letter variables: kX -> k X (but not Typst names)
     names = set(GREEK_LETTERS) | {'sqrt', 'overline', 'thin', 'med', 'dots', 'c', 'cos',
                                   'times', 'plus', 'minus', 'eq', 'not', 'lt', 'gt',
@@ -100,9 +100,13 @@ def math(t):
             return w
         return ' '.join(w)
     t = re.sub(r'(?<![\w"])[A-Za-z]{2,}(?![\w"])', split_word, t)
-    if '\\' in t.replace('\\/', ''):
+    if '\\' in t:
         t = 'TODO-MATH ' + t
     return re.sub(r'\s+', ' ', t).strip()
+
+
+def mathtop(t):
+    return math(t).replace('\x10', '\\/')
 
 
 # ---------------------------------------------------------------- text
@@ -116,6 +120,7 @@ def english(t, notes):
     t = re.sub(r'(?<!\\)%.*', '', t)
     t = t.replace('m\\kern -.7pt h', 'MH')
     t = t.replace('\\-', '')
+    t = re.sub(r'\\(?=\s|$)', ' ', t)
     t = re.sub(r'\\\\(\[[^]]*\])?', ' ', t)
     t = t.replace('\\mbox{[}', '[').replace('\\mbox{]}', ']')
     t = t.replace('\\noindent', '').replace('\\spa', ' ')
@@ -130,19 +135,19 @@ def english(t, notes):
     parts = re.split(r'(\$[^$]*\$)', t)
     for k, p in enumerate(parts):
         if p.startswith('$') and len(p) > 1:
-            parts[k] = '\x04' + math(p[1:-1]) + '\x04'
+            parts[k] = '\x04' + mathtop(p[1:-1]) + '\x04'
     t = ''.join(parts)
     t = sub_group(t, 'em', lambda a: '\x05' + a + '\x06')
     t = sub_group(t, 'it', lambda a: '\x05' + a + '\x06')
     t = sub_group(t, 'rm', lambda a: a)
+    t = re.sub(r'\{([^{}\\$]*)\}', r'\1', t)
     t = sub_group(t, 'bf', lambda a: '\x07' + a + '\x08')
-    t = t.replace("``", '"').replace("''", '"')
     t = t.replace('\\,', '\u2009').replace('\\ ', ' ').replace('\\&', '&')
     t = t.replace('\\ldots', '...').replace('\\S', '§')
     t = re.sub(r'\s+', ' ', t).strip()
     # escape outside math/greek
     parts = re.split(r'(\x04[^\x04]*\x04|\x02[^\x03]*\x03)', t)
-    t = ''.join(p if p[:1] in '\x04\x02' else escape(p) for p in parts)
+    t = ''.join(p if p[:1] in '\x04\x02' else escape(p.replace("``", '"').replace("''", '"')) for p in parts)
     t = t.replace('~', ' ')
     t = re.sub(r'\[(Props?|Defs?|Posts?) (\d)', r'[\1. \2', t)
     t = re.sub(r'\b(Props?|Defs?|Posts?|C\.N|Lemma|Corr?)\. (\d)', r'\1.~\2', t)
@@ -182,7 +187,7 @@ def greek_para(t, notes=None):
     out = []
     for p in parts:
         if p.startswith('$') and len(p) > 1:
-            out.append('\x06' + math(p[1:-1]) + '\x06')
+            out.append('\x06' + mathtop(p[1:-1]) + '\x06')
         else:
             out.append(greek.convert(p))
     t = ' '.join(x for x in out if x)
@@ -270,7 +275,7 @@ def head_text(h):
         mk = mark_key(m.group(1))
         h = h[:m.start()] + h[m.end():]
     h = re.sub(r'\\(large|Large|huge|Huge)\b', '', h)
-    h = h.replace('\\mbox{}', '').replace('\\\\', ' ')
+    h = h.replace('\\mbox{}', '').replace('\\\\', ' ').replace('~', ' ')
     h = re.sub(r'^\s*\{(.*)\}\s*$', r'\1', h.strip())
     return h.strip(' {}'), mk
 
@@ -430,6 +435,14 @@ def main():
             kind, num, fn = 'defs', 0, 'Postulates.typ'
         elif t.startswith('Common'):
             kind, num, fn = 'defs', 0, 'CommonNotions.typ'
+        elif files:                       # e.g. a standalone corollary: append to previous
+            prev = files[-1][3]
+            prev['items'].append(('sub', b['gtitle'], english(t, {'_used': set()})))
+            prev['items'] += [('fig', '/Book%02d/%s' % (book, it[1]), it[2]) if it[0] == 'fig' else it
+                              for it in b['items']]
+            for msg in msgs:
+                print('%s (sub): %s' % (files[-1][0], msg), file=sys.stderr)
+            continue
         else:
             kind, num, fn = 'other', 0, 'Block%d.typ' % k
         # figure paths are absolute from the project root

@@ -20,7 +20,7 @@ KERAIA = '\u0374'
 def clean(s):
     s = re.sub(r'\\kern\s*-?[\d.]+pt\s?', '', s)
     s = s.replace('\\-', '').replace('\\mbox{[}', '[').replace('\\mbox{]}', ']')
-    s = s.replace('\\ ', ' ').replace('~\\', ' \\')
+    s = s.replace('\\ ', ' ').replace('~\\', ' \\').replace('\\,', ' ')
     s = re.sub(r'\\gn\{(\d+)\}', lambda m: numeral(int(m.group(1))), s)
     s = s.replace('{', '').replace('}', '')
     return s

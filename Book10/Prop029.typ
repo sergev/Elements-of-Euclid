@@ -1,0 +1,22 @@
+#import "../functions.typ": *
+
+#content-box[
+  #parallel-proposition(29)
+  #parallel(
+    [Εὑρεῖν δύο ῥητὰς δυνάμει μόνον συμμέτρους, ὥστε τὴν μείζονα τῆς ἐλάσσονος μεῖζον δύνασθαι τῷ ἀπὸ συμμέτρου ἑαυτῇ μήκει.],
+    [To find two rational (straight-lines which are) commensurable in square only, such that the square on the greater is larger than the (square on the) lesser by the (square) on (some straight-line which is) commensurable in length with the greater.],
+  )
+  #parallel-image("/Book10/fig029", 1.7in)
+  #parallel(
+    [Ἐκκείσθω γάρ τις ῥητὴ ἡ ΑΒ καὶ δύο τετράγωνοι ἀριθμοὶ οἱ ΓΔ, ΔΕ, ὥστε τὴν ὑπεροχὴν αὐτῶν τὸν ΓΕ μὴ εἶναι τετράγωνον, καὶ γεγράφθω ἐπὶ τῆς ΑΒ ἡμικύκλιον τὸ ΑΖΒ, καὶ πεποιήσθω ὡς ὁ ΔΓ πρὸς τὸν ΓΕ, οὕτως τὸ ἀπὸ τῆς ΒΑ τετράγωνον πρὸς τὸ ἀπὸ τῆς ΑΖ τετράγωνον, καὶ ἐπεζεύχθω ἡ ΖΒ.],
+    [For let some rational (straight-line) $A B$ be laid down, and two square numbers, $C D$ and $D E$, such that the difference between them, $C E$, is not square [Prop.~10.28 lem. I]. And let the semi-circle $A F B$ be drawn on $A B$. And let it be contrived that as $D C$ (is) to $C E$, so the square on $B A$ (is) to the square on $A F$ [Prop.~10.6 corr.]. And let $F B$ be joined.],
+  )
+  #parallel(
+    [Ἐπεὶ [οὖν] ἐστιν ὡς τὸ ἀπὸ τῆς ΒΑ πρὸς τὸ ἀπὸ τῆς ΑΖ, οὕτως ὁ ΔΓ πρὸς τὸν ΓΕ, τὸ ἀπὸ τῆς ΒΑ ἄρα πρὸς τὸ ἀπὸ τῆς ΑΖ λόγον ἔχει, ὅν ἀριθμὸς ὁ ΔΓ πρὸς ἀριθμὸν τὸν ΓΕ· σύμμετρον ἄρα ἐστὶ τὸ ἀπὸ τῆς ΒΑ τῷ ἀπὸ τῆς ΑΖ. ῥητὸν δὲ τὸ ἀπὸ τῆς ΑΒ· ῥητὸν ἄρα καὶ τὸ ἀπὸ τῆς ΑΖ· ῥητὴ ἄρα καὶ ἡ ΑΖ. καὶ ἐπεὶ ὁ ΔΓ πρὸς τὸν ΓΕ λόγον οὐκ ἔχει, ὃν τετράγωνος ἀριθμὸς πρὸς τετράγωνον ἀριθμόν, οὐδὲ τὸ ἀπὸ τῆς ΒΑ ἄρα πρὸς τὸ ἀπὸ τῆς ΑΖ λόγον ἔχει, ὃν τετράγωνος ἀριθμὸς πρὸς τετράγωνον ἀριθμόν· ἀσύμμετρος ἄρα ἐστὶν ἡ ΑΒ τῇ ΑΖ μήκει· αἱ ΒΑ, ΑΖ ἄρα ῥηταί εἰσι δυνάμει μόνον σύμμετροι. καὶ ἐπεί [ἐστιν] ὡς ὁ ΔΓ πρὸς τὸν ΓΕ, οὕτως τὸ ἀπὸ τῆς ΒΑ πρὸς τὸ ἀπὸ τῆς ΑΖ, ἀναστρέψαντι ἄρα ὡς ὁ ΓΔ πρὸς τὸν ΔΕ, οὕτως τὸ ἀπὸ τῆς ΑΒ πρὸς τὸ ἀπὸ τῆς ΒΖ. ὁ δὲ ΓΔ πρὸς τὸν ΔΕ λόγον ἔχει, ὃν τετράγωνος ἀριθμὸς πρὸς τετράγωνον ἀριθμόν· καὶ τὸ ἀπὸ τῆς ΑΒ ἄρα πρὸς τὸ ἀπὸ τῆς ΒΖ λόγον ἔχει, ὃν τετράγωνος ἀριθμὸς πρὸς τετράγωνον ἀριθμόν· σύμμετρος ἄρα ἐστὶν ἡ ΑΒ τῇ ΒΖ μήκει. καί ἐστι τὸ ἀπὸ τῆς ΑΒ ἴσον τοῖς ἀπὸ τῶν ΑΖ, ΖΒ· ἡ ΑΒ ἄρα τῆς ΑΖ μεῖζον δύναται τῇ ΒΖ συμμέτρῳ ἑαυτῇ.],
+    [[Therefore,] since as the (square) on $B A$ is to the (square) on $A F$, so $D C$ (is) to $C E$, the (square) on $B A$ thus has to the (square) on $A F$ the ratio which the number $D C$ (has) to the number $C E$. Thus, the (square) on $B A$ is commensurable with the (square) on $A F$ [Prop.~10.6]. And the (square) on $A B$ (is) rational [Def.~10.4]. Thus, the (square) on $A F$ (is) also rational. Thus, $A F$ (is) also rational. And since $D C$ does not have to $C E$ the ratio which (some) square number (has) to (some) square number, the (square) on $B A$ thus does not have to the (square) on $A F$ the ratio which (some) square number (has) to (some) square number either. Thus, $A B$ is incommensurable in length with $A F$ [Prop.~10.9]. Thus, the rational (straight-lines) $B A$ and $A F$ are commensurable in square only. And since as $D C$ [is] to $C E$, so the (square) on $B A$ (is) to the (square) on $A F$, thus, via conversion, as $C D$ (is) to $D E$, so the (square) on $A B$ (is) to the (square) on $B F$ [Props.~5.19 corr., 3.31, 1.47]. And $C D$ has to $D E$ the ratio which (some) square number (has) to (some) square number. Thus, the (square) on $A B$ also has to the (square) on $B F$ the ratio which (some) square number (has) to (some) square number. $A B$ is thus commensurable in length with $B F$ [Prop.~10.9]. And the (square) on $A B$ is equal to the (sum of the squares) on $A F$ and $F B$ [Prop.~1.47]. Thus, the square on $A B$ is greater than (the square on) $A F$ by (the square on) $B F$, (which is) commensurable (in length) with ($A B$).],
+  )
+  #parallel(
+    [Εὕρηνται ἄρα δύο ῥηταὶ δυνάμει μόνον σύμμετροι αἱ ΒΑ, ΑΖ, ὥστε τὴν μεῖζονα τὴν ΑΒ τῆς ἐλάσσονος τῆς ΑΖ μεῖζον δύνασθαι τῷ ἀπὸ τῆς ΒΖ συμμέτρου ἑαυτῇ μήκει· ὅπερ ἔδει δεῖξαι.],
+    [Thus, two rational (straight-lines), $B A$ and $A F$, commensurable in square only, have been found such that the square on the greater, $A B$, is larger than (the square on) the lesser, $A F$, by the (square) on $B F$, (which is) commensurable in length with ($A B$).#content-box-note[$B A$ and $A F$ have lengths $1$ and $sqrt(1-k^2)$ times that of $A B$, respectively, where $k= sqrt(D E \/ C D)$.] (Which is) the very thing it was required to show.],
+  )
+]
