@@ -20,3 +20,4 @@
     [Thus, the parallelogram $K F L M$, equal to the given rectilinear figure $A B C D$, has been constructed in the angle $F K M$, which is equal to the given (angle) $E$. (Which is) the very thing it was required to do.],
   )
 ]
+#lean-proof("/lean/Elements/Book1/Prop45.lean")

@@ -31,3 +31,4 @@
     [Thus, for isosceles triangles, the angles at the base are equal to one another, and if the equal sides are produced (then) the angles under the base will be equal to one another. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book1/Prop05.lean")

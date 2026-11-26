@@ -20,3 +20,4 @@
     [Thus, ($A D E B$) is a square [Def.~1.22]. And it is described on the straight-line $A B$. (Which is) the very thing it was required to do.],
   )
 ]
+#lean-proof("/lean/Elements/Book1/Prop46.lean")

@@ -20,3 +20,4 @@
     [Thus, straight-lines joining equal and parallel (straight-lines) on the same sides are themselves also equal and parallel. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book1/Prop33.lean")

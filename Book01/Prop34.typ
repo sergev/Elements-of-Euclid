@@ -28,3 +28,4 @@
     [Thus, the diagonal $B C$ cuts the parallelogram $A C D B$#content-box-note[The Greek text has "$A B C D$", which is obviously a mistake.] in half. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book1/Prop34.lean")

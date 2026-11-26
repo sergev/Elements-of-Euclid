@@ -24,3 +24,4 @@
     [Thus, the straight-line $E A F$ has been drawn parallel to the given straight-line $B C$, through the given point $A$. (Which is) the very thing it was required to do.],
   )
 ]
+#lean-proof("/lean/Elements/Book1/Prop31.lean")

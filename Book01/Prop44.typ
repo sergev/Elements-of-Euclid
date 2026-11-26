@@ -20,3 +20,4 @@
     [Thus, the parallelogram $L B$, equal to the given triangle $C$, has been applied to the given straight-line $A B$ in the angle $A B M$, which is equal to $D$. (Which is) the very thing it was required to do.],
   )
 ]
+#lean-proof("/lean/Elements/Book1/Prop44.lean")

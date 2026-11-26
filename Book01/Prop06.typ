@@ -25,3 +25,4 @@
     [Thus, if a triangle has two angles equal to one another (then) the sides subtending the equal angles will also be equal to one another. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book1/Prop06.lean")

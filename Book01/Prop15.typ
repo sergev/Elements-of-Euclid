@@ -20,3 +20,4 @@
     [Thus, if two straight-lines cut one another (then) they make the vertically opposite angles equal to one another. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book1/Prop15.lean")

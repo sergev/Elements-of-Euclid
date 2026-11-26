@@ -9,13 +9,22 @@ A Typst port of Richard Fitzpatrick's LaTeX edition of Euclid's Elements (Greek 
 ## Build
 
 ```sh
-make                                     # ElementsGreekEnglish.pdf and ElementsEnglish.pdf
+make                                     # ElementsGreekEnglish.pdf, ElementsEnglish.pdf, ElementsLean.pdf
+make check                               # check the Lean proofs (slow; needs z3, cvc5, smt-portfolio)
 make clean
 typst watch Elements.typ                 # rebuild on change (Greek-English)
 typst compile --input greek=no Elements.typ ElementsEnglish.pdf
 ```
 
 The English edition (`--input greek=no`) is made by the helpers in `functions.typ`: when `with-greek` is false, `parallel*` and `parallel-image` emit only the English column at full width, `running-header` centers the English title, and `Elements.typ` omits the Lexicon. Keep all Greek inside these helpers so both editions stay correct.
+
+The Lean edition (`--input lean=yes`, which implies no Greek) is the Introduction, the primer `Book00/Lean.typ` and Book 1 only. Each `Book01/PropNN.typ` ends with `#lean-proof("/lean/Elements/Book1/PropNN.lean")` after its `content-box`; the helper is a no-op in the other editions and otherwise typesets the `.lean` file (minus `import`/`namespace`/`end` lines) under a *Formalization* heading, highlighted by `lean/lean4.sublime-syntax`. The PDF build never runs Lean.
+
+### Lean project (`lean/`)
+
+- Pinned to Lean 4.19 (`lean/lean-toolchain`) and LeanEuclid commit `33a72c0` (`lean/lakefile.lean`), which supplies System E, Mathlib and lean-smt. Don't bump one without the other.
+- `lean/Elements/Book1/PropNN.lean` are LeanEuclid's `Book/PropNN.lean` (MIT, `lean/LICENSE-LeanEuclid`) with imports renamed to `Elements.Book1.PropNN`. Primed variants stay in their proposition's file.
+- `make check` runs `lake build` in `lean/`. Steps closed by SMT are admitted by LeanEuclid's `SMT_VERIF` axiom, so a passing build trusts the solvers.
 
 There are no package dependencies and no tests; verify by compiling and inspecting the PDF (`pdftoppm -f N -l N -png` to look at a page).
 
@@ -60,4 +69,4 @@ There are no package dependencies and no tests; verify by compiling and inspecti
 
 ## Repo notes
 
-- `tmp/` is gitignored scratch space. `*.pdf` is ignored, so build output never gets committed.
+- `tmp/` is gitignored scratch space; so is `lean/.lake/`. `*.pdf` is ignored, so build output never gets committed.

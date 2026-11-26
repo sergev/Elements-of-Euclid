@@ -25,3 +25,4 @@
     [Thus, if two triangles have two  sides equal to two sides, respectively, and have the angle(s) enclosed by the equal straight-lines equal, (then) they will also have the base equal to the base, and the triangle will be equal to the triangle,  and the remaining angles subtended by the equal sides will be equal to the corresponding remaining angles. (Which is) the very thing it was required to show.]
   )
 ]
+#lean-proof("/lean/Elements/Book1/Prop04.lean")

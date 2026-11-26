@@ -1,4 +1,4 @@
-#import "../functions.typ": parallel, no-footer, set-footer-text, with-greek
+#import "../functions.typ": parallel, no-footer, set-footer-text, with-greek, with-lean
 
 // TITLEPAGE
 
@@ -33,6 +33,11 @@
 
         _Richard Fitzpatrick_
     ])
+
+    #if with-lean {
+      v(5mm)
+      text(14pt)[Book 1, with proofs formalized in Lean]
+    }
 
     #v(1cm)
 

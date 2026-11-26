@@ -24,3 +24,4 @@
     [Thus, the given rectilinear angle $B A C$ has been cut in half by the straight-line $A F$. (Which is) the very thing it was required to do.],
   )
 ]
+#lean-proof("/lean/Elements/Book1/Prop09.lean")

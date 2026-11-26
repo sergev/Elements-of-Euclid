@@ -24,8 +24,4 @@
     [Thus, if two triangles have two sides equal to two sides, respectively, but (one) has the angle encompassed by the equal straight-lines greater than the (corresponding) angle (in the other), (then the former triangle) will also have a base greater than the base (of the latter). (Which is) the very thing it was required to show.],
   )
 ]
-
-
-
-
-
+#lean-proof("/lean/Elements/Book1/Prop24.lean")

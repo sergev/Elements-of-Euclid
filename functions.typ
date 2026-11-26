@@ -1,8 +1,10 @@
 // https://forum.typst.app/t/how-to-get-a-footer-with-alternating-alignment-and-custom-text-per-page/3749/10
 #let footer-text = state("footer-text")
 
-// Edition: `typst compile --input greek=no` drops the Greek column
-#let with-greek = sys.inputs.at("greek", default: "yes") != "no"
+// Edition: `typst compile --input greek=no` drops the Greek column;
+// `--input lean=yes` is the English Book 1 with Lean proofs
+#let with-lean = sys.inputs.at("lean", default: "no") == "yes"
+#let with-greek = sys.inputs.at("greek", default: "yes") != "no" and not with-lean
 #let set-footer-text(content) = footer-text.update(content)
 #let no-footer() = set-footer-text([])
 
@@ -92,3 +94,19 @@
   }
   #line(length: 100%, stroke: 0.85pt)
 ]
+
+// Lean proof of a proposition, typeset from its .lean file (Lean edition only)
+#let lean-proof(path) = if with-lean {
+  let skip(l) = l.starts-with("import ") or l.starts-with("namespace ") or l.starts-with("end ")
+  let lines = read(path).split("\n").filter(l => not skip(l))
+  while lines.len() > 0 and lines.first().trim() == "" { lines.remove(0) }
+  while lines.len() > 0 and lines.last().trim() == "" { let _ = lines.pop() }
+  heading(depth: 3, outlined: false, [Formalization])
+  block(
+    width: 100%,
+    breakable: true,
+    inset: (x: 8pt, y: 6pt),
+    fill: luma(245),
+    raw(lines.join("\n"), block: true, lang: "lean"),
+  )
+}

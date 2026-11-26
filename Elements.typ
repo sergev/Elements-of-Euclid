@@ -1,6 +1,6 @@
 // https://github.com/rfitzp/Elements
 
-#import "functions.typ": footer-text, no-footer, with-greek
+#import "functions.typ": footer-text, no-footer, with-greek, with-lean
 
 
 #show heading: set align(center)
@@ -31,10 +31,14 @@
 
 
 
+#set raw(syntaxes: "/lean/lean4.sublime-syntax")
+#show raw: set text(font: "DejaVu Sans Mono", size: 7.5pt)
+#show raw.where(block: true): set par(justify: false)
+
 #include "Book00/Introduction.typ"
 
 #no-footer()
-F
+
 #outline(
   title: [Contents],
   depth: 1, // only show main headers
@@ -42,57 +46,62 @@ F
 
 #pagebreak()
 
+#if with-lean {
+  include "Book00/Lean.typ"
+  pagebreak()
+}
+
 #include "Book01/Book1.typ"
 
+#if not with-lean [
+  #pagebreak()
 
+  #include "Book02/Book2.typ"
 
-#pagebreak()
+  #pagebreak()
 
-#include "Book02/Book2.typ"
+  #include "Book03/Book3.typ"
 
-#pagebreak()
+  #pagebreak()
 
-#include "Book03/Book3.typ"
+  #include "Book04/Book4.typ"
 
-#pagebreak()
+  #pagebreak()
 
-#include "Book04/Book4.typ"
+  #include "Book05/Book5.typ"
 
-#pagebreak()
+  #pagebreak()
 
-#include "Book05/Book5.typ"
+  #include "Book06/Book6.typ"
 
-#pagebreak()
+  #pagebreak()
 
-#include "Book06/Book6.typ"
+  #include "Book07/Book7.typ"
 
-#pagebreak()
+  #pagebreak()
 
-#include "Book07/Book7.typ"
+  #include "Book08/Book8.typ"
 
-#pagebreak()
+  #pagebreak()
 
-#include "Book08/Book8.typ"
+  #include "Book09/Book9.typ"
 
-#pagebreak()
+  #pagebreak()
 
-#include "Book09/Book9.typ"
+  #include "Book10/Book10.typ"
 
-#pagebreak()
+  #pagebreak()
 
-#include "Book10/Book10.typ"
+  #include "Book11/Book11.typ"
 
-#pagebreak()
+  #pagebreak()
 
-#include "Book11/Book11.typ"
+  #include "Book12/Book12.typ"
 
-#pagebreak()
+  #pagebreak()
 
-#include "Book12/Book12.typ"
-
-#pagebreak()
-
-#include "Book13/Book13.typ"
+  #include "Book13/Book13.typ"
+]
 
 #if with-greek {
   pagebreak()

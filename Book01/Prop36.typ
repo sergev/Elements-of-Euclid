@@ -20,7 +20,4 @@
     [Thus, parallelograms which are on equal bases and between the same parallels are equal to one another. (Which is) the very thing it was required to show.],
   )
 ]
-
-
-
-
+#lean-proof("/lean/Elements/Book1/Prop36.lean")

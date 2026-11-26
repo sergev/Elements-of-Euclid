@@ -24,8 +24,4 @@
     [Thus, equal triangles which are on equal bases, and on the same side, are also between the same parallels. (Which is) the very thing it was required to show.],
   )
 ]
-
-
-
-
-
+#lean-proof("/lean/Elements/Book1/Prop40.lean")

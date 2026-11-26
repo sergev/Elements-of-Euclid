@@ -20,3 +20,4 @@
     [Thus, if a straight-line stood on a(nother) straight-line makes angles, it will certainly either make two right-angles, or (angles whose sum is) equal to two right-angles. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book1/Prop13.lean")

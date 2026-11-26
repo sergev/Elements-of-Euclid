@@ -20,3 +20,4 @@
     [Thus, if the square on one of the sides of a triangle is equal to the (sum of the) squares on the remaining two sides of the triangle (then) the angle contained by the remaining two sides of the triangle is a right-angle. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book1/Prop48.lean")

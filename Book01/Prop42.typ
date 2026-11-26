@@ -20,3 +20,4 @@
     [Thus, parallelogram $F E C G$, equal to the given triangle $A B C$, has been constructed in the angle $C E F$, which is equal to $D$. (Which is) the very thing it was required to do.],
   )
 ]
+#lean-proof("/lean/Elements/Book1/Prop42.lean")

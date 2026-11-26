@@ -24,3 +24,4 @@
     [Thus, if two straight-lines, not lying on the same side, make adjacent angles (whose sum is) equal to two right-angles with some straight-line, at a point on it, (then) the two straight-lines will be straight-on (with respect) to one another. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book1/Prop14.lean")

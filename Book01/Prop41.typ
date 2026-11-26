@@ -20,3 +20,4 @@
     [Thus, if a parallelogram has the same base as a triangle, and is between the same parallels, (then) the parallelogram is double (the area) of the triangle. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book1/Prop41.lean")

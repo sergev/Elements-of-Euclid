@@ -24,3 +24,4 @@
     [Thus, the straight-line $C F$ has been drawn at right-angles to the given straight-line $A B$ from the given point $C$ on it. (Which is) the very thing it was required to do.],
   )
 ]
+#lean-proof("/lean/Elements/Book1/Prop11.lean")

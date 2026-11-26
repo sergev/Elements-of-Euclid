@@ -31,3 +31,4 @@
   )
 
 ]
+#lean-proof("/lean/Elements/Book1/Prop03.lean")

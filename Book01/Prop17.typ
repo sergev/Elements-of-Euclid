@@ -24,3 +24,4 @@
     [Thus, for any triangle, (the sum of) two angles taken together in any (possible way) is less than two right-angles. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book1/Prop17.lean")

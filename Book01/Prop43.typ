@@ -20,7 +20,4 @@
     [Thus, for any parallelogram, the complements of the parallelograms about the diagonal are equal to one another. (Which is) the very thing it was required to show.],
   )
 ]
-
-
-
-
+#lean-proof("/lean/Elements/Book1/Prop43.lean")

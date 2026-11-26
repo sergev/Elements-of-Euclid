@@ -25,3 +25,4 @@
     [Thus, on the same straight-line, two other straight-lines equal, respectively, to two (given) straight-lines  (which meet) cannot be constructed (meeting) at a different point on the same side (of the straight-line), but having the same ends as the given straight-lines. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book1/Prop07.lean")

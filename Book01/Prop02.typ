@@ -31,3 +31,4 @@
     [Thus, the straight-line $A L$, equal to the given straight-line $B C$, has been placed at the given point $A$. (Which is) the very thing it was required to do.],
   )
 ]
+#lean-proof("/lean/Elements/Book1/Prop02.lean")

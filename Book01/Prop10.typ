@@ -24,3 +24,4 @@
     [Thus, the given finite straight-line $A B$ has been cut in half at (point) $D$. (Which is) the very thing it was required to do.],
   )
 ]
+#lean-proof("/lean/Elements/Book1/Prop10.lean")

@@ -24,3 +24,4 @@
     [Thus, the (straight-line) $C H$ has been drawn perpendicular to the given infinite straight-line $A B$ from the given point $C$, which is not on it. (Which is) the very thing it was required to do.],
   )
 ]
+#lean-proof("/lean/Elements/Book1/Prop12.lean")

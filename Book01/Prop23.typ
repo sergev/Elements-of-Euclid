@@ -24,3 +24,4 @@
     [Thus, the rectilinear angle $F A G$, equal to the given rectilinear angle $D C E$, has been constructed at the (given) point $A$ on the given straight-line $A B$. (Which is) the very thing it was required to do.],
   )
 ]
+#lean-proof("/lean/Elements/Book1/Prop23.lean")

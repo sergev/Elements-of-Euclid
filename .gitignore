@@ -7,3 +7,4 @@ __pycache__/
 *.ps
 *.pdf
 __pycache__/
+lean/.lake/

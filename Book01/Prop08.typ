@@ -20,3 +20,4 @@
     [Thus, if two triangles have two sides equal to two sides, respectively, and have the base equal to the base, (then) they will also have equal the angles encompassed by the equal straight-lines. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book1/Prop08.lean")

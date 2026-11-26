@@ -31,3 +31,4 @@
     [Thus, the triangle $A B C$ is equilateral, and has been constructed on the given finite straight-line $A B$. (Which is) the very thing it was required to do.],
   )
 ]
+#lean-proof("/lean/Elements/Book1/Prop01.lean")

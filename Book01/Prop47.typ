@@ -20,3 +20,4 @@
     [Thus, in right-angled triangles, the square on the side subtending the right-angle is equal to the (sum of the) squares on the sides surrounding the right-[angle]. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book1/Prop47.lean")

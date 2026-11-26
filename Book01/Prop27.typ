@@ -20,3 +20,4 @@
     [Thus, if a straight-line falling across two straight-lines makes the alternate angles equal to one another (then) the (two) straight-lines will be parallel (to one another). (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book1/Prop27.lean")

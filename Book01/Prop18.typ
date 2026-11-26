@@ -24,3 +24,4 @@
     [Thus, in any triangle, the greater side subtends the greater angle. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book1/Prop18.lean")

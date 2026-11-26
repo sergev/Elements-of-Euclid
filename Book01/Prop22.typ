@@ -26,3 +26,4 @@
     [Thus, the triangle $K F G$ has been constructed from the three straight-lines $K F$, $F G$, and $G K$, which are equal to the three given straight-lines $A$, $B$, and $C$ (respectively). (Which is) the very thing it was required to do.],
   )
 ]
+#lean-proof("/lean/Elements/Book1/Prop22.lean")

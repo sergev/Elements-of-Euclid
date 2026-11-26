@@ -20,3 +20,4 @@
     [Thus, in any triangle, the greater angle is subtended by the greater side. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book1/Prop19.lean")

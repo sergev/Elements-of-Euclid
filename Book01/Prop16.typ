@@ -24,3 +24,4 @@
     [Thus, for any triangle, when one of the sides is produced, the external angle is greater than each of the internal and opposite angles. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book1/Prop16.lean")
