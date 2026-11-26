@@ -8,7 +8,7 @@
 #content-box[
   #parallel-proposition(29)
   #parallel(
-    [῾Η εἰς τὰς παραλλήλους εὐθείας εὐθεῖα ἐμπίπτουσα τάς τε ἐναλλὰξ γωνίας ἴσας ἀλλήλαις ποιεῖ καὶ τὴν ἐκτὸς τῇ ἐντὸς καὶ ἀπεναντίον ἴσην καὶ τὰς ἐντὸς καὶ ἐπὶ τὰ αὐτὰ μέρη δυσὶν ὀρθαῖς ἴσας.],
+    [Ἡ εἰς τὰς παραλλήλους εὐθείας εὐθεῖα ἐμπίπτουσα τάς τε ἐναλλὰξ γωνίας ἴσας ἀλλήλαις ποιεῖ καὶ τὴν ἐκτὸς τῇ ἐντὸς καὶ ἀπεναντίον ἴσην καὶ τὰς ἐντὸς καὶ ἐπὶ τὰ αὐτὰ μέρη δυσὶν ὀρθαῖς ἴσας.],
     [A straight-line falling across parallel straight-lines makes the alternate angles equal to one another, the external (angle) equal to the internal and opposite (angle), and the (sum of the) internal (angles) on the same side equal to two right-angles.],
   )
   #parallel(
@@ -21,7 +21,7 @@
   )
   #parallel-fig(fig29)
   #parallel(
-    [῾Η ἄρα εἰς τὰς παραλλήλους εὐθείας εὐθεῖα ἐμπίπτουσα τάς τε ἐναλλὰξ γωνίας ἴσας ἀλλήλαις ποιεῖ καὶ τὴν ἐκτὸς τῇ ἐντὸς καὶ ἀπεναντίον ἴσην καὶ τὰς ἐντὸς καὶ ἐπὶ τὰ αὐτὰ μέρη δυσὶν ὀρθαῖς ἴσας· ὅπερ ἔδει δεῖξαι.],
+    [Ἡ ἄρα εἰς τὰς παραλλήλους εὐθείας εὐθεῖα ἐμπίπτουσα τάς τε ἐναλλὰξ γωνίας ἴσας ἀλλήλαις ποιεῖ καὶ τὴν ἐκτὸς τῇ ἐντὸς καὶ ἀπεναντίον ἴσην καὶ τὰς ἐντὸς καὶ ἐπὶ τὰ αὐτὰ μέρη δυσὶν ὀρθαῖς ἴσας· ὅπερ ἔδει δεῖξαι.],
     [Thus, a straight-line falling across parallel straight-lines makes the alternate angles equal to one another, the external (angle) equal to the internal and opposite (angle), and the (sum of the) internal (angles) on the same side equal to two right-angles. (Which is) the very thing it was required to show.],
   )
 ]

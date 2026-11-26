@@ -9,7 +9,7 @@
   #parallel-proposition(21)
   
   #parallel(
-    [᾿Εὰν τριγώνου ἐπὶ μιᾶς τῶν πλευρῶν ἀπὸ τῶν περάτων δύο εὐθεῖαι ἐντὸς συσταθῶσιν, αἱ συσταθεῖσαι τῶν λοιπῶν τοῦ τριγώνου δύο πλευρῶν ἐλάττονες μὲν ἔσονται, μείζονα δὲ γωνίαν περιέξουσιν.],
+    [Ἐὰν τριγώνου ἐπὶ μιᾶς τῶν πλευρῶν ἀπὸ τῶν περάτων δύο εὐθεῖαι ἐντὸς συσταθῶσιν, αἱ συσταθεῖσαι τῶν λοιπῶν τοῦ τριγώνου δύο πλευρῶν ἐλάττονες μὲν ἔσονται, μείζονα δὲ γωνίαν περιέξουσιν.],
     [If two internal straight-lines are constructed on one of the sides of a triangle, from its ends, the constructed (straight-lines) will be less than the two remaining sides of the triangle, but will encompass a greater angle.],
   )
   #parallel(
@@ -29,7 +29,7 @@
     [Again, since in any triangle the external angle is greater than the internal and opposite (angles) [Prop.~1.16], in triangle $C D E$ the external angle $B D C$ is thus greater than $C E D$. Accordingly, for the same (reason), the external angle $C E B$ of the triangle $A B E$ is also greater than $B A C$. But, $B D C$ was shown (to be) greater than $C E B$. Thus, $B D C$ is much greater than $B A C$.],
   )
   #parallel(
-    [᾿Εὰν ἄρα τριγώνου ἐπὶ μιᾶς τῶν πλευρῶν ἀπὸ τῶν περάτων δύο εὐθεῖαι ἐντὸς συσταθῶσιν, αἱ συσταθεῖσαι τῶν λοιπῶν τοῦ τριγώνου δύο πλευρῶν ἐλάττονες μέν εἰσιν, μείζονα δὲ γωνίαν περιέχουσιν· ὅπερ ἔδει δεῖξαι.],
+    [Ἐὰν ἄρα τριγώνου ἐπὶ μιᾶς τῶν πλευρῶν ἀπὸ τῶν περάτων δύο εὐθεῖαι ἐντὸς συσταθῶσιν, αἱ συσταθεῖσαι τῶν λοιπῶν τοῦ τριγώνου δύο πλευρῶν ἐλάττονες μέν εἰσιν, μείζονα δὲ γωνίαν περιέχουσιν· ὅπερ ἔδει δεῖξαι.],
     [Thus, if two internal straight-lines are constructed on one of the sides of a triangle, from its ends, the constructed (straight-lines) are less than the two remaining sides of the triangle, but encompass a greater angle. (Which is) the very thing it was required to show.],
   )
 

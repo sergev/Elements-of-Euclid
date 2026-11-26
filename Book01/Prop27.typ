@@ -8,7 +8,7 @@
 #content-box[
   #parallel-proposition(27)
   #parallel(
-    [᾿Εὰν εἰς δύο εὐθείας εὐθεῖα ἐμπίπτουσα τὰς ἐναλλὰξ γωνίας ἴσας ἀλλήλαις ποιῇ, παράλληλοι ἔσονται ἀλλήλαις αἱ εὐθεῖαι.],
+    [Ἐὰν εἰς δύο εὐθείας εὐθεῖα ἐμπίπτουσα τὰς ἐναλλὰξ γωνίας ἴσας ἀλλήλαις ποιῇ, παράλληλοι ἔσονται ἀλλήλαις αἱ εὐθεῖαι.],
     [If a straight-line falling across two straight-lines makes the alternate angles equal to one another (then) the (two) straight-lines will be parallel to one another.],
   )
   #parallel-fig(fig27)
@@ -21,7 +21,7 @@
     [For if not, being produced, $A B$ and $C D$ will certainly meet together: either in the direction of $B$ and $D$, or (in the direction) of $A$ and $C$ [Def.~1.23]. Let them be produced, and let them meet together in the direction of $B$ and $D$ at (point) $G$. So, for the triangle $G E F$, the external angle $A E F$ is equal to the internal and opposite (angle) $E F G$. The very thing is impossible [Prop.~1.16]. Thus, being produced, $A B$ and $C D$ will not meet together in the direction of $B$ and $D$. Similarly, it can be shown that neither (will they meet together) in (the direction of) $A$ and $C$. But (straight-lines) meeting in neither direction are parallel [Def.~1.23]. Thus, $A B$ and $C D$ are parallel.],
   )
   #parallel(
-    [᾿Εὰν ἄρα εἰς δύο εὐθείας εὐθεῖα ἐμπίπτουσα τὰς ἐναλλὰξ γωνίας ἴσας ἀλλήλαις ποιῇ, παράλληλοι ἔσονται αἱ εὐθεῖαι· ὅπερ ἔδει δεῖξαι.],
+    [Ἐὰν ἄρα εἰς δύο εὐθείας εὐθεῖα ἐμπίπτουσα τὰς ἐναλλὰξ γωνίας ἴσας ἀλλήλαις ποιῇ, παράλληλοι ἔσονται αἱ εὐθεῖαι· ὅπερ ἔδει δεῖξαι.],
     [Thus, if a straight-line falling across two straight-lines makes the alternate angles equal to one another (then) the (two) straight-lines will be parallel (to one another). (Which is) the very thing it was required to show.],
   )
 ]

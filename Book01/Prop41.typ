@@ -8,7 +8,7 @@
 #content-box[
   #parallel-proposition(41)
   #parallel(
-    [᾿Εὰν παραλληλόγραμμον τριγώνῳ βάσιν τε ἔχῃ τὴν αὐτὴν καὶ ἐν ταῖς αὐταῖς παραλλήλοις ᾿ῇ, διπλάσιόν ἐστί τὸ παραλληλόγραμμον τοῦ τριγώνου.],
+    [Ἐὰν παραλληλόγραμμον τριγώνῳ βάσιν τε ἔχῃ τὴν αὐτὴν καὶ ἐν ταῖς αὐταῖς παραλλήλοις ᾖ, διπλάσιόν ἐστί τὸ παραλληλόγραμμον τοῦ τριγώνου.],
     [If a parallelogram has the same base as a triangle, and is between the same parallels, (then) the parallelogram is double (the area) of the triangle.],
   )
   #parallel(
@@ -17,11 +17,11 @@
   )
   #parallel-fig(fig41)
   #parallel(
-    [᾿Επεζεύχθω γὰρ ἡ ΑΓ. ἴσον δή ἐστι τὸ ΑΒΓ τρίγωνον τῷ ΕΒΓ τριγώνῳ· ἐπί τε γὰρ τῆς αὐτῆς βάσεώς ἐστιν αὐτῷ τῆς ΒΓ καὶ ἐν ταῖς αὐταῖς παραλλήλοις ταῖς ΒΓ, ΑΕ. ἀλλὰ τὸ ΑΒΓΔ παραλληλόγραμμον διπλάσιόν ἐστι τοῦ ΑΒΓ τριγώνου· ἡ γὰρ ΑΓ διάμετρος αὐτὸ δίχα τέμνει· ὥστε τὸ ΑΒΓΔ παραλληλόγραμμον καὶ τοῦ ΕΒΓ τριγώνου ἐστὶ διπλάσιον.],
+    [Ἐπεζεύχθω γὰρ ἡ ΑΓ. ἴσον δή ἐστι τὸ ΑΒΓ τρίγωνον τῷ ΕΒΓ τριγώνῳ· ἐπί τε γὰρ τῆς αὐτῆς βάσεώς ἐστιν αὐτῷ τῆς ΒΓ καὶ ἐν ταῖς αὐταῖς παραλλήλοις ταῖς ΒΓ, ΑΕ. ἀλλὰ τὸ ΑΒΓΔ παραλληλόγραμμον διπλάσιόν ἐστι τοῦ ΑΒΓ τριγώνου· ἡ γὰρ ΑΓ διάμετρος αὐτὸ δίχα τέμνει· ὥστε τὸ ΑΒΓΔ παραλληλόγραμμον καὶ τοῦ ΕΒΓ τριγώνου ἐστὶ διπλάσιον.],
     [For let $A C$ be joined. So triangle $A B C$ is equal to triangle $E B C$. For it is on the same base, $B C$, (as $E B C$), and between the same parallels, $B C$ and $A E$ [Prop.~1.37]. But, parallelogram $A B C D$ is double (the area) of triangle $A B C$. For the diagonal $A C$ cuts the former in half [Prop.~1.34]. So parallelogram $A B C D$ is also double (the area) of triangle $E B C$.],
   )
   #parallel(
-    [᾿Εὰν ἄρα παραλληλόγραμμον τριγώνῳ βάσιν τε ἔχῃ τὴν αὐτὴν καὶ ἐν ταῖς αὐταῖς παραλλήλοις ᾿ῇ, διπλάσιόν ἐστί τὸ παραλληλόγραμμον τοῦ τριγώνου· ὅπερ ἔδει δεῖξαι.],
+    [Ἐὰν ἄρα παραλληλόγραμμον τριγώνῳ βάσιν τε ἔχῃ τὴν αὐτὴν καὶ ἐν ταῖς αὐταῖς παραλλήλοις ᾖ, διπλάσιόν ἐστί τὸ παραλληλόγραμμον τοῦ τριγώνου· ὅπερ ἔδει δεῖξαι.],
     [Thus, if a parallelogram has the same base as a triangle, and is between the same parallels, (then) the parallelogram is double (the area) of the triangle. (Which is) the very thing it was required to show.],
   )
 ]

@@ -13,11 +13,11 @@
   )
   #parallel-fig(fig32)
   #parallel(
-    [῎Εστω τρίγωνον τὸ ΑΒΓ, καὶ προσεκβεβλήσθω αὐτοῦ μία πλευρὰ ἡ ΒΓ ἐπὶ τὸ Δ· λέγω, ὅτι ἡ ἐκτὸς γωνία ἡ ὑπὸ ΑΓΔ ἴση ἐστὶ δυσὶ ταῖς ἐντὸς καὶ ἀπεναντίον ταῖς ὑπὸ ΓΑΒ, ΑΒΓ, καὶ αἱ ἐντὸς τοῦ τριγώνου τρεῖς γωνίαι αἱ ὑπὸ ΑΒΓ, ΒΓΑ, ΓΑΒ δυσὶν ὀρθαῖς ἴσαι εἰσίν.],
+    [Ἔστω τρίγωνον τὸ ΑΒΓ, καὶ προσεκβεβλήσθω αὐτοῦ μία πλευρὰ ἡ ΒΓ ἐπὶ τὸ Δ· λέγω, ὅτι ἡ ἐκτὸς γωνία ἡ ὑπὸ ΑΓΔ ἴση ἐστὶ δυσὶ ταῖς ἐντὸς καὶ ἀπεναντίον ταῖς ὑπὸ ΓΑΒ, ΑΒΓ, καὶ αἱ ἐντὸς τοῦ τριγώνου τρεῖς γωνίαι αἱ ὑπὸ ΑΒΓ, ΒΓΑ, ΓΑΒ δυσὶν ὀρθαῖς ἴσαι εἰσίν.],
     [Let $A B C$ be a triangle, and let one of its sides $B C$ be produced to $D$. I say that the external angle $A C D$ is equal to the (sum of the) two internal and opposite angles $C A B$ and $A B C$, and the (sum of the) three internal angles of the triangle---$A B C$, $B C A$, and $C A B$---is equal to two right-angles.],
   )
   #parallel(
-    [῎Ηχθω γὰρ διὰ τοῦ Γ σημείου τῇ ΑΒ εὐθείᾳ παράλληλος ἡ ΓΕ.],
+    [Ἤχθω γὰρ διὰ τοῦ Γ σημείου τῇ ΑΒ εὐθείᾳ παράλληλος ἡ ΓΕ.],
     [For let $C E$ be drawn through point $C$ parallel to the straight-line $A B$ [Prop.~1.31].],
   )
   #parallel(

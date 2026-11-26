@@ -29,7 +29,7 @@
     [To cut a given finite straight-line in half.],
   )
   #parallel(
-    [῎Εστω ἡ δοθεῖσα εὐθεῖα πεπερασμένη ἡ ΑΒ· δεῖ δὴ τὴν ΑΒ εὐθεῖαν πεπερασμένην δίχα τεμεῖν.],
+    [Ἔστω ἡ δοθεῖσα εὐθεῖα πεπερασμένη ἡ ΑΒ· δεῖ δὴ τὴν ΑΒ εὐθεῖαν πεπερασμένην δίχα τεμεῖν.],
     [Let $A B$ be the given finite straight-line. So it is required to cut the finite straight-line $A B$ in half.],
   )
   #parallel(
@@ -38,11 +38,11 @@
   )
   #parallel-fig(fig10)
   #parallel(
-    [᾿Επεὶ γὰρ ἴση ἐστὶν ἡ ΑΓ τῇ ΓΒ, κοινὴ δὲ ἡ ΓΔ, δύο δὴ αἱ ΑΓ, ΓΔ δύο ταῖς ΒΓ, ΓΔ ἴσαι εἰσὶν ἑκατέρα ἑκατέρᾳ· καὶ γωνία ἡ ὑπὸ ΑΓΔ γωνίᾳ τῇ ὑπὸ ΒΓΔ ἴση ἐστίν· βάσις ἄρα ἡ ΑΔ βάσει τῇ ΒΔ ἴση ἐστίν.],
+    [Ἐπεὶ γὰρ ἴση ἐστὶν ἡ ΑΓ τῇ ΓΒ, κοινὴ δὲ ἡ ΓΔ, δύο δὴ αἱ ΑΓ, ΓΔ δύο ταῖς ΒΓ, ΓΔ ἴσαι εἰσὶν ἑκατέρα ἑκατέρᾳ· καὶ γωνία ἡ ὑπὸ ΑΓΔ γωνίᾳ τῇ ὑπὸ ΒΓΔ ἴση ἐστίν· βάσις ἄρα ἡ ΑΔ βάσει τῇ ΒΔ ἴση ἐστίν.],
     [For since $A C$ is equal to $C B$, and $C D$ (is) common, the two (straight-lines) $A C$, $C D$ are equal to the two (straight-lines) $B C$, $C D$, respectively. And the angle $A C D$ is equal to the angle $B C D$. Thus, the base $A D$ is equal to the base $B D$ [Prop.~1.4].],
   )
   #parallel(
-    [῾Η ἄρα δοθεῖσα εὐθεῖα πεπερασμένη ἡ ΑΒ δίχα τέτμηται κατὰ τὸ Δ· ὅπερ ἔδει ποιῆσαι.],
+    [Ἡ ἄρα δοθεῖσα εὐθεῖα πεπερασμένη ἡ ΑΒ δίχα τέτμηται κατὰ τὸ Δ· ὅπερ ἔδει ποιῆσαι.],
     [Thus, the given finite straight-line $A B$ has been cut in half at (point) $D$. (Which is) the very thing it was required to do.],
   )
 ]

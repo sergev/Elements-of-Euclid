@@ -12,12 +12,12 @@
     [Equal triangles which are on equal bases, and on the same side, are also between the same parallels.],
   )
   #parallel(
-    [῎Εστω ἴσα τρίγωνα τὰ ΑΒΓ, ΓΔΕ ἐπὶ ἴσων βάσεων τῶν ΒΓ, ΓΕ καὶ ἐπὶ τὰ αὐτὰ μέρη. λέγω, ὅτι καὶ ἐν ταῖς αὐταῖς παραλλήλοις ἐστίν.],
+    [Ἔστω ἴσα τρίγωνα τὰ ΑΒΓ, ΓΔΕ ἐπὶ ἴσων βάσεων τῶν ΒΓ, ΓΕ καὶ ἐπὶ τὰ αὐτὰ μέρη. λέγω, ὅτι καὶ ἐν ταῖς αὐταῖς παραλλήλοις ἐστίν.],
     [Let $A B C$ and $C D E$ be equal triangles on the equal bases $B C$ and $C E$ (respectively), and on the same side (of $B E$). I say that they are also between the same parallels.],
   )
   #parallel-fig(fig40)
   #parallel(
-    [᾿Επεζεύχθω γὰρ ἡ ΑΔ· λέγω, ὅτι παράλληλός ἐστιν ἡ ΑΔ τῇ ΒΕ.],
+    [Ἐπεζεύχθω γὰρ ἡ ΑΔ· λέγω, ὅτι παράλληλός ἐστιν ἡ ΑΔ τῇ ΒΕ.],
     [For let $A D$ be joined. I say that $A D$ is parallel to $B E$.],
   )
   #parallel(

@@ -12,7 +12,7 @@
     [To draw a straight-line parallel to a given straight-line, through a given point.],
   )
   #parallel(
-    [῎Εστω τὸ μὲν δοθὲν σημεῖον τὸ Α, ἡ δὲ δοθεῖσα εὐθεῖα ἡ ΒΓ· δεῖ δὴ διὰ τοῦ Α σημείου τῇ ΒΓ εὐθείᾳ παράλληλον εὐθεῖαν γραμμὴν ἀγαγεῖν.],
+    [Ἔστω τὸ μὲν δοθὲν σημεῖον τὸ Α, ἡ δὲ δοθεῖσα εὐθεῖα ἡ ΒΓ· δεῖ δὴ διὰ τοῦ Α σημείου τῇ ΒΓ εὐθείᾳ παράλληλον εὐθεῖαν γραμμὴν ἀγαγεῖν.],
     [Let $A$ be the given point, and $B C$ the given straight-line. So it is required to draw a straight-line parallel to the straight-line $B C$, through the point $A$.],
   )
   #parallel(
@@ -25,7 +25,7 @@
     [And since the straight-line $A D$, (in) falling across the two straight-lines $B C$ and $E F$, has made the alternate angles $E A D$ and $A D C$ equal to one another, $E A F$ is thus parallel to $B C$ [Prop.~1.27].],
   )
   #parallel(
-    [Διὰ τοῦ δοθέντος ἄρα σημείου τοῦ Α τῇ δοθείσῃ εὐθείᾳ τῇ ΒΓ παράλληλος εὐθεῖα γραμμὴ ᾿ῆκται ἡ ΕΑΖ· ὅπερ ἔδει ποιῆσαι.],
+    [Διὰ τοῦ δοθέντος ἄρα σημείου τοῦ Α τῇ δοθείσῃ εὐθείᾳ τῇ ΒΓ παράλληλος εὐθεῖα γραμμὴ ἦκται ἡ ΕΑΖ· ὅπερ ἔδει ποιῆσαι.],
     [Thus, the straight-line $E A F$ has been drawn parallel to the given straight-line $B C$, through the given point $A$. (Which is) the very thing it was required to do.],
   )
 ]

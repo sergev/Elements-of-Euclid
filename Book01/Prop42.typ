@@ -12,7 +12,7 @@
     [To construct a parallelogram equal to a given triangle in a given rectilinear angle.],
   )
   #parallel(
-    [῎Εστω τὸ μὲν δοθὲν τρίγωνον τὸ ΑΒΓ, ἡ δὲ δοθεῖσα γωνία εὐθύγραμμος ἡ Δ· δεῖ δὴ τῷ ΑΒΓ τριγώνῳ ἴσον παραλληλόγραμμον συστήσασθαι ἐν τῇ Δ γωνίᾳ εὐθυγράμμῳ.],
+    [Ἔστω τὸ μὲν δοθὲν τρίγωνον τὸ ΑΒΓ, ἡ δὲ δοθεῖσα γωνία εὐθύγραμμος ἡ Δ· δεῖ δὴ τῷ ΑΒΓ τριγώνῳ ἴσον παραλληλόγραμμον συστήσασθαι ἐν τῇ Δ γωνίᾳ εὐθυγράμμῳ.],
     [Let $A B C$ be the given triangle, and $D$ the given rectilinear angle. So it is required to construct a parallelogram equal to triangle $A B C$ in the rectilinear angle $D$.],
   )
   #parallel(

@@ -10,27 +10,27 @@
   )
 
   #parallel(
-    [᾿Ηιτήσθω ἀπὸ παντὸς σημείου ἐπὶ πᾶν σημεῖον εὐθεῖαν γραμμὴν ἀγαγεῖν.],
+    [αʹ. Ἠιτήσθω ἀπὸ παντὸς σημείου ἐπὶ πᾶν σημεῖον εὐθεῖαν γραμμὴν ἀγαγεῖν.],
     [Let it be postulated#content-box-note[Literally, "let it have been postulated". The Greek present perfect tense indicates a past action with present significance. Hence, the 3rd-person present perfect imperative ἠιτήσθω means "let it be postulated" in the sense "let it stand as postulated", but not  "let the postulate be now brought forward". This peculiar Greek idiom is used throughout the Elements.] (that it is possible) to draw a straight-line from any point to any point;],
     n: 1
   )
   #parallel(
-    [Καὶ πεπερασμένην εὐθεῖαν κατὰ τὸ συνεχὲς ἐπ᾿ εὐθείας ἐκβαλεῖν.],
+    [βʹ. Καὶ πεπερασμένην εὐθεῖαν κατὰ τὸ συνεχὲς ἐπ᾿ εὐθείας ἐκβαλεῖν.],
     [And to produce a finite straight-line continuously in a straight-line;],
     n: 2
   )
   #parallel(
-    [Καὶ παντὶ κέντρῳ καὶ διαστήματι κύκλον γράφεσθαι.],
+    [γʹ. Καὶ παντὶ κέντρῳ καὶ διαστήματι κύκλον γράφεσθαι.],
     [And to draw a circle with any center and radius.],
     n: 3
   )
   #parallel(
-    [Καὶ πάσας τὰς ὀρθὰς γωνίας ἴσας ἀλλήλαις ε᾿ῖναι.],
+    [δʹ. Καὶ πάσας τὰς ὀρθὰς γωνίας ἴσας ἀλλήλαις εἶναι.],
     [And that all right-angles are equal to one another.],
     n: 4
   )
   #parallel(
-    [Καὶ ἐὰν εἰς δύο εὐθείας εὐθεῖα ἐμπίπτουσα τὰς ἐντὸς καὶ ἐπὶ τὰ αὐτὰ μέρη γωνίας δύο ὀρθῶν ἐλάσσονας ποιῇ, ἐκβαλλομένας τὰς δύο εὐθείας ἐπ᾿ ἄπειρον συμπίπτειν, ἐφ᾿ ἃ μέρη εἰσὶν αἱ τῶν δύο ὀρθῶν ἐλάσσονες.],
+    [εʹ. Καὶ ἐὰν εἰς δύο εὐθείας εὐθεῖα ἐμπίπτουσα τὰς ἐντὸς καὶ ἐπὶ τὰ αὐτὰ μέρη γωνίας δύο ὀρθῶν ἐλάσσονας ποιῇ, ἐκβαλλομένας τὰς δύο εὐθείας ἐπ᾿ ἄπειρον συμπίπτειν, ἐφ᾿ ἃ μέρη εἰσὶν αἱ τῶν δύο ὀρθῶν ἐλάσσονες.],
     [And that if a straight-line falling across two (other) straight-lines makes internal angles on the same side (of itself whose sum is) less than two right-angles, (then) the two (other) straight-lines, being produced to infinity, meet on that side (of the original straight-line) that the (sum of the internal angles) is less than two right-angles (and do not meet on the other side).#content-box-note[This postulate effectively specifies that we are dealing with the geometry of flat, rather than  curved, space.]],
     n: 5
   )

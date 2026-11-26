@@ -4,14 +4,14 @@
   #chapter(
     [Definitions],
     parallel(
-      [῞Οροι.],
+      [Ὅροι.],
       [Definitions]
     ),
     depth: 2,
   )
   
   #parallel(
-    [Σημεῖόν ἐστιν, ο῾ῦ μέρος οὐθέν.],
+    [Σημεῖόν ἐστιν, οὗ μέρος οὐθέν.],
     [A point is that of which there is no part.],
     n: 1
   )
@@ -31,47 +31,47 @@
     n: 4
   )
   #parallel(
-    [᾿Επιφάνεια δέ ἐστιν, ὃ μῆκος καὶ πλάτος μόνον ἔχει.],
+    [Ἐπιφάνεια δέ ἐστιν, ὃ μῆκος καὶ πλάτος μόνον ἔχει.],
     [And a surface is that which has length and breadth only.],
     n: 5
   )
   #parallel(
-    [᾿Επιφανείας δὲ πέρατα γραμμαί.],
+    [Ἐπιφανείας δὲ πέρατα γραμμαί.],
     [And the extremities of a surface are lines.],
     n: 6
   )
   #parallel(
-    [᾿Επίπεδος ἐπιφάνειά ἐστιν, ἥτις ἐξ ἴσου ταῖς ἐφ᾿ ἑαυτῆς εὐθείαις κεῖται.],
+    [Ἐπίπεδος ἐπιφάνειά ἐστιν, ἥτις ἐξ ἴσου ταῖς ἐφ᾿ ἑαυτῆς εὐθείαις κεῖται.],
     [A plane surface is (any) one which lies evenly with the straight-lines on itself.],
     n: 7
   )
   #parallel(
-    [᾿Επίπεδος δὲ γωνία ἐστὶν ἡ ἐν ἐπιπέδῳ δύο γραμμῶν ἁπτομένων ἀλλήλων καὶ μὴ ἐπ᾿ εὐθείας κειμένων πρὸς ἀλλήλας τῶν γραμμῶν κλίσις.],
+    [Ἐπίπεδος δὲ γωνία ἐστὶν ἡ ἐν ἐπιπέδῳ δύο γραμμῶν ἁπτομένων ἀλλήλων καὶ μὴ ἐπ᾿ εὐθείας κειμένων πρὸς ἀλλήλας τῶν γραμμῶν κλίσις.],
     [And a plane angle is the inclination of the lines to one another, when two lines in a plane meet one another, and are not lying in a straight-line.],
     n: 8
   )
   #parallel(
-    [῞Οταν δὲ αἱ περιέχουσαι τὴν γωνίαν γραμμαὶ εὐθεῖαι ᾿ῶσιν, εὐθύγραμμος καλεῖται ἡ γωνία.],
+    [Ὅταν δὲ αἱ περιέχουσαι τὴν γωνίαν γραμμαὶ εὐθεῖαι ὦσιν, εὐθύγραμμος καλεῖται ἡ γωνία.],
     [And when the lines containing the angle are straight then the angle is called rectilinear.],
     n: 9
   )
   #parallel(
-    [῞Οταν δὲ εὐθεῖα ἐπ᾿ εὐθεῖαν σταθεῖσα τὰς ἐφεξῆς γωνίας ἴσας ἀλλήλαις ποιῇ, ὀρθὴ ἑκατέρα τῶν ἴσων γωνιῶν ἐστι, καὶ ἡ ἐφεστηκυῖα εὐθεῖα κάθετος καλεῖται, ἐφ᾿ ἣν ἐφέστηκεν.],
+    [Ὅταν δὲ εὐθεῖα ἐπ᾿ εὐθεῖαν σταθεῖσα τὰς ἐφεξῆς γωνίας ἴσας ἀλλήλαις ποιῇ, ὀρθὴ ἑκατέρα τῶν ἴσων γωνιῶν ἐστι, καὶ ἡ ἐφεστηκυῖα εὐθεῖα κάθετος καλεῖται, ἐφ᾿ ἣν ἐφέστηκεν.],
     [And when a straight-line stood upon (another) straight-line makes adjacent angles (which are) equal to one another, each of the equal angles is a right-angle, and the former straight-line  is called a perpendicular to that upon which it stands.],
     n: 10
   )
   #parallel(
-    [᾿Αμβλεῖα γωνία ἐστὶν ἡ μείζων ὀρθῆς.],
+    [Ἀμβλεῖα γωνία ἐστὶν ἡ μείζων ὀρθῆς.],
     [An obtuse angle is one greater than a right-angle.],
     n: 11
   )
   #parallel(
-    [᾿Οξεῖα δὲ ἡ ἐλάσσων ὀρθῆς.],
+    [Ὀξεῖα δὲ ἡ ἐλάσσων ὀρθῆς.],
     [And an acute angle (is) one less than a right-angle.],
     n: 12
   )
   #parallel(
-    [῞Ορος ἐστίν, ὅ τινός ἐστι πέρας.],
+    [Ὅρος ἐστίν, ὅ τινός ἐστι πέρας.],
     [A boundary is that which is the extremity of something.],
     n: 13
   )
@@ -96,12 +96,12 @@
     n: 17
   )
   #parallel(
-    [῾Ημικύκλιον δέ ἐστι τὸ περιεχόμενον σχῆμα ὑπό τε τῆς διαμέτρου καὶ τῆς ἀπολαμβανομένης ὑπ᾿ αὐτῆς περιφερείας. κέντρον δὲ τοῦ ἡμικυκλίου τὸ αὐτό, ὃ καὶ τοῦ κύκλου ἐστίν.],
+    [Ἡμικύκλιον δέ ἐστι τὸ περιεχόμενον σχῆμα ὑπό τε τῆς διαμέτρου καὶ τῆς ἀπολαμβανομένης ὑπ᾿ αὐτῆς περιφερείας. κέντρον δὲ τοῦ ἡμικυκλίου τὸ αὐτό, ὃ καὶ τοῦ κύκλου ἐστίν.],
     [And a semi-circle is the figure contained by the diameter  and the circumference  cut off by it. And the center of the semi-circle is the same (point) as (the center of) the circle.],
     n: 18
   )
   #parallel(
-    [Σχήματα εὐθύγραμμά ἐστι τὰ ὑπὸ εὐθειῶν περιεχόμενα, τρίπλευρα μὲν τὰ ὑπὸ τριῶν, τετράπλευρα δὲ τὰ ὑπὸ τεσσσάρων, πολύπλευρα δὲ τὰ ὑπὸ πλειόνων ἢ τεσσάρων εὐθειῶν περιεχόμενα.],
+    [Σχήματα εὐθύγραμμά ἐστι τὰ ὑπὸ εὐθειῶν περιεχόμενα, τρίπλευρα μὲν τὰ ὑπὸ τριῶν, τετράπλευρα δὲ τὰ ὑπὸ τεσσάρων, πολύπλευρα δὲ τὰ ὑπὸ πλειόνων ἢ τεσσάρων εὐθειῶν περιεχόμενα.],
     [Rectilinear figures are those (figures) contained by straight-lines: trilateral figures being those contained by three straight-lines,  quadrilateral   by four, and multilateral by more than four.],
     n: 19
   )
@@ -111,7 +111,7 @@
     n: 20
   )
   #parallel(
-    [῎Ετι δὲ τῶν τριπλεύρων σχημάτων ὀρθογώνιον μὲν τρίγωνόν ἐστι τὸ ἔχον ὀρθὴν γωνίαν, ἀμβλυγώνιον δὲ τὸ ἔχον ἀμβλεῖαν γωνίαν, ὀξυγώνιον δὲ τὸ τὰς τρεῖς ὀξείας ἔχον γωνίας.],
+    [καʹ Ἔτι δὲ τῶν τριπλεύρων σχημάτων ὀρθογώνιον μὲν τρίγωνόν ἐστι τὸ ἔχον ὀρθὴν γωνίαν, ἀμβλυγώνιον δὲ τὸ ἔχον ἀμβλεῖαν γωνίαν, ὀξυγώνιον δὲ τὸ τὰς τρεῖς ὀξείας ἔχον γωνίας.],
     [And further of the trilateral figures: a right-angled triangle is that having a right-angle, an obtuse-angled  (triangle) that having an obtuse angle, and an acute-angled (triangle) that having three acute angles.],
     n: 21
   )
@@ -121,7 +121,7 @@
     n: 22
   )
   #parallel(
-    [Παράλληλοί εἰσιν εὐθεῖαι, αἵτινες ἐν τῷ αὐτῷ ἐπιπέδῳ ο᾿ῦσαι καὶ ἐκβαλλόμεναι εἰς ἄπειρον ἐφ᾿ ἑκάτερα τὰ μέρη ἐπὶ μηδέτερα συμπίπτουσιν ἀλλήλαις.],
+    [Παράλληλοί εἰσιν εὐθεῖαι, αἵτινες ἐν τῷ αὐτῷ ἐπιπέδῳ οὖσαι καὶ ἐκβαλλόμεναι εἰς ἄπειρον ἐφ᾿ ἑκάτερα τὰ μέρη ἐπὶ μηδέτερα συμπίπτουσιν ἀλλήλαις.],
     [Parallel lines are straight-lines which, being in the same plane, and being produced to infinity in each direction, meet with one another in neither (of these directions).],
     n: 23
   )

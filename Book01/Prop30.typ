@@ -12,11 +12,11 @@
     [(Straight-lines) parallel to the same straight-line are also parallel to one another.],
   )
   #parallel(
-    [῎Εστω ἑκατέρα τῶν ΑΒ, ΓΔ τῇ ΕΖ παράλληλος· λέγω, ὅτι καὶ ἡ ΑΒ τῇ ΓΔ ἐστι παράλληλος.],
+    [Ἔστω ἑκατέρα τῶν ΑΒ, ΓΔ τῇ ΕΖ παράλληλος· λέγω, ὅτι καὶ ἡ ΑΒ τῇ ΓΔ ἐστι παράλληλος.],
     [Let each of the (straight-lines) $A B$ and $C D$ be parallel to $E F$. I say that $A B$ is also parallel to $C D$.],
   )
   #parallel(
-    [᾿Εμπιπτέτω γὰρ εἰς αὐτὰς εὐθεῖα ἡ ΗΚ.],
+    [Ἐμπιπτέτω γὰρ εἰς αὐτὰς εὐθεῖα ἡ ΗΚ.],
     [For let the straight-line $G K$ fall across ($A B$, $C D$, and $E F$).],
   )
   #parallel-fig(fig30)

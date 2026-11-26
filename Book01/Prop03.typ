@@ -37,7 +37,7 @@
   )
 
   #parallel(
-    [῎Εστωσαν αἱ δοθεῖσαι δύο εὐθεῖαι ἄνισοι αἱ ΑΒ, Γ, ῾ῶν μείζων ἔστω ἡ ΑΒ· δεῖ δὴ ἀπὸ τῆς μείζονος τῆς ΑΒ τῇ ἐλάσσονι τῇ Γ ἴσην εὐθεῖαν ἀφελεῖν.],
+    [Ἔστωσαν αἱ δοθεῖσαι δύο εὐθεῖαι ἄνισοι αἱ ΑΒ, Γ, ὧν μείζων ἔστω ἡ ΑΒ· δεῖ δὴ ἀπὸ τῆς μείζονος τῆς ΑΒ τῇ ἐλάσσονι τῇ Γ ἴσην εὐθεῖαν ἀφελεῖν.],
     [Let $A B$ and $C$ be the two given unequal straight-lines, of which let the greater be $A B$. So it is required to cut off a straight-line equal to the lesser $C$ from the greater $A B$.],
   )
 

@@ -29,11 +29,11 @@
   #parallel-proposition(1)
   
   #parallel(
-    [᾿Επὶ τῆς δοθείσης εὐθείας πεπερασμένης τρίγωνον ἰσόπλευρον συστήσασθαι.],
+    [Ἐπὶ τῆς δοθείσης εὐθείας πεπερασμένης τρίγωνον ἰσόπλευρον συστήσασθαι.],
     [To construct an equilateral triangle on a given finite straight-line.],
   )
   #parallel(
-    [῎Εστω ἡ δοθεῖσα εὐθεῖα πεπερασμένη ἡ ΑΒ.],
+    [Ἔστω ἡ δοθεῖσα εὐθεῖα πεπερασμένη ἡ ΑΒ.],
     [Let $A B$ be the given finite straight-line.],
   )
   #parallel(
@@ -52,7 +52,7 @@
     [And since the point $A$ is the center of the circle $C D B$, $A C$ is equal to $A B$ [Def.~1.15]. Again, since the point $B$ is the center of the circle $C A E$, $B C$ is equal to $B A$ [Def.~1.15]. But $C A$ was also shown (to be) equal to $A B$. Thus, $C A$ and $C B$ are each equal to $A B$. But things equal to the same thing are also equal to one another [C.N.~1]. Thus, $C A$ is also equal to $C B$. Thus, the three (straight-lines) $C A$, $A B$, and $B C$ are equal to one another.],
   )
   #parallel(
-    [᾿Ισόπλευρον ἄρα ἐστὶ τὸ ΑΒΓ τρίγωνον. καὶ συνέσταται ἐπὶ τῆς δοθείσης εὐθείας πεπερασμένης τῆς ΑΒ. ὅπερ ἔδει ποιῆσαι.],
+    [Ἰσόπλευρον ἄρα ἐστὶ τὸ ΑΒΓ τρίγωνον. καὶ συνέσταται ἐπὶ τῆς δοθείσης εὐθείας πεπερασμένης τῆς ΑΒ. ὅπερ ἔδει ποιῆσαι.],
     [Thus, the triangle $A B C$ is equilateral, and has been constructed on the given finite straight-line $A B$. (Which is) the very thing it was required to do.],
   )
 ]

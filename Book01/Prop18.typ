@@ -12,12 +12,12 @@
     [In any triangle, the greater side subtends the greater angle.],
   )
   #parallel(
-    [῎Εστω γὰρ τρίγωνον τὸ ΑΒΓ μείζονα ἔχον τὴν ΑΓ πλευρὰν τῆς ΑΒ· λέγω, ὅτι καὶ γωνία ἡ ὑπὸ ΑΒΓ μείζων ἐστὶ τῆς ὑπὸ ΒΓΑ.],
+    [Ἔστω γὰρ τρίγωνον τὸ ΑΒΓ μείζονα ἔχον τὴν ΑΓ πλευρὰν τῆς ΑΒ· λέγω, ὅτι καὶ γωνία ἡ ὑπὸ ΑΒΓ μείζων ἐστὶ τῆς ὑπὸ ΒΓΑ.],
     [For let $A B C$ be a triangle having side $A C$ greater than $A B$. I say that angle $A B C$ is also greater than $B C A$.],
   )
   #parallel-fig(fig18)
   #parallel(
-    [᾿Επεὶ γὰρ μείζων ἐστὶν ἡ ΑΓ τῆς ΑΒ, κείσθω τῇ ΑΒ ἴση ἡ ΑΔ, καὶ ἐπεζεύχθω ἡ ΒΔ.],
+    [Ἐπεὶ γὰρ μείζων ἐστὶν ἡ ΑΓ τῆς ΑΒ, κείσθω τῇ ΑΒ ἴση ἡ ΑΔ, καὶ ἐπεζεύχθω ἡ ΒΔ.],
     [For since $A C$ is greater than $A B$, let $A D$ be made equal to $A B$ [Prop.~1.3], and let $B D$ be joined.],
   )
   #parallel(
