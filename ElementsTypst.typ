@@ -65,3 +65,7 @@ F
 #pagebreak()
 
 #include "Book06/Book6.typ"
+
+#pagebreak()
+
+#include "Book07/Book7.typ"

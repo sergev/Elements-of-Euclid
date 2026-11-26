@@ -320,6 +320,9 @@ def build(block, warn):
     for e in lp[pi:]:
         out['items'].append(('para', greek_para(e[1]), 'TODO-ENGLISH'))
     unused = set(raw) - notes['_used']
+    if len(unused) == 1 and 'note' not in out:
+        out['note'] = notes[unused.pop()]     # marker missing in source: attach to heading
+        warn('orphan note attached to heading')
     if unused:
         warn('unused notes %s' % sorted(unused))
     return out
