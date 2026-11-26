@@ -17,7 +17,7 @@
   )
   #parallel(
     [Καὶ ἐπεὶ πυραμίς, ἧς βάσις μέν ἐστι τὸ ΑΒΔ τρίγωνον, κορυφὴ δὲ τὸ Γ σημεῖον, ἡ αὐτή ἐστι πυραμίδι, ἧς βάσις τὸ ΓΑΒ τρίγωνον, κορυφὴ δὲ τὸ Δ σημεῖον· ὑπὸ γὰρ τῶν αὐτῶν ἐπιπέδων περιέχονται· ἡ δὲ πυραμίς, ἧς βάσις τὸ ΑΒΔ τρίγωνον, κορυφὴ δὲ τὸ Γ σημεῖον, τρίτον ἐδείχθη τοῦ πρίσματος, οὗ βάσις τὸ ΑΒΓ τρίγωνον, ἀπεναντίον δὲ τὸ ΔΕΖ, καὶ ἡ πυραμὶς ἄρα, ἧς βάσις τὸ ΑΒΓ τρίγωνον, κορυφὴ δὲ τὸ Δ σημεῖον, τρίτον ἐστὶ τοῦ πρίσματος τοῦ ἔχοντος βάσις τὴν αὐτὴν τὸ ΑΒΓ τρίγωνον, ἀπεναντίον δὲ τὸ ΔΕΖ.],
-    [And since the pyramid whose base is triangle $A B D$, and apex the point $C$, is the same as the pyramid whose base is triangle $C A B$, and apex the point $D$. For they are contained by the same planes. And the pyramid whose base (is) triangle $A B D$, and apex the point $C$, was shown (to be) a third of the prism whose base is triangle $A B C$, and opposite (plane) $D E F$, thus the pyramid whose base is triangle $A B C$, and apex the point $D$, is also a third of the pyramid having the same base, triangle $A B C$, and opposite (plane) $D E F$.],
+    [And since the pyramid whose base is triangle $A B D$, and apex the point $C$, is the same as the pyramid whose base is triangle $C A B$, and apex the point $D$. For they are contained by the same planes. And the pyramid whose base (is) triangle $A B D$, and apex the point $C$, was shown (to be) a third of the prism whose base is triangle $A B C$, and opposite (plane) $D E F$, thus the pyramid whose base is triangle $A B C$, and apex the point $D$, is also a third of the prism having the same base, triangle $A B C$, and opposite (plane) $D E F$.],
   )
   #parallel-subheading([Πόρισμα.], [Corollary])
   #parallel(

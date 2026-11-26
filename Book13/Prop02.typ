@@ -17,7 +17,7 @@
   )
   #parallel(
     [Ἐὰν ἄρα εὐθεῖα γραμμὴ τμήματος ἑαυτῆς πενταπλάσιον δύνηται, τῆς διπλασίας τοῦ εἰρημένου τμήματος ἄκρον καὶ μέσον λόγον τεμνομένης τὸ μεῖζον τμῆμα τὸ λοιπὸν μέρος ἐστὶ τῆς ἐξ ἀρχῆς εὐθείας· ὅπερ ἔδει δεῖξαι.],
-    [Thus, if the square on a straight-line is five times the (square) on a piece of itself, and double the aforementioned piece is cut in extreme and mean ratio, then the greater piece is the remaining part of the original straight-line. (Which is) the very thing it was required to show.],
+    [Thus, if the square on a straight-line is five times the (square) on a piece of it, and double the aforementioned piece is cut in extreme and mean ratio, then the greater piece is the remaining part of the original straight-line. (Which is) the very thing it was required to show.],
   )
   #parallel-subheading([Λ ημμα.], [Lemma])
   #parallel(

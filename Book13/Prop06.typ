@@ -17,6 +17,6 @@
   )
   #parallel(
     [Ἐὰν ἄρα εὐθεῖα ῥητὴ ἄκρον καὶ μέσον λόγον τμηθῇ, ἑκάτερον τῶν τμημάτων ἄλογός ἐστιν ἡ καλουμένη ἀποτομή· ὅπερ ἔδει δεῖξαι.],
-    [Thus, if a rational straight-line is cut in extreme and mean ratio then each of the pieces is that irrational (straight-line) called an apotome.],
+    [Thus, if a rational straight-line is cut in extreme and mean ratio then each of the pieces is that irrational (straight-line) called an apotome. (Which is) the very thing it was required to show.],
   )
 ]
