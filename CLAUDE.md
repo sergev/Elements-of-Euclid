@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this is
 
-A Typst port of Richard Fitzpatrick's LaTeX edition of Euclid's Elements (Greek Heiberg text + English translation, side by side). All thirteen books and the Greek–English lexicon are ported. The original LaTeX sources (`Elements.tex`, `BookNN/BookN.tex`, `BookNN/fig*{e,g}.eps`) are kept in the tree as the reference; never edit them.
+A Typst port of Richard Fitzpatrick's LaTeX edition of Euclid's Elements (Greek Heiberg text + English translation, side by side). All thirteen books and the Greek–English lexicon are ported. The LaTeX text sources (`BookNN/BookN.tex`, `Book00/Introduction.tex`, `Book99/Lexicon.tex`) are kept as the reference and as input to `tools/`; never edit them. The LaTeX build and the EPS figures were removed (figures live on as SVG).
 
 ## Build
 
@@ -14,7 +14,7 @@ make clean
 typst watch ElementsTypst.typ            # rebuild on change
 ```
 
-CeTZ (`@preview/cetz:0.4.2`) is fetched automatically by Typst. There are no tests; verify by compiling and inspecting the PDF (`pdftoppm -f N -l N -png` to look at a page). The LaTeX build (`latex Elements`) is legacy.
+CeTZ (`@preview/cetz:0.4.2`) is fetched automatically by Typst. There are no tests; verify by compiling and inspecting the PDF (`pdftoppm -f N -l N -png` to look at a page).
 
 ## Structure
 
@@ -35,7 +35,7 @@ CeTZ (`@preview/cetz:0.4.2`) is fetched automatically by Typst. There are no tes
 ```
 
 - Books 2–13 use `parallel-image` with SVGs converted from the EPS figures (`greek: false` when only the English EPS exists). Book 1 Props 1–12 instead draw figures in CeTZ via `parallel-fig(figNN)`, called twice with letter maps from `greek-map`; labels must go through `letters.at("X")`. Book 1 Props 13–48 have empty `fig({})` stubs; `Book01/fig*.svg` (converted, unused) can serve as tracing references.
-- Books 10–13 show a frontispiece (`BookNN/front.svg`) on the title page, as in the LaTeX; the other `front.svg` and `euclid.svg` are converted but unused, matching the commented-out LaTeX.
+- Books 10–13 show a frontispiece (`BookNN/front.svg`) on the title page, as in the LaTeX; the other `front.svg` and `euclid.svg` are unused, matching the commented-out LaTeX.
 - Definitions use `#parallel([Greek], [English], n: N)` for numbering.
 - `content-box-note` puts footnotes at the bottom of the enclosing `content-box`, not the page. Book subtitles use plain `#footnote`.
 - `no-footer()` suppresses the page number on the current page; `chapter(alt, body)` emits a heading whose outline entry differs from the displayed text.
@@ -52,7 +52,6 @@ CeTZ (`@preview/cetz:0.4.2`) is fetched automatically by Typst. There are no tes
 - `tex2typ.py BOOK [--write] [--dump]` — converts `BookNN/BookN.tex` to Typst files. `--write` overwrites every file of that book, discarding manual edits made since; use `--dump` to inspect. Warnings like `paras 4/3` mean Greek and English paragraph counts differ and need a manual split.
 - `greek.py` — transliteration (`\gr{...}` babel/teubner encoding) to Unicode Greek.
 - `lex2typ.py` — converts `Book99/Lexicon.tex`.
-- `eps2svg.sh FILE.eps...` — EPS → SVG via `ps2pdf` and `pdftocairo`.
 
 ## Repo notes
 

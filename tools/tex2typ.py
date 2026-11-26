@@ -367,7 +367,7 @@ def render(b, kind, num):
     for it in b['items']:
         if it[0] == 'fig':
             h = '%gin' % float(it[2][:-2])
-            greek_fig = os.path.exists(ROOT + it[1] + 'g.eps')
+            greek_fig = os.path.exists(ROOT + it[1] + 'g.svg')
             lines.append('  #parallel-image("%s", %s%s)' % (it[1], h, '' if greek_fig else ', greek: false'))
         elif it[0] == 'sub':
             lines.append('  #parallel-subheading([%s], [%s])' % (it[1], it[2]))

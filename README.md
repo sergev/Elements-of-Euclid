@@ -17,7 +17,7 @@ The Typst sources were generated from the LaTeX files with the
 scripts in `tools/` and then proofread: the Greek is converted from
 the LaTeX transliteration to Unicode (`tools/greek.py`), and the
 figures of Books 2-13 and the frontispieces of Books 10-13 are
-SVGs converted from the original EPS files (`tools/eps2svg.sh`). Book 1 figures 1-12 are redrawn in CeTZ.
+SVGs converted from the original EPS files. Book 1 figures 1-12 are redrawn in CeTZ.
 
 Functions are provided to aid in parallel layout, including
 
@@ -64,28 +64,11 @@ To use a radius-angle coordinate, do `#let A = (radius, 0)` then
 
 # From rfitzp/Elements
 
-This repository contains the Latex files required to compile
+The original repository contains the LaTeX files to compile
 a Greek/English version of Euclid's Elements. The Greek text
 is the standard Heiberg edition. The modern English translation 
 was authored by Prof. Richard Fitzpatrick (Department of Physics, 
 University of Texas at Austin).
 
-The files will only compile properly when the following
-standard Latex packages are installed:
-
-inputenc/utf8
-babel/polutonikogreek/english
-psgreek/garamond
-charter
-parallel
-fancyhdr
-amssymb
-amsmath
-epsf
-hyperref
-
-The document can be compiled by issuing the command
-
-latex Elements
-
-in the base directory (containing Elements.tex).
+The LaTeX build and the EPS figures have been removed from this
+repository; the LaTeX text of each book is kept as a reference.
