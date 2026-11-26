@@ -1,6 +1,5 @@
 #import "../functions.typ": *
 
-κβʹ.
 
 #content-box[
   #parallel-proposition(22)

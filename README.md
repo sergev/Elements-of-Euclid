@@ -31,17 +31,21 @@ Functions are provided to aid in parallel layout, including
 - `#parallel-image("/BookNN/figNN", height)` places the Greek and English
   versions of an SVG figure side by side
 - `#parallel-subheading([Greek], [English])` for lemmas and corollaries
+- `#running-header([Greek], [English])` for page headers
+- `with-greek` is false in the English edition; the helpers above then
+  show only the English
 
 Depends only on [Typst](https://typst.app).
 
 Use [Typst CLI](https://typst.app/open-source/#download)
 or upload everything to the GUI for compilation.
 
-The document can be compiled by issuing the command
+Running `make` in the base directory builds two editions:
 
-`make` (or `typst compile Elements.typ`)
-
-in the base directory (containing `Elements.typ`).
+- `ElementsGreekEnglish.pdf` -- Greek and English side by side, with
+  the Greek-English lexicon (`typst compile --input greek=yes Elements.typ ElementsGreekEnglish.pdf`)
+- `ElementsEnglish.pdf` -- English only
+  (`typst compile --input greek=no Elements.typ ElementsEnglish.pdf`)
 
 ## Some Notes
 

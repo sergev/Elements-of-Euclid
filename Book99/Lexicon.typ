@@ -1,4 +1,4 @@
-#import "../functions.typ": no-footer, chapter
+#import "../functions.typ": no-footer, chapter, running-header
 
 #chapter([Greek-English Lexicon], [GREEK-ENGLISH LEXICON])
 
@@ -6,14 +6,7 @@
 
 #pagebreak()
 
-#set page(
-  header: [#grid(
-    columns: (1fr, 1fr),
-    align: (left, right),
-    [ΣΤΟΙΧΕΙΩΝ], [GREEK--ENGLISH LEXICON]
-  )
-  #line(length: 100%, stroke: 0.85pt)]
-)
+#set page(header: running-header([ΣΤΟΙΧΕΙΩΝ], [GREEK--ENGLISH LEXICON]))
 
 #set text(size: 9pt)
 #set par(first-line-indent: 0em, justify: false)

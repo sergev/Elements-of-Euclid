@@ -1,5 +1,8 @@
 // https://forum.typst.app/t/how-to-get-a-footer-with-alternating-alignment-and-custom-text-per-page/3749/10
 #let footer-text = state("footer-text")
+
+// Edition: `typst compile --input greek=no` drops the Greek column
+#let with-greek = sys.inputs.at("greek", default: "yes") != "no"
 #let set-footer-text(content) = footer-text.update(content)
 #let no-footer() = set-footer-text([])
 
@@ -37,7 +40,9 @@
   context super(numbering("*", notes.get().len()+1))
 }
 
-#let parallel(a, b, n: none) = (
+#let parallel(a, b, n: none) = if not with-greek {
+  if n != none { enum(numbering: "1.", start: n, b) } else { b }
+} else {
   grid(
     columns: (1fr, 1fr),
     gutter: 1em,
@@ -47,10 +52,8 @@
     if n != none {
       [#enum(numbering: "1.", start: n, [#b])]
     } else {b},
-    
-    // [#if n != none {numbering("1.", n)} #b],
   )
-)
+}
 
 #let parallel-heading(left, right, depth) = (
   parallel(
@@ -77,5 +80,15 @@
 // EPS-derived figure pair: name is a root path without suffix, e.g. "/Book02/fig01"
 #let parallel-image(name, height, greek: true) = {
   let img(suffix) = align(center, image(name + suffix + ".svg", height: height, width: 100%, fit: "contain"))
-  parallel(img(if greek { "g" } else { "e" }), img("e"))
+  if with-greek { parallel(img(if greek { "g" } else { "e" }), img("e")) } else { img("e") }
 }
+
+// Running header: Greek title left, English right; English only centered
+#let running-header(greek, english) = [
+  #if with-greek {
+    grid(columns: (1fr, 1fr), align: (left, right), greek, english)
+  } else {
+    align(center, english)
+  }
+  #line(length: 100%, stroke: 0.85pt)
+]

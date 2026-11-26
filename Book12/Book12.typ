@@ -1,4 +1,4 @@
-#import "../functions.typ": parallel, no-footer, chapter, content-box, content-box-note
+#import "../functions.typ": parallel, no-footer, chapter, content-box, content-box-note, running-header
 
 #chapter([Book 12], [ELEMENTS BOOK 12])
 
@@ -11,14 +11,7 @@
 
 #pagebreak()
 
-#set page(
-  header: [#grid(
-    columns: (1fr, 1fr),
-    align: (left, right),
-    [ΣΤΟΙΧΕΙΩΝ ιβʹ.], [ELEMENTS BOOK 12]
-  )
-  #line(length: 100%, stroke: 0.85pt)]
-)
+#set page(header: running-header([ΣΤΟΙΧΕΙΩΝ ιβʹ.], [ELEMENTS BOOK 12]))
 
 #include "Prop01.typ"
 #include "Prop02.typ"

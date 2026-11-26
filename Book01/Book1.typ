@@ -1,7 +1,7 @@
 // for /l %x in (10, 1, 20) do copy Prop08.typ Prop%x.typ
 // \$([a-z]+)([a-z]) -> $$$1 $2
 
-#import "../functions.typ": parallel, no-footer, chapter, content-box, content-box-note
+#import "../functions.typ": parallel, no-footer, chapter, content-box, content-box-note, running-header
 
 
 #chapter([Book 1], [ELEMENTS BOOK 1])
@@ -17,14 +17,7 @@
 
 #pagebreak()
 
-#set page(
-  header: [#grid(
-    columns: (1fr, 1fr),
-    align: (left, right),
-    [ΣΤΟΙΧΕΙΩΝ αʹ.], [ELEMENTS BOOK 1]
-  )
-  #line(length: 100%, stroke: 0.85pt)]
-)
+#set page(header: running-header([ΣΤΟΙΧΕΙΩΝ αʹ.], [ELEMENTS BOOK 1]))
 
 #include "Definitions.typ"
 

@@ -39,12 +39,10 @@ def main():
     bodies = re.findall(r'\\begin\{description\}(.*?)\\end\{description\}', tex, re.S)
     entries = [e for b in bodies for e in items(b)]
     hdr = tex2typ.greek.convert('STOIQEIWN')
-    lines = ['#import "../functions.typ": no-footer, chapter', '',
+    lines = ['#import "../functions.typ": no-footer, chapter, running-header', '',
              '#chapter([Greek-English Lexicon], [GREEK-ENGLISH LEXICON])', '',
              '#no-footer()', '', '#pagebreak()', '',
-             '#set page(', '  header: [#grid(', '    columns: (1fr, 1fr),', '    align: (left, right),',
-             '    [%s], [GREEK--ENGLISH LEXICON]' % hdr, '  )',
-             '  #line(length: 100%, stroke: 0.85pt)]', ')', '',
+             '#set page(header: running-header([%s], [GREEK--ENGLISH LEXICON]))' % hdr, '',
              '#set text(size: 9pt)', '#set par(first-line-indent: 0em, justify: false)',
              '#show terms.item: it => block(spacing: 0.5em, par(hanging-indent: 1em)[#strong(it.term): #it.description])',
              '', '#columns(2)[', '#emph[Abbreviations]: ' + conv(abbr), '']

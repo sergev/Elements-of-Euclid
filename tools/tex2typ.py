@@ -392,12 +392,10 @@ def book_file(book, tex, files):
     front = re.search(r'^%?\\vspace\{(\w+)\}\s*%?\\epsfysize=([\d.]+in)\s*%?\\centerline\{\\epsffile\{Book\d+/front\.eps\}\}', tex, re.M)
     front = ['#v(2cm)', '#align(center, image("front.svg", height: 4.5in))', ''] if front else []
     hdr = greek.convert('STOIQEIWN') + ' ' + greek.numeral(book) + '.'
-    out = ['#import "../functions.typ": parallel, no-footer, chapter, content-box, content-box-note', '',
+    out = ['#import "../functions.typ": parallel, no-footer, chapter, content-box, content-box-note, running-header', '',
            '#chapter([Book %d], [ELEMENTS BOOK %d])' % (book, book), '',
            '== _%s_' % sub, ''] + front + ['#no-footer()', '', '#pagebreak()', '',
-           '#set page(', '  header: [#grid(', '    columns: (1fr, 1fr),', '    align: (left, right),',
-           '    [%s], [ELEMENTS BOOK %d]' % (hdr, book), '  )',
-           '  #line(length: 100%, stroke: 0.85pt)]', ')', '']
+           '#set page(header: running-header([%s], [ELEMENTS BOOK %d]))' % (hdr, book), '']
     prev = None
     for fn, kind, num, b in files:
         if prev == 'defs' and kind == 'prop':

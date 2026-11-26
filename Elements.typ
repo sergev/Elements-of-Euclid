@@ -1,6 +1,6 @@
 // https://github.com/rfitzp/Elements
 
-#import "functions.typ": footer-text, no-footer
+#import "functions.typ": footer-text, no-footer, with-greek
 
 
 #show heading: set align(center)
@@ -94,6 +94,7 @@ F
 
 #include "Book13/Book13.typ"
 
-#pagebreak()
-
-#include "Book99/Lexicon.typ"
+#if with-greek {
+  pagebreak()
+  include "Book99/Lexicon.typ"
+}

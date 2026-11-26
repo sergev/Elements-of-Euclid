@@ -1,13 +1,17 @@
 TYPST	= typst
 MAIN	= Elements
 SRCS	= $(MAIN).typ functions.typ $(wildcard Book*/*.typ) $(wildcard Book*/*.svg) $(wildcard *.jpg)
+PDFS	= ElementsGreekEnglish.pdf ElementsEnglish.pdf
 
-all:	$(MAIN).pdf
+all:	$(PDFS)
 
-$(MAIN).pdf: $(SRCS)
-	$(TYPST) compile $(MAIN).typ $@
+ElementsGreekEnglish.pdf: $(SRCS)
+	$(TYPST) compile --input greek=yes $(MAIN).typ $@
+
+ElementsEnglish.pdf: $(SRCS)
+	$(TYPST) compile --input greek=no $(MAIN).typ $@
 
 clean:
-	rm -f $(MAIN).pdf
+	rm -f $(PDFS) $(MAIN).pdf
 
 .PHONY: all clean
