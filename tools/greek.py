@@ -21,6 +21,7 @@ def clean(s):
     s = re.sub(r'\\kern\s*-?[\d.]+pt\s?', '', s)
     s = s.replace('\\-', '').replace('\\mbox{[}', '[').replace('\\mbox{]}', ']')
     s = s.replace('\\ ', ' ').replace('~\\', ' \\').replace('\\,', ' ')
+    s = s.replace('\\sampi', '\x11').replace('\\qoppa', '\x12').replace('\\stigma', '\x13')
     s = re.sub(r'\\gn\{(\d+)\}', lambda m: numeral(int(m.group(1))), s)
     s = s.replace('{', '').replace('}', '')
     return s
@@ -84,6 +85,7 @@ def convert(s):
         i += 1
     t = unicodedata.normalize('NFC', ''.join(out))
     t = re.sub(r'[ \t\n]+', ' ', t)
+    t = t.replace('\x11', 'ϡ').replace('\x12', 'ϟ').replace('\x13', 'ϛ')
     return t.replace('\x01', ANO_TELEIA).strip()
 
 

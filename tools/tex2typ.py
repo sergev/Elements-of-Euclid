@@ -72,6 +72,7 @@ def math(t):
         return ' '.join(t)
     t = sub_cmd(t, 'sqrt', lambda a: ' sqrt(' + math(a) + ') ')
     t = sub_cmd(t, 'overline', lambda a: ' overline(' + math(a) + ') ')
+    t = sub_cmd(t, 'tilde', lambda a: ' tilde(' + math(a) + ') ')
     t = sub_cmd(t, 'mbox', lambda a: ' "' + a + '" ')
     t = sub_cmd(t, 'rm', lambda a: ' "' + a + '" ')
     t = re.sub(r'([\^_])\{\s*\\,\s*', r'\1{', t)
@@ -90,7 +91,7 @@ def math(t):
     # keep '/' as a slash, not a fraction
     t = t.replace('/', ' \x10 ')
     # separate single-letter variables: kX -> k X (but not Typst names)
-    names = set(GREEK_LETTERS) | {'sqrt', 'overline', 'thin', 'med', 'dots', 'c', 'cos',
+    names = set(GREEK_LETTERS) | {'sqrt', 'overline', 'tilde', 'thin', 'med', 'dots', 'c', 'cos',
                                   'times', 'plus', 'minus', 'eq', 'not', 'lt', 'gt',
                                   'infinity'}
 
@@ -246,7 +247,7 @@ def parse_notes(tail):
     pieces = re.split('(' + MARK_NC + ')', tail)
     for k in range(1, len(pieces), 2):
         text = pieces[k + 1] if k + 1 < len(pieces) else ''
-        text = re.sub(r'(\\\\(\[[^]]*\])?|\}|\{|\s)*$', '', text.strip())
+        text = re.sub(r'(\\\\(\[[^]]*\])?|\}|\{|\s|~)*$', '', text.strip())
         notes[mark_key(pieces[k])] = text
     return notes
 
@@ -364,7 +365,8 @@ def render(b, kind, num):
     for it in b['items']:
         if it[0] == 'fig':
             h = '%gin' % float(it[2][:-2])
-            lines.append('  #parallel-image("%s", %s)' % (it[1], h))
+            greek_fig = os.path.exists(ROOT + it[1] + 'g.eps')
+            lines.append('  #parallel-image("%s", %s%s)' % (it[1], h, '' if greek_fig else ', greek: false'))
         elif it[0] == 'sub':
             lines.append('  #parallel-subheading([%s], [%s])' % (it[1], it[2]))
         else:

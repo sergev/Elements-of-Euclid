@@ -98,9 +98,9 @@
 )
 
 // EPS-derived figure pair: name is a root path without suffix, e.g. "/Book02/fig01"
-#let parallel-image(name, height) = {
+#let parallel-image(name, height, greek: true) = {
   let img(suffix) = align(center, image(name + suffix + ".svg", height: height, width: 100%, fit: "contain"))
-  parallel(img("g"), img("e"))
+  parallel(img(if greek { "g" } else { "e" }), img("e"))
 }
 
 #let split-dict(dict, n) = {
