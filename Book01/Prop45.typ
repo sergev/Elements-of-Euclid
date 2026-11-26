@@ -9,19 +9,19 @@
   #parallel-proposition(45)
   #parallel(
     [Τῷ δοθέντι εὐθυγράμμῳ ἴσον παραλληλόγραμμον συστήσασθαι ἐν τῇ δοθείσῃ γωνίᾳ εὐθυγράμμῳ.],
-    [],
+    [To construct a parallelogram equal to a given rectilinear figure in a given rectilinear angle.],
   )
   #parallel(
     [῎Εστω τὸ μὲν δοθὲν εὐθύγραμμον τὸ ΑΒΓΔ, ἡ δὲ δοθεῖσα γωνία εὐθύγραμμος ἡ Ε· δεῖ δὴ τῷ ΑΒΓΔ εὐθυγράμμῳ ἴσον παραλληλόγραμμον συστήσασθαι ἐν τῇ δοθείσῃ γωνίᾳ τῇ Ε.],
-    [],
+    [Let $A B C D$ be the given rectilinear figure,#content-box-note[The proof is only given for a four-sided figure. However, the extension to many-sided figures is trivial.] and $E$ the given rectilinear angle. So it is required to construct a parallelogram equal to the rectilinear figure $A B C D$ in the given angle $E$.],
   )
   #parallel-fig(fig45)
   #parallel(
     [᾿Επεζεύχθω ἡ ΔΒ, καὶ συνεστάτω τῷ ΑΒΔ τριγώνῳ ἴσον παραλληλόγραμμον τὸ ΖΘ ἐν τῇ ὑπὸ ΘΚΖ γωνίᾳ, ἥ ἐστιν ἴση τῇ Ε· καὶ παραβεβλήσθω παρὰ τὴν ΗΘ εὐθεῖαν τῷ ΔΒΓ τριγώνῳ ἴσον παραλληλόγραμμον τὸ ΗΜ ἐν τῇ ὑπὸ ΗΘΜ γωνίᾳ, ἥ ἐστιν ἴση τῇ Ε. καὶ ἐπεὶ ἡ Ε γωνία ἑκατέρᾳ τῶν ὑπὸ ΘΚΖ, ΗΘΜ ἐστιν ἴση, καὶ ἡ ὑπὸ ΘΚΖ ἄρα τῇ ὑπὸ ΗΘΜ ἐστιν ἴση. κοινὴ προσκείσθω ἡ ὑπὸ ΚΘΗ· αἱ ἄρα ὑπὸ ΖΚΘ, ΚΘΗ ταῖς ὑπὸ ΚΘΗ, ΗΘΜ ἴσαι εἰσίν. ἀλλ᾿ αἱ ὑπὸ ΖΚΘ, ΚΘΗ δυσὶν ὀρθαῖς ἴσαι εἰσίν· καὶ αἱ ὑπὸ ΚΘΗ, ΗΘΜ ἄρα δύο ὀρθαῖς ἴσαι εἰσίν. πρὸς δή τινι εὐθεῖᾳ τῇ ΗΘ καὶ τῷ πρὸς αὐτῇ σημείῳ τῷ Θ δύο εὐθεῖαι αἱ ΚΘ, ΘΜ μὴ ἐπὶ τὰ αὐτὰ μέρη κείμεναι τὰς ἐφεξῆς γωνίας δύο ὀρθαῖς ἴσας ποιοῦσιν· ἐπ᾿ εὐθείας ἄρα ἐστὶν ἡ ΚΘ τῇ ΘΜ· καὶ ἐπεὶ εἰς παραλλήλους τὰς ΚΜ, ΖΗ εὐθεῖα ἐνέπεσεν ἡ ΘΗ, αἱ ἐναλλὰξ γωνίαι αἱ ὑπὸ ΜΘΗ, ΘΗΖ ἴσαι ἀλλήλαις εἰσίν. κοινὴ προσκείσθω ἡ ὑπὸ ΘΗΛ· αἱ ἄρα ὑπὸ ΜΘΗ, ΘΗΛ ταῖς ὑπὸ ΘΗΖ, ΘΗΛ ἴσαι εἰσιν. ἀλλ᾿ αἱ ὑπὸ ΜΘΗ, ΘΗΛ δύο ὀρθαῖς ἴσαι εἰσίν· καὶ αἱ ὑπὸ ΘΗΖ, ΘΗΛ ἄρα δύο ὀρθαῖς ἴσαι εἰσίν· ἐπ᾿ εὐθείας ἄρα ἐστὶν ἡ ΖΗ τῇ ΗΛ. καὶ ἐπεὶ ἡ ΖΚ τῇ ΘΗ ἴση τε καὶ παράλληλός ἐστιν, ἀλλὰ καὶ ἡ ΘΗ τῇ ΜΛ, καὶ ἡ ΚΖ ἄρα τῇ ΜΛ ἴση τε καὶ παράλληλός ἐστιν· καὶ ἐπιζευγνύουσιν αὐτὰς εὐθεῖαι αἱ ΚΜ, ΖΛ· καὶ αἱ ΚΜ, ΖΛ ἄρα ἴσαι τε καὶ παράλληλοί εἰσιν· παραλληλόγραμμον ἄρα ἐστὶ τὸ ΚΖΛΜ. καὶ ἐπεὶ ἴσον ἐστὶ τὸ μὲν ΑΒΔ τρίγωνον τῷ ΖΘ παραλληλογράμμῳ, τὸ δὲ ΔΒΓ τῷ ΗΜ, ὅλον ἄρα τὸ ΑΒΓΔ εὐθύγραμμον ὅλῳ τῷ ΚΖΛΜ παραλληλογράμμῳ ἐστὶν ἴσον.],
-    [],
+    [Let $D B$ be joined, and let the parallelogram $F H$, equal to the triangle $A B D$, be constructed in the angle $H K F$, which is equal to $E$ [Prop. 1.42]. And let the parallelogram $G M$, equal to the triangle $D B C$, be applied to the straight-line $G H$ in the angle $G H M$, which is equal to $E$ [Prop. 1.44]. And since angle $E$ is equal to each of (angles) $H K F$ and $G H M$, (angle) $H K F$ is thus also equal to $G H M$. Let $K H G$ be added to both. Thus, (the sum of) $F K H$ and $K H G$ is equal to (the sum of) $K H G$ and $G H M$. But, (the sum of) $F K H$ and $K H G$ is equal to two right-angles [Prop. 1.29]. Thus, (the sum of) $K H G$ and $G H M$ is also equal to two right-angles. So two straight-lines, $K H$ and $H M$, not lying on the same side, make adjacent angles with some straight-line $G H$, at the point $H$ on it, (whose sum is) equal to two right-angles. Thus, $K H$ is straight-on to $H M$ [Prop. 1.14]. And since the straight-line $H G$ falls across the parallels $K M$ and $F G$, the alternate angles $M H G$ and $H G F$ are equal to one another [Prop. 1.29]. Let $H G L$ be added to both. Thus, (the sum of) $M H G$ and $H G L$ is equal to (the sum of) $H G F$ and $H G L$. But, (the sum of) $M H G$ and $H G L$ is equal to two right-angles [Prop. 1.29]. Thus, (the sum of) $H G F$ and $H G L$ is also equal to two right-angles. Thus, $F G$ is straight-on to $G L$ [Prop. 1.14]. And since $F K$ is equal and parallel to $H G$ [Prop. 1.34], but also $H G$ to $M L$ [Prop. 1.34], $K F$ is thus also equal and parallel to $M L$ [Prop. 1.30]. And the straight-lines $K M$ and $F L$ join them. Thus, $K M$ and $F L$ are equal and parallel as well [Prop. 1.33]. Thus, $K F L M$ is a parallelogram. And since triangle $A B D$ is equal to parallelogram $F H$, and $D B C$ to $G M$, the whole rectilinear figure $A B C D$ is thus equal to the whole parallelogram $K F L M$.],
   )
   #parallel(
     [Τῷ ἄρα δοθέντι εὐθυγράμμῳ τῷ ΑΒΓΔ ἴσον παραλληλόγραμμον συνέσταται τὸ ΚΖΛΜ ἐν γωνίᾳ τῇ ὑπὸ ΖΚΜ, ἥ ἐστιν ἴση τῇ δοθείσῃ τῇ Ε· ὅπερ ἔδει ποιῆσαι.],
-    [],
+    [Thus, the parallelogram $K F L M$, equal to the given rectilinear figure $A B C D$, has been constructed in the angle $F K M$, which is equal to the given (angle) $E$. (Which is) the very thing it was required to do.],
   )
 ]
