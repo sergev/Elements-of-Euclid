@@ -115,6 +115,7 @@ def english(t, notes):
     """LaTeX paragraph (English) -> Typst markup."""
     t = re.sub(r'(?<!\\)%.*', '', t)
     t = t.replace('m\\kern -.7pt h', 'MH')
+    t = t.replace('\\-', '')
     t = re.sub(r'\\\\(\[[^]]*\])?', ' ', t)
     t = t.replace('\\mbox{[}', '[').replace('\\mbox{]}', ']')
     t = t.replace('\\noindent', '').replace('\\spa', ' ')
@@ -221,7 +222,7 @@ def split_side(s, side):
             continue
         for q in re.split(r'(\x01[^\x01]*\x01)', p):
             q = q.strip()
-            if not q or re.fullmatch(r'(\\\\|\\spa|\\noindent|\s|\})*', q):
+            if not q or re.fullmatch(r'(\\\\|\\spa|\\noindent|\s|\}|\\)*', q):
                 continue
             if q.startswith('\x01HEAD'):
                 elems.append(('head', q[5:-1]))
