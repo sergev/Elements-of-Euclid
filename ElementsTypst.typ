@@ -49,3 +49,7 @@ F
 #pagebreak()
 
 #include "Book02/Book2.typ"
+
+#pagebreak()
+
+#include "Book03/Book3.typ"

@@ -12,8 +12,8 @@ import greek  # noqa: E402
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-MARK_RE = r'\$\^\{?(?:\\,)?\s*((?:\\(?:dag|ddag|S|P|ast|flat)\s*)+)\}?\$'
-MARK_NC = r'\$\^\{?(?:\\,)?\s*(?:\\(?:dag|ddag|S|P|ast|flat)\s*)+\}?\$'
+MARK_RE = r'\$\^?\{?(?:\\,)?\s*((?:\\(?:dag|ddag|S|P|ast|flat)\s*)+)\}?\$'
+MARK_NC = r'\$\^?\{?(?:\\,)?\s*(?:\\(?:dag|ddag|S|P|ast|flat)\s*)+\}?\$'
 MARK_SYM = {'dag': '†', 'ddag': '‡', 'S': '§', 'P': '¶', 'ast': '∗', 'flat': '♭'}
 
 GREEK_LETTERS = 'alpha beta gamma delta epsilon zeta eta theta iota kappa lambda mu nu xi pi rho sigma tau upsilon phi chi psi omega'.split()
@@ -114,6 +114,7 @@ def escape(t):
 def english(t, notes):
     """LaTeX paragraph (English) -> Typst markup."""
     t = re.sub(r'(?<!\\)%.*', '', t)
+    t = t.replace('m\\kern -.7pt h', 'MH')
     t = re.sub(r'\\\\(\[[^]]*\])?', ' ', t)
     t = t.replace('\\mbox{[}', '[').replace('\\mbox{]}', ']')
     t = t.replace('\\noindent', '').replace('\\spa', ' ')
@@ -139,6 +140,7 @@ def english(t, notes):
     parts = re.split(r'(\x04[^\x04]*\x04|\x02[^\x03]*\x03)', t)
     t = ''.join(p if p[:1] in '\x04\x02' else escape(p) for p in parts)
     t = t.replace('~', ' ')
+    t = re.sub(r'\[(Props?|Defs?|Posts?) (\d)', r'[\1. \2', t)
     t = re.sub(r'\b(Props?|Defs?|Posts?|C\.N|Lemma|Corr?)\. (\d)', r'\1.~\2', t)
     t = re.sub(r'C\.N\.s (\d)', r'C.N.s~\1', t)
     t = t.replace('\x04', '$').replace('\x02', '').replace('\x03', '')
@@ -263,6 +265,8 @@ def head_text(h):
         mk = mark_key(m.group(1))
         h = h[:m.start()] + h[m.end():]
     h = re.sub(r'\\(large|Large|huge|Huge)\b', '', h)
+    h = h.replace('\\mbox{}', '').replace('\\\\', ' ')
+    h = re.sub(r'^\s*\{(.*)\}\s*$', r'\1', h.strip())
     return h.strip(' {}'), mk
 
 
