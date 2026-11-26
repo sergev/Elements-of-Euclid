@@ -13,7 +13,7 @@
   )
   #parallel(
     [Ἀπειλήφθωσαν ἴσαι αἱ ΑΒ, ΒΓ, ΔΕ, ΕΖ, ΗΘ, ΘΚ, καὶ ἐπεζεύχθωσαν αἱ ΑΓ, ΔΖ, ΗΚ· δυνατὸν ἄρα ἐστὶν ἐκ τῶν ἴσων ταῖς ΑΓ, ΔΖ, ΗΚ τρίγωνον συστήσασθαι. συνεστάτω τὸ ΛΜΝ, ὥστε ἴσην εἶναι τὴν μὲν ΑΓ τῇ ΛΜ, τὴν δὲ ΔΖ τῇ ΜΝ, καὶ ἔτι τὴν ΗΚ τῇ ΝΛ, καὶ περιγεγράφθω περὶ τὸ ΛΜΝ τρίγωνον κύκλος ὁ ΛΜΝ, καὶ εἰλήφθω αὐτοῦ τὸ κέντρον καὶ ἔστω τὸ Ξ, καὶ ἐπεζεύχθωσαν αἱ ΛΞ, ΜΞ, ΝΞ·],
-    [Let $A B$, $B C$, $D E$, $E F$, $G H$, and $H K$ be cut off (so as to be) equal (to one another). And let $A C$, $D F$, and $G K$ be joined. It is, thus, possible to construct a triangle from (straight-lines) equal to $A C$, $D F$, and $G K$ [Prop.~11.22]. Let (such a triangle), $L M N$, have be constructed, such that $A C$ is equal to $L M$, $D F$ to $M N$, and, further, $G K$ to $N L$. And let the circle $L M N$ be circumscribed about triangle $L M N$ [Prop.~4.5]. And let its center be found, and let it be (at) $O$. And let $L O$, $M O$, and $N O$ be joined.],
+    [Let $A B$, $B C$, $D E$, $E F$, $G H$, and $H K$ be cut off (so as to be) equal (to one another). And let $A C$, $D F$, and $G K$ be joined. It is, thus, possible to construct a triangle from (straight-lines) equal to $A C$, $D F$, and $G K$ [Prop.~11.22]. Let (such a triangle), $L M N$, have been constructed, such that $A C$ is equal to $L M$, $D F$ to $M N$, and, further, $G K$ to $N L$. And let the circle $L M N$ be circumscribed about triangle $L M N$ [Prop.~4.5]. And let its center be found, and let it be (at) $O$. And let $L O$, $M O$, and $N O$ be joined.],
   )
   #parallel-image("/Book11/fig23a", 2in)
   #parallel(

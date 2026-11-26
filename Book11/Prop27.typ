@@ -21,6 +21,6 @@
   )
   #parallel(
     [Ἀπὸ τῆς δοθείσης ἄρα εὐθείας τῆς ΑΒ τῷ δοθέντι στερεῷ παραλληλεπιπέδῳ τῷ ΓΔ ὅμοιόν τε καὶ ὁμοίως κείμενον ἀναγέγραπται τὸ ΑΛ· ὅπερ ἔδει ποιῆσαι.],
-    [Thus, $A L$, similar, and similarly laid out, to the given parallelepiped solid $C D$, has been described on the given straight-lines $A B$. (Which is) the very thing it was required to do.],
+    [Thus, $A L$, similar, and similarly laid out, to the given parallelepiped solid $C D$, has been described on the given straight-line $A B$. (Which is) the very thing it was required to do.],
   )
 ]

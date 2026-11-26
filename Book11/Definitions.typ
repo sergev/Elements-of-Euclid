@@ -31,12 +31,12 @@
   )
   #parallel(
     [Εὐθείας πρὸς ἐπίπεδον κλίσις ἐστίν, ὅταν ἀπὸ τοῦ μετεώρου πέρατος τῆς εὐθείας ἐπὶ τὸ ἐπίπεδον κάθετος ἀχθῇ, καὶ ἀπὸ τοῦ γενομένου σημείου ἐπὶ τὸ ἐν τῷ ἐπιπέδῳ πέρας τῆς εὐθείας εὐθεῖα ἐπιζευχθῇ, ἡ περιεχομένη γωνία ὑπὸ τῆς ἀχθείσης καὶ τῆς ἐφεστώσης.],
-    [The inclination of a straight-line to a plane is the angle contained by the drawn and standing (straight-lines), when a perpendicular is lead to the plane from the end of the (standing) straight-line raised (out of the plane), and a straight-line is (then) joined from the point (so) generated to the end of the (standing) straight-line (lying) in the plane.],
+    [The inclination of a straight-line to a plane is the angle contained by the drawn and standing (straight-lines), when a perpendicular is led to the plane from the end of the (standing) straight-line raised (out of the plane), and a straight-line is (then) joined from the point (so) generated to the end of the (standing) straight-line (lying) in the plane.],
     n: 5,
   )
   #parallel(
     [Ἐπιπέδου πρὸς ἐπίπεδον κλίσις ἐστὶν ἡ περιεχομένη ὀξεῖα γωνία ὑπὸ τῶν πρὸς ὀρθὰς τῇ κοινῇ τομῇ ἀγομένων πρὸς τῷ αὐτῷ σημείῳ ἐν ἑκατέρῳ τῶν ἐπιπέδων.],
-    [The inclination of a plane to a(nother) plane is the acute angle contained by the (straight-lines), (one) in each of the planes, drawn at right-angles to the common segment (of the planes), at the same point.],
+    [The inclination of a plane to a(nother) plane is the acute angle contained by the (straight-lines), (one) in each of the planes, drawn at right-angles to the common section (of the planes), at the same point.],
     n: 6,
   )
   #parallel(
