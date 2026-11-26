@@ -9,82 +9,23 @@
   #parallel-proposition(18)
   #parallel(
     [Παντὸς τριγώνου ἡ μείζων πλευρὰ τὴν μείζονα γωνίαν ὑποτείνει.],
-    [],
+    [In any triangle, the greater side subtends the greater angle.],
   )
   #parallel(
     [῎Εστω γὰρ τρίγωνον τὸ ΑΒΓ μείζονα ἔχον τὴν ΑΓ πλευρὰν τῆς ΑΒ· λέγω, ὅτι καὶ γωνία ἡ ὑπὸ ΑΒΓ μείζων ἐστὶ τῆς ὑπὸ ΒΓΑ.],
-    [],
+    [For let $A B C$ be a triangle having side $A C$ greater than $A B$. I say that angle $A B C$ is also greater than $B C A$.],
   )
   #parallel-fig(fig18)
   #parallel(
     [᾿Επεὶ γὰρ μείζων ἐστὶν ἡ ΑΓ τῆς ΑΒ, κείσθω τῇ ΑΒ ἴση ἡ ΑΔ, καὶ ἐπεζεύχθω ἡ ΒΔ.],
-    [],
+    [For since $A C$ is greater than $A B$, let $A D$ be made equal to $A B$ [Prop. 1.3], and let $B D$ be joined.],
   )
   #parallel(
     [Καὶ ἐπεὶ τριγώνου τοῦ ΒΓΔ ἐκτός ἐστι γωνία ἡ ὑπὸ ΑΔΒ, μείζων ἐστὶ τῆς ἐντὸς καὶ ἀπεναντίον τῆς ὑπὸ ΔΓΒ· ἴση δὲ ἡ ὑπὸ ΑΔΒ τῇ ὑπὸ ΑΒΔ, ἐπεὶ καὶ πλευρὰ ἡ ΑΒ τῇ ΑΔ ἐστιν ἴση· μείζων ἄρα καὶ ἡ ὑπὸ ΑΒΔ τῆς ὑπὸ ΑΓΒ· πολλῷ ἄρα ἡ ὑπὸ ΑΒΓ μείζων ἐστὶ τῆς ὑπὸ ΑΓΒ.],
-    [],
+    [And since angle $A D B$ is external to triangle $B C D$, it is greater than the internal and opposite (angle) $D C B$ [Prop. 1.16]. But $A D B$ (is) equal to $A B D$, since side $A B$ is also equal to side $A D$ [Prop. 1.5]. Thus, $A B D$ is also greater than $A C B$. Thus, $A B C$ is much greater than $A C B$.],
   )
   #parallel(
     [Παντὸς ἄρα τριγώνου ἡ μείζων πλευρὰ τὴν μείζονα γωνίαν ὑποτείνει· ὅπερ ἔδει δεῖξαι.],
-    [],
+    [Thus, in any triangle, the greater side subtends the greater angle. (Which is) the very thing it was required to show.],
   )
 ]
-
-/* 
-%%%%%%
-% Prop 1.18
-%%%%%%
-\pdfbookmark[1]{Proposition 1.18}{pdf1.18}
-\begin{Parallel}{}{} 
-\ParallelLText{
-\begin{center}
-{\large \ggn{18}.}
-\end{center}\vspace*{-7pt}
-
-\gr{Pant`oc trig'wnou <h me'izwn pleur`a t`hn me'izona gwn'ian <upote'inei.}
-
-\gr{>'Estw g`ar tr'igwnon t`o ABG me'izona >'eqon t`hn AG pleur`an t~hc
-AB; l'egw, <'oti ka`i gwn'ia <h <up`o ABG me'izwn >est`i t~hc <up`o BGA.}
-
-\epsfysize=1.7in
-\centerline{\epsffile{Book01/fig18g.eps}}
-
-\gr{>Epe`i g`ar me'izwn >est`in <h AG t~hc AB, ke'isjw t~h| AB >'ish <h
-AD, ka`i >epeze'uqjw <h BD.}
-
-\gr{Ka`i >epe`i trig'wnou to~u BGD >ekt'oc >esti gwn'ia <h <up`o ADB,
-me'izwn >est`i t~hc >ent`oc ka`i >apenant'ion t~hc <up`o DGB; >'ish
-d`e <h <up`o ADB t~h| <up`o ABD, >epe`i ka`i pleur`a <h AB t~h|
-AD >estin >'ish; me'izwn >'ara ka`i <h <up`o ABD t~hc <up`o AGB;
-poll~w| >'ara <h <up`o ABG me'izwn >est`i t~hc <up`o AGB.}
-
-\gr{Pant`oc >'ara trig'wnou <h me'izwn pleur`a t`hn me'izona gwn'ian
-<upote'inei; <'oper >'edei de~ixai.}}
-
-\ParallelRText{
-\begin{center}
-{\large Proposition 18}
-\end{center}
-
-In any triangle, the greater side subtends the greater angle.
-
-For let $ABC$ be a triangle having side $AC$ greater than $AB$. I say that
-angle $ABC$ is also greater than $BCA$.\\~\\
-
-\epsfysize=1.7in
-\centerline{\epsffile{Book01/fig18e.eps}}
-
-For since $AC$ is greater than $AB$, let $AD$ be made equal to $AB$
- [Prop. 1.3],
-and let $BD$ be joined.
-
-And since angle $ADB$ is external to triangle $BCD$, it is greater than the
-internal and opposite (angle) $DCB$ [Prop. 1.16]. But $ADB$ (is) equal to $ABD$,
-since side $AB$ is also equal to side $AD$ [Prop. 1.5]. Thus,
-$ABD$ is also greater than $ACB$. Thus, $ABC$ is much greater than 
-$ACB$.
-
-Thus, in any triangle, the greater side subtends the greater angle.
-(Which is) the very thing  it was required to show.}
-\end{Parallel}
- */

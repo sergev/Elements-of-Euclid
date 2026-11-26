@@ -9,90 +9,23 @@
   #parallel-proposition(20)
   #parallel(
     [Παντὸς τριγώνου αἱ δύο πλευραὶ τῆς λοιπῆς μείζονές εἰσι πάντῃ μεταλαμβανόμεναι.],
-    [],
+    [In any triangle, (the sum of) two sides taken together in any (possible way) is greater than the remaining (side).],
   )
   #parallel-fig(fig20)
   #parallel(
     [῎Εστω γὰρ τρίγωνον τὸ ΑΒΓ· λέγω, ὅτι τοῦ ΑΒΓ τριγώνου αἱ δύο πλευραὶ τῆς λοιπῆς μείζονές εἰσι πάντῃ μεταλαμβανόμεναι, αἱ μὲν ΒΑ, ΑΓ τῆς ΒΓ, αἱ δὲ ΑΒ, ΒΓ τῆς ΑΓ, αἱ δὲ ΒΓ, ΓΑ τῆς ΑΒ.],
-    [],
+    [For let $A B C$ be a triangle. I say that in triangle $A B C$ (the sum of) two sides taken together in any (possible way) is greater than the remaining (side). (So), (the sum of) $B A$ and $A C$ (is greater) than $B C$, (the sum of) $A B$ and $B C$ than $A C$, and (the sum of) $B C$ and $C A$ than $A B$.],
   )
   #parallel(
     [Διήχθω γὰρ ἡ ΒΑ ἐπὶ τὸ Δ σημεῖον, καὶ κείσθω τῇ ΓΑ ἴση ἡ ΑΔ, καὶ ἐπεζεύχθω ἡ ΔΓ.],
-    [],
+    [For let $B A$ be drawn through to point $D$, and let $A D$ be made equal to $C A$ [Prop. 1.3], and let $D C$ be joined.],
   )
   #parallel(
     [᾿Επεὶ ο᾿ῦν ἴση ἐστὶν ἡ ΔΑ τῇ ΑΓ, ἴση ἐστὶ καὶ γωνία ἡ ὑπὸ ΑΔΓ τῇ ὑπὸ ΑΓΔ· μείζων ἄρα ἡ ὑπὸ ΒΓΔ τῆς ὑπὸ ΑΔΓ· καὶ ἐπεὶ τρίγωνόν ἐστι τὸ ΔΓΒ μείζονα ἔχον τὴν ὑπὸ ΒΓΔ γωνίαν τῆς ὑπὸ ΒΔΓ, ὑπὸ δὲ τὴν μείζονα γωνίαν ἡ μείζων πλευρὰ ὑποτείνει, ἡ ΔΒ ἄρα τῆς ΒΓ ἐστι μείζων. ἴση δὲ ἡ ΔΑ τῇ ΑΓ· μείζονες ἄρα αἱ ΒΑ, ΑΓ τῆς ΒΓ· ὁμοίως δὴ δείξομεν, ὅτι καὶ αἱ μὲν ΑΒ, ΒΓ τῆς ΓΑ μείζονές εἰσιν, αἱ δὲ ΒΓ, ΓΑ τῆς ΑΒ.],
-    [],
+    [Therefore, since $D A$ is equal to $A C$, the angle $A D C$ is also equal to $A C D$ [Prop. 1.5]. Thus, $B C D$ is greater than $A D C$. And since $D C B$ is a triangle having the angle $B C D$ greater than $B D C$, and the greater angle subtends the greater side [Prop. 1.19], $D B$ is thus greater than $B C$. But $D A$ is equal to $A C$. Thus, (the sum of) $B A$ and $A C$ is greater than $B C$. Similarly, we can show that (the sum of) $A B$ and $B C$ is also greater than $C A$, and (the sum of) $B C$ and $C A$ than $A B$.],
   )
   #parallel(
     [Παντὸς ἄρα τριγώνου αἱ δύο πλευραὶ τῆς λοιπῆς μείζονές εἰσι πάντῃ μεταλαμβανόμεναι· ὅπερ ἔδει δεῖξαι.],
-    [],
+    [Thus, in any triangle, (the sum of) two sides taken together in any (possible way) is greater than the remaining (side). (Which is) the very thing it was required to show.],
   )
 ]
-
-/* %%%%%%
-% Prop 1.20
-%%%%%%
-\pdfbookmark[1]{Proposition 1.20}{pdf1.20}
-\begin{Parallel}{}{} 
-\ParallelLText{
-\begin{center}
-{\large \ggn{20}.}
-\end{center}\vspace*{-7pt}
-
-\gr{Pant`oc trig'wnou a<i d'uo pleura`i t~hc loip~hc me'izon'ec e>isi p'anth|
-metalamban'omenai.}
-
-\epsfysize=2.2in
-\centerline{\epsffile{Book01/fig20g.eps}}
-
-\gr{>'Estw g`ar tr'igwnon t`o ABG; l'egw, <'oti to~u ABG trig'wnou a<i
-d'uo pleura`i t~hc loip~hc me'izon'ec e>isi p'anth| metalamban'omenai,
-a<i m`en BA, AG t~hc BG, a<i d`e AB, BG t~hc AG, a<i d`e BG, GA
-t~hc AB.}
-
-\gr{Di'hqjw g`ar <h BA >ep`i t`o D shme~ion, ka`i ke'isjw t~h|
-GA >'ish <h AD, ka`i >epeze'uqjw <h DG.}
-
-\gr{>Epe`i o>~un >'ish >est`in <h DA t~h| AG, >'ish >est`i ka`i
-gwn'ia <h <up`o ADG t~h| <up`o AGD; me'izwn >'ara <h
-<up`o BGD t~hc <up`o ADG; ka`i >epe`i tr'igwn'on >esti t`o DGB
-me'izona >'eqon t`hn <up`o BGD gwn'ian t~hc <up`o BDG, <up`o
-d`e t`hn me'izona gwn'ian <h me'izwn pleur`a <upote'inei,
-<h DB >'ara t~hc BG >esti me'izwn. >'ish d`e <h DA t~h|
-AG; me'izonec >'ara a<i BA, AG t~hc BG; <omo'iwc d`h
-de'ixomen, <'oti ka`i a<i m`en AB, BG t~hc GA me'izon'ec e>isin,
-a<i d`e BG, GA t~hc AB.}
-
-\gr{Pant`oc >'ara trig'wnou a<i d'uo pleura`i t~hc loip~hc me'izon'ec e>isi p'anth|
-metalamban'omenai; <'oper >'edei de~ixai.}}
-
-\ParallelRText{
-\begin{center}
-{\large Proposition 20}
-\end{center}
-
-In any triangle, (the sum of) two sides taken together in any (possible way) is greater than the remaining (side).
-
-\epsfysize=2.2in
-\centerline{\epsffile{Book01/fig20e.eps}}
-
-For let $ABC$ be a triangle. I say that in triangle $ABC$ (the sum of) two
-sides taken together in
-any (possible way) is greater than the remaining (side). (So), (the sum of) $BA$ and $AC$ (is greater) than $BC$,
-(the sum of) $AB$ and $BC$ than $AC$, and (the sum of) $BC$ and $CA$ than $AB$.
-
-For let $BA$ be drawn through to point $D$, and let $AD$ be made equal to $CA$ [Prop. 1.3], and let $DC$ be joined.
-
-Therefore, since $DA$ is equal to $AC$, the angle $ADC$ is also equal to
-$ACD$ [Prop. 1.5]. Thus, $BCD$ is greater than $ADC$. And since
- $DCB$ is a triangle having the angle $BCD$ greater than $BDC$, and the
-greater angle subtends the greater side [Prop. 1.19], $DB$ is thus
-greater than $BC$. But $DA$ is equal to $AC$. Thus, (the sum of) $BA$ and $AC$ is
-greater than $BC$. Similarly, we can show that (the sum of) $AB$ and $BC$ is also
-greater than $CA$, and (the sum of) $BC$ and $CA$ than $AB$.
-
-Thus, in any triangle, (the sum of) two sides taken together in any (possible way) is greater than the remaining (side). (Which is) the very thing
-it was required to show.}
-\end{Parallel}
- */
