@@ -119,13 +119,14 @@ def escape(t):
 def english(t, notes):
     """LaTeX paragraph (English) -> Typst markup."""
     t = re.sub(r'(?<!\\)%.*', '', t)
-    t = t.replace('m\\kern -.7pt h', 'MH')
+    t = t.replace('$m\\kern -.7pt h', '$MH')
     t = t.replace('\\-', '')
     t = re.sub(r'\\(?=\s|$)', ' ', t)
     t = re.sub(r'\\\\(\[[^]]*\])?', ' ', t)
     t = t.replace('\\mbox{[}', '[').replace('\\mbox{]}', ']')
     t = t.replace('\\noindent', '').replace('\\spa', ' ')
     t = re.sub(r'\\vspace\*?\{[^}]*\}', '', t)
+    t = re.sub(r'\\gr\s+\{', r'\\gr{', t)
     t = sub_cmd(t, 'gr', lambda a: '\x02' + greek.convert(a) + '\x03')
     t = re.sub(r'\\symbolfootnote\[\d+\]', r'\\symbolfootnote', t)
     t = sub_cmd(t, 'symbolfootnote', lambda a: '\x0e' + english(a, {'_used': set()}) + '\x0f')
