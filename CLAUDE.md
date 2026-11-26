@@ -14,7 +14,7 @@ make clean
 typst watch ElementsTypst.typ            # rebuild on change
 ```
 
-CeTZ (`@preview/cetz:0.4.2`) is fetched automatically by Typst. There are no tests; verify by compiling and inspecting the PDF (`pdftoppm -f N -l N -png` to look at a page).
+There are no package dependencies and no tests; verify by compiling and inspecting the PDF (`pdftoppm -f N -l N -png` to look at a page).
 
 ## Structure
 
@@ -34,7 +34,7 @@ CeTZ (`@preview/cetz:0.4.2`) is fetched automatically by Typst. There are no tes
 ]
 ```
 
-- Figures use `parallel-image` with SVGs converted from the original EPS figures (`greek: false` when only the English one exists). Exception: Book 1 Props 1–12 draw figures in CeTZ via `parallel-fig(figNN)`, called twice with letter maps from `greek-map`; labels must go through `letters.at("X")`. `Book01/fig01`–`fig12` SVGs are unused.
+- Figures use `parallel-image` with SVGs converted from the original EPS figures (`greek: false` when only the English one exists).
 - Books 10–13 show a frontispiece (`BookNN/front.svg`) on the title page, as in the LaTeX; the other `front.svg` and `euclid.svg` are unused, matching the commented-out LaTeX.
 - Definitions use `#parallel([Greek], [English], n: N)` for numbering.
 - `content-box-note` puts footnotes at the bottom of the enclosing `content-box`, not the page. Book subtitles use plain `#footnote`.

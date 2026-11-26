@@ -1,27 +1,4 @@
 #import "../functions.typ": *
-#import "@preview/cetz:0.4.2"
-
-#let fig07(letters) = fig({
-  import cetz.draw: *
-  let A = (0,0)
-  let B = (4.3, 0)
-  let C = (2.8, 3)
-  let D = (3.6, 2.6)
-  
-  // lines
-  line(A, B)
-  line(A, C)
-  line(A, D)
-  line(B, C)
-  line(B, D)
-  line(C, D)
-  
-  // labels
-  content(A, letters.at("A"), anchor: "east")
-  content(B, letters.at("B"), anchor: "west")
-  content(C, letters.at("C"), anchor: "south")
-  content(D, letters.at("D"), anchor: "base-west")
-})
 
 #content-box[
   #parallel-proposition(7)
@@ -31,7 +8,7 @@
     [On the same straight-line, two other straight-lines  equal, respectively, to  two (given) straight-lines (which meet) cannot be constructed (meeting) at  a different point on the same side (of the straight-line), but having the same ends as the given straight-lines.],
   )
   
-  #parallel-fig(fig07)
+  #parallel-image("/Book01/fig07", 1.5in)
   
   #parallel(
     [Εἰ γὰρ δυνατόν, ἐπὶ τῆς αὐτῆς εὐθείας τῆς ΑΒ δύο ταῖς αὐταῖς εὐθείαις ταῖς ΑΓ, ΓΒ ἄλλαι δύο εὐθεῖαι αἱ ΑΔ, ΔΒ ἴσαι ἑκατέρα ἑκατέρᾳ συνεστάτωσαν πρὸς ἄλλῳ καὶ ἄλλῳ σημείῳ τῷ τε Γ καὶ Δ ἐπὶ τὰ αὐτὰ μέρη τὰ αὐτὰ πέρατα ἔχουσαι, ὥστε ἴσην εἶναι τὴν μὲν ΓΑ τῇ ΔΑ τὸ αὐτὸ πέρας ἔχουσαν αὐτῇ τὸ Α, τὴν δὲ ΓΒ τῇ ΔΒ τὸ αὐτὸ πέρας ἔχουσαν αὐτῇ τὸ Β, καὶ ἐπεζεύχθω ἡ ΓΔ.],

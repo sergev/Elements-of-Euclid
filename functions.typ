@@ -1,6 +1,3 @@
-#import "@preview/cetz:0.4.2"
-
-
 // https://forum.typst.app/t/how-to-get-a-footer-with-alternating-alignment-and-custom-text-per-page/3749/10
 #let footer-text = state("footer-text")
 #let set-footer-text(content) = footer-text.update(content)
@@ -39,26 +36,6 @@
   })
   context super(numbering("*", notes.get().len()+1))
 }
-
-#let fig(body) = (
-  cetz.canvas({
-    cetz.draw.set-style(content: (padding: 0.1))
-    body
-  })
-)
-
-#let greek-map = (
-  A: ("Α", "A"), 
-  B: ("Β", "B"), 
-  C: ("Γ", "C"), 
-  D: ("Δ", "D"), 
-  E: ("Ε", "E"), 
-  F: ("Ζ", "F"),
-  G: ("Η", "G"),
-  H: ("Θ", "H"),
-  K: ("Κ", "K"),
-  L: ("Λ", "L"),
-)
 
 #let parallel(a, b, n: none) = (
   grid(
@@ -101,25 +78,4 @@
 #let parallel-image(name, height, greek: true) = {
   let img(suffix) = align(center, image(name + suffix + ".svg", height: height, width: 100%, fit: "contain"))
   parallel(img(if greek { "g" } else { "e" }), img("e"))
-}
-
-#let split-dict(dict, n) = {
-  let result = (:)
-  for (key, alts) in dict {
-    result.insert(key, alts.at(n))
-  }
-  return result
-}
-
-#let parallel-fig(the_fig, letters: greek-map) = {
-  parallel(
-    align(
-      center, 
-      the_fig(split-dict(letters, 0))
-    ),
-    align(
-      center, 
-      the_fig(split-dict(letters, 1))
-    )
-  )
 }

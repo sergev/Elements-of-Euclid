@@ -1,32 +1,4 @@
 #import "../functions.typ": *
-#import "@preview/cetz:0.4.2"
-
-
-#let fig03(letters) = fig({
-  import cetz.draw: *
-  let A = (0, 0)
-  let r = 2
-  let Cstart = (-0.5, 3)
-  let Cend = cetz.vector.add(Cstart, (r, 0))
-  // let C = cetz.vector.lerp(Cstart, Cend, 0.5)
-  line(Cstart, Cend, name: "C")
-  let C = ("C.start", 50%, "C.end")
-  circle(A, radius: r)
-  let E = cetz.vector.add(A, (r, 0))
-  let B = cetz.vector.lerp(A, E, 2.5)
-  line(A, B)
-  let D = (angle: 120deg, radius: r)
-  let F = (angle: -60deg, radius: r)
-  line(A, D)
-  
-  // labels
-  content(A, letters.at("A"), anchor: "north-east")
-  content(B, letters.at("B"), anchor: "west")
-  content(C, letters.at("C"), anchor: "south")
-  content(D, letters.at("D"), anchor: "south-east")
-  content(E, letters.at("E"), anchor: "south-west")
-  content(F, letters.at("F"), anchor: "north-west")
-})
 
 #content-box[
   #parallel-proposition(3)
@@ -51,7 +23,7 @@
     [And since  point $A$ is the center of  circle $D E F$, $A E$ is equal to $A D$ [Def.~1.15]. But, $C$ is also equal to $A D$. Thus, $A E$ and $C$ are each equal to $A D$. So $A E$ is also equal to $C$ [C.N.~1].],
   )
 
-  #parallel-fig(fig03)
+  #parallel-image("/Book01/fig03", 2.25in)
     
   #parallel( 
     [Δύο ἄρα δοθεισῶν εὐθειῶν ἀνίσων τῶν ΑΒ, Γ ἀπὸ τῆς μείζονος τῆς ΑΒ τῇ ἐλάσσονι τῇ Γ ἴση ἀφῄρηται ἡ ΑΕ· ὅπερ ἔδει ποιῆσαι.],

@@ -1,40 +1,4 @@
 #import "../functions.typ": *
-#import "@preview/cetz:0.4.2"
-
-#let fig12(letters) = fig({
-  import cetz.draw: *
-  let r = 3
-  let G = (0, 0)
-  let E = (r, 0)
-  let C = cetz.vector.rotate-z(E, 60deg)
-  let H = cetz.vector.lerp(G, E, 0.5)
-  let A = cetz.vector.lerp(G, E, 0-0.5)
-  let B = cetz.vector.lerp(G, E, 1+0.5)
-  let Flabel = cetz.vector.add(C, (0, r))
-  let CE = cetz.vector.sub(E, C)
-  let D = cetz.vector.rotate-z(CE, -18deg)
-  D = cetz.vector.add(C, D)
-  let tick = (-0.05, 0.1)
-
-  // lines
-  line(A, B)
-  line(G, E)
-  line(G, C)
-  line(E, C)
-  line(C, H)
-  circle(C, radius: r)
-  line(cetz.vector.add(D, tick), cetz.vector.sub(D, tick))
-
-  // labels
-  content(A, letters.at("A"), anchor: "south")
-  content(B, letters.at("B"), anchor: "south")
-  content(G, letters.at("G"), anchor: "north")
-  content(E, letters.at("E"), anchor: "north")
-  content(C, letters.at("C"), anchor: "south")
-  content(H, letters.at("H"), anchor: "north")
-  content(D, letters.at("D"), anchor: "north-west")
-  content(Flabel, letters.at("F"), anchor: "south")
-})
 
 #content-box[
   #parallel-proposition(12)
@@ -42,7 +6,7 @@
     [Ἐπὶ τὴν δοθεῖσαν εὐθεῖαν ἄπειρον ἀπὸ τοῦ δοθέντος σημείου, ὃ μή ἐστιν ἐπ᾿ αὐτῆς, κάθετον εὐθεῖαν γραμμὴν ἀγαγεῖν.],
     [To draw a straight-line perpendicular to a given infinite straight-line from a given point which is not on it.],
   )
-  #parallel-fig(fig12)
+  #parallel-image("/Book01/fig12", 2.2in)
   #parallel(
     [Ἔστω ἡ μὲν δοθεῖσα εὐθεῖα ἄπειρος ἡ ΑΒ τὸ δὲ δοθὲν σημεῖον, ὃ μή ἐστιν ἐπ᾿ αὐτῆς, τὸ Γ· δεῖ δὴ ἐπὶ τὴν δοθεῖσαν εὐθεῖαν ἄπειρον τὴν ΑΒ ἀπὸ τοῦ δοθέντος σημείου τοῦ Γ, ὃ μή ἐστιν ἐπ᾿ αὐτῆς, κάθετον εὐθεῖαν γραμμὴν ἀγαγεῖν.],
     [Let $A B$ be the given infinite straight-line and $C$ the given point, which is not on it. So it is required to draw a straight-line perpendicular to the given infinite straight-line $A B$ from the given point $C$, which is not on it.],

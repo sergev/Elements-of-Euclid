@@ -1,33 +1,4 @@
 #import "../functions.typ": *
-#import "@preview/cetz:0.4.2"
-
-#let fig05g(letters) = fig({
-    import cetz.draw: *
-    let A = (0,0)
-//     let C = (3,0)
-//     let off = (4.5, 0)
-    let D = (-2, -5)
-    let E = ( 2, -5)
-    let B = cetz.vector.lerp(A, D, 0.5)
-    let C = cetz.vector.lerp(A, E, 0.5)
-    let s = 0.65
-    let F = cetz.vector.lerp(A, D, s)
-    let G = cetz.vector.lerp(A, E, s)
-    line(A, D)
-    line(A, E)
-    line(B, C)
-    line(B, G)
-    line(C, F)
-    
-    // labels
-    content(A, letters.at("A"), anchor: "south")
-    content(B, letters.at("B"), anchor: "east")
-    content(C, letters.at("C"), anchor: "west")
-    content(D, letters.at("D"), anchor: "east")
-    content(E, letters.at("E"), anchor: "west")
-    content(F, letters.at("F"), anchor: "east")
-    content(G, letters.at("G"), anchor: "west")
-})
 
 #content-box[
   #parallel-proposition(5)
@@ -47,7 +18,7 @@
     [For let the point $F$ be taken at random on  $B D$, and let $A G$ be cut off from the greater $A E$, equal to the lesser $A F$ [Prop.~1.3]. Also, let the straight-lines $F C$ and $G B$ be joined [Post.~1].],
   )
   
-  #parallel-fig(fig05g)
+  #parallel-image("/Book01/fig05", 1.85in)
   
   
   #parallel(

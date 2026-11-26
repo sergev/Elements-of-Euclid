@@ -1,56 +1,4 @@
 #import "../functions.typ": *
-#import "@preview/cetz:0.4.2"
-
-#let fig02(letters) = fig({
-  import cetz.draw: *
-  let ang = 0deg
-  let ang = 38deg
-  rotate(z: ang)
-
-  // variables
-  let BC = 3
-  let r2 = 2
-  let s = 5.5
-  let t = 2
-  let A = (0,0)
-  let B = (1,0)
-  let AB = cetz.vector.dist(A, B)
-  let C = (BC, 0)
-  C = cetz.vector.rotate-z(C, -ang + 90deg)
-  C = cetz.vector.add(B, C)
-  let D = cetz.vector.sub(B, A)
-  D = cetz.vector.rotate-z(D, 60deg)
-  let E = cetz.vector.lerp(D, A, s)
-  let F = cetz.vector.lerp(D, B, s)
-  let BD = cetz.vector.sub(D, B)
-  let G = cetz.vector.lerp(D, B, AB + BC / AB)
-  let DG = cetz.vector.len(cetz.vector.sub(G, D))
-  let L = cetz.vector.lerp(D, A, t)
-  
-  // styles
-  // set-style(content: (padding: BC/10))
-  
-  // circles
-  circle(B, radius: BC)
-  circle(D, radius: DG)
-
-  // lines
-  line(A, B)
-  line(B, C)
-  line(B, D)
-  line(D, E)
-  line(D, F)
-
-  // labels
-  content(A, letters.at("A"), anchor: "west")
-  content(B, letters.at("B"), anchor: "base-west")
-  content(C, letters.at("C"), anchor: "south")
-  content(D, letters.at("D"), anchor: "south-east")
-  content(E, letters.at("E"), anchor: "west")
-  content(F, letters.at("F"), anchor: "west")
-  content(G, letters.at("G"), anchor: "base-west")
-  content(L, letters.at("L"), anchor: "north-east")
-})
 
 #content-box[
   #parallel-proposition(2, note: [This proposition admits of a number of different cases, depending on the relative positions of the point $A$ and the line $B C$. In such situations, Euclid invariably only considers one particular case---usually, the most difficult---and leaves the remaining cases as exercises for the reader.])
@@ -71,7 +19,7 @@
   )
   
 
-  #parallel-fig(fig02)
+  #parallel-image("/Book01/fig02", 3.5in)
 
   #parallel(
     [Ἐπεὶ οὖν τὸ Β σημεῖον κέντρον ἐστὶ τοῦ ΓΗΘ, ἴση ἐστὶν ἡ ΒΓ τῇ ΒΗ. πάλιν, ἐπεὶ τὸ Δ σημεῖον κέντρον ἐστὶ τοῦ ΗΚΛ κύκλου, ἴση ἐστὶν ἡ ΔΛ τῇ ΔΗ, ὧν ἡ ΔΑ τῇ ΔΒ ἴση ἐστίν. λοιπὴ ἄρα ἡ ΑΛ λοιπῇ τῇ ΒΗ ἐστιν ἴση. ἐδείχθη δὲ καὶ ἡ ΒΓ τῇ ΒΗ ἴση· ἑκατέρα ἄρα τῶν ΑΛ, ΒΓ τῇ ΒΗ ἐστιν ἴση. τὰ δὲ τῷ αὐτῷ ἴσα καὶ ἀλλήλοις ἐστὶν ἴσα· καὶ ἡ ΑΛ ἄρα τῇ ΒΓ ἐστιν ἴση.],

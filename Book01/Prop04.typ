@@ -1,32 +1,4 @@
 #import "../functions.typ": *
-#import "@preview/cetz:0.4.2"
-
-#let fig04e(letters) = fig({
-  import cetz.draw: *
-  let A = (2, 3)
-  let B = (0,0)
-  let C = (3,0)
-  let off = (4.5, 0)
-  let D = cetz.vector.add((A), off)
-  let E = cetz.vector.add((B), off)
-  let F = cetz.vector.add((C), off)
-  line(A, B)
-  line(B, C)
-  line(C, A)
-  line(D, E)
-  line(E, F)
-  line(F, D)
-  let mid-arc = cetz.vector.add(cetz.vector.lerp(E, F, 0.5), (0, -0.5))
-  arc-through(E, mid-arc, F)
-  
-  // labels
-  content(A, letters.at("A"), anchor: "south")
-  content(B, letters.at("B"), anchor: "east")
-  content(C, letters.at("C"), anchor: "west")
-  content(D, letters.at("D"), anchor: "south")
-  content(E, letters.at("E"), anchor: "east")
-  content(F, letters.at("F"), anchor: "west")
-})
 
 #content-box[
   #parallel-proposition(4)
@@ -36,7 +8,7 @@
     [If two triangles have two  sides equal to two sides, respectively, and have the angle(s) enclosed by the equal straight-lines equal, (then) they will also have the base equal to the base, and the triangle will be equal to the triangle,  and the remaining angles subtended by the equal sides will be equal to the corresponding remaining angles.],
   )
   
-  #parallel-fig(fig04e)
+  #parallel-image("/Book01/fig04", 1.35in)
   
   #parallel(
     [Ἔστω δύο τρίγωνα τὰ ΑΒΓ, ΔΕΖ τὰς δύο πλευρὰς τὰς ΑΒ, ΑΓ ταῖς δυσὶ πλευραῖς ταῖς ΔΕ, ΔΖ ἴσας ἔχοντα ἑκατέραν ἑκατέρᾳ τὴν μὲν ΑΒ τῇ ΔΕ τὴν δὲ ΑΓ τῇ ΔΖ καὶ γωνίαν τὴν ὑπὸ ΒΑΓ γωνίᾳ τῇ ὑπὸ ΕΔΖ ἴσην. λέγω, ὅτι καὶ βάσις ἡ ΒΓ βάσει τῇ ΕΖ ἴση ἐστίν, καὶ τὸ ΑΒΓ τρίγωνον τῷ ΔΕΖ τριγώνῳ ἴσον ἔσται, καὶ αἱ λοιπαὶ γωνίαι ταῖς λοιπαῖς γωνίαις ἴσαι ἔσονται ἑκατέρα ἑκατέρᾳ, ὑφ᾿ ἃς αἱ ἴσαι πλευραὶ ὑποτείνουσιν, ἡ μὲν ὑπὸ ΑΒΓ τῇ ὑπὸ ΔΕΖ, ἡ δὲ ὑπὸ ΑΓΒ τῇ ὑπὸ ΔΖΕ.],

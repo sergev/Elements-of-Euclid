@@ -1,29 +1,4 @@
 #import "../functions.typ": *
-#import "@preview/cetz:0.4.2"
-
-#let fig01(letters) = fig({
-  import cetz.draw: *
-  let r = 2.5
-  let A = (0,0)
-  let B = (r, 0)
-  let C = (angle: 60deg, radius: r)
-  let D = (-r, 0)
-  let E = (2 * r, 0)
-  // lines
-  line(A, B)
-  line(B, C)
-  line(C, A)
-  
-  circle(A, radius: r)
-  circle(B, radius: r)
-  
-  // labels
-  content(A, letters.at("A"), anchor: "east")
-  content(B, letters.at("B"), anchor: "west")
-  content(C, letters.at("C"), anchor: "south")
-  content(D, letters.at("D"), anchor: "west")
-  content(E, letters.at("E"), anchor: "east")
-})
 
 #content-box[
   #parallel-proposition(1)
@@ -41,7 +16,7 @@
     [So it is required to construct an equilateral triangle on the straight-line $A B$.],
   )
 
-  #parallel-fig(fig01)
+  #parallel-image("/Book01/fig01", 1.75in)
 
   #parallel(
     [Κέντρῳ μὲν τῷ Α διαστήματι δὲ τῷ ΑΒ κύκλος γεγράφθω ὁ ΒΓΔ, καὶ πάλιν κέντρῳ μὲν τῷ Β διαστήματι δὲ τῷ ΒΑ κύκλος γεγράφθω ὁ ΑΓΕ, καὶ ἀπὸ τοῦ Γ σημείου, καθ᾿ ὃ τέμνουσιν ἀλλήλους οἱ κύκλοι, ἐπί τὰ Α, Β σημεῖα ἐπεζεύχθωσαν εὐθεῖαι αἱ ΓΑ, ΓΒ.],

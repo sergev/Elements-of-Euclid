@@ -1,31 +1,4 @@
 #import "../functions.typ": *
-#import "@preview/cetz:0.4.2"
-
-#let fig11(letters) = fig({
-  import cetz.draw: *
-  let r = 3
-  let D = (0, 0)
-  let E = (r, 0)
-  let F = cetz.vector.rotate-z(E, 60deg)
-  let C = cetz.vector.lerp(D, E, 0.5)
-  let A = cetz.vector.lerp(D, E, 0-0.5)
-  let B = cetz.vector.lerp(D, E, 1+0.5)
-  
-  // lines
-  line(A, B)
-  line(D, E)
-  line(D, F)
-  line(E, F)
-  line(F, C)
-
-  // labels
-  content(A, letters.at("A"), anchor: "south")
-  content(B, letters.at("B"), anchor: "south")
-  content(D, letters.at("D"), anchor: "north")
-  content(E, letters.at("E"), anchor: "north")
-  content(F, letters.at("F"), anchor: "south")
-  content(C, letters.at("C"), anchor: "north")
-})
 
 #content-box[
   #parallel-proposition(11)
@@ -37,7 +10,7 @@
     [Ἔστω ἡ μὲν δοθεῖσα εὐθεῖα ἡ ΑΒ τὸ δὲ δοθὲν σημεῖον ἐπ᾿ αὐτῆς τὸ Γ· δεῖ δὴ ἀπὸ τοῦ Γ σημείου τῇ ΑΒ εὐθείᾳ πρὸς ὀρθὰς γωνίας εὐθεῖαν γραμμὴν ἀγαγεῖν.],
     [Let $A B$ be the given straight-line, and $C$ the given point on it. So it is required to draw a straight-line from the point $C$ at right-angles to the straight-line $A B$.],
   )
-  #parallel-fig(fig11)
+  #parallel-image("/Book01/fig11", 1.8in)
   #parallel(
     [Εἰλήφθω ἐπὶ τῆς ΑΓ τυχὸν σημεῖον τὸ Δ, καὶ κείσθω τῇ ΓΔ ἴση ἡ ΓΕ, καὶ συνεστάτω ἐπὶ τῆς ΔΕ τρίγωνον ἰσόπλευρον τὸ ΖΔΕ, καὶ ἐπεζεύχθω ἡ ΖΓ· λέγω, ὅτι τῇ δοθείσῃ εὐθείᾳ τῇ ΑΒ ἀπὸ τοῦ πρὸς αὐτῇ δοθέντος σημείου τοῦ Γ πρὸς ὀρθὰς γωνίας εὐθεῖα γραμμὴ ἦκται ἡ ΖΓ.],
     [Let the point $D$ be taken at random on $A C$, and let $C E$ be made equal to $C D$ [Prop.~1.3], and let the equilateral triangle $F D E$ be constructed on $D E$ [Prop.~1.1], and let $F C$ be joined. I say that the straight-line $F C$ has been drawn at right-angles to the given straight-line $A B$ from the given point $C$ on it.],

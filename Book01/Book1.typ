@@ -1,8 +1,7 @@
 // for /l %x in (10, 1, 20) do copy Prop08.typ Prop%x.typ
 // \$([a-z]+)([a-z]) -> $$$1 $2
 
-#import "../functions.typ": parallel, no-footer, chapter, content-box, content-box-note, parallel-fig
-#import "@preview/cetz:0.4.2"
+#import "../functions.typ": parallel, no-footer, chapter, content-box, content-box-note
 
 
 #chapter([Book 1], [ELEMENTS BOOK 1])
