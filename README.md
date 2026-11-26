@@ -12,6 +12,13 @@ and the typeface is not (yet?) the same. Also, this conversion
 maintains parallel paragraphs, which makes the text line up better
 in some places, but worse in others.
 
+All thirteen books and the Greek-English lexicon are included.
+The Typst sources were generated from the LaTeX files with the
+scripts in `tools/` and then proofread: the Greek is converted from
+the LaTeX transliteration to Unicode (`tools/greek.py`), and the
+figures of Books 2-13 are SVGs converted from the original EPS
+files (`tools/eps2svg.sh`). Book 1 figures 1-12 are redrawn in CeTZ.
+
 Functions are provided to aid in parallel layout, including
 
 - `no-footer()` to suppress page number on the current page
@@ -23,6 +30,9 @@ Functions are provided to aid in parallel layout, including
 - `content-box(body)`
 - `content-box-note(text)` provides footnotes that render at the bottom of 
   `content-box` instead of at the bottom of the page
+- `#parallel-image("/BookNN/figNN", height)` places the Greek and English
+  versions of an SVG figure side by side
+- `#parallel-subheading([Greek], [English])` for lemmas and corollaries
 
 Depends on [Typst](https://typst.app) for typesetting 
 and [CeTZ](https://cetz-package.github.io/) (automatically imported) for figures.
@@ -32,15 +42,14 @@ or upload everything to the GUI for compilation.
 
 The document can be compiled by issuing the command
 
-`typst compile ElementsTypst.typ`
+`make` (or `typst compile ElementsTypst.typ`)
 
 in the base directory (containing `ElementsTypst.typ`).
 
 ## Some Notes
 
-Greek text is in Unicode, copied directly from the LaTeX PDF.
-It appears to be correct, but I do not fluently read Greek and
-have not taken the time to verify each character. Hyphenation
+Greek text is in Unicode (precomposed polytonic), converted
+from the transliterated Greek of the LaTeX source. Hyphenation
 has been removed.
 
 Greek text does not implement kerning indicated in the LaTeX source.

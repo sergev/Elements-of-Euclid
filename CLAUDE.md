@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this is
 
-A Typst port of Richard Fitzpatrick's LaTeX edition of Euclid's Elements (Greek Heiberg text + English translation, side by side). The original LaTeX sources (`Elements.tex`, `BookNN/BookN.tex`, `BookNN/figNN{e,g}.eps`) are kept in the tree as the reference to port from. The Typst port currently covers only the introduction and Book 1.
+A Typst port of Richard Fitzpatrick's LaTeX edition of Euclid's Elements (Greek Heiberg text + English translation, side by side). All thirteen books and the Greek–English lexicon are ported. The original LaTeX sources (`Elements.tex`, `BookNN/BookN.tex`, `BookNN/fig*{e,g}.eps`) are kept in the tree as the reference; never edit them.
 
 ## Build
 
@@ -14,42 +14,45 @@ make clean
 typst watch ElementsTypst.typ            # rebuild on change
 ```
 
-CeTZ (`@preview/cetz:0.4.2`) is fetched automatically by Typst. There are no tests; verify by compiling and inspecting the PDF. The LaTeX build (`latex Elements`) is legacy and not normally needed.
+CeTZ (`@preview/cetz:0.4.2`) is fetched automatically by Typst. There are no tests; verify by compiling and inspecting the PDF (`pdftoppm -f N -l N -png` to look at a page). The LaTeX build (`latex Elements`) is legacy.
 
 ## Structure
 
-- `ElementsTypst.typ` — root: page/footer/paragraph setup, then `#include`s `Book00/Introduction.typ` and `Book01/Book1.typ`.
+- `ElementsTypst.typ` — root: page/footer/paragraph setup, then `#include`s `Book00/Introduction.typ`, `BookNN/BookN.typ` for Books 1–13, and `Book99/Lexicon.typ`.
 - `functions.typ` — all shared layout helpers; every content file imports from it (`#import "../functions.typ": *`).
-- `Book01/Book1.typ` — book title, running header, then `#include`s Definitions, Postulates, CommonNotions and `Prop01.typ`…`Prop48.typ` in order. A trailing `/* ... */` block holds not-yet-ported LaTeX.
+- `BookNN/BookN.typ` — book title, running header, then `#include`s `Definitions*.typ` (and in Book 1 `Postulates.typ`, `CommonNotions.typ`) and `PropNN.typ` (`PropNNN.typ` in Book 10) in order.
 
 ### Proposition file pattern
 
-Each `PropNN.typ` defines a figure function and a `content-box`:
-
 ```typst
-#let figNN(letters) = fig({ import cetz.draw: * ... content(A, letters.at("A"), ...) })
-
 #content-box[
-  #parallel-proposition(NN, note: [...])   // optional footnote
-  #parallel([Greek], [English])            // one call per paragraph pair
-  #parallel-fig(figNN)                      // draws the figure twice: Greek and Latin labels
+  #parallel-proposition(NN, note: [...])     // optional note on the heading
+  #parallel([Greek], [English])              // one call per paragraph pair
+  #parallel-image("/Book02/fig01", 2.2in)    // figure pair fig01g.svg / fig01e.svg
+  #parallel-subheading([Πόρισμα.], [Corollary])
   ...
 ]
 ```
 
-- `parallel-fig` calls the figure function twice with letter maps from `greek-map` (English letter → Greek letter, e.g. D→Δ, F→Ζ, G→Η, H→Θ). Labels must go through `letters.at("X")`, never be hard-coded. Add entries to `greek-map` if a figure needs letters beyond A–L.
-- English math labels use `$A B$` (space-separated letters so Typst doesn't treat `AB` as a variable).
-- `content-box-note` puts footnotes at the bottom of the enclosing `content-box`, not the page.
-- `no-footer()` suppresses the page number on the current page (footer state is consumed once per page).
-- `chapter(alt, body)` emits a heading whose outline entry differs from the displayed text.
+- Books 2–13 use `parallel-image` with SVGs converted from the EPS figures (`greek: false` when only the English EPS exists). Book 1 Props 1–12 instead draw figures in CeTZ via `parallel-fig(figNN)`, called twice with letter maps from `greek-map`; labels must go through `letters.at("X")`. Book 1 Props 13–48 have empty `fig({})` stubs.
+- Definitions use `#parallel([Greek], [English], n: N)` for numbering.
+- `content-box-note` puts footnotes at the bottom of the enclosing `content-box`, not the page. Book subtitles use plain `#footnote`.
+- `no-footer()` suppresses the page number on the current page; `chapter(alt, body)` emits a heading whose outline entry differs from the displayed text.
 
-## Port status / conventions
+## Conventions
 
-- All of Book 1 has Greek and English (English ported from Fitzpatrick in `Book01/Book1.tex`). Props 1–12 have CeTZ figures; Props 13–48 still have empty `fig({})` stubs, to be reconstructed from `Book01/figNNe.eps`.
-- Greek text is plain Unicode (copied from the LaTeX PDF), not italicized, with no hyphenation or kerning.
-- Citations use a non-breaking space: `[Prop.~1.4]`, `[Def.~1.15]`, `[Post.~3]`, `[C.N.~1]`. Footnotes are `#content-box-note[...]`; a note on the heading goes in `parallel-proposition(n, note: [...])`.
-- CeTZ 0.4.2 handles polar coordinates poorly: build a point as `(r, 0)` and rotate with `cetz.vector.rotate-z(P, angle)`; use `cetz.vector.lerp/add/sub/dist` for constructions.
+- Greek is Unicode NFC (precomposed polytonic), not italicized, no hyphenation. Ano teleia is U+0387, elision U+1FBF, numeral sign U+0374.
+- English math labels are spaced, `$A B C$`, so Typst doesn't read `ABC` as a variable. Other math is Typst math (`sqrt(...)`, `k^(1 \/ 2)` — `\/` keeps a literal slash, `thin` for LaTeX `\,`).
+- Citations use a non-breaking space: `[Prop.~1.4]`, `[Props.~6.1, 10.11]`, `[Def.~1.15]`, `[Post.~3]`, `[C.N.~1]`, with `corr.`/`lem.` suffixes.
+- The English follows Fitzpatrick, keeping his parenthetical insertions, bracketed interpolations and literalisms that mirror the Greek; typos, wrong citations and label slips were corrected during the port.
+
+## Tools (`tools/`)
+
+- `tex2typ.py BOOK [--write] [--dump]` — converts `BookNN/BookN.tex` to Typst files. `--write` overwrites every file of that book, discarding manual edits made since; use `--dump` to inspect. Warnings like `paras 4/3` mean Greek and English paragraph counts differ and need a manual split.
+- `greek.py` — transliteration (`\gr{...}` babel/teubner encoding) to Unicode Greek.
+- `lex2typ.py` — converts `Book99/Lexicon.tex`.
+- `eps2svg.sh FILE.eps...` — EPS → SVG via `ps2pdf` and `pdftocairo`.
 
 ## Repo notes
 
-- `tmp/` is gitignored scratch space.
+- `tmp/` is gitignored scratch space. `*.pdf` is ignored, so build output never gets committed.
