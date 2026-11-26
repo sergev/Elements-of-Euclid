@@ -11,7 +11,7 @@
 // Greek and English text last checked 13/03/2013
 
 #v(2cm)
-#align(center, image("front.svg", height: 6in))
+#align(center, image("front.svg", height: 4.5in))
 
 #no-footer()
 

@@ -5,7 +5,7 @@
 == _Similar Figures_
 
 #v(2cm)
-#align(center, image("front.svg", height: 4in))
+#align(center, image("front.svg", height: 4.5in))
 
 #no-footer()
 

@@ -4,8 +4,8 @@
 
 == _Proportion#footnote[The theory of proportion set out in this book is generally attributed to Eudoxus of Cnidus. The novel feature of this theory is its ability to deal with irrational magnitudes, which had hitherto been a major stumbling block for Greek mathematicians. Throughout the footnotes in this book, $alpha$, $beta$, $gamma$, etc., denote general (possibly irrational) magnitudes, whereas $m$, $n$, $l$, etc., denote positive integers.]_
 
-#v(3cm)
-#align(center, image("front.svg", height: 4in))
+#v(2cm)
+#align(center, image("front.svg", height: 4.5in))
 
 #no-footer()
 

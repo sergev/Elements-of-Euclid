@@ -390,7 +390,7 @@ def book_file(book, tex, files):
     sub = re.search(r'\{\\huge\\it\s+(.*?)\}\s*\\end\{center\}', tex, re.S)
     sub = english(sub.group(1), {'_used': set()}) if sub else ''
     front = re.search(r'^%?\\vspace\{(\w+)\}\s*%?\\epsfysize=([\d.]+in)\s*%?\\centerline\{\\epsffile\{Book\d+/front\.eps\}\}', tex, re.M)
-    front = ['#v(%s)' % front.group(1), '#align(center, image("front.svg", height: %s))' % front.group(2), ''] if front else []
+    front = ['#v(2cm)', '#align(center, image("front.svg", height: 4.5in))', ''] if front else []
     hdr = greek.convert('STOIQEIWN') + ' ' + greek.numeral(book) + '.'
     out = ['#import "../functions.typ": parallel, no-footer, chapter, content-box, content-box-note', '',
            '#chapter([Book %d], [ELEMENTS BOOK %d])' % (book, book), '',

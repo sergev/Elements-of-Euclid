@@ -5,7 +5,7 @@
 == _Fundamentals of Plane Geometry Involving_
 
 #v(2cm)
-#align(center, image("front.svg", height: 5in))
+#align(center, image("front.svg", height: 4.5in))
 
 #no-footer()
 

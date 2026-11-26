@@ -5,7 +5,7 @@
 == _Applications of Number Theory#footnote[The propositions contained in Books 7--9 are generally attributed to the school of Pythagoras.]_
 
 #v(2cm)
-#align(center, image("front.svg", height: 3.5in))
+#align(center, image("front.svg", height: 4.5in))
 
 #no-footer()
 

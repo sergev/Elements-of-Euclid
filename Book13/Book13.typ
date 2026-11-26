@@ -5,7 +5,7 @@
 == _The Platonic Solids#footnote[The five regular solids---the cube, tetrahedron (i.e., pyramid), octahedron, icosahedron, and dodecahedron---were probably discovered by the school of Pythagoras. They are generally termed "Platonic" solids because they feature prominently in Plato's famous dialogue #emph[Timaeus]. Many of the theorems contained in this book---particularly those which pertain to the last two solids---are ascribed to Theaetetus of Athens.]_
 
 #v(2cm)
-#align(center, image("front.svg", height: 5in))
+#align(center, image("front.svg", height: 4.5in))
 
 #no-footer()
 

@@ -4,8 +4,8 @@
 
 == _Incommensurable Magnitudes#footnote[The theory of incommensurable magnitudes set out in this book is generally attributed to Theaetetus of Athens. In the footnotes throughout this book, $k$, $k'$, etc. stand for distinct ratios of positive integers.]_
 
-#v(3cm)
-#align(center, image("front.svg", height: 2.5in))
+#v(2cm)
+#align(center, image("front.svg", height: 4.5in))
 
 #no-footer()
 
