@@ -1,8 +1,9 @@
 tmp/
-__pychache__/
+__pycache__/
 *.aux
 *.dvi
 *.log
 *.out
 *.ps
 *.pdf
+__pycache__/

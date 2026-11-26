@@ -89,6 +89,20 @@
   )
 )
 
+// Lemma, Corollary, etc. inside a proposition
+#let parallel-subheading(left, right) = (
+  parallel(
+    [#heading(depth: 3, outlined: false, left)],
+    [#heading(depth: 3, outlined: false, right)],
+  )
+)
+
+// EPS-derived figure pair: name is a root path without suffix, e.g. "/Book02/fig01"
+#let parallel-image(name, height) = {
+  let img(suffix) = align(center, image(name + suffix + ".svg", height: height, width: 100%, fit: "contain"))
+  parallel(img("g"), img("e"))
+}
+
 #let split-dict(dict, n) = {
   let result = (:)
   for (key, alts) in dict {
