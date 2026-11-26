@@ -1,9 +1,4 @@
 #import "../functions.typ": *
-#import "@preview/cetz:0.4.2"
-
-#let fig23(letters) = fig({
-  
-})
 
 #content-box[
   #parallel-proposition(23)
@@ -15,7 +10,7 @@
     [Ἔστω ἡ μὲν δοθεῖσα εὐθεῖα ἡ ΑΒ, τὸ δὲ πρὸς αὐτῇ σημεῖον τὸ Α, ἡ δὲ δοθεῖσα γωνία εὐθύγραμμος ἡ ὑπὸ ΔΓΕ· δεῖ δὴ πρὸς τῇ δοθείσῃ εὐθείᾳ τῇ ΑΒ καὶ τῷ πρὸς αὐτῇ σημείῳ τῷ Α τῇ δοθείσῃ γωνίᾳ εὐθυγράμμῳ τῇ ὑπὸ ΔΓΕ ἴσην γωνίαν εὐθύγραμμον συστήσασθαι.],
     [Let $A B$ be the given straight-line, $A$ the (given) point on it, and $D C E$ the given rectilinear angle. So it is required to construct a rectilinear angle equal to the given rectilinear angle $D C E$ at the (given) point $A$ on the given straight-line $A B$.],
   )
-  #parallel-fig(fig23)
+  #parallel-image("/Book01/fig23", 2.2in)
   #parallel(
     [Εἰλήφθω ἐφ᾿ ἑκατέρας τῶν ΓΔ, ΓΕ τυχόντα σημεῖα τὰ Δ, Ε, καὶ ἐπεζεύχθω ἡ ΔΕ· καὶ ἐκ τριῶν εὐθειῶν, αἵ εἰσιν ἴσαι τρισὶ ταῖς ΓΔ, ΔΕ, ΓΕ, τρίγωνον συνεστάτω τὸ ΑΖΗ, ὥστε ἴσην εἶναι τὴν μὲν ΓΔ τῇ ΑΖ, τὴν δὲ ΓΕ τῇ ΑΗ, καὶ ἔτι τὴν ΔΕ τῇ ΖΗ.],
     [Let the points $D$ and $E$ be taken at random on each of the (straight-lines) $C D$ and $C E$ (respectively), and let $D E$ be joined. And let the triangle $A F G$ be constructed from three straight-lines which are equal to $C D$, $D E$, and $C E$, such that $C D$ is equal to $A F$, $C E$ to $A G$, and further $D E$ to $F G$ [Prop.~1.22].],

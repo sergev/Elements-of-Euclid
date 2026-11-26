@@ -1,9 +1,4 @@
 #import "../functions.typ": *
-#import "@preview/cetz:0.4.2"
-
-#let fig14(letters) = fig({
-  
-})
 
 #content-box[
   #parallel-proposition(14)
@@ -15,7 +10,7 @@
     [Πρὸς γάρ τινι εὐθείᾳ τῇ ΑΒ καὶ τῷ πρὸς αὐτῇ σημείῳ τῷ Β δύο εὐθεῖαι αἱ ΒΓ, ΒΔ μὴ ἐπὶ τὰ αὐτὰ μέρη κείμεναι τὰς ἐφεξῆς γωνίας τὰς ὑπὸ ΑΒΓ, ΑΒΔ δύο ὀρθαῖς ἴσας ποιείτωσαν· λέγω, ὅτι ἐπ᾿ εὐθείας ἐστὶ τῇ ΓΒ ἡ ΒΔ.],
     [For let two straight-lines $B C$ and $B D$, not lying on the same side, make adjacent angles $A B C$ and $A B D$ (whose sum is) equal to two right-angles with some straight-line $A B$, at the point $B$ on it. I say that $B D$ is straight-on with respect to $C B$.],
   )
-  #parallel-fig(fig14)
+  #parallel-image("/Book01/fig14", 1.8in)
   #parallel(
     [Εἰ γὰρ μή ἐστι τῇ ΒΓ ἐπ᾿ εὐθείας ἡ ΒΔ, ἔστω τῇ ΓΒ ἐπ᾿ εὐθείας ἡ ΒΕ.],
     [For if $B D$ is not straight-on to $B C$ (then) let $B E$ be straight-on to $C B$.],

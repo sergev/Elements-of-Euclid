@@ -1,9 +1,4 @@
 #import "../functions.typ": *
-#import "@preview/cetz:0.4.2"
-
-#let fig27(letters) = fig({
-  
-})
 
 #content-box[
   #parallel-proposition(27)
@@ -11,7 +6,7 @@
     [Ἐὰν εἰς δύο εὐθείας εὐθεῖα ἐμπίπτουσα τὰς ἐναλλὰξ γωνίας ἴσας ἀλλήλαις ποιῇ, παράλληλοι ἔσονται ἀλλήλαις αἱ εὐθεῖαι.],
     [If a straight-line falling across two straight-lines makes the alternate angles equal to one another (then) the (two) straight-lines will be parallel to one another.],
   )
-  #parallel-fig(fig27)
+  #parallel-image("/Book01/fig27", 1.5in)
   #parallel(
     [Εἰς γὰρ δύο εὐθείας τὰς ΑΒ, ΓΔ εὐθεῖα ἐμπίπτουσα ἡ ΕΖ τὰς ἐναλλὰξ γωνίας τὰς ὑπὸ ΑΕΖ, ΕΖΔ ἴσας ἀλλήλαις ποιείτω· λέγω, ὅτι παράλληλός ἐστιν ἡ ΑΒ τῇ ΓΔ.],
     [For let the straight-line $E F$, falling across the two straight-lines $A B$ and $C D$, make the alternate angles $A E F$ and $E F D$ equal to one another. I say that $A B$ and $C D$ are parallel.],

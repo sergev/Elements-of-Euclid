@@ -1,9 +1,4 @@
 #import "../functions.typ": *
-#import "@preview/cetz:0.4.2"
-
-#let fig20(letters) = fig({
-  
-})
 
 #content-box[
   #parallel-proposition(20)
@@ -11,7 +6,7 @@
     [Παντὸς τριγώνου αἱ δύο πλευραὶ τῆς λοιπῆς μείζονές εἰσι πάντῃ μεταλαμβανόμεναι.],
     [In any triangle, (the sum of) two sides taken together in any (possible way) is greater than the remaining (side).],
   )
-  #parallel-fig(fig20)
+  #parallel-image("/Book01/fig20", 2.2in)
   #parallel(
     [Ἔστω γὰρ τρίγωνον τὸ ΑΒΓ· λέγω, ὅτι τοῦ ΑΒΓ τριγώνου αἱ δύο πλευραὶ τῆς λοιπῆς μείζονές εἰσι πάντῃ μεταλαμβανόμεναι, αἱ μὲν ΒΑ, ΑΓ τῆς ΒΓ, αἱ δὲ ΑΒ, ΒΓ τῆς ΑΓ, αἱ δὲ ΒΓ, ΓΑ τῆς ΑΒ.],
     [For let $A B C$ be a triangle. I say that in triangle $A B C$ (the sum of) two sides taken together in any (possible way) is greater than the remaining (side). (So), (the sum of) $B A$ and $A C$ (is greater) than $B C$, (the sum of) $A B$ and $B C$ than $A C$, and (the sum of) $B C$ and $C A$ than $A B$.],

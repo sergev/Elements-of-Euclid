@@ -1,9 +1,4 @@
 #import "../functions.typ": *
-#import "@preview/cetz:0.4.2"
-
-#let fig21(letters) = fig({
-  
-})
 
 #content-box[
   #parallel-proposition(21)
@@ -19,7 +14,7 @@
 καʹ.
 
 
-#parallel-fig(fig21)
+#parallel-image("/Book01/fig21", 1.5in)
   #parallel(
     [Διήχθω γὰρ ἡ ΒΔ ἐπὶ τὸ Ε. καὶ ἐπεὶ παντὸς τριγώνου αἱ δύο πλευραὶ τῆς λοιπῆς μείζονές εἰσιν, τοῦ ΑΒΕ ἄρα τριγώνου αἱ δύο πλευραὶ αἱ ΑΒ, ΑΕ τῆς ΒΕ μείζονές εἰσιν· κοινὴ προσκείσθω ἡ ΕΓ· αἱ ἄρα ΒΑ, ΑΓ τῶν ΒΕ, ΕΓ μείζονές εἰσιν. πάλιν, ἐπεὶ τοῦ ΓΕΔ τριγώνου αἱ δύο πλευραὶ αἱ ΓΕ, ΕΔ τῆς ΓΔ μείζονές εἰσιν, κοινὴ προσκείσθω ἡ ΔΒ· αἱ ΓΕ, ΕΒ ἄρα τῶν ΓΔ, ΔΒ μείζονές εἰσιν. ἀλλὰ τῶν ΒΕ, ΕΓ μείζονες ἐδείχθησαν αἱ ΒΑ, ΑΓ· πολλῷ ἄρα αἱ ΒΑ, ΑΓ τῶν ΒΔ, ΔΓ μείζονές εἰσιν.],
     [For let $B D$ be drawn through to $E$. And since in any triangle (the sum of any) two sides is greater than the remaining (side) [Prop.~1.20], in triangle $A B E$ the (sum of the) two sides $A B$ and $A E$ is thus greater than $B E$. Let $E C$ be added to both. Thus, (the sum of) $B A$ and $A C$ is greater than (the sum of) $B E$ and $E C$. Again, since in triangle $C E D$ the (sum of the) two sides $C E$ and $E D$ is greater than $C D$, let $D B$ be added to both. Thus, (the sum of) $C E$ and $E B$ is greater than (the sum of) $C D$ and $D B$. But, (the sum of) $B A$ and $A C$ was shown (to be) greater than (the sum of) $B E$ and $E C$. Thus, (the sum of) $B A$ and $A C$ is much greater than (the sum of) $B D$ and $D C$.],

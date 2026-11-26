@@ -1,9 +1,4 @@
 #import "../functions.typ": *
-#import "@preview/cetz:0.4.2"
-
-#let fig22(letters) = fig({
-  
-})
 
 κβʹ.
 
@@ -14,7 +9,7 @@
     [Ἐκ τριῶν εὐθειῶν, αἵ εἰσιν ἴσαι τρισὶ ταῖς δοθείσαις [εὐθείαις], τρίγωνον συστήσασθαι· δεῖ δὲ τὰς δύο τῆς λοιπῆς μείζονας εἶναι πάντῃ μεταλαμβανομένας [διὰ τὸ καὶ παντὸς τριγώνου τὰς δύο πλευρὰς τῆς λοιπῆς μείζονας εἶναι πάντῃ μεταλαμβανομένας].],
     [To construct a triangle from three straight-lines which are equal to three given [straight-lines]. It is necessary for (the sum of) two (of the straight-lines) taken together in any (possible way) to be greater than the remaining (one), [on account of the (fact that) in any triangle (the sum of) two sides taken together in any (possible way) is greater than the remaining (one) [Prop.~1.20] ].],
   )
-  #parallel-fig(fig22)
+  #parallel-image("/Book01/fig22", 2.3in)
   #parallel(
     [Ἔστωσαν αἱ δοθεῖσαι τρεῖς εὐθεῖαι αἱ Α, Β, Γ, ὧν αἱ δύο τῆς λοιπῆς μείζονες ἔστωσαν πάντῃ μεταλαμβανόμεναι, αἱ μὲν Α, Β τῆς Γ, αἱ δὲ Α, Γ τῆς Β, καὶ ἔτι αἱ Β, Γ τῆς Α· δεῖ δὴ ἐκ τῶν ἴσων ταῖς Α, Β, Γ τρίγωνον συστήσασθαι.],
     [Let $A$, $B$, and $C$ be the three given straight-lines, of which let (the sum of) two taken together in any (possible way) be greater than the remaining (one). (Thus), (the sum of) $A$ and $B$ (is greater) than $C$, (the sum of) $A$ and $C$ than $B$, and also (the sum of) $B$ and $C$ than $A$. So it is required to construct a triangle from (straight-lines) equal to $A$, $B$, and $C$.],

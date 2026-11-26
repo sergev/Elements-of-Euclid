@@ -1,9 +1,4 @@
 #import "../functions.typ": *
-#import "@preview/cetz:0.4.2"
-
-#let fig26(letters) = fig({
-  
-})
 
 #content-box[
   #parallel-proposition(26)
@@ -23,7 +18,7 @@
     [Ἐπεὶ οὖν ἴση ἐστὶν ἡ μὲν ΒΗ τῇ ΔΕ, ἡ δὲ ΒΓ τῇ ΕΖ, δύο δὴ αἱ ΒΗ, ΒΓ δυσὶ ταῖς ΔΕ, ΕΖ ἴσαι εἰσὶν ἑκατέρα ἑκατέρᾳ· καὶ γωνία ἡ ὑπὸ ΗΒΓ γωνίᾳ τῇ ὑπὸ ΔΕΖ ἴση ἐστίν· βάσις ἄρα ἡ ΗΓ βάσει τῇ ΔΖ ἴση ἐστίν, καὶ τὸ ΗΒΓ τρίγωνον τῷ ΔΕΖ τριγώνῳ ἴσον ἐστίν, καὶ αἱ λοιπαὶ γωνίαι ταῖς λοιπαῖς γωνίαις ἴσαι ἔσονται, ὑφ᾿ ἃς αἱ ἴσαι πλευραὶ ὑποτείνουσιν· ἴση ἄρα ἡ ὑπὸ ΗΓΒ γωνία τῇ ὑπὸ ΔΖΕ. ἀλλὰ ἡ ὑπὸ ΔΖΕ τῇ ὑπὸ ΒΓΑ ὑπόκειται ἴση· καὶ ἡ ὑπὸ ΒΓΗ ἄρα τῇ ὑπὸ ΒΓΑ ἴση ἐστίν, ἡ ἐλάσσων τῇ μείζονι· ὅπερ ἀδύνατον. οὐκ ἄρα ἄνισός ἐστιν ἡ ΑΒ τῇ ΔΕ. ἴση ἄρα. ἔστι δὲ καὶ ἡ ΒΓ τῇ ΕΖ ἴση· δύο δὴ αἱ ΑΒ, ΒΓ δυσὶ ταῖς ΔΕ, ΕΖ ἴσαι εἰσὶν ἑκατέρα ἑκατέρᾳ· καὶ γωνία ἡ ὑπὸ ΑΒΓ γωνίᾳ τῇ ὑπὸ ΔΕΖ ἐστιν ἴση· βάσις ἄρα ἡ ΑΓ βάσει τῇ ΔΖ ἴση ἐστίν, καὶ λοιπὴ γωνία ἡ ὑπὸ ΒΑΓ τῇ λοιπῇ γωνίᾳ τῇ ὑπὸ ΕΔΖ ἴση ἐστίν.],
     [Therefore, since $B G$ is equal to $D E$, and $B C$ to $E F$, the two (straight-lines) $G B$, $B C$#content-box-note[The Greek text has "$B G$, $B C$", which is obviously a mistake.] are equal to the two (straight-lines) $D E$, $E F$, respectively. And angle $G B C$ is equal to angle $D E F$. Thus, the base $G C$ is equal to the base $D F$, and triangle $G B C$ is equal to triangle $D E F$, and the remaining angles subtended by the equal sides will be equal to the (corresponding) remaining angles [Prop.~1.4]. Thus, $G C B$ (is equal) to $D F E$. But, $D F E$ was assumed (to be) equal to $B C A$. Thus, $B C G$ is also equal to $B C A$, the lesser to the greater. The very thing (is) impossible. Thus, $A B$ is not unequal to $D E$. Thus, (it is) equal. And $B C$ is also equal to $E F$. So the two (straight-lines) $A B$, $B C$ are equal to the two (straight-lines) $D E$, $E F$, respectively. And angle $A B C$ is equal to angle $D E F$. Thus, the base $A C$ is equal to the base $D F$, and the remaining angle $B A C$ is equal to the remaining angle $E D F$ [Prop.~1.4].],
   )
-  #parallel-fig(fig26)
+  #parallel-image("/Book01/fig26", 1.5in)
   #parallel(
     [Ἀλλὰ δὴ πάλιν ἔστωσαν αἱ ὑπὸ τὰς ἴσας γωνίας πλευραὶ ὑποτείνουσαι ἴσαι, ὡς ἡ ΑΒ τῇ ΔΕ· λέγω πάλιν, ὅτι καὶ αἱ λοιπαὶ πλευραὶ ταῖς λοιπαῖς πλευραῖς ἴσαι ἔσονται, ἡ μὲν ΑΓ τῇ ΔΖ, ἡ δὲ ΒΓ τῇ ΕΖ καὶ ἔτι ἡ λοιπὴ γωνία ἡ ὑπὸ ΒΑΓ τῇ λοιπῇ γωνίᾳ τῇ ὑπὸ ΕΔΖ ἴση ἐστίν.],
     [But, again, let the sides subtending the equal angles be equal: for instance, (let) $A B$ (be equal) to $D E$. Again, I say that the remaining sides will be equal to the remaining sides. (That is) $A C$ (equal) to $D F$, and $B C$ to $E F$. Furthermore, the remaining angle $B A C$ is equal to the remaining angle $E D F$.],

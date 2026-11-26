@@ -1,9 +1,4 @@
 #import "../functions.typ": *
-#import "@preview/cetz:0.4.2"
-
-#let fig41(letters) = fig({
-  
-})
 
 #content-box[
   #parallel-proposition(41)
@@ -15,7 +10,7 @@
     [Παραλληλόγραμμον γὰρ τὸ ΑΒΓΔ τριγώνῳ τῷ ΕΒΓ βάσιν τε ἐχέτω τὴν αὐτὴν τὴν ΒΓ καὶ ἐν ταῖς αὐταῖς παραλλήλοις ἔστω ταῖς ΒΓ, ΑΕ· λέγω, ὅτι διπλάσιόν ἐστι τὸ ΑΒΓΔ παραλληλόγραμμον τοῦ ΒΕΓ τριγώνου.],
     [For let parallelogram $A B C D$ have the same base $B C$ as triangle $E B C$, and let it be between the same parallels, $B C$ and $A E$. I say that parallelogram $A B C D$ is double (the area) of triangle $B E C$.],
   )
-  #parallel-fig(fig41)
+  #parallel-image("/Book01/fig41", 1.9in)
   #parallel(
     [Ἐπεζεύχθω γὰρ ἡ ΑΓ. ἴσον δή ἐστι τὸ ΑΒΓ τρίγωνον τῷ ΕΒΓ τριγώνῳ· ἐπί τε γὰρ τῆς αὐτῆς βάσεώς ἐστιν αὐτῷ τῆς ΒΓ καὶ ἐν ταῖς αὐταῖς παραλλήλοις ταῖς ΒΓ, ΑΕ. ἀλλὰ τὸ ΑΒΓΔ παραλληλόγραμμον διπλάσιόν ἐστι τοῦ ΑΒΓ τριγώνου· ἡ γὰρ ΑΓ διάμετρος αὐτὸ δίχα τέμνει· ὥστε τὸ ΑΒΓΔ παραλληλόγραμμον καὶ τοῦ ΕΒΓ τριγώνου ἐστὶ διπλάσιον.],
     [For let $A C$ be joined. So triangle $A B C$ is equal to triangle $E B C$. For it is on the same base, $B C$, (as $E B C$), and between the same parallels, $B C$ and $A E$ [Prop.~1.37]. But, parallelogram $A B C D$ is double (the area) of triangle $A B C$. For the diagonal $A C$ cuts the former in half [Prop.~1.34]. So parallelogram $A B C D$ is also double (the area) of triangle $E B C$.],

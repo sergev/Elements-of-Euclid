@@ -1,9 +1,4 @@
 #import "../functions.typ": *
-#import "@preview/cetz:0.4.2"
-
-#let fig32(letters) = fig({
-  
-})
 
 #content-box[
   #parallel-proposition(32)
@@ -11,7 +6,7 @@
     [Παντὸς τριγώνου μιᾶς τῶν πλευρῶν προσεκβληθείσης ἡ ἐκτὸς γωνία δυσὶ ταῖς ἐντὸς καὶ ἀπεναντίον ἴση ἐστίν, καὶ αἱ ἐντὸς τοῦ τριγώνου τρεῖς γωνίαι δυσὶν ὀρθαῖς ἴσαι εἰσίν.],
     [In any triangle, (if) one of the sides (is) produced (then) the external angle is equal to the (sum of the) two internal and opposite (angles), and the (sum of the) three internal angles of the triangle is equal to two right-angles.],
   )
-  #parallel-fig(fig32)
+  #parallel-image("/Book01/fig32", 2in)
   #parallel(
     [Ἔστω τρίγωνον τὸ ΑΒΓ, καὶ προσεκβεβλήσθω αὐτοῦ μία πλευρὰ ἡ ΒΓ ἐπὶ τὸ Δ· λέγω, ὅτι ἡ ἐκτὸς γωνία ἡ ὑπὸ ΑΓΔ ἴση ἐστὶ δυσὶ ταῖς ἐντὸς καὶ ἀπεναντίον ταῖς ὑπὸ ΓΑΒ, ΑΒΓ, καὶ αἱ ἐντὸς τοῦ τριγώνου τρεῖς γωνίαι αἱ ὑπὸ ΑΒΓ, ΒΓΑ, ΓΑΒ δυσὶν ὀρθαῖς ἴσαι εἰσίν.],
     [Let $A B C$ be a triangle, and let one of its sides $B C$ be produced to $D$. I say that the external angle $A C D$ is equal to the (sum of the) two internal and opposite angles $C A B$ and $A B C$, and the (sum of the) three internal angles of the triangle---$A B C$, $B C A$, and $C A B$---is equal to two right-angles.],

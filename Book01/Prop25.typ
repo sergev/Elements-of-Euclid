@@ -1,9 +1,4 @@
 #import "../functions.typ": *
-#import "@preview/cetz:0.4.2"
-
-#let fig25(letters) = fig({
-  
-})
 
 #content-box[
   #parallel-proposition(25)
@@ -19,7 +14,7 @@
     [Εἰ γὰρ μή, ἤτοι ἴση ἐστὶν αὐτῇ ἢ ἐλάσσων· ἴση μὲν οὖν οὐκ ἔστιν ἡ ὑπὸ ΒΑΓ τῇ ὑπὸ ΕΔΖ· ἴση γὰρ ἂν ἦν καὶ βάσις ἡ ΒΓ βάσει τῇ ΕΖ· οὐκ ἔστι δέ. οὐκ ἄρα ἴση ἐστὶ γωνία ἡ ὑπὸ ΒΑΓ τῇ ὑπὸ ΕΔΖ· οὐδὲ μὴν ἐλάσσων ἐστὶν ἡ ὑπὸ ΒΑΓ τῆς ὑπὸ ΕΔΖ· ἐλάσσων γὰρ ἂν ἦν καὶ βάσις ἡ ΒΓ βάσεως τῆς ΕΖ· οὐκ ἔστι δέ· οὐκ ἄρα ἐλάσσων ἐστὶν ἡ ὑπὸ ΒΑΓ γωνία τῆς ὑπὸ ΕΔΖ. ἐδείχθη δέ, ὅτι οὐδὲ ἴση· μείζων ἄρα ἐστὶν ἡ ὑπὸ ΒΑΓ τῆς ὑπὸ ΕΔΖ.],
     [For if not, ($B A C$) is certainly either equal to, or less than, ($E D F$). In fact, $B A C$ is not equal to $E D F$. For then the base $B C$ would also be equal to the base $E F$ [Prop.~1.4]. But it is not. Thus, angle $B A C$ is not equal to $E D F$. Neither, indeed, is $B A C$ less than $E D F$. For then the base $B C$ would also be less than the base $E F$ [Prop.~1.24]. But it is not. Thus, angle $B A C$ is not less than $E D F$. But it was shown that ($B A C$ is) not equal (to $E D F$) either. Thus, $B A C$ is greater than $E D F$.],
   )
-  #parallel-fig(fig25)
+  #parallel-image("/Book01/fig25", 2in)
   #parallel(
     [Ἐὰν ἄρα δύο τρίγωνα τὰς δύο πλευρὰς δυσὶ πλευραῖς ἴσας ἔχῃ ἑκατέραν ἑκάτερᾳ, τὴν δὲ βασίν τῆς βάσεως μείζονα ἔχῃ, καὶ τὴν γωνίαν τῆς γωνίας μείζονα ἕξει τὴν ὑπὸ τῶν ἴσων εὐθειῶν περιεχομένην· ὅπερ ἔδει δεῖξαι.],
     [Thus, if two triangles have two sides equal to two sides, respectively, but (one) has a base greater than the base (of the other), (then the former triangle) will also have the angle encompassed by the equal straight-lines greater than the (corresponding) angle (in the latter). (Which is) the very thing it was required to show.],

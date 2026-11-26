@@ -1,9 +1,4 @@
 #import "../functions.typ": *
-#import "@preview/cetz:0.4.2"
-
-#let fig24(letters) = fig({
-  
-})
 
 #content-box[
   #parallel-proposition(24)
@@ -15,7 +10,7 @@
     [Ἔστω δύο τρίγωνα τὰ ΑΒΓ, ΔΕΖ τὰς δύο πλευρὰς τὰς ΑΒ, ΑΓ ταῖς δύο πλευραῖς ταῖς ΔΕ, ΔΖ ἴσας ἔχοντα ἑκατέραν ἑκατέρᾳ, τὴν μὲν ΑΒ τῇ ΔΕ τὴν δὲ ΑΓ τῇ ΔΖ, ἡ δὲ πρὸς τῷ Α γωνία τῆς πρὸς τῷ Δ γωνίας μείζων ἔστω· λέγω, ὅτι καὶ βάσις ἡ ΒΓ βάσεως τῆς ΕΖ μείζων ἐστίν.],
     [Let $A B C$ and $D E F$ be two triangles having the two sides $A B$ and $A C$ equal to the two sides $D E$ and $D F$, respectively. (That is), $A B$ (equal) to $D E$, and $A C$ to $D F$. Let them also have the angle at $A$ greater than the angle at $D$. I say that the base $B C$ is also greater than the base $E F$.],
   )
-  #parallel-fig(fig24)
+  #parallel-image("/Book01/fig24", 2in)
   #parallel(
     [Ἐπεὶ γὰρ μείζων ἡ ὑπὸ ΒΑΓ γωνία τῆς ὑπὸ ΕΔΖ γωνίας, συνεστάτω πρὸς τῇ ΔΕ εὐθείᾳ καὶ τῷ πρὸς αὐτῇ σημείῳ τῷ Δ τῇ ὑπὸ ΒΑΓ γωνίᾳ ἴση ἡ ὑπὸ ΕΔΗ, καὶ κείσθω ὁποτέρᾳ τῶν ΑΓ, ΔΖ ἴση ἡ ΔΗ, καὶ ἐπεζεύχθωσαν αἱ ΕΗ, ΖΗ.],
     [For since angle $B A C$ is greater than angle $E D F$, let (angle) $E D G$, equal to angle $B A C$, be constructed at the point $D$ on the straight-line $D E$ [Prop.~1.23]. And let $D G$ be made equal to either of $A C$ or $D F$ [Prop.~1.3], and let $E G$ and $F G$ be joined.],

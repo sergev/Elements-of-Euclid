@@ -34,7 +34,7 @@ CeTZ (`@preview/cetz:0.4.2`) is fetched automatically by Typst. There are no tes
 ]
 ```
 
-- Books 2–13 use `parallel-image` with SVGs converted from the EPS figures (`greek: false` when only the English EPS exists). Book 1 Props 1–12 instead draw figures in CeTZ via `parallel-fig(figNN)`, called twice with letter maps from `greek-map`; labels must go through `letters.at("X")`. Book 1 Props 13–48 have empty `fig({})` stubs; `Book01/fig*.svg` (converted, unused) can serve as tracing references.
+- Figures use `parallel-image` with SVGs converted from the original EPS figures (`greek: false` when only the English one exists). Exception: Book 1 Props 1–12 draw figures in CeTZ via `parallel-fig(figNN)`, called twice with letter maps from `greek-map`; labels must go through `letters.at("X")`. `Book01/fig01`–`fig12` SVGs are unused.
 - Books 10–13 show a frontispiece (`BookNN/front.svg`) on the title page, as in the LaTeX; the other `front.svg` and `euclid.svg` are unused, matching the commented-out LaTeX.
 - Definitions use `#parallel([Greek], [English], n: N)` for numbering.
 - `content-box-note` puts footnotes at the bottom of the enclosing `content-box`, not the page. Book subtitles use plain `#footnote`.
