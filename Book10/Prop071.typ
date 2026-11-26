@@ -21,6 +21,6 @@
   #parallel-image("/Book10/fig071", 2in)
   #parallel(
     [Ῥητοῦ ἄρα καὶ μέσου συντιθεμένου τέσσαρες ἄλογοι γίγνονται ἤτοι ἐκ δύο ὀνομάτων ἢ ἐκ δύο μέσων πρώτη ἢ μείζων ἢ ῥητὸν καὶ μέσον δυναμένη· ὅπερ ἔδει δεῖξαι.],
-    [Thus, when a rational and a medial area are added together, four irrational (straight-lines) arise (as the square-roots of the total area)---either a binomial, or a first bimedial, or a major, or the square-root of a rational plus a medial (area). (Which is) the very thing it was required to show.],
+    [Thus, when a rational and a medial (area) are added together, four irrational (straight-lines) arise (as the square-roots of the total area)---either a binomial, or a first bimedial, or a major, or the square-root of a rational plus a medial (area). (Which is) the very thing it was required to show.],
   )
 ]

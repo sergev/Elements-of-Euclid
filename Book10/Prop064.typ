@@ -8,7 +8,7 @@
   )
   #parallel(
     [Ἔστω ῥητὸν καὶ μέσον δυναμένη ἡ ΑΒ διῃρημένη εἰς τὰς εὐθείας κατὰ τὸ Γ, ὥστε μείζονα εἶναι τὴν ΑΓ, καὶ ἐκκείσθω ῥητὴ ἡ ΔΕ, καὶ τῷ ἀπὸ τῆς ΑΒ ἴσον παρὰ τὴν ΔΕ παραβεβλήσθω τὸ ΔΖ πλάτος ποιοῦν τὴν ΔΗ· λέγω, ὅτι ἡ ΔΗ ἐκ δύο ὀνομάτων ἐστὶ πέμπτη.],
-    [Let $A B$ be the square-root of a rational plus a medial (area) having been divided into its (component) straight-lines at $C$, such that $A C$ is greater. And let the rational (straight-line) $D E$ be laid down. And let the (parallelogram) $D F$, equal to the (square) on $A B$, be applied to $D E$, producing $D G$ as breadth. I say that $D G$ is a fifth binomial straight-line.],
+    [Let $A B$ be the square-root of a rational plus a medial (area) having been divided into its (component) straight-lines at $C$, such that $A C$ is greater. And let the rational (straight-line) $D E$ be laid down. And let the (parallelogram) $D F$, equal to the (square) on $A B$, be applied to $D E$, producing $D G$ as breadth. I say that $D G$ is a fifth binomial (straight-line).],
   )
   #parallel-image("/Book10/fig060", 1.5in)
   #parallel(

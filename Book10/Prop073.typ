@@ -9,7 +9,7 @@
   #parallel-image("/Book10/fig073", 0.3in)
   #parallel(
     [Ἀπὸ γὰρ ῥητῆς τῆς ΑΒ ῥητὴ ἀφῃρήσθω ἡ ΒΓ δυνάμει μόνον σύμμετρος οὖσα τῇ ὅλῃ· λέγω, ὅτι ἡ λοιπὴ ἡ ΑΓ ἄλογός ἐστιν ἡ καλουμένη ἀποτομή.],
-    [For let the rational (straight-line) $B C$, which commensurable in square only with the whole, be subtracted from the rational (straight-line) $A B$. I say that the remainder $A C$ is that irrational (straight-line) called an apotome.],
+    [For let the rational (straight-line) $B C$, which is commensurable in square only with the whole, be subtracted from the rational (straight-line) $A B$. I say that the remainder $A C$ is that irrational (straight-line) called an apotome.],
   )
   #parallel(
     [Ἐπεὶ γὰρ ἀσύμμετρός ἐστιν ἡ ΑΒ τῇ ΒΓ μήκει, καί ἐστιν ὡς ἡ ΑΒ πρὸς τὴν ΒΓ, οὕτως τὸ ἀπὸ τῆς ΑΒ πρὸς τὸ ὑπὸ τῶν ΑΒ, ΒΓ, ἀσύμμετρον ἄρα ἐστὶ τὸ ἀπὸ τῆς ΑΒ τῷ ὑπὸ τῶν ΑΒ, ΒΓ. ἀλλὰ τῷ μὲν ἀπὸ τῆς ΑΒ σύμμετρά ἐστι τὰ ἀπὸ τῶν ΑΒ, ΒΓ τετράγωνα, τῷ δὲ ὑπὸ τῶν ΑΒ, ΒΓ σύμμετρόν ἐστι τὸ δὶς ὑπὸ τῶν ΑΒ, ΒΓ. καὶ ἐπειδήπερ τὰ ἀπὸ τῶν ΑΒ, ΒΓ ἴσα ἐστὶ τῷ δὶς ὑπὸ τῶν ΑΒ, ΒΓ μετὰ τοῦ ἀπὸ ΓΑ, καὶ λοιπῷ ἄρα τῷ ἀπὸ τῆς ΑΓ ἀσύμμετρά ἐστι τὰ ἀπὸ τῶν ΑΒ, ΒΓ. ῥητὰ δὲ τὰ ἀπὸ τῶν ΑΒ, ΒΓ· ἄλογος ἄρα ἐστὶν ἡ ΑΓ· καλείσθω δὲ ἀποτομή. ὅπερ ἔδει δεῖξαι.],

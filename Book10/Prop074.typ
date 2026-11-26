@@ -9,7 +9,7 @@
   #parallel-image("/Book10/fig073", 0.3in)
   #parallel(
     [Ἀπὸ γὰρ μέσης τῆς ΑΒ μέση ἀφῃρήσθω ἡ ΒΓ δυνάμει μόνον σύμμετρος οὖσα τῇ ΑΒ, μετὰ δὲ τῆς ΑΒ ῥητὸν ποιοῦσα τὸ ὑπὸ τῶν ΑΒ, ΒΓ· λέγω, ὅτι ἡ λοιπὴ ἡ ΑΓ ἄλογός ἐστιν· καλείσθω δὲ μέσης ἀποτομὴ πρώτη.],
-    [For let the medial (straight-line) $B C$, which is commensurable in square only with $A B$, and which makes with $A B$ the rational (rectangle contained) by $A B$ and $B C$, be subtracted from the medial (straight-line) $A B$ [Prop.~10.27]. I say that the remainder $A C$ is an irrational (straight-line). Let it be called the first apotome of a medial (straight-line).],
+    [For let the medial (straight-line) $B C$, which is commensurable in square only with $A B$, and which makes with $A B$ the rational (rectangle contained) by $A B$ and $B C$, be subtracted from the medial (straight-line) $A B$ [Prop.~10.27]. I say that the remainder $A C$ is an irrational (straight-line). Let it be called a first apotome of a medial (straight-line).],
   )
   #parallel(
     [Ἐπεὶ γὰρ αἱ ΑΒ, ΒΓ μέσαι εἰσίν, μέσα ἐστὶ καὶ τὰ ἀπὸ τῶν ΑΒ, ΒΓ. ῥητὸν δὲ τὸ δὶς ὑπὸ τῶν ΑΒ, ΒΓ· ἀσύμμετρα ἄρα τὰ ἀπὸ τῶν ΑΒ, ΒΓ τῷ δὶς ὑπὸ τῶν ΑΒ, ΒΓ· καὶ λοιπῷ ἄρα τῷ ἀπὸ τῆς ΑΓ ἀσύμμετρόν ἐστι τὸ δὶς ὑπὸ τῶν ΑΒ, ΒΓ, ἐπεὶ κἂν τὸ ὅλον ἑνὶ αὐτῶν ἀσύμμετρον ᾖ, καὶ τὰ ἐξ ἀρχῆς μεγέθη ἀσύμμετρα ἔσται. ῥητὸν δὲ τὸ δὶς ὑπὸ τῶν ΑΒ, ΒΓ· ἄλογον ἄρα τὸ ἀπὸ τῆς ΑΓ· ἄλογος ἄρα ἐστὶν ἡ ΑΓ· καλείσθω δὲ μέσης ἀποτομὴ πρώτη.],
