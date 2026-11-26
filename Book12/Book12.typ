@@ -2,7 +2,10 @@
 
 #chapter([Book 12], [ELEMENTS BOOK 12])
 
-== _Proportional Stereometry#footnote[The novel feature of this book is the use of the so-called method of exhaustion\/ (see Prop.~10.1), a precursor to integration which is generally attributed to Eudoxus of Cnidus.]_
+== _Proportional Stereometry#footnote[The novel feature of this book is the use of the so-called #text(style: "normal")[method of exhaustion] (see Prop.~10.1), a precursor to integration which is generally attributed to Eudoxus of Cnidus.]_
+
+#v(2cm)
+#align(center, image("front.svg", height: 5.5in))
 
 #no-footer()
 

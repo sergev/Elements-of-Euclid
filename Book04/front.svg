@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 400.00 400.00">
+<g stroke-linejoin="round" stroke-linecap="round">
+<polygon points="12.00,388.00 388.00,388.00 388.00,12.00 12.00,12.00" fill="#1f5fa8" stroke="#1a1a1a" stroke-width="2.60"/>
+<circle cx="200.00" cy="200.00" r="188.00" fill="#f6eedc" stroke="#1a1a1a" stroke-width="2.60"/>
+<polygon points="200.00,12.00 21.20,141.90 89.50,352.10 310.50,352.10 378.80,141.90" fill="#d1342b" stroke="#1a1a1a" stroke-width="2.60"/>
+<circle cx="200.00" cy="200.00" r="152.10" fill="#f2b632" stroke="#1a1a1a" stroke-width="2.60"/>
+<polygon points="200.00,47.90 68.28,123.95 68.28,276.05 200.00,352.10 331.72,276.05 331.72,123.95" fill="#1f5fa8" stroke="#1a1a1a" stroke-width="2.60"/>
+<circle cx="200.00" cy="200.00" r="131.72" fill="#f6eedc" stroke="#1a1a1a" stroke-width="2.60"/>
+<polygon points="200.00,68.28 85.93,265.86 314.07,265.86" fill="#d1342b" stroke="#1a1a1a" stroke-width="2.60"/>
+<circle cx="200.00" cy="200.00" r="65.86" fill="#f2b632" stroke="#1a1a1a" stroke-width="2.60"/>
+</g>
+</svg>

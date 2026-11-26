@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 400.00 400.00">
+<g stroke-linejoin="round" stroke-linecap="round">
+<polygon points="12.00,388.00 200.00,388.00 200.00,12.00 12.00,12.00" fill="#d1342b" stroke="#1a1a1a" stroke-width="2.60"/>
+<polygon points="200.00,200.00 388.00,200.00 388.00,12.00 200.00,12.00" fill="#f2b632" stroke="#1a1a1a" stroke-width="2.60"/>
+<polygon points="200.00,388.00 294.00,388.00 294.00,200.00 200.00,200.00" fill="#1f5fa8" stroke="#1a1a1a" stroke-width="2.60"/>
+<polygon points="294.00,294.00 388.00,294.00 388.00,200.00 294.00,200.00" fill="#d1342b" stroke="#1a1a1a" stroke-width="2.60"/>
+<polygon points="294.00,388.00 341.00,388.00 341.00,294.00 294.00,294.00" fill="#f2b632" stroke="#1a1a1a" stroke-width="2.60"/>
+<polygon points="341.00,341.00 388.00,341.00 388.00,294.00 341.00,294.00" fill="#1f5fa8" stroke="#1a1a1a" stroke-width="2.60"/>
+<polygon points="341.00,388.00 388.00,388.00 388.00,341.00 341.00,341.00" fill="#f6eedc" stroke="#1a1a1a" stroke-width="2.60"/>
+<polyline points="59.00,388.00 59.00,12.00" fill="none" stroke="#1a1a1a" stroke-width="0.65"/>
+<polyline points="12.00,341.00 388.00,341.00" fill="none" stroke="#1a1a1a" stroke-width="0.65"/>
+<polyline points="106.00,388.00 106.00,12.00" fill="none" stroke="#1a1a1a" stroke-width="0.65"/>
+<polyline points="12.00,294.00 388.00,294.00" fill="none" stroke="#1a1a1a" stroke-width="0.65"/>
+<polyline points="153.00,388.00 153.00,12.00" fill="none" stroke="#1a1a1a" stroke-width="0.65"/>
+<polyline points="12.00,247.00 388.00,247.00" fill="none" stroke="#1a1a1a" stroke-width="0.65"/>
+<polyline points="200.00,388.00 200.00,12.00" fill="none" stroke="#1a1a1a" stroke-width="0.65"/>
+<polyline points="12.00,200.00 388.00,200.00" fill="none" stroke="#1a1a1a" stroke-width="0.65"/>
+<polyline points="247.00,388.00 247.00,12.00" fill="none" stroke="#1a1a1a" stroke-width="0.65"/>
+<polyline points="12.00,153.00 388.00,153.00" fill="none" stroke="#1a1a1a" stroke-width="0.65"/>
+<polyline points="294.00,388.00 294.00,12.00" fill="none" stroke="#1a1a1a" stroke-width="0.65"/>
+<polyline points="12.00,106.00 388.00,106.00" fill="none" stroke="#1a1a1a" stroke-width="0.65"/>
+<polyline points="341.00,388.00 341.00,12.00" fill="none" stroke="#1a1a1a" stroke-width="0.65"/>
+<polyline points="12.00,59.00 388.00,59.00" fill="none" stroke="#1a1a1a" stroke-width="0.65"/>
+<polygon points="12.00,388.00 200.00,388.00 200.00,12.00 12.00,12.00" fill="none" stroke="#1a1a1a" stroke-width="3.12"/>
+<polygon points="200.00,200.00 388.00,200.00 388.00,12.00 200.00,12.00" fill="none" stroke="#1a1a1a" stroke-width="3.12"/>
+<polygon points="200.00,388.00 294.00,388.00 294.00,200.00 200.00,200.00" fill="none" stroke="#1a1a1a" stroke-width="3.12"/>
+<polygon points="294.00,294.00 388.00,294.00 388.00,200.00 294.00,200.00" fill="none" stroke="#1a1a1a" stroke-width="3.12"/>
+<polygon points="294.00,388.00 341.00,388.00 341.00,294.00 294.00,294.00" fill="none" stroke="#1a1a1a" stroke-width="3.12"/>
+<polygon points="341.00,341.00 388.00,341.00 388.00,294.00 341.00,294.00" fill="none" stroke="#1a1a1a" stroke-width="3.12"/>
+<polygon points="341.00,388.00 388.00,388.00 388.00,341.00 341.00,341.00" fill="none" stroke="#1a1a1a" stroke-width="3.12"/>
+</g>
+</svg>

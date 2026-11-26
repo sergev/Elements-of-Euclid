@@ -129,10 +129,11 @@ def english(t, notes):
     t = re.sub(r'\\gr\s+\{', r'\\gr{', t)
     t = sub_cmd(t, 'gr', lambda a: '\x02' + greek.convert(a) + '\x03')
     t = re.sub(r'\\symbolfootnote\[\d+\]', r'\\symbolfootnote', t)
-    t = sub_cmd(t, 'symbolfootnote', lambda a: '\x0e' + english(a, {'_used': set()}) + '\x0f')
+    t = sub_cmd(t, 'symbolfootnote', lambda a: '\x0e' + a + '\x0f')
     t = sub_cmd(t, 'ggn', lambda a: '\x02' + greek.numeral(int(a)) + '\x03')
     # footnote markers
     t = re.sub(MARK_RE, lambda m: '\x00' + mark_key(m.group(1)) + '\x00', t)
+    t = t.replace('\\/', '')
     # math
     parts = re.split(r'(\$[^$]*\$)', t)
     for k, p in enumerate(parts):
@@ -388,10 +389,12 @@ def render(b, kind, num):
 def book_file(book, tex, files):
     sub = re.search(r'\{\\huge\\it\s+(.*?)\}\s*\\end\{center\}', tex, re.S)
     sub = english(sub.group(1), {'_used': set()}) if sub else ''
+    front = re.search(r'^\\vspace\{(\w+)\}\s*\\epsfysize=([\d.]+in)\s*\\centerline\{\\epsffile\{Book\d+/front\.eps\}\}', tex, re.M)
+    front = ['#v(%s)' % front.group(1), '#align(center, image("front.svg", height: %s))' % front.group(2), ''] if front else []
     hdr = greek.convert('STOIQEIWN') + ' ' + greek.numeral(book) + '.'
     out = ['#import "../functions.typ": parallel, no-footer, chapter, content-box, content-box-note', '',
            '#chapter([Book %d], [ELEMENTS BOOK %d])' % (book, book), '',
-           '== _%s_' % sub, '', '#no-footer()', '', '#pagebreak()', '',
+           '== _%s_' % sub, ''] + front + ['#no-footer()', '', '#pagebreak()', '',
            '#set page(', '  header: [#grid(', '    columns: (1fr, 1fr),', '    align: (left, right),',
            '    [%s], [ELEMENTS BOOK %d]' % (hdr, book), '  )',
            '  #line(length: 100%, stroke: 0.85pt)]', ')', '']

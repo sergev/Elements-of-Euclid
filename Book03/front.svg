@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="290" viewBox="0 0 400.00 290.02">
+<g stroke-linejoin="round" stroke-linecap="round">
+<circle cx="165.68" cy="155.76" r="122.26" fill="#f6eedc" stroke="#1a1a1a" stroke-width="3.12"/>
+<polygon points="144.44,35.35 65.52,225.88 265.83,225.88" fill="#f2b632" stroke="#1a1a1a" stroke-width="2.60"/>
+<polygon points="165.68,155.76 65.52,225.88 265.83,225.88" fill="#d1342b" stroke="#1a1a1a" stroke-width="2.60"/>
+<polygon points="144.44,35.35 131.34,66.98 133.26,67.71 135.22,68.32 137.22,68.82 139.24,69.19 141.28,69.44 143.32,69.57 145.38,69.57 147.43,69.46 149.47,69.22 151.49,68.85 153.49,68.37 155.45,67.77 157.37,67.05 159.25,66.22 161.07,65.28 162.84,64.23" fill="#1f5fa8" stroke="#1a1a1a" stroke-width="1.56"/>
+<polyline points="12.00,58.71 276.89,12.00" fill="none" stroke="#d1342b" stroke-width="3.64"/>
+<polyline points="165.68,155.76 336.65,185.91" fill="none" stroke="#1a1a1a" stroke-width="1.56" stroke-dasharray="4.7 3.9"/>
+<circle cx="336.65" cy="185.91" r="51.35" fill="#1f5fa8" stroke="#1a1a1a" stroke-width="3.12"/>
+</g>
+</svg>
