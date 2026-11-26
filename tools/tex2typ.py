@@ -12,15 +12,15 @@ import greek  # noqa: E402
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-MARK_RE = r'\$\^?\{?(?:\\,)?\s*((?:\\(?:dag|ddag|S|P|ast|flat)\s*)+)\}?\$'
-MARK_NC = r'\$\^?\{?(?:\\,)?\s*(?:\\(?:dag|ddag|S|P|ast|flat)\s*)+\}?\$'
+MARK_RE = r'\$\^?\{?(?:\\,)?\s*((?:\\(?:dag|ddag|S|P|ast|flat|\$)\s*)+)\}?\$'
+MARK_NC = r'\$\^?\{?(?:\\,)?\s*(?:\\(?:dag|ddag|S|P|ast|flat|\$)\s*)+\}?\$'
 MARK_SYM = {'dag': '†', 'ddag': '‡', 'S': '§', 'P': '¶', 'ast': '∗', 'flat': '♭'}
 
 GREEK_LETTERS = 'alpha beta gamma delta epsilon zeta eta theta iota kappa lambda mu nu xi pi rho sigma tau upsilon phi chi psi omega'.split()
 
 
 def mark_key(s):
-    return ''.join(re.findall(r'\\(dag|ddag|S|P|ast|flat)', s))
+    return ''.join(re.findall(r'\\(dag|ddag|S|P|ast|flat|\$)', s)).replace('$', 'dol')
 
 
 def braced(s, i):
@@ -120,6 +120,8 @@ def english(t, notes):
     t = t.replace('\\noindent', '').replace('\\spa', ' ')
     t = re.sub(r'\\vspace\*?\{[^}]*\}', '', t)
     t = sub_cmd(t, 'gr', lambda a: '\x02' + greek.convert(a) + '\x03')
+    t = re.sub(r'\\symbolfootnote\[\d+\]', r'\\symbolfootnote', t)
+    t = sub_cmd(t, 'symbolfootnote', lambda a: '\x0e' + english(a, {'_used': set()}) + '\x0f')
     t = sub_cmd(t, 'ggn', lambda a: '\x02' + greek.numeral(int(a)) + '\x03')
     # footnote markers
     t = re.sub(MARK_RE, lambda m: '\x00' + mark_key(m.group(1)) + '\x00', t)
@@ -131,6 +133,7 @@ def english(t, notes):
     t = ''.join(parts)
     t = sub_group(t, 'em', lambda a: '\x05' + a + '\x06')
     t = sub_group(t, 'it', lambda a: '\x05' + a + '\x06')
+    t = sub_group(t, 'rm', lambda a: a)
     t = sub_group(t, 'bf', lambda a: '\x07' + a + '\x08')
     t = t.replace("``", '"').replace("''", '"')
     t = t.replace('\\,', '\u2009').replace('\\ ', ' ').replace('\\&', '&')
@@ -146,6 +149,7 @@ def english(t, notes):
     t = t.replace('\x04', '$').replace('\x02', '').replace('\x03', '')
     t = t.replace('\x05', '#emph[').replace('\x06', ']')
     t = t.replace('\x07', '#strong[').replace('\x08', ']')
+    t = t.replace('\x0e', '#footnote[').replace('\x0f', ']')
     t = re.sub(r' +', ' ', t)
 
     def note(m):
@@ -230,7 +234,7 @@ def split_side(s, side):
 
 
 def parse_notes(tail):
-    tail = re.split(r'%%%%|\\pdfbookmark|\\begin\{Parallel\}', tail)[0]
+    tail = re.split(r'%%%%|\\pdfbookmark|\\begin\{Parallel\}|\\newpage|\\clearpage', tail)[0]
     tail = tail.replace('{\\footnotesize', '').replace('\\noindent', '')
     notes = {}
     pieces = re.split('(' + MARK_NC + ')', tail)
@@ -366,8 +370,8 @@ def render(b, kind, num):
 
 
 def book_file(book, tex, files):
-    sub = re.search(r'\{\\huge\\it\s+(.*?)\}', tex, re.S)
-    sub = re.sub(r'\s+', ' ', sub.group(1)).strip() if sub else ''
+    sub = re.search(r'\{\\huge\\it\s+(.*?)\}\s*\\end\{center\}', tex, re.S)
+    sub = english(sub.group(1), {'_used': set()}) if sub else ''
     hdr = greek.convert('STOIQEIWN') + ' ' + greek.numeral(book) + '.'
     out = ['#import "../functions.typ": parallel, no-footer, chapter, content-box, content-box-note', '',
            '#chapter([Book %d], [ELEMENTS BOOK %d])' % (book, book), '',
