@@ -9,16 +9,16 @@ A Typst port of Richard Fitzpatrick's LaTeX edition of Euclid's Elements (Greek 
 ## Build
 
 ```sh
-make                                     # typst compile -> ElementsTypst.pdf
+make                                     # typst compile -> Elements.pdf
 make clean
-typst watch ElementsTypst.typ            # rebuild on change
+typst watch Elements.typ            # rebuild on change
 ```
 
 There are no package dependencies and no tests; verify by compiling and inspecting the PDF (`pdftoppm -f N -l N -png` to look at a page).
 
 ## Structure
 
-- `ElementsTypst.typ` — root: page/footer/paragraph setup, then `#include`s `Book00/Introduction.typ`, `BookNN/BookN.typ` for Books 1–13, and `Book99/Lexicon.typ`.
+- `Elements.typ` — root: page/footer/paragraph setup, then `#include`s `Book00/Introduction.typ`, `BookNN/BookN.typ` for Books 1–13, and `Book99/Lexicon.typ`.
 - `functions.typ` — all shared layout helpers; every content file imports from it (`#import "../functions.typ": *`).
 - `BookNN/BookN.typ` — book title, running header, then `#include`s `Definitions*.typ` (and in Book 1 `Postulates.typ`, `CommonNotions.typ`) and `PropNN.typ` (`PropNNN.typ` in Book 10) in order.
 

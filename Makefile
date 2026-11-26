@@ -1,5 +1,5 @@
 TYPST	= typst
-MAIN	= ElementsTypst
+MAIN	= Elements
 SRCS	= $(MAIN).typ functions.typ $(wildcard Book*/*.typ) $(wildcard Book*/*.svg)
 
 all:	$(MAIN).pdf

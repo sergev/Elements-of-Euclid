@@ -38,9 +38,9 @@ or upload everything to the GUI for compilation.
 
 The document can be compiled by issuing the command
 
-`make` (or `typst compile ElementsTypst.typ`)
+`make` (or `typst compile Elements.typ`)
 
-in the base directory (containing `ElementsTypst.typ`).
+in the base directory (containing `Elements.typ`).
 
 ## Some Notes
 
