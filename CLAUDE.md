@@ -9,7 +9,8 @@ A Typst port of Richard Fitzpatrick's LaTeX edition of Euclid's Elements (Greek 
 ## Build
 
 ```sh
-typst compile ElementsTypst.typ          # produces ElementsTypst.pdf
+make                                     # typst compile -> ElementsTypst.pdf
+make clean
 typst watch ElementsTypst.typ            # rebuild on change
 ```
 
