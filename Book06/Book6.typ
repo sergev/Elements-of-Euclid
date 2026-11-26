@@ -4,6 +4,9 @@
 
 == _Similar Figures_
 
+#v(2cm)
+#align(center, image("front.svg", height: 4in))
+
 #no-footer()
 
 #pagebreak()

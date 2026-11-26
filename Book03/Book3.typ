@@ -4,6 +4,9 @@
 
 == _Fundamentals of Plane Geometry Involving_
 
+#v(2cm)
+#align(center, image("front.svg", height: 5in))
+
 #no-footer()
 
 #pagebreak()

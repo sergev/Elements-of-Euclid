@@ -10,6 +10,9 @@
 
 // Greek and English text last checked 13/03/2013
 
+#v(2cm)
+#align(center, image("front.svg", height: 6in))
+
 #no-footer()
 
 #pagebreak()

@@ -25,6 +25,10 @@
        
         _Richard Fitzpatrick_
     ])
+
+    #v(1cm)
+
+    #image("/euclid.jpg", height: 4.5in)
   ]
 )
 

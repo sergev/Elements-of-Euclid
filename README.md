@@ -16,7 +16,7 @@ All thirteen books and the Greek-English lexicon are included.
 The Typst sources were generated from the LaTeX files with the
 scripts in `tools/` and then proofread: the Greek is converted from
 the LaTeX transliteration to Unicode (`tools/greek.py`), and the
-figures and the frontispieces of Books 10-13 are SVGs converted
+figures, frontispieces and title picture are SVGs converted
 from the original EPS files.
 
 Functions are provided to aid in parallel layout, including

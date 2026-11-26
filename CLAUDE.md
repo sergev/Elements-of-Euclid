@@ -35,7 +35,7 @@ There are no package dependencies and no tests; verify by compiling and inspecti
 ```
 
 - Figures use `parallel-image` with SVGs converted from the original EPS figures (`greek: false` when only the English one exists).
-- Books 10–13 show a frontispiece (`BookNN/front.svg`) on the title page, as in the LaTeX; the other `front.svg` and `euclid.svg` are unused, matching the commented-out LaTeX.
+- Each book's title page shows its frontispiece (`BookNN/front.svg`); the main title page shows `euclid.svg`. Sizes follow the LaTeX, including its commented-out lines.
 - Definitions use `#parallel([Greek], [English], n: N)` for numbering.
 - `content-box-note` puts footnotes at the bottom of the enclosing `content-box`, not the page. Book subtitles use plain `#footnote`.
 - `no-footer()` suppresses the page number on the current page; `chapter(alt, body)` emits a heading whose outline entry differs from the displayed text.

@@ -4,6 +4,9 @@
 
 == _Construction of Rectilinear Figures In and_
 
+#v(2cm)
+#align(center, image("front.svg", height: 5in))
+
 #no-footer()
 
 #pagebreak()
