@@ -17,6 +17,6 @@
   )
   #parallel(
     [Τῇ ἄρα ΑΒ μία μόνον προσαρμόζει εὐθεῖα δυνάμει ἀσύμμετρος οὖσα τῇ ὅλῃ, μετὰ δὲ τῆς ὅλης ποιοῦσα τά τε ἀπ᾿ αὐτῶν τετράγωνα ἅμα μέσον καὶ τὸ δὶς ὑπ᾿ αὐτῶν μέσον καὶ ἔτι τὰ ἀπ᾿ αὐτῶν τετράγωνα ἀσύμμετρα τῷ δὶς ὑπ᾿ αὐτῶν· ὅπερ ἔδει δεῖξαι.],
-    [Thus, only one straight-line, which is incommensurable in square with the whole, and (together) with the whole makes the squares on them (added) together medial, and twice the (rectangle contained) by them medial, and, moreover, the (sum of the) squares on them incommensurable with the (rectangle contained) by them, can be attached to $A B$. (Which is) the very thing it was required to show.],
+    [Thus, only one straight-line, which is incommensurable in square with the whole, and (together) with the whole makes the squares on them (added) together medial, and twice the (rectangle contained) by them medial, and, moreover, the (sum of the) squares on them incommensurable with twice the (rectangle contained) by them, can be attached to $A B$. (Which is) the very thing it was required to show.],
   )
 ]

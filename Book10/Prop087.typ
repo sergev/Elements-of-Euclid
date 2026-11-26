@@ -17,6 +17,6 @@
   )
   #parallel(
     [Εὕρηται ἄρα ἡ τρίτη ἀποτομὴ ἡ ΖΘ· ὅπερ ἔδει δεῖξαι.],
-    [Thus, the third apotome $F H$ has been found. (Which is) very thing it was required to show.],
+    [Thus, the third apotome $F H$ has been found. (Which is) the very thing it was required to show.],
   )
 ]

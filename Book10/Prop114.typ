@@ -17,7 +17,7 @@
   #parallel-image("/Book10/fig114", 1.8in)
   #parallel(
     [Ἐὰν ἄρα χωρίον περιέχηται ὑπὸ ἀποτομῆς καὶ τῆς ἐκ δύο ὀνομάτων, ἧς τὰ ὀνόματα σύμμετρά ἐστι τοῖς τῆς ἀποτομῆς ὀνόμασι καὶ ἐν τῷ αὐτῷ λόγῳ, ἡ τὸ χωρίον δυναμένη ῥητή ἐστιν.],
-    [Thus, if an area is contained by an apotome, and a binomial whose terms are commensurable with, and in the same ratio as, the terms of the apotome, then the square-root of the area is a rational (straight-line).],
+    [Thus, if an area is contained by an apotome, and a binomial whose terms are commensurable with, and in the same ratio as, the terms of the apotome then the square-root of the area is a rational (straight-line).],
   )
   #parallel-subheading([Πόρισμα.], [Corollary])
   #parallel(

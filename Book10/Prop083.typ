@@ -9,7 +9,7 @@
   #parallel-image("/Book10/fig079", 0.25in)
   #parallel(
     [Ἔστω ἡ μετὰ ῥητοῦ μέσον τὸ ὅλον ποιοῦσα ἡ ΑΒ, καὶ τῇ ΑΒ προσαρμοζέτω ἡ ΒΓ· αἱ ἄρα ΑΓ, ΓΒ δυνάμει εἰσὶν ἀσύμμετροι ποιοῦσαι τὰ προκείμενα· λέγω, ὅτι τῇ ΑΒ ἑτέρα οὐ προσαρμόσει τὰ αὐτὰ ποιοῦσα.],
-    [Let $A B$ be a (straight-line) which with a rational (area) makes a medial whole, and let $B C$ be (so) attached to $A B$. Thus, $A C$ and $C B$ are (straight-lines which are) incommensurable in square, fulfilling the (other) proscribed (conditions) [Prop.~10.77]. I say that another (straight-line) fulfilling the same (conditions) cannot be attached to $A B$.],
+    [Let $A B$ be a (straight-line) which with a rational (area) makes a medial whole, and let $B C$ be (so) attached to $A B$. Thus, $A C$ and $C B$ are (straight-lines which are) incommensurable in square, fulfilling the (other) prescribed (conditions) [Prop.~10.77]. I say that another (straight-line) fulfilling the same (conditions) cannot be attached to $A B$.],
   )
   #parallel(
     [Εἰ γὰρ δυνατόν, προσαρμοζέτω ἡ ΒΔ· καὶ αἱ ΑΔ, ΔΒ ἄρα εὐθεῖαι δυνάμει εἰσὶν ἀσύμμετροι ποιοῦσαι τὰ προκείμενα. ἐπεὶ οὐν, ᾧ ὑπερέχει τὰ ἀπὸ τῶν ΑΔ, ΔΒ τῶν ἀπὸ τῶν ΑΓ, ΓΒ, τούτῳ ὑπερέχει καὶ τὸ δὶς ὑπὸ τῶν ΑΔ, ΔΒ τοῦ δὶς ὑπὸ τῶν ΑΓ, ΓΒ ἀκολούθως τοῖς πρὸ αὐτοῦ, τὸ δὲ δὶς ὑπὸ τῶν ΑΔ, ΔΒ τοῦ δὶς ὑπὸ τῶν ΑΓ, ΓΒ ὑπερέχει ῥητῷ· ῥητὰ γάρ ἐστιν ἀμφότερα· καὶ τὰ ἀπὸ τῶν ΑΔ, ΔΒ ἄρα τῶν ἀπὸ τῶν ΑΓ, ΓΒ ὑπερέχει ῥητῷ· ὅπερ ἐστὶν ἀδύνατον· μέσα γάρ ἐστιν ἀμφότερα.],

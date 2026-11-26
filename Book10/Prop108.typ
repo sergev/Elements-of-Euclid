@@ -17,10 +17,10 @@
   )
   #parallel(
     [Δυνάσθω πρότερον τῷ ἀπὸ συμμέτρου. καί ἐστιν ὅλη ἡ ΘΖ σύμμετρος τῇ ἐκκειμένῃ ῥητῇ μήκει τῇ ΖΗ· ἀποτομὴ ἄρα πρώτη ἐστὶν ἡ ΚΘ. τὸ δ᾿ ὑπὸ ῥητῆς καὶ ἀποτομῆς πρώτης περιεχόμενον ἡ δυναμένη ἀποτομή ἐστιν. ἡ ἄρα τὸ ΛΘ, τουτέστι τὸ ΕΓ, δυναμένη ἀποτομή ἐστιν.],
-    [First, let the square (on it) be (greater) by the (square) on (some straight-line which is) commensurable (in length with $H F$). And the whole of $H F$ is commensurable in length with the (previously) laid down rational (straight-line) $F G$. Thus, $K H$ is a first apotome [Def.~10.1]. And the square-root of an (area) contained by a rational (straight-line) and a first apotome is an apotome [Prop.~10.91]. Thus, the square-root of $L H$---that is to say, (of) $E C$---is an apotome.],
+    [First, let the square (on it) be (greater) by the (square) on (some straight-line which is) commensurable (in length with $H F$). And the whole of $H F$ is commensurable in length with the (previously) laid down rational (straight-line) $F G$. Thus, $K H$ is a first apotome [Def.~10.11]. And the square-root of an (area) contained by a rational (straight-line) and a first apotome is an apotome [Prop.~10.91]. Thus, the square-root of $L H$---that is to say, (of) $E C$---is an apotome.],
   )
   #parallel(
     [Εἰ δὲ ἡ ΘΖ τῆς ΖΚ μεῖζον δύναται τῷ ἀπὸ ἀσυμμέτρου ἑαυτῇ, καί ἐστιν ὅλη ἡ ΖΘ σύμμετρος τῇ ἐκκειμένῃ ῥητῇ μήκει τῇ ΖΗ, ἀποτομὴ τετάρτη ἐστὶν ἡ ΚΘ. τὸ δ᾿ ὑπὸ ῥητῆς καὶ ἀποτομῆς τετάρτης περιεχόμενον ἡ δυναμένη ἐλάσσων ἐστίν· ὅπερ ἔδει δεῖξαι.],
-    [And if the square on $H F$ is greater than (the square on) $F K$ by the (square) on (some straight-line which is) incommensurable (in length) with ($H F$), and (since) the whole of $F H$ is commensurable in length with the (previously) laid down rational (straight-line) $F G$, $K H$ is a fourth apotome [Prop.~10.14]. And the square-root of an (area) contained by a rational (straight-line) and a fourth apotome is a minor (straight-line) [Prop.~10.94]. (Which is) the very thing it was required to show.],
+    [And if the square on $H F$ is greater than (the square on) $F K$ by the (square) on (some straight-line which is) incommensurable (in length) with ($H F$), and (since) the whole of $F H$ is commensurable in length with the (previously) laid down rational (straight-line) $F G$, $K H$ is a fourth apotome [Def.~10.14]. And the square-root of an (area) contained by a rational (straight-line) and a fourth apotome is a minor (straight-line) [Prop.~10.94]. (Which is) the very thing it was required to show.],
   )
 ]
