@@ -290,8 +290,12 @@ def build(block, warn):
     rf = [e for e in R if e[0] == 'fig']
     if len(lh) != len(rh) or len(lp) != len(rp):
         warn('heads %d/%d paras %d/%d' % (len(lh), len(rh), len(lp), len(rp)))
+    if not rh:                            # continuation of the previous block
+        lh = [('head', '')] + lh
+        rh = [('head', '')]
+        R = rh + R
     title, tmark = head_text(rh[0][1])
-    gtitle, _ = head_text(lh[0][1])
+    gtitle, _ = head_text(lh[0][1]) if lh else ('', '')
     out = {'title': title, 'gtitle': greek_para(gtitle), 'items': []}
     if tmark:
         notes['_used'].add(tmark)
@@ -406,6 +410,14 @@ def main():
         msgs = []
         b = build(blk, msgs.append)
         t = b['title']
+        if not t and files:
+            if files[-1][3].get('note') == 'TODO-NOTE' and 'note' in b:
+                files[-1][3]['note'] = b['note']
+            files[-1][3]['items'] += [('fig', '/Book%02d/%s' % (book, it[1]), it[2]) if it[0] == 'fig' else it
+                                      for it in b['items']]
+            for msg in msgs:
+                print('%s (cont): %s' % (files[-1][0], msg), file=sys.stderr)
+            continue
         m = re.match(r'Proposition\s*(\d+)', t)
         if m:
             kind, num = 'prop', int(m.group(1))
