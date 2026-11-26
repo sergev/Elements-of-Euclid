@@ -34,12 +34,12 @@
   )
   #parallel(
     [Συνεστάτω ἐπ᾿ αὐτῆς τρίγωνον ἰσόπλευρον τὸ ΑΒΓ, καὶ τετμήσθω ἡ ὑπὸ ΑΓΒ γωνία δίχα τῇ ΓΔ εὐθείᾳ· λέγω, ὅτι ἡ ΑΒ εὐθεῖα δίχα τέτμηται κατὰ τὸ Δ σημεῖον.],
-    [Let the equilateral triangle $A B C$ be constructed upon ($A B$) [Prop. 1.1], and let the angle $A C B$ be cut in half by the straight-line $C D$ [Prop. 1.9]. I say that the straight-line $A B$ has been cut in half at point $D$.],
+    [Let the equilateral triangle $A B C$ be constructed upon ($A B$) [Prop.~1.1], and let the angle $A C B$ be cut in half by the straight-line $C D$ [Prop.~1.9]. I say that the straight-line $A B$ has been cut in half at point $D$.],
   )
   #parallel-fig(fig10)
   #parallel(
     [᾿Επεὶ γὰρ ἴση ἐστὶν ἡ ΑΓ τῇ ΓΒ, κοινὴ δὲ ἡ ΓΔ, δύο δὴ αἱ ΑΓ, ΓΔ δύο ταῖς ΒΓ, ΓΔ ἴσαι εἰσὶν ἑκατέρα ἑκατέρᾳ· καὶ γωνία ἡ ὑπὸ ΑΓΔ γωνίᾳ τῇ ὑπὸ ΒΓΔ ἴση ἐστίν· βάσις ἄρα ἡ ΑΔ βάσει τῇ ΒΔ ἴση ἐστίν.],
-    [For since $A C$ is equal to $C B$, and $C D$ (is) common, the two (straight-lines) $A C$, $C D$ are equal to the two (straight-lines) $B C$, $C D$, respectively. And the angle $A C D$ is equal to the angle $B C D$. Thus, the base $A D$ is equal to the base $B D$ [Prop. 1.4].],
+    [For since $A C$ is equal to $C B$, and $C D$ (is) common, the two (straight-lines) $A C$, $C D$ are equal to the two (straight-lines) $B C$, $C D$, respectively. And the angle $A C D$ is equal to the angle $B C D$. Thus, the base $A D$ is equal to the base $B D$ [Prop.~1.4].],
   )
   #parallel(
     [῾Η ἄρα δοθεῖσα εὐθεῖα πεπερασμένη ἡ ΑΒ δίχα τέτμηται κατὰ τὸ Δ· ὅπερ ἔδει ποιῆσαι.],

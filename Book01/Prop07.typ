@@ -35,12 +35,12 @@
   
   #parallel(
     [Εἰ γὰρ δυνατόν, ἐπὶ τῆς αὐτῆς εὐθείας τῆς ΑΒ δύο ταῖς αὐταῖς εὐθείαις ταῖς ΑΓ, ΓΒ ἄλλαι δύο εὐθεῖαι αἱ ΑΔ, ΔΒ ἴσαι ἑκατέρα ἑκατέρᾳ συνεστάτωσαν πρὸς ἄλλῳ καὶ ἄλλῳ σημείῳ τῷ τε Γ καὶ Δ ἐπὶ τὰ αὐτὰ μέρη τὰ αὐτὰ πέρατα ἔχουσαι, ὥστε ἴσην ε᾿ῖναι τὴν μὲν ΓΑ τῇ ΔΑ τὸ αὐτὸ πέρας ἔχουσαν αὐτῇ τὸ Α, τὴν δὲ ΓΒ τῇ ΔΒ τὸ αὐτὸ πέρας ἔχουσαν αὐτῇ τὸ Β, καὶ ἐπεζεύχθω ἡ ΓΔ.],
-    [For, if possible, let the two straight-lines $A C$, $C B$, equal to two other straight-lines $A D$, $D B$, respectively, be constructed on the same straight-line $A B$, meeting at different points, $C$ and $D$, on the same side (of $A B$), and having the same ends (on $A B$). So $C A$ is equal to $D A$, having the same end $A$ as it, and $C B$ is equal to $D B$, having the same end $B$ as it. And let $C D$ be joined [Post. 1].],
+    [For, if possible, let the two straight-lines $A C$, $C B$, equal to two other straight-lines $A D$, $D B$, respectively, be constructed on the same straight-line $A B$, meeting at different points, $C$ and $D$, on the same side (of $A B$), and having the same ends (on $A B$). So $C A$ is equal to $D A$, having the same end $A$ as it, and $C B$ is equal to $D B$, having the same end $B$ as it. And let $C D$ be joined [Post.~1].],
   )
   
   #parallel(
     [᾿Επεὶ ο᾿ῦν ἴση ἐστὶν ἡ ΑΓ τῇ ΑΔ, ἴση ἐστὶ καὶ γωνία ἡ ὑπὸ ΑΓΔ τῇ ὑπὸ ΑΔΓ· μείζων ἄρα ἡ ὑπὸ ΑΔΓ τῆς ὑπὸ ΔΓΒ· πολλῷ ἄρα ἡ ὑπὸ ΓΔΒ μείζων ἐστί τῆς ὑπὸ ΔΓΒ. πάλιν ἐπεὶ ἴση ἐστὶν ἡ ΓΒ τῇ ΔΒ, ἴση ἐστὶ καὶ γωνία ἡ ὑπὸ ΓΔΒ γωνίᾳ τῇ ὑπὸ ΔΓΒ. ἐδείχθη δὲ αὐτῆς καὶ πολλῷ μείζων· ὅπερ ἐστὶν ἀδύνατον.],
-    [Therefore, since $A C$ is equal to $A D$,  the angle $A C D$ is also equal to angle $A D C$ [Prop. 1.5]. Thus, $A D C$ (is) greater than $D C B$ [C.N. 5]. Thus, $C D B$ is much greater than $D C B$ [C.N. 5]. Again, since  $C B$ is equal to $D B$, the angle $C D B$ is also equal to angle $D C B$ [Prop. 1.5]. But it was shown that the former (angle) is also much greater (than the latter). The very thing is impossible.],
+    [Therefore, since $A C$ is equal to $A D$,  the angle $A C D$ is also equal to angle $A D C$ [Prop.~1.5]. Thus, $A D C$ (is) greater than $D C B$ [C.N.~5]. Thus, $C D B$ is much greater than $D C B$ [C.N.~5]. Again, since  $C B$ is equal to $D B$, the angle $C D B$ is also equal to angle $D C B$ [Prop.~1.5]. But it was shown that the former (angle) is also much greater (than the latter). The very thing is impossible.],
   )
   
   #parallel(

@@ -17,12 +17,12 @@
   )
   #parallel(
     [Εἰλήφθω ἐπὶ τῆς ΒΓ τυχὸν σημεῖον τὸ Δ, καὶ ἐπεζεύχθω ἡ ΑΔ· καὶ συνεστάτω πρὸς τῇ ΔΑ εὐθείᾳ καὶ τῷ πρὸς αὐτῇ σημείῳ τῷ Α τῇ ὑπὸ ΑΔΓ γωνίᾳ ἴση ἡ ὑπὸ ΔΑΕ· καὶ ἐκβεβλήσθω ἐπ᾿ εὐθείας τῇ ΕΑ εὐθεῖα ἡ ΑΖ.],
-    [Let the point $D$ be taken at random on $B C$, and let $A D$ be joined. And let (angle) $D A E$, equal to angle $A D C$, be constructed on the straight-line $D A$ at the point $A$ on it [Prop. 1.23]. And let the straight-line $A F$ be produced in a straight-line with $E A$.],
+    [Let the point $D$ be taken at random on $B C$, and let $A D$ be joined. And let (angle) $D A E$, equal to angle $A D C$, be constructed on the straight-line $D A$ at the point $A$ on it [Prop.~1.23]. And let the straight-line $A F$ be produced in a straight-line with $E A$.],
   )
   #parallel-fig(fig31)
   #parallel(
     [Καὶ ἐπεὶ εἰς δύο εὐθείας τὰς ΒΓ, ΕΖ εὐθεῖα ἐμπίπτουσα ἡ ΑΔ τὰς ἐναλλὰξ γωνίας τὰς ὑπὸ ΕΑΔ, ΑΔΓ ἴσας ἀλλήλαις πεποίηκεν, παράλληλος ἄρα ἐστὶν ἡ ΕΑΖ τῇ ΒΓ.],
-    [And since the straight-line $A D$, (in) falling across the two straight-lines $B C$ and $E F$, has made the alternate angles $E A D$ and $A D C$ equal to one another, $E A F$ is thus parallel to $B C$ [Prop. 1.27].],
+    [And since the straight-line $A D$, (in) falling across the two straight-lines $B C$ and $E F$, has made the alternate angles $E A D$ and $A D C$ equal to one another, $E A F$ is thus parallel to $B C$ [Prop.~1.27].],
   )
   #parallel(
     [Διὰ τοῦ δοθέντος ἄρα σημείου τοῦ Α τῇ δοθείσῃ εὐθείᾳ τῇ ΒΓ παράλληλος εὐθεῖα γραμμὴ ᾿ῆκται ἡ ΕΑΖ· ὅπερ ἔδει ποιῆσαι.],

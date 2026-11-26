@@ -22,7 +22,7 @@
   )
   #parallel(
     [ὁμοίως δὴ δείξομεν, ὅτι καὶ αἱ ὑπὸ ΒΑΓ, ΑΓΒ δύο ὀρθῶν ἐλάσσονές εἰσι καὶ ἔτι αἱ ὑπὸ ΓΑΒ, ΑΒΓ.],
-    [And since the angle $A C D$ is external to triangle $A B C$, it is greater than the internal and opposite angle $A B C$ [Prop. 1.16]. Let $A C B$ be added to both. Thus, the (sum of the angles) $A C D$ and $A C B$ is greater than the (sum of the angles) $A B C$ and $B C A$. But, (the sum of) $A C D$ and $A C B$ is equal to two right-angles [Prop. 1.13]. Thus, (the sum of) $A B C$ and $B C A$ is less than two right-angles. Similarly, we can show that (the sum of) $B A C$ and $A C B$ is also less than two right-angles, and further (that the sum of) $C A B$ and $A B C$ (is less than two right-angles).],
+    [And since the angle $A C D$ is external to triangle $A B C$, it is greater than the internal and opposite angle $A B C$ [Prop.~1.16]. Let $A C B$ be added to both. Thus, the (sum of the angles) $A C D$ and $A C B$ is greater than the (sum of the angles) $A B C$ and $B C A$. But, (the sum of) $A C D$ and $A C B$ is equal to two right-angles [Prop.~1.13]. Thus, (the sum of) $A B C$ and $B C A$ is less than two right-angles. Similarly, we can show that (the sum of) $B A C$ and $A C B$ is also less than two right-angles, and further (that the sum of) $C A B$ and $A B C$ (is less than two right-angles).],
   )
   #parallel-fig(fig17)
   #parallel(

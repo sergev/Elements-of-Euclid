@@ -21,7 +21,7 @@
   )
   #parallel(
     [Εἰ γὰρ μή, ἤχθω διὰ τοῦ Α σημείου τῇ ΒΓ εὐθείᾳ παράλληλος ἡ ΑΕ, καὶ ἐπεζεύχθω ἡ ΕΓ. ἴσον ἄρα ἐστὶ τὸ ΑΒΓ τρίγωνον τῷ ΕΒΓ τριγώνῳ· ἐπί τε γὰρ τῆς αὐτῆς βάσεώς ἐστιν αὐτῷ τῆς ΒΓ καὶ ἐν ταῖς αὐταῖς παραλλήλοις. ἀλλὰ τὸ ΑΒΓ τῷ ΔΒΓ ἐστιν ἴσον· καὶ τὸ ΔΒΓ ἄρα τῷ ΕΒΓ ἴσον ἐστὶ τὸ μεῖζον τῷ ἐλάσσονι· ὅπερ ἐστὶν ἀδύνατον· οὐκ ἄρα παράλληλός ἐστιν ἡ ΑΕ τῇ ΒΓ. ὁμοίως δὴ δείξομεν, ὅτι οὐδ᾿ ἄλλη τις πλὴν τῆς ΑΔ· ἡ ΑΔ ἄρα τῇ ΒΓ ἐστι παράλληλος.],
-    [For, if not, let $A E$ be drawn through point $A$ parallel to the straight-line $B C$ [Prop. 1.31], and let $E C$ be joined. Thus, triangle $A B C$ is equal to triangle $E B C$. For it is on the same base as it, $B C$, and between the same parallels [Prop. 1.37]. But $A B C$ is equal to $D B C$. Thus, $D B C$ is also equal to $E B C$, the greater to the lesser. The very thing is impossible. Thus, $A E$ is not parallel to $B C$. Similarly, we can show that neither (is) any other (straight-line) than $A D$. Thus, $A D$ is parallel to $B C$.],
+    [For, if not, let $A E$ be drawn through point $A$ parallel to the straight-line $B C$ [Prop.~1.31], and let $E C$ be joined. Thus, triangle $A B C$ is equal to triangle $E B C$. For it is on the same base as it, $B C$, and between the same parallels [Prop.~1.37]. But $A B C$ is equal to $D B C$. Thus, $D B C$ is also equal to $E B C$, the greater to the lesser. The very thing is impossible. Thus, $A E$ is not parallel to $B C$. Similarly, we can show that neither (is) any other (straight-line) than $A D$. Thus, $A D$ is parallel to $B C$.],
   )
   #parallel-fig(fig39)
   #parallel(

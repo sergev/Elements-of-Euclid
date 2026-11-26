@@ -45,8 +45,9 @@ Each `PropNN.typ` defines a figure function and a `content-box`:
 
 ## Port status / conventions
 
-- Props 1–12 have CeTZ figures; Props 13–48 have empty `fig({})` stubs and empty English columns (Greek is filled in). Porting a proposition means: take the English text from the matching `\begin{Parallel}` block in `Book01/Book1.tex`, and reconstruct the figure from `Book01/figNNe.eps` geometry.
+- All of Book 1 has Greek and English (English ported from Fitzpatrick in `Book01/Book1.tex`). Props 1–12 have CeTZ figures; Props 13–48 still have empty `fig({})` stubs, to be reconstructed from `Book01/figNNe.eps`.
 - Greek text is plain Unicode (copied from the LaTeX PDF), not italicized, with no hyphenation or kerning.
+- Citations use a non-breaking space: `[Prop.~1.4]`, `[Def.~1.15]`, `[Post.~3]`, `[C.N.~1]`. Footnotes are `#content-box-note[...]`; a note on the heading goes in `parallel-proposition(n, note: [...])`.
 - CeTZ 0.4.2 handles polar coordinates poorly: build a point as `(r, 0)` and rotate with `cetz.vector.rotate-z(P, angle)`; use `cetz.vector.lerp/add/sub/dist` for constructions.
 
 ## Repo notes

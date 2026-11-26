@@ -17,7 +17,7 @@
   )
   #parallel(
     [Εἰ γὰρ μή, ἤτοι ἴση ἐστὶν αὐτῇ ἢ ἐλάσσων· ἴση μὲν ο᾿ῦν οὐκ ἔστιν ἡ ὑπὸ ΒΑΓ τῇ ὑπὸ ΕΔΖ· ἴση γὰρ ἂν ᾿ῆν καὶ βάσις ἡ ΒΓ βάσει τῇ ΕΖ· οὐκ ἔστι δέ. οὐκ ἄρα ἴση ἐστὶ γωνία ἡ ὑπὸ ΒΑΓ τῇ ὑπὸ ΕΔΖ· οὐδὲ μὴν ἐλάσσων ἐστὶν ἡ ὑπὸ ΒΑΓ τῆς ὑπὸ ΕΔΖ· ἐλάσσων γὰρ ἂν ᾿ῆν καὶ βάσις ἡ ΒΓ βάσεως τῆς ΕΖ· οὐκ ἔστι δέ· οὐκ ἄρα ἐλάσσων ἐστὶν ἡ ὑπὸ ΒΑΓ γωνία τῆς ὑπὸ ΕΔΖ. ἐδείχθη δέ, ὅτι οὐδὲ ἴση· μείζων ἄρα ἐστὶν ἡ ὑπὸ ΒΑΓ τῆς ὑπὸ ΕΔΖ.],
-    [For if not, ($B A C$) is certainly either equal to, or less than, ($E D F$). In fact, $B A C$ is not equal to $E D F$. For then the base $B C$ would also be equal to the base $E F$ [Prop. 1.4]. But it is not. Thus, angle $B A C$ is not equal to $E D F$. Neither, indeed, is $B A C$ less than $E D F$. For then the base $B C$ would also be less than the base $E F$ [Prop. 1.24]. But it is not. Thus, angle $B A C$ is not less than $E D F$. But it was shown that ($B A C$ is) not equal (to $E D F$) either. Thus, $B A C$ is greater than $E D F$.],
+    [For if not, ($B A C$) is certainly either equal to, or less than, ($E D F$). In fact, $B A C$ is not equal to $E D F$. For then the base $B C$ would also be equal to the base $E F$ [Prop.~1.4]. But it is not. Thus, angle $B A C$ is not equal to $E D F$. Neither, indeed, is $B A C$ less than $E D F$. For then the base $B C$ would also be less than the base $E F$ [Prop.~1.24]. But it is not. Thus, angle $B A C$ is not less than $E D F$. But it was shown that ($B A C$ is) not equal (to $E D F$) either. Thus, $B A C$ is greater than $E D F$.],
   )
   #parallel-fig(fig25)
   #parallel(

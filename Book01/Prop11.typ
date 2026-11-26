@@ -40,11 +40,11 @@
   #parallel-fig(fig11)
   #parallel(
     [Εἰλήφθω ἐπὶ τῆς ΑΓ τυχὸν σημεῖον τὸ Δ, καὶ κείσθω τῇ ΓΔ ἴση ἡ ΓΕ, καὶ συνεστάτω ἐπὶ τῆς ΔΕ τρίγωνον ἰσόπλευρον τὸ ΖΔΕ, καὶ ἐπεζεύχθω ἡ ΖΓ· λέγω, ὅτι τῇ δοθείσῃ εὐθείᾳ τῇ ΑΒ ἀπὸ τοῦ πρὸς αὐτῇ δοθέντος σημείου τοῦ Γ πρὸς ὀρθὰς γωνίας εὐθεῖα γραμμὴ ᾿ῆκται ἡ ΖΓ.],
-    [Let the point $D$ be taken at random on $A C$, and let $C E$ be made equal to $C D$ [Prop. 1.3], and let the equilateral triangle $F D E$ be constructed on $D E$ [Prop. 1.1], and let $F C$ be joined. I say that the straight-line $F C$ has been drawn at right-angles to the given straight-line $A B$ from the given point $C$ on it.],
+    [Let the point $D$ be taken at random on $A C$, and let $C E$ be made equal to $C D$ [Prop.~1.3], and let the equilateral triangle $F D E$ be constructed on $D E$ [Prop.~1.1], and let $F C$ be joined. I say that the straight-line $F C$ has been drawn at right-angles to the given straight-line $A B$ from the given point $C$ on it.],
   )
   #parallel(
     [᾿Επεὶ γὰρ ἴση ἐστὶν ἡ ΔΓ τῇ ΓΕ, κοινὴ δὲ ἡ ΓΖ, δύο δὴ αἱ ΔΓ, ΓΖ δυσὶ ταῖς ΕΓ, ΓΖ ἴσαι εἰσὶν ἑκατέρα ἑκατέρᾳ· καὶ βάσις ἡ ΔΖ βάσει τῇ ΖΕ ἴση ἐστίν· γωνία ἄρα ἡ ὑπὸ ΔΓΖ  γωνίᾳ τῇ ὑπὸ ΕΓΖ ἴση ἐστίν· καί εἰσιν ἐφεξῆς. ὅταν δὲ εὐθεῖα  ἐπ᾿ εὐθεῖαν σταθεῖσα τὰς ἐφεξῆς γωνίας ἴσας ἀλλήλαις ποιῇ,  ὀρθὴ ἑκατέρα τῶν ἴσων γωνιῶν ἐστιν· ὀρθὴ ἄρα ἐστὶν ἑκατέρα  τῶν ὑπὸ ΔΓΖ, ΖΓΕ.],
-    [For since $D C$ is equal to $C E$, and $C F$ is common, the two (straight-lines) $D C$, $C F$ are equal to the two (straight-lines) $E C$, $C F$, respectively. And the base $D F$ is equal to the base $F E$. Thus, the angle $D C F$ is equal to the angle $E C F$ [Prop. 1.8], and they are adjacent. But when a straight-line stood on a(nother) straight-line makes the adjacent angles equal to one another, each of the equal angles is a right-angle [Def. 1.10]. Thus, each of the (angles) $D C F$ and $F C E$ is a right-angle.],
+    [For since $D C$ is equal to $C E$, and $C F$ is common, the two (straight-lines) $D C$, $C F$ are equal to the two (straight-lines) $E C$, $C F$, respectively. And the base $D F$ is equal to the base $F E$. Thus, the angle $D C F$ is equal to the angle $E C F$ [Prop.~1.8], and they are adjacent. But when a straight-line stood on a(nother) straight-line makes the adjacent angles equal to one another, each of the equal angles is a right-angle [Def.~1.10]. Thus, each of the (angles) $D C F$ and $F C E$ is a right-angle.],
   )
   #parallel(
     [Τῇ ἄρα δοθείσῃ εὐθείᾳ τῇ ΑΒ ἀπὸ τοῦ πρὸς αὐτῇ δοθέντος σημείου τοῦ Γ πρὸς ὀρθὰς γωνίας εὐθεῖα γραμμὴ ᾿ῆκται ἡ ΓΖ· ὅπερ ἔδει ποιῆσαι.],

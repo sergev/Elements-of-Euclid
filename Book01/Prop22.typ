@@ -16,7 +16,7 @@
     μείζονας ε᾿ῖναι πάντῃ μεταλαμβανομένας [διὰ τὸ καὶ παντὸς
     τριγώνου τὰς δύο πλευρὰς τῆς λοιπῆς μείζονας ε᾿ῖναι πάντῃ
     μεταλαμβανομένας].],
-    [To construct a triangle from three straight-lines which are equal to three given [straight-lines]. It is necessary for (the sum of) two (of the straight-lines) taken together in any (possible way) to be greater than the remaining (one), [on account of the (fact that) in any triangle (the sum of) two sides taken together in any (possible way) is greater than the remaining (one) [Prop. 1.20] ].],
+    [To construct a triangle from three straight-lines which are equal to three given [straight-lines]. It is necessary for (the sum of) two (of the straight-lines) taken together in any (possible way) to be greater than the remaining (one), [on account of the (fact that) in any triangle (the sum of) two sides taken together in any (possible way) is greater than the remaining (one) [Prop.~1.20] ].],
   )
   #parallel-fig(fig22)
   #parallel(
@@ -25,7 +25,7 @@
   )
   #parallel(
     [᾿Εκκείσθω τις εὐθεῖα ἡ ΔΕ πεπερασμένη μὲν κατὰ τὸ Δ ἄπειρος δὲ κατὰ τὸ Ε, καὶ κείσθω τῇ μὲν Α ἴση ἡ ΔΖ, τῇ δὲ Β ἴση ἡ ΖΗ, τῇ δὲ Γ ἴση ἡ ΗΘ· καὶ κέντρῳ μὲν τῷ Ζ, διαστήματι δὲ τῷ ΖΔ κύκλος γεγράφθω ὁ ΔΚΛ· πάλιν κέντρῳ μὲν τῷ Η, διαστήματι δὲ τῷ ΗΘ κύκλος γεγράφθω ὁ ΚΛΘ, καὶ ἐπεζεύχθωσαν αἱ ΚΖ, ΚΗ· λέγω, ὅτι ἐκ τριῶν εὐθειῶν τῶν ἴσων ταῖς Α, Β, Γ τρίγωνον συνέσταται τὸ ΚΖΗ.],
-    [Let some straight-line $D E$ be set out, terminated at $D$, and infinite in the direction of $E$. And let $D F$ be made equal to $A$, and $F G$ equal to $B$, and $G H$ equal to $C$ [Prop. 1.3]. And let the circle $D K L$ be drawn with center $F$ and radius $F D$. Again, let the circle $K L H$ be drawn with center $G$ and radius $G H$. And let $K F$ and $K G$ be joined. I say that the triangle $K F G$ has been constructed from three straight-lines equal to $A$, $B$, and $C$.],
+    [Let some straight-line $D E$ be set out, terminated at $D$, and infinite in the direction of $E$. And let $D F$ be made equal to $A$, and $F G$ equal to $B$, and $G H$ equal to $C$ [Prop.~1.3]. And let the circle $D K L$ be drawn with center $F$ and radius $F D$. Again, let the circle $K L H$ be drawn with center $G$ and radius $G H$. And let $K F$ and $K G$ be joined. I say that the triangle $K F G$ has been constructed from three straight-lines equal to $A$, $B$, and $C$.],
   )
   #parallel(
     [᾿Επεὶ γὰρ τὸ Ζ σημεῖον κέντρον ἐστὶ τοῦ ΔΚΛ κύκλου, ἴση ἐστὶν ἡ ΖΔ τῇ ΖΚ· ἀλλὰ ἡ ΖΔ τῇ Α ἐστιν ἴση. καὶ ἡ ΚΖ ἄρα τῇ Α ἐστιν ἴση. πάλιν, ἐπεὶ τὸ Η σημεῖον κέντρον ἐστὶ τοῦ ΛΚΘ κύκλου, ἴση ἐστὶν ἡ ΗΘ τῇ ΗΚ· ἀλλὰ ἡ ΗΘ τῇ Γ ἐστιν ἴση· καὶ ἡ ΚΗ ἄρα τῇ Γ ἐστιν ἴση. ἐστὶ δὲ καὶ ἡ ΖΗ τῇ Β ἴση· αἱ τρεῖς ἄρα εὐθεῖαι αἱ ΚΖ, ΖΗ, ΗΚ τρισὶ ταῖς Α, Β, Γ ἴσαι εἰσίν.],

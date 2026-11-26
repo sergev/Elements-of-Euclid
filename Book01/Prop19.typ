@@ -18,7 +18,7 @@
   #parallel-fig(fig19)
   #parallel(
     [Εἰ γὰρ μή, ἤτοι ἴση ἐστὶν ἡ ΑΓ τῇ ΑΒ ἢ ἐλάσσων· ἴση μὲν ο᾿ῦν οὐκ ἔστιν ἡ ΑΓ τῇ ΑΒ· ἴση γὰρ ἂν ᾿ῆν καὶ γωνία ἡ ὑπὸ ΑΒΓ τῇ ὑπὸ ΑΓΒ· οὐκ ἔστι δέ· οὐκ ἄρα ἴση ἐστὶν ἡ ΑΓ τῇ ΑΒ. οὐδὲ μὴν ἐλάσσων ἐστὶν ἡ ΑΓ τῆς ΑΒ· ἐλάσσων γὰρ ἂν ᾿ῆν καὶ γωνία ἡ ὑπὸ ΑΒΓ τῆς ὑπὸ ΑΓΒ· οὐκ ἔστι δέ· οὐκ ἄρα ἐλάσσων ἐστὶν ἡ ΑΓ τῆς ΑΒ. ἐδείχθη δέ, ὅτι οὐδὲ ἴση ἐστίν. μείζων ἄρα ἐστὶν ἡ ΑΓ τῆς ΑΒ.],
-    [For if not, $A C$ is certainly either equal to, or less than, $A B$. In fact, $A C$ is not equal to $A B$. For then angle $A B C$ would also be equal to $A C B$ [Prop. 1.5]. But it is not. Thus, $A C$ is not equal to $A B$. Neither, indeed, is $A C$ less than $A B$. For then angle $A B C$ would also be less than $A C B$ [Prop. 1.18]. But it is not. Thus, $A C$ is not less than $A B$. But it was shown that ($A C$) is not equal (to $A B$) either. Thus, $A C$ is greater than $A B$.],
+    [For if not, $A C$ is certainly either equal to, or less than, $A B$. In fact, $A C$ is not equal to $A B$. For then angle $A B C$ would also be equal to $A C B$ [Prop.~1.5]. But it is not. Thus, $A C$ is not equal to $A B$. Neither, indeed, is $A C$ less than $A B$. For then angle $A B C$ would also be less than $A C B$ [Prop.~1.18]. But it is not. Thus, $A C$ is not less than $A B$. But it was shown that ($A C$) is not equal (to $A B$) either. Thus, $A C$ is greater than $A B$.],
   )
   #parallel(
     [Παντὸς ἄρα τριγώνου ὑπὸ τὴν μείζονα γωνίαν ἡ μείζων πλευρὰ ὑποτείνει· ὅπερ ἔδει δεῖξαι.],

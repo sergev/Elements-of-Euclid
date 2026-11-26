@@ -38,11 +38,11 @@
   )
   #parallel(
     [Εἰλήφθω ἐπὶ τῆς ΑΒ τυχὸν σημεῖον τὸ Δ, καὶ ἀφῃρήσθω ἀπὸ τῆς ΑΓ τῇ ΑΔ ἴση ἡ ΑΕ, καὶ ἐπεζεύχθω ἡ ΔΕ, καὶ συνεστάτω ἐπὶ τῆς ΔΕ τρίγωνον ἰσόπλευρον τὸ ΔΕΖ, καὶ ἐπεζεύχθω ἡ ΑΖ· λέγω, ὅτι ἡ ὑπὸ ΒΑΓ γωνία δίχα τέτμηται ὑπὸ τῆς ΑΖ εὐθείας.],
-    [Let the point $D$ be taken at random on $A B$, and let $A E$, equal to $A D$, be cut off from $A C$ [Prop. 1.3], and let $D E$ be joined. And let the equilateral triangle $D E F$ be constructed upon $D E$ [Prop. 1.1], and let $A F$ be joined. I say that the angle $B A C$ has been cut in half by the straight-line $A F$.],
+    [Let the point $D$ be taken at random on $A B$, and let $A E$, equal to $A D$, be cut off from $A C$ [Prop.~1.3], and let $D E$ be joined. And let the equilateral triangle $D E F$ be constructed upon $D E$ [Prop.~1.1], and let $A F$ be joined. I say that the angle $B A C$ has been cut in half by the straight-line $A F$.],
   )
   #parallel(
     [᾿Επεὶ γὰρ ἴση ἐστὶν ἡ ΑΔ τῇ ΑΕ, κοινὴ δὲ ἡ ΑΖ, δύο δὴ αἱ ΔΑ, ΑΖ δυσὶ ταῖς ΕΑ, ΑΖ ἴσαι εἰσὶν ἑκατέρα ἑκατέρᾳ. καὶ βάσις ἡ ΔΖ βάσει τῇ ΕΖ ἴση ἐστίν· γωνία ἄρα ἡ ὑπὸ ΔΑΖ γωνίᾳ τῇ ὑπὸ ΕΑΖ ἴση ἐστίν.],
-    [For since $A D$ is equal to $A E$, and $A F$ is common, the two (straight-lines) $D A$, $A F$ are equal to the two (straight-lines) $E A$, $A F$, respectively. And the base $D F$ is equal to the base $E F$. Thus, angle $D A F$ is equal to angle $E A F$ [Prop. 1.8].],
+    [For since $A D$ is equal to $A E$, and $A F$ is common, the two (straight-lines) $D A$, $A F$ are equal to the two (straight-lines) $E A$, $A F$, respectively. And the base $D F$ is equal to the base $E F$. Thus, angle $D A F$ is equal to angle $E A F$ [Prop.~1.8].],
   )
   #parallel-fig(fig09)
   #parallel(
