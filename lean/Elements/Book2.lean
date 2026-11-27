@@ -2,6 +2,7 @@ import Elements.Book2.Lemmas
 import Elements.Book2.Prop01
 import Elements.Book2.Prop02
 import Elements.Book2.Prop03
+import Elements.Book2.Prop04
 
 /-
 Book 2: geometric algebra.

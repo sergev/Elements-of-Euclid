@@ -4,10 +4,6 @@ Book 2 has 14 propositions, all in System E, building on Book 1's area results (
 
 A proof's file `lean/Elements/Book2/PropNN.lean` and the `#lean-proof("/lean/Elements/Book2/PropNN.lean")` line in `Book02/PropNN.typ` are always added in the same task. Typst's `read` fails on a missing file.
 
-## T5. Prop. 2.4 and its corollary: the square of a sum
-
-The square on AB, cut at C, equals the squares on AC and CB plus twice the rectangle on them. This uses the diagonal of the square, Prop. 1.5, Prop. 1.29 and Prop. 1.34 to show that the parallelograms about the diagonal are squares. The corollary becomes `proposition_4_corollary`. The figure is the model for 2.5–2.8, so its constructions may move into the T3 lemmas.
-
 ## T6. Props. 2.5–2.6: the gnomon
 
 A line cut equally and unequally (2.5), and a line produced (2.6). Both are proved by equating gnomons, using Prop. 1.36, Prop. 1.43 and Prop. 2.4's figure. Prop. 2.6 is Prop. 2.5 with the point outside the segment. Keep the two proofs parallel.
