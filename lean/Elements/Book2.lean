@@ -12,6 +12,7 @@ import Elements.Book2.Prop10
 import Elements.Book2.Prop11
 import Elements.Book2.Prop12
 import Elements.Book2.Prop13
+import Elements.Book2.Prop14
 
 /-
 Book 2: geometric algebra.

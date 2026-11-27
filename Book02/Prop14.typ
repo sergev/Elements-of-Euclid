@@ -24,3 +24,4 @@
     [Thus, a square---(namely), that (which) can be described on $E H$---has been constructed, equal to the given rectilinear figure $A$. (Which is) the very thing it was required to do.],
   )
 ]
+#lean-proof("/lean/Elements/Book2/Prop14.lean")

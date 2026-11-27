@@ -4,13 +4,6 @@ Book 2 has 14 propositions, all in System E, building on Book 1's area results (
 
 A proof's file `lean/Elements/Book2/PropNN.lean` and the `#lean-proof("/lean/Elements/Book2/PropNN.lean")` line in `Book02/PropNN.typ` are always added in the same task. Typst's `read` fails on a missing file.
 
-## T11. Prop. 2.14: squaring a rectilinear figure
-
-This is the end of Book 2. It uses Prop. 1.45 for the parallelogram, then a semicircle, Prop. 2.5 and Prop. 1.47.
-- **The given figure.** State the "given rectilinear figure" as Prop. 1.45 does: a quadrilateral made of two triangles.
-- **The semicircle.** The point where the perpendicular meets the circle comes from the line–circle intersection rules. Euclid takes it from the figure, so expect `-- Missed by Euclid.` steps.
-- **The degenerate case.** Euclid handles separately the case where the parallelogram is already a square. Include it as he does.
-
 ## T12. Primer and docs
 
 - `Book00/Lean.typ`: reword "the propositions of Book 1" for several books, and explain the convention for rectangles and squares from `lean/Elements/Book2.lean`.
