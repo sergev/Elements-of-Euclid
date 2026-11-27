@@ -5,10 +5,6 @@ Do them in order. After each task:
 - when a statement or name changes, also check Book 2;
 - commit.
 
-## 8. Clarify scope in comments
-- **Prop 45:** note that System E limits it to a figure made of two triangles.
-- **Prop 35:** note that `g` is a given intersection point, and that 35′ is the general form.
-
 ## 9. Formatting pass
 - Use 2-space indentation everywhere (Props 8, 15 and 29′–29″ differ).
 - Use the `·` bullet only.

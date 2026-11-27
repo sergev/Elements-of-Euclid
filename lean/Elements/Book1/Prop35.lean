@@ -6,6 +6,8 @@ import Elements.Book1.Prop34
 
 namespace Elements.Book1
 
+-- The case where E falls between D and F; G, where BE meets DC, is given.
+-- proposition_35' covers every position of E and F.
 theorem proposition_35 : ∀ (a b c d e f g : Point) (AF BC AB CD EB FC : Line),
   formParallelogram a d b c AF BC AB CD ∧ formParallelogram e f b c AF BC EB FC ∧
   between a d e ∧ between d e f ∧ g.onLine CD ∧ g.onLine EB →
@@ -20,6 +22,7 @@ by
   euclid_apply (proposition_4 a e b d f c AF EB AB AF FC CD)
   euclid_finish
 
+-- Prop. 35 in general, wherever E and F fall on AF.
 theorem proposition_35' : ∀ (a b c d e f : Point) (AF BC AB CD EB FC : Line),
   formParallelogram a d b c AF BC AB CD ∧ formParallelogram e f b c AF BC EB FC →
   Triangle.area △a:b:d  + Triangle.area △d:b:c = Triangle.area △e:b:c + Triangle.area △ e:c:f :=

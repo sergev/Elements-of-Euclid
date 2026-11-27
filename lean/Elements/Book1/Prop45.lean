@@ -10,6 +10,8 @@ import Elements.Book1.Prop44
 
 namespace Elements.Book1
 
+-- Euclid's rectilinear figure is a quadrilateral ABCD, cut by DB into two triangles;
+-- System E has no figures with an arbitrary number of sides.
 theorem proposition_45 : ∀ (a b c d e₁ e₂ e₃ : Point) (AB BC CD AD DB E₁₂ E₂₃ : Line),
   formTriangle a b d AB DB AD ∧ formTriangle b c d BC CD DB ∧ a.opposingSides c DB ∧
   formRectilinearAngle e₁ e₂ e₃ E₁₂ E₂₃ ∧ ∠ e₁:e₂:e₃ > 0 ∧ ∠ e₁:e₂:e₃ < ∟ + ∟ →
