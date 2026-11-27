@@ -6,6 +6,7 @@ import Elements.Book2.Prop04
 import Elements.Book2.Prop05
 import Elements.Book2.Prop06
 import Elements.Book2.Prop07
+import Elements.Book2.Prop08
 
 /-
 Book 2: geometric algebra.

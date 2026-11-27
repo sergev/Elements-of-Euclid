@@ -24,3 +24,4 @@
     [Thus, if a straight-line is cut at random, (then) four times the rectangle contained by the whole (straight-line), and one of the pieces (of the straight-line), plus the square on the remaining piece, is equal to the square described on the whole and the former piece, as on one (complete straight-line). (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book2/Prop08.lean")

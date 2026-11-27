@@ -4,13 +4,6 @@ Book 2 has 14 propositions, all in System E, building on Book 1's area results (
 
 A proof's file `lean/Elements/Book2/PropNN.lean` and the `#lean-proof("/lean/Elements/Book2/PropNN.lean")` line in `Book02/PropNN.typ` are always added in the same task. Typst's `read` fails on a missing file.
 
-## T7. Prop. 2.8
-
-Prop. 2.7 is done. 2.8: four times the rectangle plus a square, set out on a line produced. Euclid's figure is a 3×3 grid of eight parallelograms and a square (16 points), "drawn double".
-- The solvers can't place the points on their own. State the positions with `parallel_between` (in `Lemmas.lean`).
-- SystemE sends every fact in context to the solvers at each step, so the queries get huge. Keep them small: split the proof into lemmas, or `clear` unneeded facts inside `have` blocks.
-- Never use `maxHeartbeats 0`. Run every check under a 6 GB cap (`systemd-run --user --scope -p MemoryMax=6G -p MemorySwapMax=0`); an uncapped run once used up the machine's memory.
-
 ## T8. Props. 2.9–2.10: sums of squares
 
 These are proved by isosceles right triangles and Prop. 1.47, not gnomons. They use Props. 1.5, 1.6, 1.29, 1.32 and 1.34. Prop. 2.10 is the produced-line form of 2.9, as 2.6 is of 2.5.
