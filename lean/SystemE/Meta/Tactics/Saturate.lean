@@ -20,7 +20,7 @@ register_option systemE.saturate : Bool := {
 }
 
 register_option systemE.saturateBudget : Nat := {
-  defValue := 3000
+  defValue := 5000
   descr := "Heartbeats (in thousands) one saturation attempt may spend before giving up."
 }
 
@@ -62,6 +62,68 @@ theorem not_on_circle_of_lt : ∀ (a b c : Point) (α : Circle),
   have := point_on_circle_onlyif a b c α ⟨ha, hb, hc⟩
   linarith
 
+theorem ne_of_lines_ne : ∀ (a c b : Point) (L M : Line),
+    a.onLine L ∧ b.onLine L ∧ b.onLine M ∧ c.onLine M ∧ a ≠ b ∧ L ≠ M → a ≠ c := by
+  intro a c b L M ⟨haL, hbL, hbM, hcM, hab, hLM⟩ hac
+  subst hac
+  exact hLM (two_points_determine_line a b L M ⟨⟨haL, hbL, hab⟩, hcM, hbM⟩)
+
+/-- A vertex of a triangle is not on the opposite side's line. -/
+theorem not_on_line_of_triangle : ∀ (c a b : Point) (L M N : Line),
+    a.onLine L ∧ b.onLine L ∧ c.onLine M ∧ b.onLine M ∧ c.onLine N ∧ a.onLine N ∧
+    a ≠ b ∧ L ≠ M ∧ L ≠ N → ¬(c.onLine L) := by
+  intro c a b L M N ⟨haL, hbL, hcM, hbM, hcN, haN, hab, hLM, hLN⟩ hcL
+  have hac : a ≠ c := ne_of_lines_ne a c b L M ⟨haL, hbL, hbM, hcM, hab, hLM⟩
+  exact hLN (two_points_determine_line a c L N ⟨⟨haL, hcL, hac⟩, haN, hcN⟩)
+
+theorem not_between_of_same_side : ∀ (a b c : Point) (L : Line),
+    a.sameSide c L ∧ b.onLine L → ¬(between a b c) :=
+  fun a b c L ⟨h, hb⟩ hbtw => pasch_3 a b c L ⟨hbtw, hb⟩ h
+
+/-- Points on the same ray from `d` at equal distances coincide. -/
+theorem eq_of_same_ray : ∀ (x y d : Point) (L : Line),
+    x.onLine L ∧ y.onLine L ∧ d.onLine L ∧ x ≠ d ∧ y ≠ d ∧ ¬(between x d y) ∧
+    |(d─x)| = |(d─y)| → x = y := by
+  intro x y d L ⟨hx, hy, hd, hxd, hyd, hb, h⟩
+  by_contra hxy
+  have := segment_symmetric d x
+  have := segment_symmetric d y
+  rcases between_points x d y L ⟨hxd, fun e => hyd e.symm, fun e => hxy e.symm, hx, hd, hy⟩
+    with h1 | h1 | h1
+  · exact hb h1
+  · have := between_if d x y h1
+    exact hxy (zero_segment_if x y (by linarith))
+  · have := between_if x y d h1
+    exact hxy (zero_segment_if x y (by linarith))
+
+/-- Equal angles at `d` from line `L`, on the same side, lie on the same line. -/
+theorem on_line_of_eq_angle : ∀ (c : Point) (M : Line) (d f e : Point) (L : Line),
+    d.onLine M ∧ f.onLine M ∧ c.sameSide f L ∧ d.onLine L ∧ e.onLine L ∧
+    d ≠ e ∧ d ≠ f ∧ d ≠ c ∧ ∠ e:d:c = ∠ e:d:f → c.onLine M := by
+  intro c M d f e L ⟨hdM, hfM, hcf, hdL, heL, hde, hdf, hdc, hang⟩
+  by_contra hcM
+  have hfc := same_side_symm c f L hcf
+  have hcL : ¬ c.onLine L := same_side_not_on_line c f L hcf
+  have hfL : ¬ f.onLine L := same_side_not_on_line f c L hfc
+  have hLM : L ≠ M := fun h => hfL (by rw [h]; exact hfM)
+  obtain ⟨N, hdN, hcN⟩ := line_from_points d c hdc
+  have hNM : N ≠ M := fun h => hcM (by rw [← h]; exact hcN)
+  by_cases hs : e.sameSide c M
+  · have hsum := sum_angles_onlyif d e f c L M
+      ⟨hdL, hdM, heL, hfM, hde, hdf, hcL, hcM, hLM, hs, hfc⟩
+    have h0 : ∠ c:d:f = 0 := by linarith
+    have hfN := (degenerated_angle_onlyif d c f N ⟨hdc, hdf, hdN, hcN, h0⟩).1
+    exact hNM (two_points_determine_line d f N M ⟨⟨hdN, hfN, hdf⟩, hdM, hfM⟩)
+  · have hfN : ¬ f.onLine N := fun h =>
+      hNM (two_points_determine_line d f N M ⟨⟨hdN, h, hdf⟩, hdM, hfM⟩)
+    have hLN : L ≠ N := fun h => hcL (by rw [h]; exact hcN)
+    have hef := triple_incidence_2 L M N d e f c
+      ⟨hdL, hdM, hdN, heL, hfM, hcN, hfc, hs, hcM, fun h => hde h.symm⟩
+    have hsum := sum_angles_onlyif d e c f L N
+      ⟨hdL, hdN, heL, hcN, hde, hdc, hfL, hfN, hLN, hef, hcf⟩
+    have h0 : ∠ f:d:c = 0 := by linarith
+    exact hcM (degenerated_angle_onlyif d f c M ⟨hdf, hdc, hdM, hfM, h0⟩).1
+
 namespace SystemE.Saturate
 
 /-- Head relation of a literal, with its polarity. -/
@@ -97,7 +159,16 @@ def backward : Array Name := #[
   ``point_in_circle_if,
   ``not_inside_circle_of_ge,
   ``not_on_circle_of_gt,
-  ``not_on_circle_of_lt]
+  ``not_on_circle_of_lt,
+  ``ne_of_lines_ne,
+  ``not_between_of_same_side,
+  ``not_on_line_of_triangle,
+  ``eq_of_same_ray,
+  ``two_points_determine_line,
+  ``on_line_of_eq_angle]
+
+/-- Depth of backward chaining. -/
+def maxDepth : Nat := 4
 
 def maxRounds : Nat := 10
 def maxFacts : Nat := 2000
@@ -155,13 +226,25 @@ partial def segments (e : Expr) (acc : Array (Expr × Expr) := #[]) : Array (Exp
     | .app f a => segments a (segments f acc)
     | _ => acc
 
+/-- Angles `∠ x:y:z` occurring in `e`. -/
+partial def angles (e : Expr) (acc : Array (Expr × Expr × Expr) := #[]) :
+    Array (Expr × Expr × Expr) :=
+  if e.isAppOfArity ``Angle.degree 1 then
+    match e.appArg!.getAppFnArgs with
+    | (``Angle.ofPoints, #[x, y, z]) => acc.push (x, y, z)
+    | _ => acc
+  else match e with
+    | .app f a => angles a (angles f acc)
+    | _ => acc
+
 /-- Unordered key of a segment. -/
 def segKey (p : Expr × Expr) : Expr × Expr :=
   if Expr.lt p.2 p.1 then (p.2, p.1) else p
 
 /-- Prove a metric literal by `linarith only`, over the metric facts connected
 to it by shared segments, plus `ab = ba` where both orders occur. -/
-def arith (facts : Array Fact) (e : Expr) : MetaM (Option Expr) := do
+def arith (facts : Array Fact) (ne : Expr → MetaM (Option Expr)) (e : Expr) :
+    MetaM (Option Expr) := do
   let mut pool := #[]
   for f in facts do
     if ← isArith f.type then pool := pool.push (f, (segments f.type).map segKey)
@@ -189,6 +272,18 @@ def arith (facts : Array Fact) (e : Expr) : MetaM (Option Expr) := do
     if segs.contains (y, x) && x != y && !done.contains (segKey (x, y)) then
       done := done.push (segKey (x, y))
       proofs := proofs.push (mkApp2 (mkConst ``segment_symmetric) x y)
+  let mut angs := angles e
+  for f in hyps do angs := angles f.type angs
+  let mut doneA : Array (Expr × Expr × Expr) := #[]
+  for (x, y, z) in angs do
+    if angs.contains (z, y, x) && x != z && !doneA.contains (z, y, x) then
+      doneA := doneA.push (x, y, z)
+      let t1 ← mkAppM ``Ne #[x, y]
+      let t2 ← mkAppM ``Ne #[y, z]
+      let some h1 ← ne t1 | continue
+      let some h2 ← ne t2 | continue
+      proofs := proofs.push
+        (mkApp4 (mkConst ``angle_symm) x y z (mkApp4 (mkConst ``And.intro) t1 t2 h1 h2))
   let m ← mkFreshExprMVar e
   try
     Mathlib.Tactic.Linarith.linarith true proofs.toList {} m.mvarId!
@@ -263,30 +358,107 @@ def fire (facts : Array Fact) (objs : Objects) (rule : Name) : MetaM (Array Fact
     res := res ++ (← project f.type f.proof)
   return res
 
+/-- Literals a backward search binds by matching facts. -/
+def matchable (e : Expr) : MetaM Bool := do
+  return e.not?.isNone && !e.isAppOf ``Ne && !(← isArith e)
+
+/-- An unassigned object metavariable of `e`. -/
+def objectMVar? (e : Expr) : MetaM (Option Expr) := do
+  for m in ← getMVars e do
+    let t ← instantiateMVars (← m.getType)
+    if t.isConstOf ``Point || t.isConstOf ``Line || t.isConstOf ``Circle then
+      return some (mkMVar m)
+  return none
+
+structure Ctx where
+  facts : Array Fact
+  objs : Objects
+  memo : IO.Ref (Std.HashMap (Expr × Nat) (Option Expr))
+
+mutual
+
 /-- Prove a goal literal: a fact, metric, or by a backward rule. -/
-partial def proveLit (facts : Array Fact) (objs : Objects) (depth : Nat) (e : Expr) :
+partial def proveLit (ctx : Ctx) (depth : Nat) (e : Expr) :
     MetaM (Option Expr) := do
+  let e ← instantiateMVars e
+  if let some r := (← ctx.memo.get)[(e, depth)]? then return r
+  let r ← proveLitCore ctx depth e
+  ctx.memo.modify (·.insert (e, depth) r)
+  return r
+
+partial def proveLitCore (ctx : Ctx) (depth : Nat) (e : Expr) : MetaM (Option Expr) := do
+  let facts := ctx.facts
   if let some p ← find facts e then return p
-  if ← isArith e then return ← arith facts e
+  let flip? := e.ne?.map fun (t, x, y) => mkApp3 e.getAppFn t y x
+  if let some e' := flip? then
+    if let some p ← find facts e' then return some (← mkAppM ``Ne.symm #[p])
+  if ← isArith e then
+    return ← arith facts (proveLit ctx (depth - 1)) e
   if depth == 0 then return none
+  if let some p ← backwardLit ctx depth e then return p
+  if let some e' := flip? then
+    if let some p ← backwardLit ctx depth e' then return some (← mkAppM ``Ne.symm #[p])
+  return none
+
+/-- Prove `e` by a backward rule whose conclusion matches it. -/
+partial def backwardLit (ctx : Ctx) (depth : Nat) (e : Expr) :
+    MetaM (Option Expr) := do
+  let facts := ctx.facts
   for r in backward do
     unless (← getEnv).contains r do continue
     let s ← saveState
     let c := mkConst r
     let (args, _, concl) ← forallMetaTelescope (← inferType c)
     if ← withReducible (isDefEq concl e) then
-      let (lits, vars) ← premises args true
+      let (lits, _) ← premises args false
+      let cache ← IO.mkRef (#[] : Array Fact)
       let res ← IO.mkRef (none : Option Expr)
       let done ← IO.mkRef false
-      search facts objs done (do
-        if let some pf ← apply c args (proveLit facts objs (depth - 1)) then
-          res.set (some pf)
-          done.set true) lits vars
+      searchBack ctx depth cache done (do
+        let leaf := fun l => do
+          if let some p ← find ((← cache.get) ++ facts) l then return some p
+          proveLit ctx (depth - 1) l
+        if let some pf ← apply c args leaf then
+          unless pf.hasExprMVar do
+            res.set (some pf)
+            done.set true) lits
       if let some pf ← res.get then
         s.restore
         return some pf
     s.restore
   return none
+
+/-- Bind premises: match unbound ones against facts (or enumerate objects),
+prove bound ones recursively. -/
+partial def searchBack (ctx : Ctx) (depth : Nat)
+    (cache : IO.Ref (Array Fact)) (done : IO.Ref Bool) (k : MetaM Unit) :
+    List Expr → MetaM Unit
+  | [] => k
+  | l :: ls => do
+    let facts := ctx.facts
+    let objs := ctx.objs
+    if ← done.get then return
+    let l' ← instantiateMVars l
+    if !l'.hasExprMVar then
+      if (← find ((← cache.get) ++ facts) l').isSome then
+        searchBack ctx depth cache done k ls
+      else if let some p ← proveLit ctx (depth - 1) l' then
+        cache.modify (·.push ⟨l', p⟩)
+        searchBack ctx depth cache done k ls
+    else if ← matchable l' then
+      for f in candidates facts l' do
+        if ← done.get then return
+        let s ← saveState
+        if ← withReducible (isDefEq l' f.type) then searchBack ctx depth cache done k ls
+        s.restore
+    else if let some v ← objectMVar? l' then
+      for o in objectsOf objs (← inferType v) do
+        if ← done.get then return
+        let s ← saveState
+        if ← isDefEq v o then searchBack ctx depth cache done k (l :: ls)
+        s.restore
+
+end
 
 def contextObjects : MetaM Objects := do
   let mut objs : Objects := #[(``Point, #[]), (``Line, #[]), (``Circle, #[])]
@@ -344,6 +516,11 @@ def worthTrying (facts : Array Fact) (goal : Expr) : MetaM Bool := do
 def close (g : MVarId) : TacticM Bool := do
   let s ← Tactic.saveState
   let budget := systemE.saturateBudget.get (← getOptions)
+  -- leave the declaration's second half of heartbeats to the rest of the proof
+  let core ← readThe Core.Context
+  let used := (← IO.getNumHeartbeats) - core.initHeartbeats
+  if core.maxHeartbeats > 0 && 2 * (used + budget * 1000) > core.maxHeartbeats then
+    return false
   tryCatchRuntimeEx (withoutRecover <| withCurrHeartbeats <|
       withTheReader Core.Context ({ · with maxHeartbeats := budget * 1000 }) do
     let g ← try substVars g catch _ => pure g
@@ -355,7 +532,7 @@ def close (g : MVarId) : TacticM Bool := do
         return false
       let objs ← contextObjects
       let facts ← saturate objs facts0
-      if let some pf ← prove (proveLit facts objs 1) goal then
+      if let some pf ← prove (proveLit ⟨facts, objs, ← IO.mkRef {}⟩ maxDepth) goal then
         g.assign pf
         return true
       s.restore
