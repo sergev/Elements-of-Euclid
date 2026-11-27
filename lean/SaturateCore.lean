@@ -127,7 +127,14 @@ partial def prove (leaf : Expr → MetaM (Option Expr)) (e : Expr) : MetaM (Opti
     let some hp ← prove leaf p | return none
     let some hq ← prove leaf q | return none
     return mkApp4 (mkConst ``And.intro) p q hp hq
-  | none => leaf e
+  | none =>
+    -- a disjunction by either side
+    match (← whnfR e).app2? ``Or with
+    | some (p, q) =>
+      if let some hp ← prove leaf p then return mkApp3 (mkConst ``Or.inl) p q hp
+      if let some hq ← prove leaf q then return mkApp3 (mkConst ``Or.inr) p q hq
+      return none
+    | none => leaf e
 
 def isArith (e : Expr) : MetaM Bool := do
   match e.getAppFnArgs with
@@ -1397,9 +1404,14 @@ def conclusionHeads : MetaM (Array (Name × Bool)) := do
   return (← clauses).filterMap (·.head)
 
 /-- Worth trying: every goal literal is a fact, metric, or a rule conclusion. -/
+partial def disjuncts (e : Expr) : MetaM (List Expr) := do
+  match (← whnfR e).app2? ``Or with
+  | some (p, q) => return (← (← literals p).flatMapM disjuncts) ++ (← (← literals q).flatMapM disjuncts)
+  | none => return [e]
+
 def worthTrying (facts : Array Fact) (goal : Expr) : MetaM Bool := do
   let heads ← conclusionHeads
-  for l in ← literals goal do
+  for l in ← (← literals goal).flatMapM disjuncts do
     if (← find facts l).isSome || (← isArith l) || l.isConstOf ``False then continue
     match head l with
     | some h => unless heads.contains h do return false
