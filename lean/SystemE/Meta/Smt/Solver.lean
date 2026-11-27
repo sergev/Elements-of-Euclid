@@ -16,6 +16,14 @@ register_option systemE.solverTime : Nat := {
   descr := "Number of seconds to allow each solver (z3, cvc5) to fill reasoning gaps (default: 300)."
 }
 
+register_option systemE.simpAll : Bool := {
+  defValue := true
+  descr := "Run `simp_all` on the context before calling the solvers (default: true). Turn off for big contexts of area equations, where it can rewrite without end."
+}
+
+def getSimpAllOption : MetaM Bool := do
+  return (← getOptions).getBool `systemE.simpAll true
+
 def getTimeOption : MetaM Nat := do
   match systemE.solverTime.get? (← getOptions) with
   | none => return 180

@@ -102,8 +102,11 @@ private def solveWithProvers (query : Esmt) (g : MVarId) : TacticM (Option Expr)
       emitGoalAndCloseWithSorry g
       return goal
 
-private def simpAndSplit : TacticM Syntax :=
-  `(tactic| try simp_all ; try split_ands)
+private def simpAndSplit : TacticM Syntax := do
+  if ← getSimpAllOption then
+    `(tactic| try simp_all ; try split_ands)
+  else
+    `(tactic| try split_ands)
 
 /--
 The `euclid_finish` tactic tries to prove the current goal using various proof automation, including SMT offloading.

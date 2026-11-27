@@ -12,6 +12,7 @@ A Typst port of Richard Fitzpatrick's LaTeX edition of Euclid's Elements (Greek 
 make                                     # ElementsGreekEnglish.pdf, ElementsEnglish.pdf, ElementsLean.pdf
 make check                               # check the Lean proofs (slow; needs z3, cvc5, smt-portfolio)
 make check BOOK=1                        # check one book's proofs
+make cache                               # fetch prebuilt Mathlib (once, and after a Mathlib bump)
 make clean
 typst watch Elements.typ                 # rebuild on change (Greek-English)
 typst compile --input greek=no Elements.typ ElementsEnglish.pdf

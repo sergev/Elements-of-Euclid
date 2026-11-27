@@ -20,9 +20,13 @@ ElementsLean.pdf: $(SRCS)
 check:
 	@if [ -n "$(BOOK)" ] && [ ! -f lean/Elements/Book$(BOOK).lean ]; then \
 		echo "No Lean proofs for Book $(BOOK): lean/Elements/Book$(BOOK).lean is missing"; exit 1; fi
-	cd lean && lake exe cache get && lake build $(if $(BOOK),Elements.Book$(BOOK))
+	cd lean && lake build $(if $(BOOK),Elements.Book$(BOOK))
+
+# Fetch prebuilt Mathlib; needed once, and after changing the Mathlib version
+cache:
+	cd lean && lake exe cache get
 
 clean:
 	rm -f $(PDFS) $(MAIN).pdf
 
-.PHONY: all clean check
+.PHONY: all clean check cache

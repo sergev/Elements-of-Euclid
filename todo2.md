@@ -9,7 +9,7 @@ A proof's file `lean/Elements/Book2/PropNN.lean` and the `#lean-proof("/lean/Ele
 Prop. 2.7 is done. 2.8: four times the rectangle plus a square, set out on a line produced. Euclid's figure is a 3×3 grid of eight parallelograms and a square (16 points), "drawn double".
 - The solvers can't place the points on their own. State the positions with `parallel_between` (in `Lemmas.lean`).
 - SystemE sends every fact in context to the solvers at each step, so the queries get huge. Keep them small: split the proof into lemmas, or `clear` unneeded facts inside `have` blocks.
-- Never use `maxHeartbeats 0`. Run every check under a 12 GB cap (`systemd-run --user --scope -p MemoryMax=12G -p MemorySwapMax=0`); an uncapped run once used up the machine's memory.
+- Never use `maxHeartbeats 0`. Run every check under a 6 GB cap (`systemd-run --user --scope -p MemoryMax=6G -p MemorySwapMax=0`); an uncapped run once used up the machine's memory.
 
 ## T8. Props. 2.9–2.10: sums of squares
 

@@ -35,4 +35,4 @@ The propositions come with their diagrams.
 
 Install [Typst](https://typst.app/open-source/#download), then run `make` in this folder.
 To check the Lean proofs, install [Lean](https://lean-lang.org/), Z3, CVC5
-and `smt-portfolio`, then run `make check`.
+and `smt-portfolio`, then run `make cache` once and `make check`.
