@@ -67,8 +67,11 @@ deriving Inhabited
 
 initialize configRef : IO.Ref Config ← IO.mkRef {}
 
+/-- Per clause: time (ns) and facts produced; filled when `systemE.stats` is on. -/
+initialize profRef : IO.Ref (Std.HashMap String (Nat × Nat)) ← IO.mkRef {}
+
 /-- Depth of backward chaining. -/
-def maxDepth : Nat := 4
+def maxDepth : Nat := 3
 
 def maxRounds : Nat := 10
 def maxFacts : Nat := 2000
@@ -731,8 +734,30 @@ def backwardClauses : MetaM (Std.HashMap (Option (Name × Bool)) (Array Clause))
   backwardCache.set out
   return out
 
-/-- Facts by head, each with the round it was added in. -/
-abbrev Index := Std.HashMap (Option (Name × Bool)) (Array (Fact × Nat))
+/-- The atom of a literal. -/
+def atomOf (e : Expr) : Expr := (e.not?).getD e
+
+/-- Facts, each with the round it was added in: by head, by head and an object
+argument (position and value), and by statement. -/
+structure Index where
+  byHead : Std.HashMap (Option (Name × Bool)) (Array (Fact × Nat)) := {}
+  byArg : Std.HashMap (Option (Name × Bool) × Nat × Expr) (Array (Fact × Nat)) := {}
+  exact : Std.HashMap Expr (Array (Fact × Nat)) := {}
+deriving Inhabited
+
+def Index.contains (idx : Index) (h : Option (Name × Bool)) : Bool := idx.byHead.contains h
+
+def Index.insert (idx : Index) (f : Fact) (r : Nat) : Index := Id.run do
+  let h := head f.type
+  let push := fun (a : Option (Array (Fact × Nat))) => some ((a.getD #[]).push (f, r))
+  let mut idx := { idx with byHead := idx.byHead.alter h push, exact := idx.exact.alter f.type push }
+  let args := (atomOf f.type).getAppArgs
+  for i in [0:args.size] do
+    if args[i]!.isFVar then idx := { idx with byArg := idx.byArg.alter (h, i, args[i]!) push }
+  return idx
+
+def Index.of (facts : Array Fact) (r : Nat := 0) : Index :=
+  facts.foldl (·.insert · r) {}
 
 /-- Pattern-variable bindings. -/
 abbrev Subst := Std.HashMap Nat Expr
@@ -774,21 +799,38 @@ def Clause.build (cl : Clause) (σ : Subst) (leaf : Expr → MetaM (Option Expr)
   finally
     s.restore
 
+/-- Facts that may match template `t` under `σ`: by statement if it is ground,
+else the fewest of those sharing a bound object argument. -/
+def Index.cands (idx : Index) (t : Expr) (σ : Subst) : Array (Fact × Nat) := Id.run do
+  let h := head t
+  let g := fill t σ
+  if !g.hasLooseBVars then return idx.exact.getD g #[]
+  -- the smallest bucket of a bound object argument
+  let mut best := idx.byHead.getD h #[]
+  let args := (atomOf g).getAppArgs
+  for i in [0:args.size] do
+    if args[i]!.isFVar then
+      let c := idx.byArg.getD (h, i, args[i]!) #[]
+      if c.size < best.size then best := c
+  return best
+
 /-- Bind the templates (with positions) to facts allowed by `ok` (position,
-round), most-bound first (or `first`), then the remaining objects to context
-objects; run `k` on each full binding. -/
+round), the one with the fewest candidate facts first (or `first`), then the
+remaining objects to context objects; run `k` on each full binding. -/
 partial def matchAll (idx : Index) (objs : Objects) (sorts : Array Expr)
     (ok : Nat → Nat → Bool) (k : Subst → MetaM Unit) (lits : List (Nat × Expr))
     (σ : Subst) (first : Option Nat := none) : MetaM Unit := do
   match lits with
-  | _ :: _ =>
-    let n := sorts.size
-    let best := match first.bind fun p => lits.find? (·.1 == p) with
-      | some l => l
-      | none => lits.foldl (fun (b l : Nat × Expr) =>
-          if unbound l.2 σ n < unbound b.2 σ n then l else b) lits.head!
+  | l0 :: _ =>
+    -- the literal with the fewest candidate facts (or `first`)
+    let (best, cs) := match first.bind fun p => lits.find? (·.1 == p) with
+      | some l => (l, idx.cands l.2 σ)
+      | none => lits.foldl (fun ((b, bc) : (Nat × Expr) × Array (Fact × Nat)) (l : Nat × Expr) =>
+          if bc.isEmpty then (b, bc) else
+          let c := idx.cands l.2 σ
+          if c.size < bc.size then (l, c) else (b, bc)) (l0, idx.cands l0.2 σ)
     let rest := lits.filter (·.1 != best.1)
-    for (f, r) in idx.getD (head best.2) #[] do
+    for (f, r) in cs do
       if ok best.1 r then
         if let some σ' := pmatch best.2 f.type σ then matchAll idx objs sorts ok k rest σ'
   | [] =>
@@ -802,7 +844,8 @@ partial def matchAll (idx : Index) (objs : Objects) (sorts : Array Expr)
 fact from the previous round (semi-naive). -/
 def fire (map : Std.HashMap Expr Expr) (idx : Index) (objs : Objects) (round : Nat)
     (fresh : Std.HashSet (Option (Name × Bool))) (cl : Clause)
-    (keep : Expr → Bool := fun _ => true) (σ0 : Subst := {}) : MetaM (Array Fact) := do
+    (keep : Expr → Bool := fun _ => true) (σ0 : Subst := {})
+    (seen : Option (IO.Ref (Std.HashSet Expr)) := none) : MetaM (Array Fact) := do
   let out ← IO.mkRef (#[] : Array Fact)
   let k := fun (σ : Subst) => do
     Core.checkSystem "saturate"
@@ -810,6 +853,11 @@ def fire (map : Std.HashMap Expr Expr) (idx : Index) (objs : Objects) (round : N
     -- skip `x = x`
     if let some (_, x, y) := res.eq? then if x == y then return
     unless keep res do return
+    -- known, or built already
+    if map.contains res then return
+    if let some r := seen then
+      if (← r.get).contains res then return
+      r.modify (·.insert res)
     if let some pf ← cl.build σ (fun l => return map[l]?) then
       out.modify (·.push ⟨res, pf⟩)
   let lits := (List.range cl.needT.size).zip cl.needT.toList
@@ -853,7 +901,7 @@ def Ctx.new (facts : Array Fact) (objs : Objects) : MetaM Ctx := do
   let pool ← metricPool facts
   return ⟨facts, Store.of facts, objs, ← IO.mkRef {}, ← IO.mkRef 0, ← IO.mkRef 0,
     ← IO.mkRef 0, ← IO.mkRef 0, ← IO.mkRef {}, ← IO.mkRef {},
-    facts.foldl (fun m f => m.alter (head f.type) fun a => some ((a.getD #[]).push (f, 0))) {},
+    Index.of facts,
     pool, pool.foldl (fun s (_, ks) => ks.foldl (·.insert ·) s) {}, ← IO.mkRef maxDepth⟩
 
 /-- Metric forward clauses. -/
@@ -884,13 +932,14 @@ def expandMetric (ctx : Ctx) (todo : Array Expr) : MetaM (Array Fact) := do
   let keep := fun (r : Expr) => (atoms r).any keys.contains
   let targets := new.foldl (fun acc a => acc ++ variants a) #[]
   let mut fresh := #[]
+  let built ← IO.mkRef seen
   for cl in ← metricClauses do
     unless cl.needs.all idx.contains do continue
     -- bind a result atom of the clause to a target first
     for t in atomTerms cl.resT do
       for a in targets do
         let some σ0 := pmatch t a {} | continue
-        let fs ← fire ctx.store.map idx ctx.objs 0 {} cl keep σ0
+        let fs ← fire ctx.store.map idx ctx.objs 0 {} cl keep σ0 (some built)
         for f in fs do
           unless ctx.store.map.contains f.type || seen.contains f.type do
             seen := seen.insert f.type
@@ -910,7 +959,7 @@ def metricFor (ctx : Ctx) (ts : Array Expr) (level : Nat) :
   return ctx.pool ++ fs.map fun f => (f, atoms f.type)
 
 /-- Recursive calls and `linarith` calls one attempt may make. -/
-def maxCalls : Nat := 2000
+def maxCalls : Nat := 800
 def maxAriths : Nat := 60
 
 /-- A fact stating `l`, or `b ≠ a` for `l = (a ≠ b)`. -/
@@ -961,9 +1010,6 @@ def neByMetric (ctx : Ctx) (x y : Expr) : MetaM (Option Expr) := do
       (mkConst ``False) seeds | return none
     return some (← mkLambdaFVars #[h] p)
 
-/-- Per clause: time (ns) and facts produced; filled when `systemE.stats` is on. -/
-initialize profRef : IO.Ref (Std.HashMap String (Nat × Nat)) ← IO.mkRef {}
-
 /-- Close the facts under the forward clauses. If `closed`, `facts0` is already
 closed: only consequences of `extra` are derived (and of `objs`' new objects if
 `newObjs`). The metric pass, if `metric`, adds metric facts about known atoms. -/
@@ -972,12 +1018,11 @@ def saturate (objs : Objects) (facts0 : Array Fact) (goal : Expr) (extra : Array
     (newObjs := false) : MetaM (Array Fact) := do
   let prof := systemE.stats.get (← getOptions)
   let mut facts := facts0
-  let mut idx : Index := {}
-  for f in facts do idx := idx.alter (head f.type) fun a => some ((a.getD #[]).push (f, 0))
+  let mut idx := Index.of facts
   let mut map : Std.HashMap Expr Expr :=
     facts.foldl (fun m f => if m.contains f.type then m else m.insert f.type f.proof) {}
   let start := if closed then 1 else 0
-  let mut fresh : Std.HashSet (Option (Name × Bool)) := idx.keys.foldl (·.insert ·) {}
+  let mut fresh : Std.HashSet (Option (Name × Bool)) := idx.byHead.keys.foldl (·.insert ·) {}
   if closed then
     fresh := {}
     for f in extra do
@@ -986,7 +1031,7 @@ def saturate (objs : Objects) (facts0 : Array Fact) (goal : Expr) (extra : Array
         if conflict && map.contains (← negLit f.type) then return facts.push f
         map := map.insert f.type f.proof
         facts := facts.push f
-        idx := idx.alter (head f.type) fun a => some ((a.getD #[]).push (f, 1))
+        idx := idx.insert f 1
         fresh := fresh.insert (head f.type)
   let mut cls := #[]
   for cl in (← clauses).filter fun cl => cl.forward && !cl.needs.isEmpty do
@@ -1014,7 +1059,7 @@ def saturate (objs : Objects) (facts0 : Array Fact) (goal : Expr) (extra : Array
     fresh := new.foldl (fun s f => s.insert (head f.type)) {}
     for f in new do
       facts := facts.push f
-      idx := idx.alter (head f.type) fun a => some ((a.getD #[]).push (f, round + 1))
+      idx := idx.insert f (round + 1)
     if !added || facts.size > maxFacts then break
   unless metric do return facts
   -- metric clauses: one pass, keeping results about atoms mostly mentioned
@@ -1162,7 +1207,11 @@ partial def proveLitCore (ctx : Ctx) (depth : Nat) (e : Expr) : MetaM (Option Ex
     -- a metric contradiction
     ctx.ariths.modify (· + 1)
     if let some p ← arith ctx.pool ctx.neFact e then return some p
-    let ts := ctx.pool.foldl (fun acc (f, _) => acc ++ atomTerms f.type) #[]
+    -- expand at most `maxSubst` atoms, of the newest facts first
+    let mut ts : Array Expr := #[]
+    for (f, _) in ctx.pool.reverse do
+      for a in atomTerms f.type do
+        if !ts.contains a && ts.size < maxSubst then ts := ts.push a
     let seeds := ctx.pool.foldl (fun acc (_, ks) => acc ++ ks) #[]
     return ← arith (← metricFor ctx ts 0) ctx.neFact e seeds
   if ← isArith e then
@@ -1287,7 +1336,7 @@ partial def searchBack (ctx : Ctx) (depth : Nat) (deep : Bool) (cl : Clause)
         cache.modify (·.push ⟨l, p⟩)
         go σ
     else
-      for f in ctx.store.byHead.getD (head t) #[] do
+      for (f, _) in ctx.idx.cands t σ do
         if ← done.get then return
         if let some σ' := pmatch t f.type σ then go σ'
 
@@ -1459,7 +1508,7 @@ def close (g : MVarId) : TacticM Bool := do
       s.restore
       return false
     let last ← IO.mkRef goal0
-    if ← attempt g phase last 3 then return true
+    if ← attempt g phase last 1 then return true
     s.restore
     stat m!"stuck {← last.get}"
     return false)
