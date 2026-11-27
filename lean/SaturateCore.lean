@@ -641,6 +641,9 @@ def isObject (e : Expr) : MetaM Bool := do
 /-- Clauses needing more literals are used only backward. -/
 def maxForwardNeeds : Nat := 6
 
+/-- Clauses needing more literals, up to this, are used forward uncontraposed. -/
+def maxForwardNeedsMain : Nat := 10
+
 /-- `e` with the objects `objs` (metavariables) replaced by pattern variables. -/
 def template (objs : Array Expr) (e : Expr) : MetaM (Option Expr) := do
   let e ← instantiateMVars e
@@ -664,7 +667,8 @@ def mkClause (n : Name) (i : Inst) (objs : Array Expr) (drop : Option Nat) (j : 
   let arith ← need.toArray.mapM isArith
   -- forward: metric-free; a contrapositive must bind every object
   -- big configurations are matched only against a goal
-  let fwd := !back && !arith.any id && !needT.isEmpty && needT.size ≤ maxForwardNeeds &&
+  let fwd := !back && !arith.any id && !needT.isEmpty &&
+    (needT.size ≤ maxForwardNeeds || (drop.isNone && needT.size ≤ maxForwardNeedsMain)) &&
     (drop.isNone || (List.range objs.size).all inNeed)
   let sorts ← objs.mapM inferType
   return some ⟨n, drop, j, head res, fwd, needT.map head, needT, resT, sorts, arith⟩
@@ -1160,6 +1164,28 @@ def tryRefute (ctx : Ctx) (e : Expr) : MetaM (Option Expr) := do
       some (a + dt, b + 1)
   return r
 
+/-- `¬x.onLine L` by refutation, where the incidence is unknown and the point
+or the line occurs in a same-side or incidence literal `l`. -/
+def settle (ctx : Ctx) (l : Expr) : MetaM (Array Fact) := do
+  let some (n, _) := head l | return #[]
+  unless n == `Point.sameSide || n == `Point.onLine do return #[]
+  let mut pts := #[]
+  let mut lines := #[]
+  for x in (collectFVars {} l).fvarIds do
+    let t ← instantiateMVars (← inferType (.fvar x))
+    if t.isConstOf `Point then pts := pts.push (Expr.fvar x)
+    if t.isConstOf `Line then lines := lines.push (Expr.fvar x)
+  let mut out := #[]
+  let allPts := objectsOf ctx.objs (mkConst `Point)
+  let allLines := objectsOf ctx.objs (mkConst `Line)
+  for L in allLines do
+    for x in allPts do
+      unless pts.contains x || lines.contains L do continue
+      let on := mkApp2 (mkConst `Point.onLine) x L
+      if ctx.store.map.contains on || ctx.store.map.contains (mkNot on) then continue
+      if let some p ← refute ctx (mkNot on) then out := out.push ⟨mkNot on, p⟩
+  return out
+
 /-- `L ≠ M` for lines: a point of one line refuted on the other. -/
 def lineNe (ctx : Ctx) (e : Expr) : MetaM (Option Expr) := do
   let some (t, l, m) := e.ne? | return none
@@ -1388,6 +1414,7 @@ structure Closure where
   inputs : Std.HashMap Expr Expr
   objs : Objects
   out : Array Fact
+deriving Inhabited
 
 /-- Closures computed in recent declarations (keyed by their start). -/
 initialize closuresRef : IO.Ref (Std.HashMap Nat (Array Closure)) ← IO.mkRef {}
@@ -1435,6 +1462,14 @@ def closure (objs : Objects) (facts0 : Array Fact) : MetaM (Array Fact) := do
       (((m.getD decl #[]).size + 1) - maxClosures)).toArray
   return out
 
+/-- Replace the result of the declaration's latest closure (extended by facts). -/
+def setLastClosure (out : Array Fact) : MetaM Unit := do
+  let decl ← declRef.get
+  closuresRef.modify fun m => match m[decl]? with
+    | some cs => if cs.isEmpty then m else
+      m.insert decl (cs.set! (cs.size - 1) { cs.back! with out })
+    | none => m
+
 /-- An equality between distinct objects among the facts. -/
 def objectEq? (facts : Array Fact) : MetaM (Option Fact) := do
   for f in facts do
@@ -1452,8 +1487,8 @@ partial def attempt (g : MVarId) (phase : IO.Ref MessageData) (last : IO.Ref Exp
   let facts0 ← contextFacts
   let objs ← contextObjects
   phase.set m!"saturating {facts0.size} facts"
-  let mut facts ← closure objs facts0
-  facts ← saturate objs facts goal (closed := true) (metric := true)
+  let diag ← closure objs facts0
+  let mut facts ← saturate objs diag goal (closed := true) (metric := true)
   let mut ctx ← Ctx.new facts objs
   let new ← guarded ctx
   unless new.isEmpty do
@@ -1468,7 +1503,14 @@ partial def attempt (g : MVarId) (phase : IO.Ref MessageData) (last : IO.Ref Exp
     ctx.refutes.set 0
     phase.set m!"proving {l} from {facts.size} facts"
     if let some p ← findDefEq facts l then return some p
-    proveTop ctx l
+    -- settle the incidences of the literal's points and lines first; the
+    -- results join the cached closure
+    let new ← settle ctx l
+    if new.isEmpty then return ← proveTop ctx l
+    let diag' ← saturate objs diag goal new
+    setLastClosure diag'
+    let ctx' ← Ctx.new (diag' ++ facts.extract diag.size facts.size) objs
+    proveTop ctx' l
   if let some pf ← prove top goal then
     g.assign pf
     return true
