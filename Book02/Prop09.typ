@@ -20,3 +20,4 @@
     [Thus, if a straight-line is cut into equal and unequal (pieces, then) the (sum of the) squares on the unequal pieces of the whole (straight-line) is double the (sum of the) square on half (the straight-line) and (the square) on the (difference) between the (equal and unequal) pieces. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book2/Prop09.lean")

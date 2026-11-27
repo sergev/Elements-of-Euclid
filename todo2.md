@@ -4,10 +4,6 @@ Book 2 has 14 propositions, all in System E, building on Book 1's area results (
 
 A proof's file `lean/Elements/Book2/PropNN.lean` and the `#lean-proof("/lean/Elements/Book2/PropNN.lean")` line in `Book02/PropNN.typ` are always added in the same task. Typst's `read` fails on a missing file.
 
-## T8. Props. 2.9–2.10: sums of squares
-
-These are proved by isosceles right triangles and Prop. 1.47, not gnomons. They use Props. 1.5, 1.6, 1.29, 1.32 and 1.34. Prop. 2.10 is the produced-line form of 2.9, as 2.6 is of 2.5.
-
 ## T9. Prop. 2.11: cutting a line in extreme and mean ratio
 
 This is a construction problem: there exists a point H on AB with rect(AB, BH) = sq(AH). It uses Props. 1.10, 1.3, 1.46, 1.47 and 2.6. Prop. 4.10 and Book 13 need this statement later, so state it in the form they will need.

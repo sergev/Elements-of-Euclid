@@ -20,3 +20,4 @@
     [Thus, if a straight-line is cut in half, and any straight-line added to it straight-on, (then) the sum of the square on the whole (straight-line) with the (straight-line) having been added, and the (square) on the (straight-line) having been added, is double the (sum of the square) on half (the straight-line), and the square described on the sum of half (the straight-line) and (straight-line) having been added, as on one (complete straight-line). (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book2/Prop10.lean")
