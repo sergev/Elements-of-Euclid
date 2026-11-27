@@ -22,7 +22,7 @@ for f in $files; do
   # each failing step (by line) with why saturation failed: the literal it
   # got stuck on, or the budget running out
   gaps=$(awk '
-    /^stats: (stuck|budget)/ { why = substr($0, 8) }
+    /^stats: (stuck|budget|capped)/ { why = substr($0, 8) }
     /could not prove/ {
       split($0, a, ":"); l = a[2]
       if (!(l in seen)) { seen[l] = 1; print l ": " why }

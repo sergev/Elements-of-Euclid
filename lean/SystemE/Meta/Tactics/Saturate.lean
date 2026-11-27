@@ -99,6 +99,83 @@ theorem on_line_of_eq_angle : ∀ (c : Point) (M : Line) (d f e : Point) (L : Li
     have h0 : ∠ f:d:c = 0 := by linarith
     exact hcM (degenerated_angle_onlyif d f c M ⟨hdf, hdc, hdM, hfM, h0⟩).1
 
+/-- The other half of `between_trans_in`; by cases on `between_points`. -/
+theorem between_trans_in' : ∀ (a b c d : Point),
+    between a b c ∧ between a d b → between d b c := by
+  intro a b c d ⟨habc, hadb⟩
+  have ⟨hcba, hab, _, _⟩ := between_symm a b c habc
+  have ⟨_, hcb, _, nbca⟩ := between_symm c b a hcba
+  have ⟨hbda, _, _, _⟩ := between_symm a d b hadb
+  have ⟨_, hbd, _, _⟩ := between_symm b d a hbda
+  have ⟨hcda, _, _, _⟩ := between_symm a d c (between_trans_in a b c d ⟨habc, hadb⟩)
+  have ⟨_, hcd, _, _⟩ := between_symm c d a hcda
+  obtain ⟨L, haL, hbL⟩ := line_from_points a b hab
+  have hcL := between_same_line_out a b c L ⟨habc, haL, hbL⟩
+  have hdL := between_same_line_in a d b L ⟨hadb, haL, hbL⟩
+  rcases between_points d b c L ⟨hbd.symm, hcb.symm, hcd, hdL, hbL, hcL⟩ with h | h | h
+  · exact h
+  · exact absurd hcda (between_not_trans b d c a ⟨h, hbda⟩)
+  · exact absurd (between_trans_in b d a c ⟨hbda, (between_symm d c b h).1⟩) nbca
+
+/-- Of two points on a segment from `a`, the nearer is between `a` and the other. -/
+theorem between_of_lt : ∀ (a x y e : Point),
+    between a x e ∧ between a y e ∧ |(a─x)| < |(a─y)| → between a x y := by
+  intro a x y e ⟨hx, hy, hlt⟩
+  have ⟨hex, hax, hae, _⟩ := between_symm a x e hx
+  have ⟨_, hay, _, _⟩ := between_symm a y e hy
+  have hxy : x ≠ y := fun h => by subst h; exact lt_irrefl _ hlt
+  obtain ⟨L, haL, heL⟩ := line_from_points a e hae
+  have hxL := between_same_line_in a x e L ⟨hx, haL, heL⟩
+  have hyL := between_same_line_in a y e L ⟨hy, haL, heL⟩
+  rcases between_points a x y L ⟨hax, hxy, hay.symm, haL, hxL, hyL⟩ with h | h | h
+  · exact h
+  · -- a between x and y: then a is between y and e
+    have := between_trans_out y a x e ⟨(between_symm x a y h).1, hx⟩
+    exact absurd hy (between_symm y a e this).2.2.2
+  · have := between_if a y x h
+    have := segment_gte_zero (y─x)
+    linarith
+
+/-- An angle whose sides are on different lines is positive. -/
+theorem angle_pos_of_not_on_line : ∀ (a b c : Point) (L : Line),
+    a ≠ b ∧ a ≠ c ∧ a.onLine L ∧ b.onLine L ∧ ¬(c.onLine L) → 0 < ∠ b:a:c := by
+  intro a b c L ⟨hab, hac, haL, hbL, hcL⟩
+  refine lt_of_le_of_ne (angle_range _).1 fun h => hcL ?_
+  exact (degenerated_angle_onlyif a b c L ⟨hab, hac, haL, hbL, h.symm⟩).1
+
+/-- A point equidistant from two points of its line is between them. -/
+theorem between_of_eq_dist : ∀ (a m b : Point) (L : Line),
+    a.onLine L ∧ m.onLine L ∧ b.onLine L ∧ a ≠ b ∧ |(a─m)| = |(b─m)| → between a m b := by
+  intro a m b L ⟨haL, hmL, hbL, hab, h⟩
+  have s1 := segment_symmetric a m
+  have s2 := segment_symmetric b m
+  have s3 := segment_symmetric a b
+  have hpos : 0 < |(a─b)| := lt_of_le_of_ne (segment_gte_zero _) fun h0 => hab (zero_segment_if a b h0.symm)
+  have ham : a ≠ m := fun e => by
+    subst e
+    have := zero_segment_onlyif a a rfl
+    exact hab (zero_segment_if b a (by linarith)).symm
+  have hbm : m ≠ b := fun e => by
+    subst e
+    have := zero_segment_onlyif m m rfl
+    exact hab (zero_segment_if a m (by linarith))
+  rcases between_points a m b L ⟨ham, hbm, hab.symm, haL, hmL, hbL⟩ with h1 | h1 | h1
+  · exact h1
+  · have := between_if m a b h1
+    linarith
+  · have := between_if a b m h1
+    linarith
+
+/-- Two points on the other side from a third are on the same side. -/
+theorem same_side_of_opposite : ∀ (a b c : Point) (L : Line),
+    ¬(a.onLine L) ∧ ¬(b.onLine L) ∧ ¬(c.onLine L) ∧ ¬(a.sameSide b L) ∧ ¬(a.sameSide c L) →
+    b.sameSide c L := by
+  intro a b c L ⟨ha, hb, hc, hab, hac⟩
+  rcases same_side_pigeon_hole a b c L ⟨ha, hb, hc⟩ with h | h | h
+  · exact absurd h hab
+  · exact absurd h hac
+  · exact h
+
 theorem line_ne_symm : ∀ (L M : Line), L ≠ M → M ≠ L := fun _ _ h => h.symm
 
 theorem circle_ne_symm : ∀ (α β : Circle), α ≠ β → β ≠ α := fun _ _ h => h.symm
@@ -126,10 +203,13 @@ initialize configRef.set {
     ``point_ne_of_on_line, ``line_ne_of_on_line, ``point_ne_of_on_circle,
     ``circle_ne_of_on_circle, ``point_ne_of_same_side,
     ``length_pos_of_ne, ``ne_of_length_pos,
-    ``not_inside_circle_of_ge, ``not_on_circle_of_gt, ``not_on_circle_of_lt]
+    ``not_inside_circle_of_ge, ``not_on_circle_of_gt, ``not_on_circle_of_lt,
+    ``between_trans_in', ``angle_pos_of_not_on_line,
+    ``same_side_of_opposite]
   backwardLemmas := #[
     ``ne_of_lines_ne, ``not_between_of_same_side, ``not_on_line_of_triangle,
     ``eq_of_same_ray, ``on_line_of_eq_angle]
+  guardedLemmas := #[``between_of_lt, ``between_of_eq_dist]
   linarith := fun hyps e => do
     let m ← mkFreshExprMVar e
     try

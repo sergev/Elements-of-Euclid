@@ -19,7 +19,7 @@ register_option systemE.saturate : Bool := {
 }
 
 register_option systemE.saturateBudget : Nat := {
-  defValue := 10000
+  defValue := 20000
   descr := "Heartbeats (in thousands) one saturation attempt may spend before giving up."
 }
 
@@ -59,6 +59,8 @@ structure Config where
   lemmas : Array Name := #[]
   /-- Multi-step lemmas, used only backward, without contrapositives. -/
   backwardLemmas : Array Name := #[]
+  /-- Lemmas with one metric premise, applied forward when `linarith` proves it. -/
+  guardedLemmas : Array Name := #[]
   /-- Prove the goal from the given proofs by `linarith only`. -/
   linarith : List Expr → Expr → MetaM (Option Expr) := fun _ _ => pure none
 deriving Inhabited
@@ -131,6 +133,20 @@ def isArith (e : Expr) : MetaM Bool := do
     return (← instantiateMVars t).isConstOf `Real
   | _ => return false
 
+/-- `x ≠ y` over the reals. -/
+def isRealNe (e : Expr) : MetaM Bool := do
+  match e.ne? with
+  | some (t, _, _) => return (← instantiateMVars t).isConstOf `Real
+  | none => return false
+
+/-- A fact `linarith` can use: a comparison, its negation, or `≠` (by cases). -/
+def isMetricFact (e : Expr) : MetaM Bool := do
+  if ← isArith e then return true
+  if ← isRealNe e then return true
+  match e.not? with
+  | some p => isArith p
+  | none => return false
+
 /-- Segments `|(x─y)|` occurring in `e`, as endpoint pairs. -/
 partial def segments (e : Expr) (acc : Array (Expr × Expr) := #[]) : Array (Expr × Expr) :=
   if e.isAppOfArity `Segment.length 1 then
@@ -196,37 +212,27 @@ def variants (a : Expr) : Array Expr :=
 /-- Metric facts with their atoms. -/
 def metricPool (facts : Array Fact) : MetaM (Array (Fact × Array (Array Expr))) :=
   facts.filterMapM fun f => do
-    return if ← isArith f.type then some (f, atoms f.type) else none
+    return if ← isMetricFact f.type then some (f, atoms f.type) else none
 
-/-- Prove a metric literal by `linarith only`, over the metric facts connected
-to it by shared atoms, plus `ab = ba` and `∠abc = ∠cba` where both orders occur. -/
-def arith (pool : Array (Fact × Array (Array Expr))) (ne : Expr → MetaM (Option Expr))
-    (e : Expr) : MetaM (Option Expr) := do
-  let mut pool := pool
-  let mut keys := atoms e
-  let mut hyps := #[]
-  if keys.isEmpty then
-    hyps := pool.map (·.1)
-  else
-    let mut changed := true
-    while changed do
-      changed := false
-      let mut rest := #[]
-      for (f, ks) in pool do
-        if ks.any keys.contains then
-          hyps := hyps.push f
-          keys := keys ++ ks.filter (!keys.contains ·)
-          changed := true
-        else rest := rest.push (f, ks)
-      pool := rest
-    if hyps.isEmpty then return none
-    -- every atom of the goal must occur in some fact
-    let seen := hyps.foldl (fun s f => (atoms f.type).foldl (·.insert ·) s) ({} : Std.HashSet (Array Expr))
-    unless (atoms e).all seen.contains do return none
+/-- Layers of facts tried by `arith`, and the most facts sent to `linarith`. -/
+def maxLayers : Nat := 4
+def maxHyps : Nat := 120
+
+/-- `linarith only` over `hyps`, plus the symmetries of the segments and angles. -/
+def arithWith (hyps : Array Fact) (ne : Expr → MetaM (Option Expr)) (e : Expr) :
+    MetaM (Option Expr) := do
+  let neqs ← hyps.filterM (isRealNe ·.type)
+  let hyps ← hyps.filterM (fun f => return !(← isRealNe f.type))
   let mut segs := segments e
   for f in hyps do segs := segments f.type segs
   let mut proofs := hyps.map (·.proof)
   let mut done : Array (Expr × Expr) := #[]
+  -- nonnegativity of the goal's segments and angles
+  for (x, y) in segments e do
+    proofs := proofs.push (mkApp (mkConst `segment_gte_zero) (mkApp2 (mkConst `Segment.endpoints) x y))
+  for (x, y, z) in angles e do
+    let r := mkApp (mkConst `angle_range) (mkApp3 (mkConst `Angle.ofPoints) x y z)
+    proofs := proofs.push (← mkAppM ``And.left #[r])
   for (x, y) in segs do
     if segs.contains (y, x) && x != y && !done.contains (segKey (x, y)) then
       done := done.push (segKey (x, y))
@@ -243,7 +249,76 @@ def arith (pool : Array (Fact × Array (Array Expr))) (ne : Expr → MetaM (Opti
       let some h2 ← ne t2 | continue
       proofs := proofs.push
         (mkApp4 (mkConst `angle_symm) x y z (mkApp4 (mkConst ``And.intro) t1 t2 h1 h2))
-  (← configRef.get).linarith proofs.toList e
+  let lin := (← configRef.get).linarith
+  if let some p ← lin proofs.toList e then return some p
+  -- by cases on `x ≠ y` about the goal's quantities: `x < y` or `x > y`
+  let ks := atoms e
+  let neqs := neqs.filter fun n => ks.isEmpty || (atoms n.type).any ks.contains
+  for n in neqs.extract 0 2 do
+    let some (_, x, y) := n.type.ne? | continue
+    let branch := fun (t : Expr) => withLocalDeclD `h t fun h => do
+      (← lin (h :: proofs.toList) e).mapM (mkLambdaFVars #[h])
+    let some p1 ← branch (← mkAppM ``LT.lt #[x, y]) | continue
+    let some p2 ← branch (← mkAppM ``GT.gt #[x, y]) | continue
+    return some (← mkAppM ``Or.elim #[← mkAppM `lt_or_gt_of_ne #[n.proof], p1, p2])
+  return none
+
+/-- An atom with a repeated point, like `∠aba`. -/
+def degenerate (k : Array Expr) : Bool :=
+  (k.filter (!·.isConst)).toList.eraseDups.length < (k.filter (!·.isConst)).size
+
+/-- Union-find root. -/
+partial def root (uf : Std.HashMap (Array Expr) (Array Expr)) (k : Array Expr) : Array Expr :=
+  match uf[k]? with
+  | some k' => root uf k'
+  | none => k
+
+/-- Prove a metric literal by `linarith only`, over the metric facts connected
+to it by shared atoms, plus `ab = ba` and `∠abc = ∠cba` where both orders occur. -/
+def arith (pool : Array (Fact × Array (Array Expr))) (ne : Expr → MetaM (Option Expr))
+    (e : Expr) (seeds := atoms e) : MetaM (Option Expr) := do
+  -- of the equalities between atoms, keep a spanning forest, and one of
+  -- each symmetric pair `∠abc = ∠cba`
+  let mut uf : Std.HashMap (Array Expr) (Array Expr) := {}
+  let mut symm : Std.HashSet (Array Expr) := {}
+  let mut forest := #[]
+  for (f, ks) in pool do
+    -- facts about degenerate atoms (`∠aba`, `|aa|`) unless the goal has one
+    if ks.any degenerate && !(seeds.any degenerate) then continue
+    if let some (_, x, y) := f.type.eq? then
+      if atomTerms x == #[x] && atomTerms y == #[y] && ks.size == 2 then
+        if ks[0]! == ks[1]! then
+          if symm.contains ks[0]! then continue
+          symm := symm.insert ks[0]!
+        else
+          let rx := root uf ks[0]!
+          let ry := root uf ks[1]!
+          if rx == ry then continue
+          uf := uf.insert rx ry
+    forest := forest.push (f, ks)
+  if seeds.isEmpty then return ← arithWith (forest.map (·.1)) ne e
+  -- facts in layers by distance from the goal's atoms; try the nearest first
+  let mut pool := forest
+  let mut keys : Std.HashSet (Array Expr) := seeds.foldl (·.insert ·) {}
+  let mut hyps := #[]
+  for _ in [0:maxLayers] do
+    let mut layer := #[]
+    let mut rest := #[]
+    for (f, ks) in pool do
+      if ks.any keys.contains then layer := layer.push (f, ks) else rest := rest.push (f, ks)
+    if layer.isEmpty then break
+    pool := rest
+    -- over the cap: the first facts of the layer (context facts come first)
+    let full := hyps.size + layer.size > maxHyps
+    layer := layer.extract 0 (maxHyps - hyps.size)
+    hyps := hyps ++ layer.map (·.1)
+    keys := layer.foldl (fun s (_, ks) => ks.foldl (·.insert ·) s) keys
+    -- every atom of the goal must occur in some fact
+    let seen := hyps.foldl (fun s f => (atoms f.type).foldl (·.insert ·) s) ({} : Std.HashSet (Array Expr))
+    unless (atoms e).all seen.contains do continue
+    if let some p ← arithWith hyps ne e then return some p
+    if full then break
+  return none
 
 /-- Ground objects (points, lines, circles) of the context, by sort. -/
 abbrev Objects := Array (Name × Array Expr)
@@ -398,7 +473,8 @@ def clausesOf (n : Name) : MetaM (Array Clause) := withNewMCtxDepth do
   let i ← inst n
   if i.prem.any compound then return #[]
   let objs ← i.args.filterM isObject
-  let back := (← configRef.get).backwardLemmas.contains n
+  let cfg ← configRef.get
+  let back := cfg.backwardLemmas.contains n || cfg.guardedLemmas.contains n
   let mut out := #[]
   for j in [0:i.concl.size] do
     let q := i.concl[j]!
@@ -421,7 +497,7 @@ def ruleNames : MetaM (Array Name) := do
       out := out.push n
   out := out.qsort (·.toString < ·.toString)
   let cfg ← configRef.get
-  return out ++ (cfg.lemmas ++ cfg.backwardLemmas).filter env.contains
+  return out ++ (cfg.lemmas ++ cfg.backwardLemmas ++ cfg.guardedLemmas).filter env.contains
 
 initialize clauseCache : IO.Ref (Array Clause) ← IO.mkRef #[]
 
@@ -444,7 +520,8 @@ def backwardClauses : MetaM (Std.HashMap (Option (Name × Bool)) (Array Clause))
   let cls ← clauses
   let cfg ← configRef.get
   let isLemma := fun (cl : Clause) =>
-    cfg.lemmas.contains cl.rule || cfg.backwardLemmas.contains cl.rule
+    cfg.lemmas.contains cl.rule || cfg.backwardLemmas.contains cl.rule ||
+      cfg.guardedLemmas.contains cl.rule
   -- stated direction before contrapositives, then fewest needed literals
   let sort := fun (a : Array Clause) => a.qsort fun x y =>
     let kx := (if x.drop.isSome then 100 else 0) + x.needT.size
@@ -559,52 +636,79 @@ structure Ctx where
   memo : IO.Ref (Std.HashMap Expr (Option Expr × Nat))
   calls : IO.Ref Nat
   ariths : IO.Ref Nat
-  /-- Metric facts derived on demand, and the atoms already expanded. -/
-  extra : IO.Ref (Array Fact)
-  expanded : IO.Ref (Std.HashSet (Array Expr))
+  /-- `neByMetric` calls. -/
+  substs : IO.Ref Nat
+  /-- Refutations: per top-level literal, and the literals tried. -/
+  refutes : IO.Ref Nat
+  refuted : IO.Ref (Std.HashSet Expr)
+  /-- Per expanded atom, the metric facts derived from it on demand. -/
+  expanded : IO.Ref (Std.HashMap (Array Expr) (Array Fact))
   idx : Index
-  /-- Metric facts with their atoms, including the on-demand ones. -/
-  pool : IO.Ref (Array (Fact × Array (Array Expr)))
+  /-- The context's metric facts with their atoms, and all those atoms. -/
+  pool : Array (Fact × Array (Array Expr))
+  known : Std.HashSet (Array Expr)
+  /-- Depth of the current top-level call (iterative deepening). -/
+  top : IO.Ref Nat
 
-def Ctx.new (facts : Array Fact) (objs : Objects) : MetaM Ctx :=
+def Ctx.new (facts : Array Fact) (objs : Objects) : MetaM Ctx := do
+  let pool ← metricPool facts
   return ⟨facts, Store.of facts, objs, ← IO.mkRef {}, ← IO.mkRef 0, ← IO.mkRef 0,
-    ← IO.mkRef #[], ← IO.mkRef {},
+    ← IO.mkRef 0, ← IO.mkRef 0, ← IO.mkRef {}, ← IO.mkRef {},
     facts.foldl (fun m f => m.alter (head f.type) fun a => some ((a.getD #[]).push (f, 0))) {},
-    ← IO.mkRef (← metricPool facts)⟩
+    pool, pool.foldl (fun s (_, ks) => ks.foldl (·.insert ·) s) {}, ← IO.mkRef maxDepth⟩
 
 /-- Metric forward clauses. -/
 def metricClauses : MetaM (Array Clause) := do
   -- any size: results are kept only for the atoms being expanded
-  let back := (← configRef.get).backwardLemmas
+  let cfg ← configRef.get
+  let back := cfg.backwardLemmas ++ cfg.guardedLemmas
   (← clauses).filterM fun cl => do
     return !back.contains cl.rule && cl.drop.isNone && !cl.needT.isEmpty &&
       !cl.arith.any id && (← isArith cl.resT)
 
-/-- Fire the metric clauses whose results mention an atom of `e` not yet
-expanded, then once more for the atoms of the new facts. -/
-def expandMetric (ctx : Ctx) (e : Expr) : MetaM Unit := do
+/-- Metric facts derived from the atoms `todo`: fire the metric clauses whose
+results mention one (cached per atom). -/
+def expandMetric (ctx : Ctx) (todo : Array Expr) : MetaM (Array Fact) := do
   let idx := ctx.idx
-  let mut todo := atomTerms e
-  for _ in [0:2] do
-    let done ← ctx.expanded.get
-    let new := todo.filter fun a => !done.contains (atoms a)[0]!
-    if new.isEmpty then return
-    let keys := new.map fun a => (atoms a)[0]!
-    ctx.expanded.modify fun s => keys.foldl (·.insert ·) s
-    let keep := fun (r : Expr) => (atoms r).any keys.contains
-    let targets := new.foldl (fun acc a => acc ++ variants a) #[]
-    todo := #[]
-    for cl in ← metricClauses do
-      unless cl.needs.all idx.contains do continue
-      -- bind a result atom of the clause to a target first
-      for t in atomTerms cl.resT do
-        for a in targets do
-          let some σ0 := pmatch t a {} | continue
-          let fs ← fire ctx.store.map idx ctx.objs 0 {} cl keep σ0
-          let fs := fs.filter fun f => !ctx.store.map.contains f.type
-          ctx.extra.modify (· ++ fs)
-          ctx.pool.modify (· ++ fs.map fun f => (f, atoms f.type))
-          for f in fs do todo := todo ++ atomTerms f.type
+  let done ← ctx.expanded.get
+  let new := todo.filter fun a => !done.contains (atoms a)[0]!
+  -- facts of earlier expansions, each once
+  let mut seen : Std.HashSet Expr := {}
+  let mut out := #[]
+  for a in todo do
+    for f in done.getD (atoms a)[0]! #[] do
+      unless seen.contains f.type do
+        seen := seen.insert f.type
+        out := out.push f
+  if new.isEmpty then return out
+  let keys := new.map fun a => (atoms a)[0]!
+  let keep := fun (r : Expr) => (atoms r).any keys.contains
+  let targets := new.foldl (fun acc a => acc ++ variants a) #[]
+  let mut fresh := #[]
+  for cl in ← metricClauses do
+    unless cl.needs.all idx.contains do continue
+    -- bind a result atom of the clause to a target first
+    for t in atomTerms cl.resT do
+      for a in targets do
+        let some σ0 := pmatch t a {} | continue
+        let fs ← fire ctx.store.map idx ctx.objs 0 {} cl keep σ0
+        for f in fs do
+          unless ctx.store.map.contains f.type || seen.contains f.type do
+            seen := seen.insert f.type
+            fresh := fresh.push f
+  ctx.expanded.modify fun s => keys.foldl (·.insert · fresh) s
+  return out ++ fresh
+
+/-- The metric facts for `e`: the context's, and those derived from the atoms
+of `e` (`level` 0) and then from the atoms of those (`level` 1). -/
+def metricFor (ctx : Ctx) (ts : Array Expr) (level : Nat) :
+    MetaM (Array (Fact × Array (Array Expr))) := do
+  let mut fs ← expandMetric ctx ts
+  if level > 0 then
+    let more ← expandMetric ctx (fs.foldl (fun acc f => acc ++ atomTerms f.type) #[])
+    let known := fs.foldl (fun s f => s.insert f.type) ({} : Std.HashSet Expr)
+    fs := fs ++ more.filter (!known.contains ·.type)
+  return ctx.pool ++ fs.map fun f => (f, atoms f.type)
 
 /-- Recursive calls and `linarith` calls one attempt may make. -/
 def maxCalls : Nat := 2000
@@ -619,6 +723,203 @@ def Ctx.fact? (ctx : Ctx) (cache : Array Fact) (l : Expr) : MetaM (Option Expr) 
       return some (← mkAppM ``Ne.symm #[p])
   return none
 
+/-- A fact `l`, or `b ≠ a` for `l = (a ≠ b)`; side conditions of angle symmetry. -/
+def Ctx.neFact (ctx : Ctx) (l : Expr) : MetaM (Option Expr) := do
+  if let some p := ctx.store.map[l]? then return some p
+  if let some (t, x, y) := l.ne? then
+    if let some p := ctx.store.map[mkApp3 l.getAppFn t y x]? then
+      return some (← mkAppM ``Ne.symm #[p])
+  return none
+
+/-- Most atoms `neByMetric` substitutes in, and most calls per literal. -/
+def maxSubst : Nat := 30
+def maxSubsts : Nat := 20
+
+/-- `x ≠ y` for points: assuming `x = y`, each atom mentioning `y` equals the
+one with `x` in its place, and `linarith` finds a contradiction. -/
+def neByMetric (ctx : Ctx) (x y : Expr) : MetaM (Option Expr) := do
+  let mut ts : Array Expr := #[]
+  for (f, _) in ctx.pool do
+    for a in atomTerms f.type do
+      if a.containsFVar y.fvarId! && !ts.contains a && ts.size < maxSubst then ts := ts.push a
+  if ts.isEmpty then return none
+  ctx.substs.modify (· + 1)
+  if (← ctx.substs.get) > maxSubsts then return none
+  let pool ← metricFor ctx (ts ++ ts.map (·.replaceFVar y x)) 0
+  let point := mkConst `Point
+  withLocalDeclD `h (← mkEq x y) fun h => do
+    let mut eqs : Array Fact := #[]
+    for a in ts do
+      let b := a.replaceFVar y x
+      let ty ← mkEq b a
+      let pf ← mkAppM ``congrArg #[.lam `z point (a.abstract #[y]) .default, h]
+      eqs := eqs.push ⟨ty, ← mkExpectedTypeHint pf ty⟩
+    for (u, v, hh) in [(x, y, h), (y, x, ← mkEqSymm h)] do
+      let z := mkApp2 (mkConst `zero_segment_onlyif) u v
+      eqs := eqs.push ⟨← inferType (mkApp z hh), mkApp z hh⟩
+    let seeds := eqs.foldl (fun acc f => acc ++ atoms f.type) #[]
+    let some p ← arith (eqs.map (fun f => (f, atoms f.type)) ++ pool) ctx.neFact
+      (mkConst ``False) seeds | return none
+    return some (← mkLambdaFVars #[h] p)
+
+/-- Per clause: time (ns) and facts produced; filled when `systemE.stats` is on. -/
+initialize profRef : IO.Ref (Std.HashMap String (Nat × Nat)) ← IO.mkRef {}
+
+/-- Close the facts under the forward clauses. With `extra`, `facts0` is
+already closed: only consequences of the extra facts are derived (and no metric
+pass; those are derived on demand). -/
+def saturate (objs : Objects) (facts0 : Array Fact) (goal : Expr) (extra : Array Fact := #[])
+    (conflict := false) : MetaM (Array Fact) := do
+  let prof := systemE.stats.get (← getOptions)
+  let mut facts := facts0
+  let mut idx : Index := {}
+  for f in facts do idx := idx.alter (head f.type) fun a => some ((a.getD #[]).push (f, 0))
+  let mut map : Std.HashMap Expr Expr :=
+    facts.foldl (fun m f => if m.contains f.type then m else m.insert f.type f.proof) {}
+  let start := if extra.isEmpty then 0 else 1
+  let mut fresh : Std.HashSet (Option (Name × Bool)) := idx.keys.foldl (·.insert ·) {}
+  unless extra.isEmpty do
+    fresh := {}
+    for f in extra do
+      unless map.contains f.type do
+        -- with `conflict`, stop at a fact whose negation is known
+        if conflict && map.contains (← negLit f.type) then return facts.push f
+        map := map.insert f.type f.proof
+        facts := facts.push f
+        idx := idx.alter (head f.type) fun a => some ((a.getD #[]).push (f, 1))
+        fresh := fresh.insert (head f.type)
+  let mut cls := #[]
+  for cl in (← clauses).filter fun cl => cl.forward && !cl.needs.isEmpty do
+    unless ← isArith cl.resT do cls := cls.push cl
+  for round in [start:maxRounds + start] do
+    let mut added := false
+    let mut new := #[]
+    for cl in cls do
+      unless cl.needs.all idx.contains && cl.needs.any fresh.contains do continue
+      let t0 ← IO.monoNanosNow
+      let fs ← fire map idx objs round fresh cl
+      if prof then
+        let dt := (← IO.monoNanosNow) - t0
+        profRef.modify fun m => m.alter s!"{cl.rule} {cl.drop}" fun v =>
+          some ((v.getD (0, 0)).1 + dt, (v.getD (0, 0)).2 + fs.size)
+      for f in fs do
+        unless map.contains f.type do
+          if conflict && map.contains (← negLit f.type) then return facts ++ new.push f
+          map := map.insert f.type f.proof
+          new := new.push f
+          added := true
+    fresh := new.foldl (fun s f => s.insert (head f.type)) {}
+    for f in new do
+      facts := facts.push f
+      idx := idx.alter (head f.type) fun a => some ((a.getD #[]).push (f, round + 1))
+    if !added || facts.size > maxFacts then break
+  unless extra.isEmpty do return facts
+  -- metric clauses: one pass, keeping results about atoms mostly mentioned
+  let known : Std.HashSet (Array Expr) :=
+    facts.foldl (fun s f => (atoms f.type).foldl (·.insert ·) s) ((atoms goal).foldl (·.insert ·) {})
+  -- for a goal without quantities (`False`), at most one new one: a part of a
+  -- known whole, a positive angle
+  let free := if goal.isConstOf ``False then 1 else 0
+  let keep := fun (e : Expr) => ((atoms e).filter (!known.contains ·)).size ≤ free
+  -- big clauses (angle sums) only for `False`; otherwise derived on demand
+  for cl in ← metricClauses do
+    unless cl.needs.all idx.contains && (free > 0 || cl.forward) do continue
+    for f in ← fire map idx objs 0 {} cl keep do
+      unless map.contains f.type do
+        map := map.insert f.type f.proof
+        facts := facts.push f
+  return facts
+
+/-- Conclusions of the guarded lemmas: diagram premises matched against the
+facts (one of them in `fresh`, if given), the metric premise proved by `linarith`. -/
+def guarded (ctx : Ctx) (fresh : Option (Std.HashSet Expr) := none) : MetaM (Array Fact) := do
+  let g := (← configRef.get).guardedLemmas
+  let out ← IO.mkRef (#[] : Array Fact)
+  -- classes of atoms equal by the facts: an equality premise must link two
+  let mut uf : Std.HashMap (Array Expr) (Array Expr) := {}
+  for (f, ks) in ctx.pool do
+    if let some (_, x, y) := f.type.eq? then
+      if atomTerms x == #[x] && atomTerms y == #[y] && ks.size == 2 then
+        let rx := root uf ks[0]!
+        let ry := root uf ks[1]!
+        if rx != ry then uf := uf.insert rx ry
+  let linked := fun (l : Expr) => match l.eq? with
+    | some (_, x, y) =>
+      if atomTerms x == #[x] && atomTerms y == #[y] then
+        root uf (atoms x)[0]! == root uf (atoms y)[0]!
+      else true
+    | none => true
+  for cl in ← clauses do
+    unless g.contains cl.rule && cl.drop.isNone do continue
+    let lits := ((List.range cl.needT.size).zip cl.needT.toList).filter (!cl.arith[·.1]!)
+    unless lits.all (ctx.idx.contains <| head ·.2) do continue
+    matchAll ctx.idx ctx.objs cl.sorts (fun _ _ => true) (fun σ => do
+      if let some fr := fresh then
+        unless lits.any (fr.contains <| fill ·.2 σ) do return
+      let res := fill cl.resT σ
+      -- skip known results and degenerate ones like `between a x x`
+      let args := res.getAppArgs
+      if ctx.store.map.contains res || args.size != (args.toList.eraseDups).length then return
+      let leaf := fun l => do
+        if let some p := ctx.store.map[l]? then return some p
+        unless (← isArith l) && (atoms l).all ctx.known.contains && linked l do return none
+        arith ctx.pool ctx.neFact l
+      if let some pf ← cl.build σ leaf then out.modify (·.push ⟨res, pf⟩)) lits {}
+  out.get
+
+/-- Most refutations per top-level literal. -/
+def maxRefutes : Nat := 4
+
+/-- Prove `e` by contradiction: assume its negation, saturate from it (with the
+guarded lemmas), and look for a fact whose negation is also a fact. -/
+def refute (ctx : Ctx) (e : Expr) : MetaM (Option Expr) := do
+  let p ← negLit e
+  withLocalDeclD `h p fun h => do
+    let false := mkConst ``False
+    let mut facts ← saturate ctx.objs ctx.facts false (← project p h) true
+    let mut fresh := facts.extract ctx.facts.size facts.size
+    let g ← guarded (← Ctx.new facts ctx.objs) (some (fresh.foldl (·.insert ·.type) {}))
+    unless g.isEmpty do
+      facts ← saturate ctx.objs facts false (← g.flatMapM fun f => project f.type f.proof) true
+      fresh := facts.extract ctx.facts.size facts.size
+    let map : Std.HashMap Expr Expr :=
+      facts.foldl (fun m f => if m.contains f.type then m else m.insert f.type f.proof) {}
+    for f in fresh do
+      if let some q := map[← negLit f.type]? then
+        let lam ← mkLambdaFVars #[h] (contra f.type f.proof q)
+        if e.not?.isSome then return some lam
+        return some (mkApp2 (mkConst ``Classical.byContradiction) e lam)
+    return none
+
+/-- Literals worth refuting: diagrammatic, not (in)equalities. -/
+def refutable (e : Expr) : MetaM Bool := do
+  match head e with
+  | some (n, _) => return n != ``Eq && n != ``False && !(← isArith e)
+  | none => return false
+
+/-- `refute`, once per literal and at most `maxRefutes` times per top-level literal. -/
+def tryRefute (ctx : Ctx) (e : Expr) : MetaM (Option Expr) := do
+  unless (← refutable e) && (← ctx.refutes.get) < maxRefutes && !(← ctx.refuted.get).contains e do
+    return none
+  ctx.refutes.modify (· + 1)
+  ctx.refuted.modify (·.insert e)
+  refute ctx e
+
+/-- `L ≠ M` for lines: a point of one line refuted on the other. -/
+def lineNe (ctx : Ctx) (e : Expr) : MetaM (Option Expr) := do
+  let some (t, l, m) := e.ne? | return none
+  unless (← instantiateMVars t).isConstOf `Line do return none
+  for (l, m, flip) in [(l, m, false), (m, l, true)] do
+    for f in ctx.store.byHead.getD (some (`Point.onLine, true)) #[] do
+      unless f.type.appArg! == l do continue
+      let x := f.type.appFn!.appArg!
+      let some hn ← tryRefute ctx (mkNot (mkApp2 (mkConst `Point.onLine) x m)) | continue
+      let p := mkApp4 (mkConst `line_ne_of_on_line) x l m
+        (mkApp4 (mkConst ``And.intro) f.type (mkNot (mkApp2 (mkConst `Point.onLine) x m)) f.proof hn)
+      if flip then return some (← mkAppM ``Ne.symm #[p])
+      return some p
+  return none
+
 mutual
 
 /-- Prove a goal literal: a fact, metric, or by a backward rule. -/
@@ -630,7 +931,10 @@ partial def proveLit (ctx : Ctx) (depth : Nat) (e : Expr) :
   ctx.calls.modify (· + 1)
   if (← ctx.calls.get) > maxCalls then return none
   let r ← proveLitCore ctx depth e
-  ctx.memo.modify (·.insert e (r, depth))
+  -- a failure after a cap was hit may not be final
+  if r.isSome || ((← ctx.calls.get) ≤ maxCalls && (← ctx.ariths.get) ≤ maxAriths &&
+      (← ctx.substs.get) ≤ maxSubsts) then
+    ctx.memo.modify (·.insert e (r, depth))
   return r
 
 partial def proveLitCore (ctx : Ctx) (depth : Nat) (e : Expr) : MetaM (Option Expr) := do
@@ -640,22 +944,56 @@ partial def proveLitCore (ctx : Ctx) (depth : Nat) (e : Expr) : MetaM (Option Ex
   let flip? := e.ne?.map fun (t, x, y) => mkApp3 e.getAppFn t y x
   if let some e' := flip? then
     if let some p := ctx.store.map[e']? then return some (← mkAppM ``Ne.symm #[p])
+  if e.isConstOf ``False then
+    -- a fact and its negation
+    for f in ctx.facts do
+      if let some p := ctx.store.map[← negLit f.type]? then return some (contra f.type f.proof p)
+    -- a metric contradiction
+    ctx.ariths.modify (· + 1)
+    if let some p ← arith ctx.pool ctx.neFact e then return some p
+    let ts := ctx.pool.foldl (fun acc (f, _) => acc ++ atomTerms f.type) #[]
+    let seeds := ctx.pool.foldl (fun acc (_, ks) => acc ++ ks) #[]
+    return ← arith (← metricFor ctx ts 0) ctx.neFact e seeds
   if ← isArith e then
     ctx.ariths.modify (· + 1)
     if (← ctx.ariths.get) > maxAriths then return none
-    expandMetric ctx e
     -- side conditions `a ≠ b` of angle symmetry: facts only
-    let ne := fun (l : Expr) => do
-      if let some p := ctx.store.map[l]? then return some p
-      if let some (t, x, y) := l.ne? then
-        if let some p := ctx.store.map[mkApp3 l.getAppFn t y x]? then
-          return some (← mkAppM ``Ne.symm #[p])
-      return none
-    return ← arith (← ctx.pool.get) ne e
+    let ne := ctx.neFact
+    -- expand the goal's atoms, then the atoms of the new facts
+    if let some (_, x, y) := e.eq? then
+      if let some p := ctx.store.map[← mkEq y x]? then return some (← mkEqSymm p)
+    let t0 ← IO.monoNanosNow
+    let mut r ← arith ctx.pool ne e
+    if r.isNone then
+      for level in [0:2] do
+        if let some p ← arith (← metricFor ctx (atomTerms e) level) ne e then r := some p; break
+    if systemE.stats.get (← getOptions) then
+      let dt := (← IO.monoNanosNow) - t0
+      profRef.modify fun m => m.alter s!"arith {r.isSome}" fun v =>
+        let (a, b) := v.getD (0, 0)
+        some (a + dt, b + 1)
+    return r
   if depth == 0 then return none
+  -- at the top, by contradiction first: one saturation, often cheaper than search
+  if depth == (← ctx.top.get) then
+    if let some p ← tryRefute ctx e then return some p
+    if let some p ← lineNe ctx e then return some p
+  if let some (t, x, y) := e.ne? then
+    if (← instantiateMVars t).isConstOf `Point && x.isFVar && y.isFVar then
+      let t0 ← IO.monoNanosNow
+      let r ← neByMetric ctx x y
+      if systemE.stats.get (← getOptions) then
+        let dt := (← IO.monoNanosNow) - t0
+        profRef.modify fun m => m.alter s!"neByMetric {r.isSome}" fun v =>
+          let (a, b) := v.getD (0, 0)
+          some (a + dt, b + 1)
+      if let some p := r then return some p
   if let some p ← backwardLit ctx depth e then return p
   if let some e' := flip? then
     if let some p ← backwardLit ctx depth e' then return some (← mkAppM ``Ne.symm #[p])
+  -- by contradiction, in the top two levels
+  if depth + 1 ≥ (← ctx.top.get) then
+    if let some p ← tryRefute ctx e then return some p
   return none
 
 /-- Prove `e` by a clause whose result matches it. -/
@@ -664,13 +1002,16 @@ partial def backwardLit (ctx : Ctx) (depth : Nat) (e : Expr) :
   -- shallow pass (bound diagram premises must be facts), then deep pass
   for deep in [false, true] do
     for cl in (← backwardClauses).getD (head e) #[] do
-      -- contrapositives only at the first level
-      if cl.drop.isSome && depth < maxDepth then continue
+      -- contrapositives only in the first two levels
+      if cl.drop.isSome && depth + 1 < (← ctx.top.get) then continue
       let some σ := pmatch cl.resT e {} | continue
       let cache ← IO.mkRef (#[] : Array Fact)
       let out ← IO.mkRef (none : Option Expr)
       let done ← IO.mkRef false
       let lits := (List.range cl.needT.size).zip cl.needT.toList
+      let t0 ← IO.monoNanosNow
+      let h0 ← IO.getNumHeartbeats
+      let c0 ← ctx.calls.get
       searchBack ctx depth deep cl cache done (fun σ => do
         let leaf := fun l => do
           if let some p := ctx.store.map[l]? then return some p
@@ -679,6 +1020,13 @@ partial def backwardLit (ctx : Ctx) (depth : Nat) (e : Expr) :
         if let some pf ← cl.build σ leaf then
           out.set (some pf)
           done.set true) lits σ
+      if systemE.stats.get (← getOptions) then
+        let dt := (← IO.monoNanosNow) - t0
+        let dh := (← IO.getNumHeartbeats) - h0
+        let dc := (← ctx.calls.get) - c0
+        profRef.modify fun m => m.alter s!"back {cl.rule} {cl.drop} {cl.concl} d{depth} {deep}" fun v =>
+          let (a, b) := v.getD (0, 0)
+          some (a + dt, b + dh / 1000 + 1000000 * dc)
       if let some pf ← out.get then return some pf
   return none
 
@@ -711,7 +1059,14 @@ partial def searchBack (ctx : Ctx) (depth : Nat) (deep : Bool) (cl : Clause)
         go σ
       -- equalities of objects are used only as facts
       else if l.isEq && !cl.arith[pos]! then return
-      else if !deep && !cl.arith[pos]! then return
+      -- below the top, metric premises only about quantities the context mentions
+      else if cl.arith[pos]! && depth < (← ctx.top.get) && !(atoms l).all ctx.known.contains then
+        return
+      -- shallow pass: only facts and literals proved already
+      else if !deep then
+        let some (some p, _) := (← ctx.memo.get)[l]? | return
+        cache.modify (·.push ⟨l, p⟩)
+        go σ
       else if let some p ← proveLit ctx (depth - 1) l then
         cache.modify (·.push ⟨l, p⟩)
         go σ
@@ -721,6 +1076,13 @@ partial def searchBack (ctx : Ctx) (depth : Nat) (deep : Bool) (cl : Clause)
         if let some σ' := pmatch t f.type σ then go σ'
 
 end
+
+/-- Prove a top-level literal, by iterative deepening. -/
+def proveTop (ctx : Ctx) (l : Expr) : MetaM (Option Expr) := do
+  for d in [1:maxDepth + 1] do
+    ctx.top.set d
+    if let some p ← proveLit ctx d l then return some p
+  return none
 
 def contextObjects : MetaM Objects := do
   let mut objs : Objects := #[(`Point, #[]), (`Line, #[]), (`Circle, #[])]
@@ -738,54 +1100,6 @@ def contextFacts : MetaM (Array Fact) := do
       out := out ++ (← project (← instantiateMVars d.type) d.toExpr)
   return out
 
-/-- Per clause: time (ns) and facts produced; filled when `systemE.stats` is on. -/
-initialize profRef : IO.Ref (Std.HashMap String (Nat × Nat)) ← IO.mkRef {}
-
-/-- Close the facts under the forward clauses. -/
-def saturate (objs : Objects) (facts0 : Array Fact) (goal : Expr) : MetaM (Array Fact) := do
-  let prof := systemE.stats.get (← getOptions)
-  let mut facts := facts0
-  let mut idx : Index := {}
-  for f in facts do idx := idx.alter (head f.type) fun a => some ((a.getD #[]).push (f, 0))
-  let mut map : Std.HashMap Expr Expr :=
-    facts.foldl (fun m f => if m.contains f.type then m else m.insert f.type f.proof) {}
-  let mut cls := #[]
-  let mut metric := #[]
-  for cl in (← clauses).filter fun cl => cl.forward && !cl.needs.isEmpty do
-    if ← isArith cl.resT then metric := metric.push cl else cls := cls.push cl
-  let mut fresh : Std.HashSet (Option (Name × Bool)) := idx.keys.foldl (·.insert ·) {}
-  for round in [0:maxRounds] do
-    let mut added := false
-    let mut new := #[]
-    for cl in cls do
-      unless cl.needs.all idx.contains && cl.needs.any fresh.contains do continue
-      let t0 ← IO.monoNanosNow
-      let fs ← fire map idx objs round fresh cl
-      if prof then
-        let dt := (← IO.monoNanosNow) - t0
-        profRef.modify fun m => m.alter s!"{cl.rule} {cl.drop}" fun v =>
-          some ((v.getD (0, 0)).1 + dt, (v.getD (0, 0)).2 + fs.size)
-      for f in fs do
-        unless map.contains f.type do
-          map := map.insert f.type f.proof
-          new := new.push f
-          added := true
-    fresh := new.foldl (fun s f => s.insert (head f.type)) {}
-    for f in new do
-      facts := facts.push f
-      idx := idx.alter (head f.type) fun a => some ((a.getD #[]).push (f, round + 1))
-    if !added || facts.size > maxFacts then break
-  -- metric clauses: one pass, keeping results about atoms already mentioned
-  let known : Std.HashSet (Array Expr) :=
-    facts.foldl (fun s f => (atoms f.type).foldl (·.insert ·) s) ((atoms goal).foldl (·.insert ·) {})
-  let keep := fun (e : Expr) => (atoms e).all known.contains
-  for cl in metric do
-    unless cl.needs.all idx.contains do continue
-    for f in ← fire map idx objs 0 {} cl keep do
-      unless map.contains f.type do
-        map := map.insert f.type f.proof
-        facts := facts.push f
-  return facts
 
 /-- Literal heads the rules can conclude. -/
 def conclusionHeads : MetaM (Array (Name × Bool)) := do
@@ -795,7 +1109,7 @@ def conclusionHeads : MetaM (Array (Name × Bool)) := do
 def worthTrying (facts : Array Fact) (goal : Expr) : MetaM Bool := do
   let heads ← conclusionHeads
   for l in ← literals goal do
-    if (← find facts l).isSome || (← isArith l) then continue
+    if (← find facts l).isSome || (← isArith l) || l.isConstOf ``False then continue
     match head l with
     | some h => unless heads.contains h do return false
     | none => return false
@@ -821,15 +1135,22 @@ partial def attempt (g : MVarId) (phase : IO.Ref MessageData) (last : IO.Ref Exp
   let facts0 ← contextFacts
   let objs ← contextObjects
   phase.set m!"saturating {facts0.size} facts"
-  let facts ← saturate objs facts0 goal
-  let ctx ← Ctx.new facts objs
+  let mut facts ← saturate objs facts0 goal
+  let mut ctx ← Ctx.new facts objs
+  let new ← guarded ctx
+  unless new.isEmpty do
+    phase.set m!"saturating {new.size} facts from guarded lemmas"
+    facts ← saturate objs facts goal (← new.flatMapM fun f => project f.type f.proof)
+    ctx ← Ctx.new facts objs
   let top := fun l => do
     last.set l
     ctx.calls.set 0
     ctx.ariths.set 0
+    ctx.substs.set 0
+    ctx.refutes.set 0
     phase.set m!"proving {l} from {facts.size} facts"
     if let some p ← findDefEq facts l then return some p
-    proveLit ctx maxDepth l
+    proveTop ctx l
   if let some pf ← prove top goal then
     g.assign pf
     return true
