@@ -41,12 +41,11 @@ by
     by_cases g.onLine EF
     · euclid_finish
     · euclid_apply (extend_point FG g f) as h
-      -- Not clear why these are needed.
+      -- G and H relative to DF, for the angle sums at F [Prop. 1.13].
       euclid_assert ¬(g.onLine DF)
       euclid_assert ¬(e.onLine DF)
       euclid_assert (g.opposingSides e DF)
       euclid_assert h.sameSide e DF
-
       euclid_apply (proposition_13 d f g h DF FG)
       euclid_apply (proposition_13 e f g h EF FG)
       euclid_apply (proposition_17 d g e DG EG DE)

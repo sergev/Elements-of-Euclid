@@ -23,7 +23,6 @@ by
   euclid_apply (intersection_lines DE BE) as e
   euclid_apply (proposition_34' d e a b DE AB AC BE)
   euclid_apply (proposition_29''''' e b d a DE AB AC)
-  euclid_apply (proposition_34' d e a b DE AB AC BE)
   use d, e, DE, AC, BE
   euclid_finish
 

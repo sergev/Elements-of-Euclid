@@ -20,21 +20,16 @@ by
     euclid_assert (△ e:b:c : ℝ) = (△ d:b:c)
     euclid_finish
   . -- Omitted by Euclid.
-    euclid_assert a.sameSide c BD
     euclid_apply (proposition_31 d b c BC) as DE
     euclid_apply (intersection_lines DE AB) as e
     euclid_apply (line_from_points e c) as EC
     euclid_apply (proposition_37 d b c e BD BC CD AB EC DE)
-    euclid_assert (△ e:b:c : ℝ) = (△ a:b:c)
-
-    -- Not sure why this is necessary.
+    -- E is on AB; on either side of A, △EBC and △ABC differ by △AEC, so E = A.
     by_cases (between a e b)
     · euclid_apply (sum_areas_if a b e c AB)
-      euclid_assert e = a
       euclid_finish
     · euclid_assert (between e a b)
       euclid_apply (sum_areas_if e b a c AB)
-      euclid_assert e = a
       euclid_finish
 
 end Elements.Book1

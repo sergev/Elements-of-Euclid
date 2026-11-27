@@ -5,13 +5,6 @@ Do them in order. After each task:
 - when a statement or name changes, also check Book 2;
 - commit.
 
-## 5. Remove redundant steps
-- **Props 46 and 46′:** delete the second `proposition_34'` call, which repeats the first with identical arguments.
-- **Props 24 and 39:**
-  - run `tools/gaps.sh 1 24 39`;
-  - remove `euclid_assert` steps that saturation no longer needs;
-  - replace the "Not clear why…" and "Not sure why…" comments with what each remaining step supplies.
-
 ## 6. Speed up the other slow proofs
 - Same recipe as task 2, in this order:
 
