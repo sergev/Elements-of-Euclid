@@ -14,8 +14,8 @@
   [ 
     #title()
     
-    #v(3cm)
-    
+    #v(if with-lean { 1.5cm } else { 3cm })
+
     #text(16pt, if with-greek [
       The Greek text of J.L.~Heiberg (1883--1885)
       

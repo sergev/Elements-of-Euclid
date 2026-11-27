@@ -21,7 +21,7 @@
 )
 #set text(
   // font: "New Computer Modern",
-  size: 10pt
+  size: if with-lean { 11pt } else { 10pt }
 )
 #set par(
   first-line-indent: (amount: 2em, all: true,), // https://github.com/typst/typst/pull/5768
@@ -32,7 +32,7 @@
 
 
 #set raw(syntaxes: "/lean/lean4.sublime-syntax")
-#show raw: set text(font: "DejaVu Sans Mono", size: 7.5pt)
+#show raw: set text(font: "DejaVu Sans Mono", size: 8.5pt)
 #show raw.where(block: true): set par(justify: false)
 
 #include "Book00/Introduction.typ"
