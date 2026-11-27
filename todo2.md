@@ -4,24 +4,6 @@ Book 2 has 14 propositions, all in System E, building on Book 1's area results (
 
 A proof's file `lean/Elements/Book2/PropNN.lean` and the `#lean-proof("/lean/Elements/Book2/PropNN.lean")` line in `Book02/PropNN.typ` are always added in the same task. Typst's `read` fails on a missing file.
 
-## T1. Settle how Book 2 states areas
-
-Book 1 already has the tools:
-- `rectangle_area` turns a rectangle's area (two triangles) into `|(a─b)| * |(a─c)|`;
-- Prop. 1.47 states squares as `|(b─c)| * |(b─c)|`;
-- `between_if` gives `|(a─c)| = |(a─b)| + |(b─c)|`.
-
-So "the rectangle contained by AB, BC" can be written as a product of lengths. But then Props. 2.1–2.10 become algebraic identities, which the solvers may prove without any figure.
-
-- Write Prop. 2.1 and Prop. 2.4 in the product form. Find out whether `euclid_intros; euclid_finish` alone proves them.
-- Then decide on one convention, and record it in a short comment at the top of `lean/Elements/Book2.lean`:
-  - (a) Products in the statement, as in Prop. 1.47. The proof still builds Euclid's figure and reasons with areas. This is recommended, since it matches Book 1.
-  - (b) Areas of constructed rectangles in the statement.
-- Either way, the faithfulness rule holds: the proof follows Euclid's construction even where a shortcut exists.
-- Decide how to state 2.1, where the line A is separate from BC: two segments with their own endpoints.
-
-Output: the decision, and the two trial statements kept as the start of Props. 2.1 and 2.4.
-
 ## T2. Scaffolding
 
 - `lean/Elements/Book2.lean`, imported by `lean/Elements.lean`.

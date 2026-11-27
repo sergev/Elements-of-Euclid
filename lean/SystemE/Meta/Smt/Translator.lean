@@ -46,10 +46,10 @@ private def buildAssertionFrom3 (f : Expr → EsmtM (TranslationResult String)) 
   | _, .error e, _ => return .error e
   | _, _, .error e => return .error e
 
-def translateNumeric (e: Expr) : EsmtM String :=
-  match e.getAppFnArgs with
-  | (``Zero.toOfNat0, _) => return "0.0"
-  | (``instOfNat, #[_, .lit (.natVal n), _, _]) => return s!"{n}"
+-- `OfNat.ofNat ℝ n inst`; read the literal, whatever the instance
+def translateNumeric (n : Expr) : EsmtM String :=
+  match n with
+  | .lit (.natVal n) => return s!"{n}.0"
   | _ => throwError "[Smt.Translator] Improper numeric"
 
 /-- Translate applications of metric functions (length, area etc.) over geometric objects-/
@@ -69,7 +69,7 @@ def translateMetric : Expr →  EsmtM (TranslationResult String)
     | _ => return  .error "[Smt.Translator] Improper input to Triangle.area"
 | e =>
   match e.getAppFnArgs with
-  | (``OfNat.ofNat, #[_, _, e]) => return .ok <| ← translateNumeric e
+  | (``OfNat.ofNat, #[_, n, _]) => return .ok <| ← translateNumeric n
   | (``Angle.Right, _) => return .ok "RightAngle"
   | _ => return .error s!"[Smt.Translator] Unknown metric operation {e}"
 
