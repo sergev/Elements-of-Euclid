@@ -172,6 +172,27 @@ partial def atoms (e : Expr) (acc : Array (Array Expr) := #[]) : Array (Array Ex
     | .app f a => atoms a (atoms f acc)
     | _ => acc
 
+/-- Metric atom subterms of `e` (segment lengths, angles, triangle areas). -/
+partial def atomTerms (e : Expr) (acc : Array Expr := #[]) : Array Expr :=
+  if e.isAppOfArity `Segment.length 1 || e.isAppOfArity `Angle.degree 1 ||
+     e.isAppOfArity `Triangle.area 1 then acc.push e
+  else match e with
+    | .app f a => atomTerms a (atomTerms f acc)
+    | _ => acc
+
+/-- An atom and its forms under the symmetries of its points. -/
+def variants (a : Expr) : Array Expr :=
+  let f := a.appFn!
+  let inner := a.appArg!
+  let g := inner.getAppFn
+  match inner.getAppArgs with
+  | #[x, y] => #[a, mkApp f (mkApp2 g y x)]
+  | #[x, y, z] =>
+    if a.isAppOfArity `Angle.degree 1 then #[a, mkApp f (mkApp3 g z y x)]
+    else #[mkApp3 g x y z, mkApp3 g x z y, mkApp3 g y x z,
+           mkApp3 g y z x, mkApp3 g z x y, mkApp3 g z y x].map (mkApp f)
+  | _ => #[a]
+
 /-- Metric facts with their atoms. -/
 def metricPool (facts : Array Fact) : MetaM (Array (Fact × Array (Array Expr))) :=
   facts.filterMapM fun f => do
@@ -506,7 +527,7 @@ partial def matchAll (idx : Index) (objs : Objects) (sorts : Array Expr)
 fact from the previous round (semi-naive). -/
 def fire (map : Std.HashMap Expr Expr) (idx : Index) (objs : Objects) (round : Nat)
     (fresh : Std.HashSet (Option (Name × Bool))) (cl : Clause)
-    (keep : Expr → Bool := fun _ => true) : MetaM (Array Fact) := do
+    (keep : Expr → Bool := fun _ => true) (σ0 : Subst := {}) : MetaM (Array Fact) := do
   let out ← IO.mkRef (#[] : Array Fact)
   let k := fun (σ : Subst) => do
     let res := fill cl.resT σ
@@ -517,7 +538,7 @@ def fire (map : Std.HashMap Expr Expr) (idx : Index) (objs : Objects) (round : N
       out.modify (·.push ⟨res, pf⟩)
   let lits := (List.range cl.needT.size).zip cl.needT.toList
   if round == 0 then
-    matchAll idx objs cl.sorts (fun _ _ => true) k lits {}
+    matchAll idx objs cl.sorts (fun _ _ => true) k lits σ0
   else
     for p in [0:cl.needT.size] do
       unless fresh.contains cl.needs[p]! do continue
@@ -553,31 +574,41 @@ def Ctx.new (facts : Array Fact) (objs : Objects) : MetaM Ctx :=
 
 /-- Metric forward clauses. -/
 def metricClauses : MetaM (Array Clause) := do
-  (← clauses).filterM fun cl => do return cl.forward && !cl.needs.isEmpty && (← isArith cl.resT)
+  -- any size: results are kept only for the atoms being expanded
+  let back := (← configRef.get).backwardLemmas
+  (← clauses).filterM fun cl => do
+    return !back.contains cl.rule && cl.drop.isNone && !cl.needT.isEmpty &&
+      !cl.arith.any id && (← isArith cl.resT)
 
 /-- Fire the metric clauses whose results mention an atom of `e` not yet
 expanded, then once more for the atoms of the new facts. -/
 def expandMetric (ctx : Ctx) (e : Expr) : MetaM Unit := do
   let idx := ctx.idx
-  let mut todo := atoms e
+  let mut todo := atomTerms e
   for _ in [0:2] do
     let done ← ctx.expanded.get
-    let new := todo.filter fun k => !done.contains k
+    let new := todo.filter fun a => !done.contains (atoms a)[0]!
     if new.isEmpty then return
-    ctx.expanded.modify fun s => new.foldl (·.insert ·) s
-    let keep := fun (r : Expr) => (atoms r).any new.contains
+    let keys := new.map fun a => (atoms a)[0]!
+    ctx.expanded.modify fun s => keys.foldl (·.insert ·) s
+    let keep := fun (r : Expr) => (atoms r).any keys.contains
+    let targets := new.foldl (fun acc a => acc ++ variants a) #[]
     todo := #[]
     for cl in ← metricClauses do
       unless cl.needs.all idx.contains do continue
-      let fs ← fire ctx.store.map idx ctx.objs 0 {} cl keep
-      ctx.extra.modify (· ++ fs)
-      let mp ← metricPool fs
-      ctx.pool.modify (· ++ mp)
-      for f in fs do todo := todo ++ atoms f.type
+      -- bind a result atom of the clause to a target first
+      for t in atomTerms cl.resT do
+        for a in targets do
+          let some σ0 := pmatch t a {} | continue
+          let fs ← fire ctx.store.map idx ctx.objs 0 {} cl keep σ0
+          let fs := fs.filter fun f => !ctx.store.map.contains f.type
+          ctx.extra.modify (· ++ fs)
+          ctx.pool.modify (· ++ fs.map fun f => (f, atoms f.type))
+          for f in fs do todo := todo ++ atomTerms f.type
 
 /-- Recursive calls and `linarith` calls one attempt may make. -/
-def maxCalls : Nat := 30000
-def maxAriths : Nat := 400
+def maxCalls : Nat := 2000
+def maxAriths : Nat := 60
 
 /-- A fact stating `l`, or `b ≠ a` for `l = (a ≠ b)`. -/
 def Ctx.fact? (ctx : Ctx) (cache : Array Fact) (l : Expr) : MetaM (Option Expr) := do
@@ -773,6 +804,42 @@ def worthTrying (facts : Array Fact) (goal : Expr) : MetaM Bool := do
 def stat (m : MessageData) : MetaM Unit := do
   if systemE.stats.get (← getOptions) then logInfo m!"stats: {m}"
 
+/-- An equality between distinct objects among the facts. -/
+def objectEq? (facts : Array Fact) : MetaM (Option Fact) := do
+  for f in facts do
+    if let some (t, x, y) := f.type.eq? then
+      if x.isFVar && y.isFVar && x != y then
+        let t ← instantiateMVars t
+        if t.isConstOf `Point || t.isConstOf `Line || t.isConstOf `Circle then return some f
+  return none
+
+/-- Saturate and prove `g`; if that fails and saturation found an equality of
+two objects, substitute it and try again (`fuel` times). Assigns `g` on success. -/
+partial def attempt (g : MVarId) (phase : IO.Ref MessageData) (last : IO.Ref Expr)
+    (fuel : Nat) : MetaM Bool := g.withContext do
+  let goal ← instantiateMVars (← g.getType)
+  let facts0 ← contextFacts
+  let objs ← contextObjects
+  phase.set m!"saturating {facts0.size} facts"
+  let facts ← saturate objs facts0 goal
+  let ctx ← Ctx.new facts objs
+  let top := fun l => do
+    last.set l
+    ctx.calls.set 0
+    ctx.ariths.set 0
+    phase.set m!"proving {l} from {facts.size} facts"
+    if let some p ← findDefEq facts l then return some p
+    proveLit ctx maxDepth l
+  if let some pf ← prove top goal then
+    g.assign pf
+    return true
+  if fuel == 0 then return false
+  let some f ← objectEq? facts | return false
+  let g1 ← g.assert `h f.type f.proof
+  let (h, g2) ← g1.intro1P
+  let g3 ← subst g2 h
+  attempt g3 phase last (fuel - 1)
+
 /-- Heartbeats saturation spent in the current declaration (keyed by its start). -/
 initialize spentRef : IO.Ref (Nat × Nat) ← IO.mkRef (0, 0)
 
@@ -784,38 +851,26 @@ def close (g : MVarId) : TacticM Bool := do
   let core ← readThe Core.Context
   let (decl, spent) ← spentRef.get
   let spent := if decl == core.initHeartbeats then spent else 0
-  if core.maxHeartbeats > 0 && 10 * (spent + budget * 1000) > 3 * core.maxHeartbeats then
+  let budget := if core.maxHeartbeats == 0 then budget else
+    min budget ((3 * core.maxHeartbeats / 10 - min spent (3 * core.maxHeartbeats / 10)) / 1000)
+  if budget * 10 < systemE.saturateBudget.get (← getOptions) then
+    stat m!"capped"
     return false
   let start ← IO.getNumHeartbeats
   let phase ← IO.mkRef m!"start"
   let r ← tryCatchRuntimeEx (withoutRecover <| withCurrHeartbeats <|
       withTheReader Core.Context ({ · with maxHeartbeats := budget * 1000 }) do
     let g ← try substVars g catch _ => pure g
-    g.withContext do
-      let goal ← instantiateMVars (← g.getType)
-      let facts0 ← contextFacts
-      unless ← worthTrying facts0 goal do
-        s.restore
-        return false
-      let objs ← contextObjects
-      phase.set m!"saturating {facts0.size} facts"
-      let facts ← saturate objs facts0 goal
-      let last ← IO.mkRef goal
-      let ctx ← Ctx.new facts objs
-      let top := fun l => do
-        last.set l
-        ctx.calls.set 0
-        ctx.ariths.set 0
-        phase.set m!"proving {l} from {facts.size} facts"
-        if let some p ← findDefEq facts l then return some p
-        proveLit ctx maxDepth l
-      if let some pf ← prove top goal then
-        g.assign pf
-        return true
-      let l ← last.get
+    let goal0 ← g.withContext (do instantiateMVars (← g.getType))
+    let worth ← g.withContext (do worthTrying (← contextFacts) goal0)
+    unless worth do
       s.restore
-      stat m!"stuck {l}"
-      return false)
+      return false
+    let last ← IO.mkRef goal0
+    if ← attempt g phase last 3 then return true
+    s.restore
+    stat m!"stuck {← last.get}"
+    return false)
     fun _ => do
       s.restore
       stat m!"budget, {← phase.get}"
