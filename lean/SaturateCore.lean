@@ -93,7 +93,7 @@ partial def literals (e : Expr) : MetaM (List Expr) := do
   let e ← instantiateMVars e
   match (← whnfR e).and? with
   | some (p, q) => return (← literals p) ++ (← literals q)
-  | none => return [e]
+  | none => return [e.consumeMData]
 
 /-- Facts indexed by statement and by head. -/
 structure Store where
@@ -1483,7 +1483,7 @@ def objectEq? (facts : Array Fact) : MetaM (Option Fact) := do
 two objects, substitute it and try again (`fuel` times). Assigns `g` on success. -/
 partial def attempt (g : MVarId) (phase : IO.Ref MessageData) (last : IO.Ref Expr)
     (fuel : Nat) : MetaM Bool := g.withContext do
-  let goal ← instantiateMVars (← g.getType)
+  let goal := (← instantiateMVars (← g.getType)).consumeMData
   let facts0 ← contextFacts
   let objs ← contextObjects
   phase.set m!"saturating {facts0.size} facts"
@@ -1544,7 +1544,7 @@ def close (g : MVarId) : TacticM Bool := do
   let r ← tryCatchRuntimeEx (withoutRecover <| withCurrHeartbeats <|
       withTheReader Core.Context ({ · with maxHeartbeats := budget * 1000 }) do
     let g ← try substVars g catch _ => pure g
-    let goal0 ← g.withContext (do instantiateMVars (← g.getType))
+    let goal0 ← g.withContext (do return (← instantiateMVars (← g.getType)).consumeMData)
     let worth ← g.withContext (do worthTrying (← contextFacts) goal0)
     unless worth do
       s.restore
