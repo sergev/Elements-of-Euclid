@@ -31,6 +31,7 @@ The Lean edition (`--input lean=yes`, which implies no Greek) is the Introductio
 - `lean/Elements/Book2/` are Book 2's proofs, written here in System E. Convention (top of `lean/Elements/Book2.lean`): rectangles and squares are products of lengths, as in Prop. 1.47, but proofs still build Euclid's figure and argue with areas. Lemmas proved from earlier propositions (`rectangle_on`, `parallel_between`) are in `lean/Elements/Book2/Lemmas.lean`, typeset after Book 2's definitions. Inside `namespace Elements.Book2`, cite Book 1's `proposition_N` by full name when Book 2 has its own `proposition_N`.
 - Big figures (Prop. 2.8): every SystemE step sends the whole context to the solvers and first runs `simp_all` over it, so z3 or Lean can exhaust memory. Build the figure with `euclid_apply`, take the needed facts as named `have`/split `obtain` (named conjunctions get destructed by later steps), and close with a lemma over only those facts. `set_option systemE.simpAll false in` skips `simp_all` for one step. Never `maxHeartbeats 0`; run checks under `systemd-run --user --scope -p MemoryMax=6G -p MemorySwapMax=0`.
 - `make check` runs `lake build` in `lean/` (about 12 minutes from clean). Steps closed by SMT are admitted by SystemE's `SMT_VERIF` axiom, so a passing build trusts the solvers; a step the solvers can't close is a build error.
+- Saturation (`lean/SystemE/Meta/Tactics/Saturate.lean`) is tried before the solvers on every step: forward and backward chaining over System E's axioms and lemmas proved from them, metric steps by `linarith`, giving kernel-checked proofs. Options: `systemE.saturate`, `systemE.saturateBudget`, `systemE.smt` (false: unproved steps are errors), `systemE.stats`. Iterate with `lake build SystemE` and `tools/gaps.sh`, not full builds.
 
 There are no package dependencies and no tests; verify by compiling and inspecting the PDF (`pdftoppm -f N -l N -png` to look at a page).
 
@@ -72,6 +73,8 @@ There are no package dependencies and no tests; verify by compiling and inspecti
 - `greek.py` — transliteration (`\gr{...}` babel/teubner encoding) to Unicode Greek.
 - `lex2typ.py` — converts `Book99/Lexicon.tex`.
 - `fronts.py` — draws the book frontispieces `BookNN/front.svg` (Byrne-style flat colors; edit and rerun to change them).
+- `gaps.sh BOOK [NN...]` — runs propositions with SMT off and lists the steps saturation can't close (about 40 s for Book 1, no solvers).
+- `SmtFree.lean` — lists theorems free of `SMT_VERIF` (`cd lean && lake env lean ../tools/SmtFree.lean`, after `make check`).
 
 ## Repo notes
 

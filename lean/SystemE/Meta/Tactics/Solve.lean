@@ -91,7 +91,9 @@ open EuclidStep
 private def solveWithProvers (query : Esmt) (g : MVarId) : TacticM (Option Expr) := do
   let goal ← instantiateMVars (← g.getType)
   unless ← Saturate.getSmtOption do
-    throwError "saturation could not prove {goal}, and systemE.smt is off"
+    logError m!"saturation could not prove {goal}, and systemE.smt is off"
+    g.admit
+    return none
   let smtQuery ← addGoal query goal
   match ← evalSmt smtQuery with
   | .unsat =>
