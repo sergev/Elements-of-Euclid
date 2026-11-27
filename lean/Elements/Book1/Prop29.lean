@@ -10,19 +10,24 @@ theorem proposition_29 : ∀ (a b c d e f g h : Point) (AB CD EF : Line),
   → ∠ a:g:h = ∠ g:h:d ∧ ∠ e:g:b = ∠ g:h:d ∧ ∠ b:g:h + ∠ g:h:d = ∟ + ∟ :=
 by
   euclid_intros
+  have hne : AB ≠ CD := by euclid_finish
   have : ∠ a:g:h = ∠ g:h:d := by
     by_contra
     by_cases ∠ a:g:h > ∠ g:h:d
     · euclid_assert ∠ a:g:h + ∠ b:g:h > ∠ b:g:h + ∠ g:h:d
       euclid_apply (proposition_13 h g a b EF AB)
       euclid_assert ∠ b:g:h + ∠ g:h:d < ∟ + ∟
-      euclid_finish
+      -- [Post. 5]
+      obtain ⟨k, hk, hk', -⟩ := lines_intersect b g h d AB EF CD (by euclid_finish)
+      exact ‹¬AB.intersectsLine CD› (intersection_lines_common_point k AB CD ⟨hk, hk', hne⟩)
     · -- Omitted by Euclid.
       euclid_assert ∠ a:g:h < ∠ g:h:d
       euclid_assert ∠ a:g:h + ∠ c:h:g < ∠ g:h:d + ∠ c:h:g
       euclid_apply (proposition_13 g h c d EF CD)
       euclid_assert ∠ a:g:h + ∠ c:h:g < ∟ + ∟
-      euclid_finish
+      -- [Post. 5]
+      obtain ⟨k, hk, hk', -⟩ := lines_intersect a g h c AB EF CD (by euclid_finish)
+      exact ‹¬AB.intersectsLine CD› (intersection_lines_common_point k AB CD ⟨hk, hk', hne⟩)
 
   euclid_apply (proposition_15 a b e h g AB EF)
   euclid_apply (proposition_13 b g e h AB EF)
