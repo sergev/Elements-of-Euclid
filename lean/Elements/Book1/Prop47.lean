@@ -11,8 +11,7 @@ import Elements.Book1.Prop46
 
 namespace Elements.Book1
 
--- WARNING: This proof is quite slow.
-set_option maxHeartbeats 0 in
+set_option maxHeartbeats 400000 in
 theorem proposition_47 : ∀ (a b c: Point) (AB BC AC : Line),
   formTriangle a b c AB BC AC ∧ (∠ b:a:c : ℝ) = ∟ →
   |(b─c)| * |(b─c)| = |(b─a)| * |(b─a)| + |(a─c)| * |(a─c)| :=
@@ -86,6 +85,14 @@ by
   euclid_apply (rectangle_area b c d e BC DE BD CE)
   euclid_apply (rectangle_area b a f g AB FG BF AG)
   euclid_apply (rectangle_area a c h k AC HK AH CK)
+  -- Missed by Euclid: L lies between D and E, since AL is parallel to BD and CE.
+  euclid_assert a.sameSide c BD
+  euclid_assert a.sameSide e BD
+  euclid_assert l.sameSide e BD
+  euclid_assert a.sameSide b CE
+  euclid_assert a.sameSide d CE
+  euclid_assert l.sameSide d CE
+  euclid_assert between d l e
   euclid_apply sum_parallelograms_area b c d e l' l BC DE BD CE
   euclid_apply parallelogram_area b l' d l BC DE BD AL
   euclid_assert ((Triangle.area △ b:d:e : ℝ) + (Triangle.area △ b:e:c) = (Triangle.area △ g:f:b) + (Triangle.area △ g:b:a) + (Triangle.area △ k:c:a) + (Triangle.area △ k:a:h))

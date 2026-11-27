@@ -5,15 +5,6 @@ Do them in order. After each task:
 - when a statement or name changes, also check Book 2;
 - commit.
 
-## 2. Prop 47: drop `maxHeartbeats 0`
-- File: `lean/Elements/Book1/Prop47.lean` (currently 254–365 s, and it blocks Prop 48 and Book 2).
-- Use the Prop 2.8 recipe:
-  - build the three squares with `euclid_apply`;
-  - pull the needed facts into named `have`s;
-  - close the area chain with a small lemma over only those facts, which is linear arithmetic over the triangle areas;
-  - use `set_option systemE.simpAll false in` on the late steps.
-- Done when: there is no heartbeat override and the build takes under 60 s.
-
 ## 3. Strengthen statements
 Do this before task 4, because it changes the theorems that other proofs depend on.
 - **Prop 4:** add `△abc = △def` to the conclusion, via `area_congruence`.
