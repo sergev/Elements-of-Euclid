@@ -34,9 +34,12 @@ by
 
   -- Missed by Euclid.
   have : (d.sameSide c AB) := by
+    by_contra
     euclid_apply (extend_point AB a b) as b'
     euclid_apply (proposition_16 c a b b' AC AB BC)
     euclid_assert (∠ c:b:b' : ℝ) > ∟
+    euclid_apply (triple_incidence_2 BC AB BD b c b' d)
+    euclid_apply (sum_angles_onlyif b c d b' BC BD)
     euclid_finish
 
   -- Missed by Euclid.
@@ -52,9 +55,12 @@ by
 
   -- Missed by Euclid.
   have : (e.sameSide b AC) := by
+    by_contra
     euclid_apply (extend_point AC a c) as c'
     euclid_apply (proposition_16 b a c c' AB AC BC)
     euclid_assert (∠ b:c:c' : ℝ) > ∟
+    euclid_apply (triple_incidence_2 BC AC CE c b c' e)
+    euclid_apply (sum_angles_onlyif c b e c' BC CE)
     euclid_finish
 
   euclid_apply (proposition_31 a b d BD) as AL
@@ -92,10 +98,21 @@ by
   euclid_assert a.sameSide b CE
   euclid_assert a.sameSide d CE
   euclid_assert l.sameSide d CE
-  euclid_assert between d l e
+  have : between d l e := by
+    rcases between_points d l e DE (by euclid_finish) with h | h | h
+    · exact h
+    · exact absurd ‹l.sameSide e BD› (pasch_3 l d e BD ⟨h, ‹_›⟩)
+    · exact absurd ‹l.sameSide d CE› (pasch_3 l e d CE ⟨(between_symm d e l h).1, ‹_›⟩)
   euclid_apply sum_parallelograms_area b c d e l' l BC DE BD CE
   euclid_apply parallelogram_area b l' d l BC DE BD AL
   euclid_assert ((Triangle.area △ b:d:e : ℝ) + (Triangle.area △ b:e:c) = (Triangle.area △ g:f:b) + (Triangle.area △ g:b:a) + (Triangle.area △ k:c:a) + (Triangle.area △ k:a:h))
+  -- The squares' sides
+  have hbd : |(b─d)| = |(b─c)| := by euclid_finish
+  have hbf : |(b─f)| = |(b─a)| := by euclid_finish
+  have hah : |(a─h)| = |(a─c)| := by euclid_finish
+  have : |(b─c)| * |(b─d)| = |(b─c)| * |(b─c)| := by rw [hbd]
+  have : |(b─a)| * |(b─f)| = |(b─a)| * |(b─a)| := by rw [hbf]
+  have : |(a─c)| * |(a─h)| = |(a─c)| * |(a─c)| := by rw [hah]
   euclid_finish
 
 end Elements.Book1

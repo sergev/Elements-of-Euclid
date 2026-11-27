@@ -22,6 +22,7 @@ by
   euclid_apply (proposition_31 b a d AC) as BE
   euclid_apply (intersection_lines DE BE) as e
   euclid_apply (proposition_34' d e a b DE AB AC BE)
+  euclid_apply (equal_angles a c' d b b AC AB)
   euclid_apply (proposition_29_interior e b d a DE AB AC)
   use d, e, DE, AC, BE
   euclid_finish

@@ -15,17 +15,7 @@ theorem proposition_24 : ∀ (a b c d e f : Point) (AB BC AC DE EF DF : Line),
   |(b─c)| > |(e─f)| :=
 by
   euclid_intros
-  obtain ⟨g', hg', hside, hang⟩ := proposition_23' d e a b c f DE AB AC (by euclid_finish)
-  -- Omitted by Euclid: G' is off DE, since the angle BAC is neither nothing nor two right angles.
-  have : ¬(g'.onLine DE) := by
-    intro h
-    by_cases (between g' d e)
-    · euclid_apply (flat_angle_onlyif g' d e)
-      euclid_apply (flat_angle_if b a c)
-      euclid_finish
-    · euclid_apply (degenerated_angle_if d g' e DE)
-      euclid_finish
-  have : g'.sameSide f DE := hside.resolve_left this
+  euclid_apply (proposition_23_side d e a b c f DE AB AC) as g'
   euclid_apply (line_from_points d g') as DG
   euclid_apply (extend_point_longer DG d g' (a─c)) as g''
   euclid_apply (proposition_3 d g'' a c DG AC) as g
