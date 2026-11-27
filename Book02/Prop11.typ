@@ -24,3 +24,4 @@
     [Thus, the given straight-line $A B$ has been cut at (point) $H$ such as to make the rectangle contained by $A B$ and $B H$ equal to the square on $H A$. (Which is) the very thing it was required to do.],
   )
 ]
+#lean-proof("/lean/Elements/Book2/Prop11.lean")

@@ -4,10 +4,6 @@ Book 2 has 14 propositions, all in System E, building on Book 1's area results (
 
 A proof's file `lean/Elements/Book2/PropNN.lean` and the `#lean-proof("/lean/Elements/Book2/PropNN.lean")` line in `Book02/PropNN.typ` are always added in the same task. Typst's `read` fails on a missing file.
 
-## T9. Prop. 2.11: cutting a line in extreme and mean ratio
-
-This is a construction problem: there exists a point H on AB with rect(AB, BH) = sq(AH). It uses Props. 1.10, 1.3, 1.46, 1.47 and 2.6. Prop. 4.10 and Book 13 need this statement later, so state it in the form they will need.
-
 ## T10. Props. 2.12–2.13: the law of cosines
 
 2.12 is the obtuse triangle, with the perpendicular falling outside. 2.13 is the acute angle. Both use Props. 1.12, 1.47, 2.4 and 2.7.
