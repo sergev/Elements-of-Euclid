@@ -1,6 +1,7 @@
 import Aesop.BuiltinRules.DestructProducts
 import SystemE.Meta.Tactics.Util
 import SystemE.Meta.Smt.Solver
+import SystemE.Meta.Tactics.Saturate
 
 set_option autoImplicit false
 
@@ -89,7 +90,8 @@ open EuclidStep
 -/
 private def solveWithProvers (query : Esmt) (g : MVarId) : TacticM (Option Expr) := do
   let goal ← instantiateMVars (← g.getType)
-  -- logInfo m!"{goal}"
+  unless ← Saturate.getSmtOption do
+    throwError "saturation could not prove {goal}, and systemE.smt is off"
   let smtQuery ← addGoal query goal
   match ← evalSmt smtQuery with
   | .unsat =>
@@ -127,6 +129,12 @@ def preprocess : TacticM Unit := do
 
 def EuclidFinish (isApply : Bool) : TacticM Unit := do
   if !isApply then preprocess
+  if ← Saturate.getSaturateOption then
+    if ← Saturate.close (← getMainGoal) then
+      if systemE.stats.get (← getOptions) then logInfo "stats: saturated"
+      replaceMainGoal []
+      return
+  if systemE.stats.get (← getOptions) then logInfo "stats: smt"
   withMainContext do
     let subGoals ← evalTacticAt (← simpAndSplit) (← getMainGoal)
     replaceMainGoal subGoals
