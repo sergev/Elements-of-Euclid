@@ -4,14 +4,6 @@ Book 2 has 14 propositions, all in System E, building on Book 1's area results (
 
 A proof's file `lean/Elements/Book2/PropNN.lean` and the `#lean-proof("/lean/Elements/Book2/PropNN.lean")` line in `Book02/PropNN.typ` are always added in the same task. Typst's `read` fails on a missing file.
 
-## T3. Book 2 definitions and helper lemmas
-
-In `lean/SystemE/Book2.lean`, following the System E rule in the roadmap:
-- **Def. 2.1:** the rectangle contained by two straight-lines.
-- **Def. 2.2:** the gnomon, as a sum of triangle areas.
-- **Repeated constructions.** Euclid uses some of these in almost every proof. Example: a rectangle on AB with a given height, built from Prop. 1.46 and Prop. 1.31, with its area given by `rectangle_area`. Write the constructions that 2.1–2.4 need; add more as later tasks need them.
-- **No new axioms are expected.** If one seems needed, stop and discuss it before adding `lean/Elements/Book2/Axioms.lean`.
-
 ## T4. Props. 2.1–2.3: splitting a rectangle
 
 A rectangle on a line cut at several points equals the sum of the rectangles on the pieces. The figure is parallels through the cut points, and the proof uses `sum_parallelograms_area`. These three are the first real test of the convention in `lean/Elements/Book2.lean` and of the T3 lemmas, so revise those here if needed.
@@ -53,7 +45,7 @@ This is the end of Book 2. It uses Prop. 1.45 for the parallelogram, then a semi
 ## T12. Primer and docs
 
 - `Book00/Lean.typ`: reword "the propositions of Book 1" for several books, and explain the convention for rectangles and squares from `lean/Elements/Book2.lean`.
-- `CLAUDE.md`: the Lean project notes for Book 2, and where `lean/SystemE/Book2.lean` fits.
+- `CLAUDE.md`: the Lean project notes for Book 2, and where `lean/Elements/Book2/Lemmas.lean` fits.
 - `Roadmap.md`: mark Milestone 2 done in the table.
 
 ## T13. Final check

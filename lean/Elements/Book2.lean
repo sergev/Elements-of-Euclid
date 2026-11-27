@@ -1,3 +1,5 @@
+import Elements.Book2.Lemmas
+
 /-
 Book 2: geometric algebra.
 

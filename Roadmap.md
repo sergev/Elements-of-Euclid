@@ -10,7 +10,7 @@ Book 1 is done: 48 propositions from LeanEuclid, written in System E, typeset in
 - **Trust.** No `sorry`. New axioms are allowed only for what Euclid assumes (his definitions and postulates, or System E's rules). They live in one file per book, `lean/Elements/BookN/Axioms.lean`, and the primer lists them.
 - **Definitions.** A book's definitions are formalized where they are used, as Lean `def`s with the Euclid number in a doc comment. They are not typeset separately unless that turns out useful.
 - **Done.** `make check` passes (`make check BOOK=N` checks one book while working on it). `make` builds the PDF with the book included, and its pages have been inspected. The primer (`Book00/Lean.typ`) covers any new notation.
-- **System E.** It is our own copy in `lean/SystemE/`. Extensions a book needs, such as new relations or derived lemmas, go there, in files named for the book that introduces them.
+- **System E.** It is our own copy in `lean/SystemE/`. New relations or rules a book needs go there, in files named for the book that introduces them. Lemmas proved from earlier propositions, such as repeated constructions, go in `lean/Elements/BookN/Lemmas.lean`.
 - **Toolchain.** Lean 4.36 and Mathlib v4.36. Upgrade Lean and Mathlib together, between milestones, not during one.
 
 ## Milestone 2 — Book 2: geometric algebra (14 propositions)
