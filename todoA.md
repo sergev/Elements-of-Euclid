@@ -5,13 +5,6 @@ Do them in order. After each task:
 - when a statement or name changes, also check Book 2;
 - commit.
 
-## 3. Strengthen statements
-Do this before task 4, because it changes the theorems that other proofs depend on.
-- **Prop 4:** add `△abc = △def` to the conclusion, via `area_congruence`.
-- **Prop 26:** add the same area equality.
-- **Prop 1:** add `¬ c.onLine AB`, so the conclusion is a real triangle.
-- Fix any callers that break.
-
 ## 4. Derive weaker variants from stronger ones
 Replace each duplicated proof with a 2–3 line derivation:
 - `proposition_9` from `9′`. This also fixes 9, which the opposite ray of the bisector currently satisfies.

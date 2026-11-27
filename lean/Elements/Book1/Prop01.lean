@@ -4,7 +4,7 @@ namespace Elements.Book1
 
 theorem proposition_1 : ∀ (a b : Point) (AB : Line),
   distinctPointsOnLine a b AB →
-  ∃ c : Point, |(c─a)| = |(a─b)| ∧ |(c─b)| = |(a─b)| :=
+  ∃ c : Point, |(c─a)| = |(a─b)| ∧ |(c─b)| = |(a─b)| ∧ ¬(c.onLine AB) :=
 by
   euclid_intros
   euclid_apply circle_from_points a b as BCD
