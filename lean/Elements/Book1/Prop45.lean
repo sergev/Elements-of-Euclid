@@ -35,6 +35,8 @@ by
   euclid_apply (proposition_30 FK LM GH)
   euclid_assert (|(f─l)| = |(k─m)|)
   euclid_apply (proposition_33 f l k m FG KH FK LM)
+  -- KFLM is made of FH and GM.
+  euclid_apply (sum_parallelograms_area f l k m g h FG KH FK LM)
   use f, l, k, m, FG, KH, FK, LM
   euclid_finish
 

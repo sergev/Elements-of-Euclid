@@ -5,21 +5,6 @@ Do them in order. After each task:
 - when a statement or name changes, also check Book 2;
 - commit.
 
-## 6. Speed up the other slow proofs
-- Same recipe as task 2, in this order:
-
-  | Prop | Build time |
-  |---|---|
-  | 45 | 65–115 s |
-  | 24 | 92–100 s |
-  | 44 | 82–95 s |
-  | 42 | 60–67 s |
-  | 48 | 21–58 s |
-  | 35 | 45 s |
-  | 43 | 36 s |
-
-- Target: each under 30 s.
-
 ## 7. Rename the multi-primed theorems
 - Give descriptive names to `proposition_29′` through `29′′′′′`, `11″`/`11‴`, `42″`/`42‴`, and the other multi-primed theorems. Example: `proposition_29_interior_sum`.
 - Update Book 2 in the same commit: `29''''` and `29'''''` are used 15 times each.
