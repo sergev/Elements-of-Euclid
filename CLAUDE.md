@@ -11,6 +11,7 @@ A Typst port of Richard Fitzpatrick's LaTeX edition of Euclid's Elements (Greek 
 ```sh
 make                                     # ElementsGreekEnglish.pdf, ElementsEnglish.pdf, ElementsLean.pdf
 make check                               # check the Lean proofs (slow; needs z3, cvc5, smt-portfolio)
+make check BOOK=1                        # check one book's proofs
 make clean
 typst watch Elements.typ                 # rebuild on change (Greek-English)
 typst compile --input greek=no Elements.typ ElementsEnglish.pdf
@@ -18,21 +19,21 @@ typst compile --input greek=no Elements.typ ElementsEnglish.pdf
 
 The English edition (`--input greek=no`) is made by the helpers in `functions.typ`: when `with-greek` is false, `parallel*` and `parallel-image` emit only the English column at full width, `running-header` centers the English title, and `Elements.typ` omits the Lexicon. Keep all Greek inside these helpers so both editions stay correct.
 
-The Lean edition (`--input lean=yes`, which implies no Greek) is the Introduction, the primer `Book00/Lean.typ` and Book 1 only. Each `Book01/PropNN.typ` ends with `#lean-proof("/lean/Elements/Book1/PropNN.lean")` after its `content-box`; the helper is a no-op in the other editions and otherwise typesets the `.lean` file (minus `import`/`namespace`/`end` lines) under a *Formalization* heading, highlighted by `lean/lean4.sublime-syntax`. The PDF build never runs Lean.
+The Lean edition (`--input lean=yes`, which implies no Greek) is the Introduction, the primer `Book00/Lean.typ` and the books listed in `lean-books` in `functions.typ`, which also sets the title-page subtitle ("Books 1–3, with proofs…"). Each `Book01/PropNN.typ` ends with `#lean-proof("/lean/Elements/Book1/PropNN.lean")` after its `content-box`; the helper is a no-op in the other editions and otherwise typesets the `.lean` file (minus `import`/`namespace`/`end` lines) under a *Formalization* heading, highlighted by `lean/lean4.sublime-syntax`. The PDF build never runs Lean.
 
 ### Lean project (`lean/`)
 
 - Lean 4.36 (`lean/lean-toolchain`) and Mathlib `v4.36.0` (`lean/lakefile.lean`), the only dependency. Bump them together; Mathlib tags match Lean versions.
 - `lean/SystemE/` is System E from LeanEuclid commit `33a72c0` (MIT, `lean/LICENSE-LeanEuclid`), ported to 4.36, without UniGeo and the commented-out `Formalization` files. It is ours now: extend it here (e.g. tangency for Book 3).
 - `lean/Smt/` is the part of lean-smt that SystemE uses (Apache 2.0, `lean/Smt/LICENSE`): SMT-LIB terms and commands, and `Smt.Solver`, which runs the external `smt-portfolio` (z3 + cvc5). `Data/Sexp.lean` and `Dsl/Sexp.lean` are upstream's 4.36 versions; the rest is from the 4.19 fork, ported.
-- `lean/Elements/Book1/PropNN.lean` are LeanEuclid's `Book/PropNN.lean` with imports renamed to `Elements.Book1.PropNN`. Primed variants stay in their proposition's file.
+- `lean/Elements/Book1/PropNN.lean` are LeanEuclid's `Book/PropNN.lean` with imports renamed to `Elements.Book1.PropNN`. Primed variants stay in their proposition's file. Each book has a root module `lean/Elements/BookN.lean` importing its propositions; `lean/Elements.lean` imports the roots.
 - `make check` runs `lake build` in `lean/` (about 6 minutes from clean). Steps closed by SMT are admitted by SystemE's `SMT_VERIF` axiom, so a passing build trusts the solvers; a step the solvers can't close is a build error.
 
 There are no package dependencies and no tests; verify by compiling and inspecting the PDF (`pdftoppm -f N -l N -png` to look at a page).
 
 ## Structure
 
-- `Elements.typ` — root: page/footer/paragraph setup, then `#include`s `Book00/Introduction.typ`, `BookNN/BookN.typ` for Books 1–13, and `Book99/Lexicon.typ`.
+- `Elements.typ` — root: page/footer/paragraph setup, then `#include`s `Book00/Introduction.typ`, `BookNN/BookN.typ` for each book of the edition (`edition-books`), and `Book99/Lexicon.typ`.
 - `functions.typ` — all shared layout helpers; every content file imports from it (`#import "../functions.typ": *`).
 - `BookNN/BookN.typ` — book title, running header, then `#include`s `Definitions*.typ` (and in Book 1 `Postulates.typ`, `CommonNotions.typ`) and `PropNN.typ` (`PropNNN.typ` in Book 10) in order.
 

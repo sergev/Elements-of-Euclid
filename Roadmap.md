@@ -1,25 +1,17 @@
 # Roadmap: Lean proofs for Books 2–13
 
-Book 1 is done: 48 propositions from LeanEuclid, written in System E, typeset in `ElementsLean.pdf` and checked by `make check`. That is Milestone 1. This file plans the remaining books, one milestone per book, numbered to match: Milestone N is Book N. Milestone 0 is shared infrastructure. A book depends on the books before it, so the milestones run in sequence. Only Milestones 7–9 (Books 7–9) can be done in parallel with the geometry.
+Book 1 is done: 48 propositions from LeanEuclid, written in System E, typeset in `ElementsLean.pdf` and checked by `make check`. That is Milestone 1. This file plans the remaining books, one milestone per book, numbered to match: Milestone N is Book N. A book depends on the books before it, so the milestones run in sequence. Only Milestones 7–9 (Books 7–9) can be done in parallel with the geometry.
 
 ## Common rules for every milestone
 
-- **Files.** Proofs go in `lean/Elements/BookN/PropNN.lean`, in namespace `Elements.BookN`, as `proposition_NN`. Lemmas and corollaries get their own names: `proposition_NN_lemma` and `proposition_NN_corollary`. Primed variants stay in the proposition's file.
-- **Typesetting.** Each `BookNN/PropNN.typ` gets `#lean-proof(...)` after its `content-box`. `Elements.typ` includes the book in the Lean edition, and `lean/Elements.lean` imports it.
+- **Files.** Proofs go in `lean/Elements/BookN/PropNN.lean`, in namespace `Elements.BookN`, as `proposition_NN`. The book's root module `lean/Elements/BookN.lean` imports them, and `lean/Elements.lean` imports the root. Lemmas and corollaries get their own names: `proposition_NN_lemma` and `proposition_NN_corollary`. Primed variants stay in the proposition's file.
+- **Typesetting.** Each `BookNN/PropNN.typ` gets `#lean-proof(...)` after its `content-box`. Adding the book's number to `lean-books` in `functions.typ` puts it in the Lean edition and in the title-page subtitle.
 - **Faithfulness.** The statement says what Euclid says, and the proof follows his steps, citing the same propositions. Steps he leaves out are proved and marked `-- Missed by Euclid.` His proofs are not to be replaced with a shorter modern one.
 - **Trust.** No `sorry`. New axioms are allowed only for what Euclid assumes (his definitions and postulates, or System E's rules). They live in one file per book, `lean/Elements/BookN/Axioms.lean`, and the primer lists them.
 - **Definitions.** A book's definitions are formalized where they are used, as Lean `def`s with the Euclid number in a doc comment. They are not typeset separately unless that turns out useful.
-- **Done.** `make check` passes. `make` builds the PDF with the book included, and its pages have been inspected. The primer (`Book00/Lean.typ`) covers any new notation.
-- **Toolchain.** Lean 4.36 and Mathlib v4.36, with System E kept in `lean/SystemE/`. Upgrade Lean and Mathlib together, between milestones, not during one.
-
-## Milestone 0 — Infrastructure
-
-Prerequisite for everything below.
-
-- `Elements.typ`: select the books of the Lean edition from a list rather than hard-coding Book 1. Change the title-page subtitle to match, e.g. "Books 1–3, with proofs formalized in Lean".
-- Our own extensions of System E go in `lean/Elements/SystemE/`, never into the upstream package. Examples are new relations, such as tangency, and derived lemmas.
-- **Toolchain: done.** System E and the needed part of lean-smt are copied into `lean/` and ported to Lean 4.36 and Mathlib v4.36; all 48 Book 1 proofs pass.
-- `make check` per book, e.g. `make check BOOK=2`, so a slow book doesn't block work on another.
+- **Done.** `make check` passes (`make check BOOK=N` checks one book while working on it). `make` builds the PDF with the book included, and its pages have been inspected. The primer (`Book00/Lean.typ`) covers any new notation.
+- **System E.** It is our own copy in `lean/SystemE/`. Extensions a book needs, such as new relations or derived lemmas, go there, in files named for the book that introduces them.
+- **Toolchain.** Lean 4.36 and Mathlib v4.36. Upgrade Lean and Mathlib together, between milestones, not during one.
 
 ## Milestone 2 — Book 2: geometric algebra (14 propositions)
 
@@ -125,7 +117,6 @@ The golden section (13.1–13.6), pentagon and decagon side relations (13.7–13
 
 | Milestone | Book | Props | Basis | Risk |
 |---|---|---|---|---|
-| 0 | infrastructure | — | — | low |
 | 1 | 1 | 48 | System E | done |
 | 2 | 2 | 14 | System E | low |
 | 3 | 3 | 37 | System E + tangency | medium |

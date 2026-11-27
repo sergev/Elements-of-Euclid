@@ -5,6 +5,22 @@
 // `--input lean=yes` is the English Book 1 with Lean proofs
 #let with-lean = sys.inputs.at("lean", default: "no") == "yes"
 #let with-greek = sys.inputs.at("greek", default: "yes") != "no" and not with-lean
+
+// Books with Lean proofs; the Lean edition contains only these
+#let lean-books = (1,)
+
+// The books of an edition: all thirteen, or the Lean ones
+#let edition-books = if with-lean { lean-books } else { range(1, 14) }
+
+// lean-books as text: "Book 1", "Books 1–3, 7"
+#let lean-books-text = {
+  let runs = ()
+  for n in lean-books {
+    if runs.len() > 0 and runs.at(-1).at(1) == n - 1 { runs.at(-1).at(1) = n } else { runs.push((n, n)) }
+  }
+  let parts = runs.map(((a, b)) => if a == b { str(a) } else if b == a + 1 { str(a) + ", " + str(b) } else { str(a) + "–" + str(b) })
+  (if lean-books.len() == 1 { "Book " } else { "Books " }) + parts.join(", ")
+}
 #let set-footer-text(content) = footer-text.update(content)
 #let no-footer() = set-footer-text([])
 

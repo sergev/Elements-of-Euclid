@@ -1,6 +1,6 @@
 // https://github.com/rfitzp/Elements
 
-#import "functions.typ": footer-text, no-footer, with-greek, with-lean
+#import "functions.typ": footer-text, no-footer, with-greek, with-lean, edition-books
 
 
 #show heading: set align(center)
@@ -51,57 +51,10 @@
   pagebreak()
 }
 
-#include "Book01/Book1.typ"
-
-#if not with-lean [
-  #pagebreak()
-
-  #include "Book02/Book2.typ"
-
-  #pagebreak()
-
-  #include "Book03/Book3.typ"
-
-  #pagebreak()
-
-  #include "Book04/Book4.typ"
-
-  #pagebreak()
-
-  #include "Book05/Book5.typ"
-
-  #pagebreak()
-
-  #include "Book06/Book6.typ"
-
-  #pagebreak()
-
-  #include "Book07/Book7.typ"
-
-  #pagebreak()
-
-  #include "Book08/Book8.typ"
-
-  #pagebreak()
-
-  #include "Book09/Book9.typ"
-
-  #pagebreak()
-
-  #include "Book10/Book10.typ"
-
-  #pagebreak()
-
-  #include "Book11/Book11.typ"
-
-  #pagebreak()
-
-  #include "Book12/Book12.typ"
-
-  #pagebreak()
-
-  #include "Book13/Book13.typ"
-]
+#for (i, n) in edition-books.enumerate() {
+  if i > 0 { pagebreak() }
+  include "Book" + (if n < 10 { "0" } else { "" }) + str(n) + "/Book" + str(n) + ".typ"
+}
 
 #if with-greek {
   pagebreak()
