@@ -12,7 +12,7 @@ by
   euclid_apply (proposition_1 a b AB) as c
   euclid_apply (line_from_points c a) as AC
   euclid_apply (line_from_points c b ) as BC
-  euclid_apply (proposition_9' c a b AC BC) as d'
+  euclid_apply (proposition_9 c a b AC BC) as d'
   euclid_apply (line_from_points c d') as CD
   euclid_apply (intersection_lines CD AB) as d
   euclid_apply (proposition_4 c a d c b d AC AB CD BC AB CD)

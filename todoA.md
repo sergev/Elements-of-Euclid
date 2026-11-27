@@ -5,18 +5,6 @@ Do them in order. After each task:
 - when a statement or name changes, also check Book 2;
 - commit.
 
-## 4. Derive weaker variants from stronger ones
-Replace each duplicated proof with a 2–3 line derivation:
-- `proposition_9` from `9′`. This also fixes 9, which the opposite ray of the bisector currently satisfies.
-- `proposition_11` from `11′`.
-- `proposition_22′` from `22″`.
-- `proposition_23` from `23′`.
-- `proposition_42″` from `42‴`.
-- `proposition_44` from `44′`.
-- `proposition_46` from `46′`, after first picking a point off AB.
-
-Done when: none of these proofs repeats another one's construction.
-
 ## 5. Remove redundant steps
 - **Props 46 and 46′:** delete the second `proposition_34'` call, which repeats the first with identical arguments.
 - **Props 24 and 39:**
