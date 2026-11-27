@@ -36,11 +36,11 @@ by
   euclid_apply (proposition_5' c b e AB EB CE)
   euclid_apply (proposition_32 e b c a EB AB CE)
   -- EGF is right, so EG = GF
-  euclid_apply (proposition_29'''' f b e g c FG AB CE)
+  euclid_apply (proposition_29_exterior f b e g c FG AB CE)
   euclid_apply (proposition_32 f e g c EB CE FG)
   euclid_apply (Elements.Book1.proposition_6 g e f CE EB FG)
   -- FDB is right, so FD = DB
-  euclid_apply (proposition_29'''' f e b d c DF CE AB)
+  euclid_apply (proposition_29_exterior f e b d c DF CE AB)
   euclid_apply (proposition_32 f b d c EB AB DF)
   euclid_apply (Elements.Book1.proposition_6 d f b DF EB AB)
   euclid_apply (proposition_34' g f c d FG AB CE DF)

@@ -11,7 +11,7 @@ theorem proposition_48 : ∀ (a b c : Point) (AB BC AC : Line),
   ∠ b:a:c = ∟ :=
 by
   euclid_intros
-  euclid_apply (proposition_11'' a c AC) as d'
+  euclid_apply (proposition_11_end a c AC) as d'
   euclid_apply (line_from_points a d') as AD
   euclid_apply (extend_point AD d' a) as d''
   euclid_apply (extend_point_longer AD d'' a (a─b)) as d'''

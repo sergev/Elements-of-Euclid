@@ -22,17 +22,20 @@ by
   euclid_apply (extend_point CD c k ) as d
 
   by_cases (between g h k)
-  · euclid_apply (proposition_29'' a b f g h AB EF GK)
+  · euclid_apply (proposition_29_alternate a f g h AB EF GK)
+    euclid_apply (proposition_29_interior b f g h AB EF GK)
     euclid_apply (proposition_29' e f c d g h k EF CD GK)
     euclid_apply (proposition_27 a d g k AB CD GK)
     euclid_finish
   · -- Omitted by Euclid.
     by_cases (between g k h)
-    · euclid_apply (proposition_29'' a b f g h AB EF GK)
+    · euclid_apply (proposition_29_alternate a f g h AB EF GK)
+      euclid_apply (proposition_29_interior b f g h AB EF GK)
       euclid_apply (proposition_29' c d e f g k h CD EF GK)
       euclid_apply (proposition_27 a d g k AB CD GK)
       euclid_finish
-    · euclid_apply (proposition_29'' d c e k h CD EF GK)
+    · euclid_apply (proposition_29_alternate d e k h CD EF GK)
+      euclid_apply (proposition_29_interior c e k h CD EF GK)
       euclid_apply (proposition_29' b a f e k g h AB EF GK)
       euclid_apply (proposition_27 a d g k AB CD GK)
       euclid_finish

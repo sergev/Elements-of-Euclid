@@ -39,7 +39,8 @@ by
   euclid_apply (proposition_42' a b c d₁ d₂ d₃ e AB BC AC D₁₂ D₂₃) as (f, g, FG, EF, CG)
   use f, g, e, c, FG, BC, EF, CG
 
-theorem proposition_42''' : ∀ (a b c d₁ d₂ d₃ h i x : Point) (AB BC AC D₁₂ D₂₃ HI : Line),
+-- Prop. 42 on a given straight line HI, on the same side of it as x.
+theorem proposition_42_on_line_side : ∀ (a b c d₁ d₂ d₃ h i x : Point) (AB BC AC D₁₂ D₂₃ HI : Line),
   formTriangle a b c AB BC AC ∧ formRectilinearAngle d₁ d₂ d₃ D₁₂ D₂₃ ∧ ¬(x.onLine HI) ∧
   (∠ d₁:d₂:d₃ : ℝ) > 0 ∧ (∠ d₁:d₂:d₃ : ℝ) < ∟ + ∟ ∧ distinctPointsOnLine h i HI →
   ∃ (f g j : Point) (FG FI GJ : Line), f.sameSide x HI ∧ between h i j ∧ formParallelogram f g i j FG HI FI GJ ∧
@@ -61,7 +62,8 @@ by
   use f, g, j, FG, FI, GJ
   euclid_finish
 
-theorem proposition_42'' : ∀ (a b c d₁ d₂ d₃ h i : Point) (AB BC AC D₁₂ D₂₃ HI : Line),
+-- Prop. 42 with the parallelogram on a given straight line HI, beyond I.
+theorem proposition_42_on_line : ∀ (a b c d₁ d₂ d₃ h i : Point) (AB BC AC D₁₂ D₂₃ HI : Line),
   formTriangle a b c AB BC AC ∧ formRectilinearAngle d₁ d₂ d₃ D₁₂ D₂₃ ∧
   (∠ d₁:d₂:d₃ : ℝ) > 0 ∧ (∠ d₁:d₂:d₃ : ℝ) < ∟ + ∟ ∧ distinctPointsOnLine h i HI →
   ∃ (f g j : Point) (FG FI GJ : Line), between h i j ∧ formParallelogram f g i j FG HI FI GJ ∧
@@ -69,7 +71,7 @@ theorem proposition_42'' : ∀ (a b c d₁ d₂ d₃ h i : Point) (AB BC AC D₁
 by
   euclid_intros
   euclid_apply (proposition_1 h i HI) as x
-  euclid_apply (proposition_42''' a b c d₁ d₂ d₃ h i x AB BC AC D₁₂ D₂₃ HI) as (f, g, j, FG, FI, GJ)
+  euclid_apply (proposition_42_on_line_side a b c d₁ d₂ d₃ h i x AB BC AC D₁₂ D₂₃ HI) as (f, g, j, FG, FI, GJ)
   use f, g, j, FG, FI, GJ
 
 end Elements.Book1

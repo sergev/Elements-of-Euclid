@@ -12,8 +12,8 @@ theorem proposition_34 : ∀ (a b c d : Point) (AB CD AC BD BC : Line),
   Triangle.area △ a:b:c = Triangle.area △ d:c:b :=
 by
   euclid_intros
-  euclid_apply (proposition_29''' a d b c AB CD BC)
-  euclid_apply (proposition_29''' a d c b AC BD BC)
+  euclid_apply (proposition_29_alternate a d b c AB CD BC)
+  euclid_apply (proposition_29_alternate a d c b AC BD BC)
   euclid_apply (proposition_26 a b c d c b AB BC AC CD BC BD)
   euclid_finish
 

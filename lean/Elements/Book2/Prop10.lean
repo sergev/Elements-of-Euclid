@@ -30,7 +30,7 @@ by
   euclid_apply (proposition_31 d c e CE) as FD
   euclid_apply (intersection_lines EF FD) as f
   -- EB and FD meet [Post. 5]
-  euclid_apply (proposition_29''''' c d e f CE FD EF)
+  euclid_apply (proposition_29_interior c d e f CE FD EF)
   euclid_apply (lines_intersect b e f d EB EF FD) as g
   euclid_apply (line_from_points a g) as AG
   -- CEA, CAE, CEB, EBC are each half a right-angle; so AEB is right
@@ -40,7 +40,7 @@ by
   euclid_apply (proposition_32 e b c a EB AB CE)
   -- DBG is half a right-angle and BDG is right, so BD = DG
   euclid_apply (proposition_15 c d g e b AB EB)
-  euclid_apply (proposition_29''' e g c d CE FD AB)
+  euclid_apply (proposition_29_alternate e g c d CE FD AB)
   euclid_apply (proposition_32 g d b c FD AB EB)
   euclid_apply (Elements.Book1.proposition_6 d b g AB EB FD)
   -- EFG is right, so GF = EF

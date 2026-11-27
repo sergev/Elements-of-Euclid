@@ -16,7 +16,7 @@ by
   euclid_apply (proposition_34' e f b c AF BC EB FC)
   euclid_assert (|(a─d)| = |(e─f)|)
   euclid_assert (|(a─e)| = |(d─f)|)
-  euclid_apply (proposition_29'''' c b f d a CD AB AF)
+  euclid_apply (proposition_29_exterior c b f d a CD AB AF)
   euclid_apply (proposition_4 a e b d f c AF EB AB AF FC CD)
   euclid_finish
 
@@ -33,7 +33,7 @@ by
     by_cases (between a d e)
     · euclid_apply (proposition_35 a b c d e f g AF BC AB CD EB FC)
       euclid_finish
-    · euclid_apply (proposition_29'''' c b f d a CD AB AF)
+    · euclid_apply (proposition_29_exterior c b f d a CD AB AF)
       euclid_apply (proposition_4 a e b d f c AF EB AB AF FC CD)
       euclid_finish
   · by_cases (a = e)
@@ -42,7 +42,7 @@ by
       by_cases (between e f a)
       · euclid_apply (proposition_35 e b c f a d g AF BC EB FC AB CD)
         euclid_finish
-      · euclid_apply (proposition_29'''' c b d f e FC EB AF)
+      · euclid_apply (proposition_29_exterior c b d f e FC EB AF)
         euclid_apply (proposition_4 e a b f d c AF AB EB AF CD FC)
         by_cases (f = a)
         · euclid_finish

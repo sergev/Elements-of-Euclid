@@ -41,16 +41,16 @@ by
   euclid_apply (proposition_34' k l a c KM AB AK CE)
   euclid_apply (proposition_34' k m a d KM AB AK DF)
   -- DM = DB
-  euclid_apply (proposition_29'''' b c d h e BG CE DE)
+  euclid_apply (proposition_29_exterior b c d h e BG CE DE)
   euclid_apply (proposition_5' c e d CE DE AB)
   euclid_apply (Elements.Book1.proposition_6 b h d BG DE AB)
   -- Missed by Euclid: LG is the square on CB.
-  euclid_apply (proposition_29'''' l c e h d KM AB DE)
+  euclid_apply (proposition_29_exterior l c e h d KM AB DE)
   euclid_apply (Elements.Book1.proposition_6 l e h CE DE KM)
   -- the right angles
-  euclid_apply (proposition_29''''' e k c a CE AK AB)
-  euclid_apply (proposition_29''''' e h c b CE BG AB)
-  euclid_apply (proposition_29'''' h d e l c KM AB CE)
+  euclid_apply (proposition_29_interior e k c a CE AK AB)
+  euclid_apply (proposition_29_interior e h c b CE BG AB)
+  euclid_apply (proposition_29_exterior h d e l c KM AB CE)
   euclid_apply (rectangle_area l h c b KM AB CE BG)
   euclid_apply (rectangle_area h m b d KM AB BG DF)
   euclid_apply (rectangle_area e g l h EF KM CE BG)

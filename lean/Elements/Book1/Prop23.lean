@@ -25,7 +25,7 @@ by
   euclid_apply (proposition_20 c d e CD DE CE)
   euclid_apply (proposition_20 d e c DE CE CD)
   euclid_apply (proposition_20 e c d CE CD DE)
-  euclid_apply (proposition_22'' c d c e e d a b x CD CE DE AB) as (f, g)
+  euclid_apply (proposition_22_side c d c e e d a b x CD CE DE AB) as (f, g)
   euclid_apply (line_from_points a f) as AF
   euclid_apply (line_from_points f g) as FG
   euclid_apply (proposition_8 c d e a f g CD DE CE AF FG AB)

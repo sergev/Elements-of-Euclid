@@ -140,12 +140,12 @@ by
   euclid_apply (proposition_34' m k a b MN AB AE BL)
   -- Missed by Euclid: BK = BD, GQ = GK, OE = OQ.
   euclid_apply (proposition_5' a e d AE DE AB)
-  euclid_apply (proposition_29'''' b a d k e BL AE DE)
+  euclid_apply (proposition_29_exterior b a d k e BL AE DE)
   have i₁ := Elements.Book1.proposition_6 b k d BL DE AB (by euclid_finish)
-  euclid_apply (proposition_29'''' g a k q e CH AE DE)
-  euclid_apply (proposition_29'''' g a q k d MN AB DE)
+  euclid_apply (proposition_29_exterior g a k q e CH AE DE)
+  euclid_apply (proposition_29_exterior g a q k d MN AB DE)
   euclid_apply (Elements.Book1.proposition_6 g q k CH DE MN)
-  euclid_apply (proposition_29'''' o a e q d OP AB DE)
+  euclid_apply (proposition_29_exterior o a e q d OP AB DE)
   have i₂ := Elements.Book1.proposition_6 o e q AE DE OP (by euclid_finish)
   -- the four squares CK, KD, GR, RN are equal
   have s₁ := proposition_36' g c b k k b d n MN AB CH BL BL DF (by euclid_finish)
@@ -156,7 +156,7 @@ by
   have r₂ := proposition_36' h q r l l r p f EF OP CH BL BL DF (by euclid_finish)
   have r₃ := proposition_43 k l e m r o h g q MN EF BL AE DE OP CH (by euclid_finish)
   -- AK, OH and the whole AEFD are rectangles
-  euclid_apply (proposition_29'''' q d e o a OP AB AE)
+  euclid_apply (proposition_29_exterior q d e o a OP AB AE)
   have a₁ := (rectangle_area m k a b MN AB AE BL (by euclid_finish)).1
   have a₂ := (rectangle_area e h o q EF OP AE CH (by euclid_finish)).1
   have a₃ := (rectangle_area e f a d EF AB AE DF (by euclid_finish)).1

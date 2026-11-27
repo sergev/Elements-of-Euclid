@@ -41,7 +41,7 @@ theorem proposition_14 : ∀ (a b c d : Point) (AB BC CD AD DB : Line),
 by
   euclid_intros
   -- the right-angled parallelogram equal to the figure [Prop. 1.45]
-  euclid_apply (proposition_11'' d b DB) as x
+  euclid_apply (proposition_11_end d b DB) as x
   euclid_apply (line_from_points x d) as XD
   euclid_apply (proposition_45 a b c d x d b AB BC CD AD DB XD DB) as (f, l, k, m, FL, KM, FK, LM)
   euclid_apply (proposition_34' f l k m FL KM FK LM)

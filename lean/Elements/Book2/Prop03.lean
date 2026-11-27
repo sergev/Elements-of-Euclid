@@ -20,7 +20,7 @@ by
   euclid_apply (intersection_lines AF DE) as f
   -- Missed by Euclid.
   euclid_apply (proposition_30 AF BE CD)
-  euclid_apply (proposition_29''''' d f c a CD AF AB)
+  euclid_apply (proposition_29_interior d f c a CD AF AB)
   euclid_apply (proposition_34' f d a c DE AB AF CD)
   euclid_apply (proposition_34' f e a b DE AB AF BE)
   euclid_apply (rectangle_area f d a c DE AB AF CD)

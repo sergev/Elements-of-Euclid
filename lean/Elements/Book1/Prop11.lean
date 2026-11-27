@@ -32,7 +32,8 @@ by
   use f
   euclid_finish
 
-theorem proposition_11'' : ∀ (a b : Point) (AB : Line),
+-- Prop. 11 at an end A of the straight line.
+theorem proposition_11_end : ∀ (a b : Point) (AB : Line),
   distinctPointsOnLine a b AB →
   exists (f : Point), ¬(f.onLine AB) ∧ (∠ f:a:b = ∟) :=
 by
@@ -42,7 +43,8 @@ by
   use f
   euclid_finish
 
-theorem proposition_11''' : ∀ (a b x : Point) (AB : Line),
+-- Prop. 11 at an end A, on the opposite side of AB from x.
+theorem proposition_11_end_opposite : ∀ (a b x : Point) (AB : Line),
   ¬(x.onLine AB) ∧ (distinctPointsOnLine a b AB) →
   exists (f : Point), ¬(f.onLine AB) ∧ (f.opposingSides x AB) ∧ (∠ f:a:b = ∟) :=
 by

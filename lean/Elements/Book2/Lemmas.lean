@@ -29,7 +29,7 @@ theorem rectangle_on : ∀ (a b x a₁ a₂ : Point) (AB : Line),
 by
   euclid_intros
   euclid_apply (line_from_points a₁ a₂) as A₁₂
-  euclid_apply (proposition_11''' a b x AB) as c'
+  euclid_apply (proposition_11_end_opposite a b x AB) as c'
   euclid_apply (line_from_points a c') as AC
   euclid_apply (extend_point_longer AC a c' (a₁─a₂)) as c
   euclid_apply (proposition_3 a c a₁ a₂ AC A₁₂) as d
@@ -37,7 +37,7 @@ by
   euclid_apply (proposition_31 b a d AC) as BE
   euclid_apply (intersection_lines DE BE) as e
   euclid_apply (proposition_34' d e a b DE AB AC BE)
-  euclid_apply (proposition_29''''' e b d a DE AB AC)
+  euclid_apply (proposition_29_interior e b d a DE AB AC)
   euclid_apply (proposition_34' d e a b DE AB AC BE)
   euclid_apply (rectangle_area d e a b DE AB AC BE)
   use d, e, DE, AC, BE
@@ -55,7 +55,7 @@ theorem rectangle_on' : ∀ (a b a₁ a₂ : Point) (AB : Line),
 by
   euclid_intros
   euclid_apply (line_from_points a₁ a₂) as A₁₂
-  euclid_apply (proposition_11'' a b AB) as c'
+  euclid_apply (proposition_11_end a b AB) as c'
   euclid_apply (line_from_points a c') as AC
   euclid_apply (extend_point_longer AC a c' (a₁─a₂)) as c
   euclid_apply (proposition_3 a c a₁ a₂ AC A₁₂) as d
@@ -63,7 +63,7 @@ by
   euclid_apply (proposition_31 b a d AC) as BE
   euclid_apply (intersection_lines DE BE) as e
   euclid_apply (proposition_34' d e a b DE AB AC BE)
-  euclid_apply (proposition_29''''' e b d a DE AB AC)
+  euclid_apply (proposition_29_interior e b d a DE AB AC)
   euclid_apply (proposition_34' d e a b DE AB AC BE)
   euclid_apply (rectangle_area d e a b DE AB AC BE)
   use d, e, DE, AC, BE

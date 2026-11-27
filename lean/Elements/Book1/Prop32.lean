@@ -16,8 +16,8 @@ by
   have : (∠ a:c:d : ℝ) = (∠ c:a:b) + (∠ a:b:c) := by
     euclid_apply (proposition_31 c a b AB ) as CE
     euclid_apply (point_on_line_same_side BC CE a ) as e
-    euclid_apply (proposition_29''' b e a c AB CE AC)
-    euclid_apply (proposition_29'''' e a d c b CE AB BC)
+    euclid_apply (proposition_29_alternate b e a c AB CE AC)
+    euclid_apply (proposition_29_exterior e a d c b CE AB BC)
     euclid_finish
 
   constructor

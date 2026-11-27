@@ -14,7 +14,7 @@ theorem proposition_46' : ∀ (a b x : Point) (AB : Line), ¬(x.onLine AB) ∧ d
   (∠ b:a:d : ℝ) = ∟ ∧ (∠ a:d:e : ℝ) = ∟ ∧ (∠ a:b:e : ℝ) = ∟ ∧ (∠ b:e:d : ℝ) = ∟ :=
 by
   euclid_intros
-  euclid_apply (proposition_11''' a b x AB) as c'
+  euclid_apply (proposition_11_end_opposite a b x AB) as c'
   euclid_apply (line_from_points a c') as AC
   euclid_apply (extend_point_longer AC a c' (a─b)) as c
   euclid_apply (proposition_3 a c a b AC AB) as d
@@ -22,7 +22,7 @@ by
   euclid_apply (proposition_31 b a d AC) as BE
   euclid_apply (intersection_lines DE BE) as e
   euclid_apply (proposition_34' d e a b DE AB AC BE)
-  euclid_apply (proposition_29''''' e b d a DE AB AC)
+  euclid_apply (proposition_29_interior e b d a DE AB AC)
   use d, e, DE, AC, BE
   euclid_finish
 

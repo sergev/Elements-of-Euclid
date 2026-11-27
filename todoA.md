@@ -5,11 +5,6 @@ Do them in order. After each task:
 - when a statement or name changes, also check Book 2;
 - commit.
 
-## 7. Rename the multi-primed theorems
-- Give descriptive names to `proposition_29′` through `29′′′′′`, `11″`/`11‴`, `42″`/`42‴`, and the other multi-primed theorems. Example: `proposition_29_interior_sum`.
-- Update Book 2 in the same commit: `29''''` and `29'''''` are used 15 times each.
-- Optionally, keep the old names as aliases.
-
 ## 8. Clarify scope in comments
 - **Prop 45:** note that System E limits it to a figure made of two triangles.
 - **Prop 35:** note that `g` is a given intersection point, and that 35′ is the general form.

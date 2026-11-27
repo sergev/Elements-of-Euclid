@@ -30,17 +30,17 @@ by
   euclid_apply (proposition_30 CF BE AD)
   euclid_apply (proposition_30 HK DE AB)
   -- CGKB is a square
-  euclid_apply (proposition_29'''' c a b g d CF AD BD)
+  euclid_apply (proposition_29_exterior c a b g d CF AD BD)
   euclid_apply (proposition_5' a d b AD BD AB)
   euclid_apply (proposition_6 c g b CF BD AB)
   euclid_apply (proposition_34' g k c b HK AB CF BE)
-  euclid_apply (proposition_29''''' d g a c AD CF AB)
+  euclid_apply (proposition_29_interior d g a c AD CF AB)
   euclid_apply (rectangle_area g k c b HK AB CF BE)
   euclid_assert Triangle.area △ g:c:b + Triangle.area △ g:k:b = |(c─b)| * |(c─b)|
   -- HF is a square on AC
   euclid_apply (proposition_34' h g a c HK AB AD CF)
   euclid_apply (proposition_34' d f h g DE HK AD CF)
-  euclid_apply (proposition_29''''' b g a h AB HK AD)
+  euclid_apply (proposition_29_interior b g a h AB HK AD)
   euclid_apply (rectangle_area d f h g DE HK AD CF)
   euclid_assert Triangle.area △ d:h:g + Triangle.area △ d:f:g = |(a─c)| * |(a─c)|
   -- AG = GE; add CK: AK = CE

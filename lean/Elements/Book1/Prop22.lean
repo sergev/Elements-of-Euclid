@@ -3,7 +3,8 @@ import Elements.Book1.Prop03
 
 namespace Elements.Book1
 
-theorem proposition_22'' : ∀ (a a' b b' c c' f e x : Point) (A B C FE : Line),
+-- Prop. 22' with K on the same side of FE as x.
+theorem proposition_22_side : ∀ (a a' b b' c c' f e x : Point) (A B C FE : Line),
   distinctPointsOnLine a a' A ∧ distinctPointsOnLine b b' B ∧ distinctPointsOnLine c c' C ∧ distinctPointsOnLine f e FE ∧ ¬(x.onLine FE) ∧
   (|(a─a')| + |(b─b')| > |(c─c')|) ∧
   (|(a─a')| + |(c─c')| > |(b─b')|) ∧
@@ -38,7 +39,7 @@ theorem proposition_22' : ∀ (a a' b b' c c' f e : Point) (A B C FE : Line),
 by
   euclid_intros
   euclid_apply (proposition_1 f e FE) as x
-  euclid_apply (proposition_22'' a a' b b' c c' f e x A B C FE) as (k, g)
+  euclid_apply (proposition_22_side a a' b b' c c' f e x A B C FE) as (k, g)
   use k, g
 
 theorem proposition_22 : ∀ (a a' b b' c c' : Point) (A B C : Line),
