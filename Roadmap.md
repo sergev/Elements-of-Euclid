@@ -1,6 +1,6 @@
-# Roadmap: Lean proofs for Books 2–13
+# Roadmap: Lean proofs for Books 3–13
 
-Book 1 is done: 48 propositions from LeanEuclid, written in System E, typeset in `ElementsLean.pdf` and checked by `make check`. That is Milestone 1. This file plans the remaining books, one milestone per book, numbered to match: Milestone N is Book N. A book depends on the books before it, so the milestones run in sequence. Only Milestones 7–9 (Books 7–9) can be done in parallel with the geometry.
+Books 1 and 2 are done (Milestones 1 and 2): Book 1's 48 propositions from LeanEuclid and Book 2's 14 written here, all in System E, typeset in `ElementsLean.pdf` and checked by `make check`. This file plans the remaining books, one milestone per book, numbered to match: Milestone N is Book N. A book depends on the books before it, so the milestones run in sequence. Only Milestones 7–9 (Books 7–9) can be done in parallel with the geometry.
 
 ## Common rules for every milestone
 
@@ -12,14 +12,6 @@ Book 1 is done: 48 propositions from LeanEuclid, written in System E, typeset in
 - **Done.** `make check` passes (`make check BOOK=N` checks one book while working on it). `make` builds the PDF with the book included, and its pages have been inspected. The primer (`Book00/Lean.typ`) covers any new notation.
 - **System E.** It is our own copy in `lean/SystemE/`. New relations or rules a book needs go there, in files named for the book that introduces them. Lemmas proved from earlier propositions, such as repeated constructions, go in `lean/Elements/BookN/Lemmas.lean`.
 - **Toolchain.** Lean 4.36 and Mathlib v4.36. Upgrade Lean and Mathlib together, between milestones, not during one.
-
-## Milestone 2 — Book 2: geometric algebra (14 propositions)
-
-The rectangle and square identities: (a+b)² = a² + 2ab + b², the gnomon, and the extensions of Prop. 1.47 in 2.12–2.13 (the law of cosines). 2.14 squares a rectilinear figure.
-
-- **Basis.** System E. Areas are sums of triangle areas (`Triangle.area`), and `rectangle_area`, `parallelogram_area` and Book 1's Props. 1.34–1.46 do most of the work.
-- **New.** A notion of "the rectangle contained by AB and BC" as an area, defined from a constructed rectangle; `def rectangleArea` with a lemma that it does not depend on the construction. Also the gnomon as a sum of areas.
-- **Risk.** Low. The proofs are long equalities of area sums, which the SMT steps handle well, and Prop. 1.47 shows that this style works. 2.14 draws a semicircle and uses 2.5 and 1.47, so it needs only E's circle rules, not Book 3.
 
 ## Milestone 3 — Book 3: circles (37 propositions)
 
@@ -59,7 +51,7 @@ The Euclidean algorithm (7.1–7.2), proportion of numbers, primes, relatively p
 
 - **Basis.** Mathlib's `ℕ`, not System E. A "number" is a multitude of units, so `n ≥ 2` and the unit is separate. "A measures B" is `A ∣ B`, and "parts" are proper fractions of a number. Define proportion of numbers by Def. 7.20, and do not use Book 5's. Books 8 and 9 build on this basis.
 - **New.** Definitions for 7.Def.1–23 (part, parts, prime, relatively prime, plane and solid numbers, perfect). The proofs follow Euclid's subtractive algorithm and avoid Mathlib's ready-made `Nat.gcd` theorems except where Euclid has already proved the fact.
-- **Risk.** Low. Each step is easy for Lean. It can run in parallel with Milestones 2–6, since only 7.Def.20 comes near Book 5 and it is defined separately.
+- **Risk.** Low. Each step is easy for Lean. It can run in parallel with Milestones 3–6, since only 7.Def.20 comes near Book 5 and it is defined separately.
 
 ## Milestone 8 — Book 8: continued proportions (27 propositions)
 
@@ -118,7 +110,6 @@ The golden section (13.1–13.6), pentagon and decagon side relations (13.7–13
 | Milestone | Book | Props | Basis | Risk |
 |---|---|---|---|---|
 | 1 | 1 | 48 | System E | done |
-| 2 | 2 | 14 | System E | done |
 | 3 | 3 | 37 | System E + tangency | medium |
 | 4 | 4 | 16 | System E | medium |
 | 5 | 5 | 25 | abstract magnitudes | medium |
@@ -131,4 +122,4 @@ The golden section (13.1–13.6), pentagon and decagon side relations (13.7–13
 | 12 | 12 | 18 | Book 11 + magnitudes | high |
 | 13 | 13 | 18 | Books 4, 10, 11 | high |
 
-Milestones 2–4 finish the plane geometry that System E was built for, so they should go first. Milestones 7–9 can start any time. Milestones 11–13 depend on the design decision in Milestone 11 and should not start until Books 2–6 have shown how far E's style stretches.
+Milestones 3–4 finish the plane geometry that System E was built for, so they should go first. Milestones 7–9 can start any time. Milestones 11–13 depend on the design decision in Milestone 11 and should not start until Books 2–6 have shown how far E's style stretches.

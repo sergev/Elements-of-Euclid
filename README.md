@@ -9,7 +9,7 @@ Get the free PDF books from the [latest release](https://github.com/sergev/Eleme
 
 - [ElementsEnglish.pdf](https://github.com/sergev/Elements-of-Euclid/releases/latest/download/ElementsEnglish.pdf) — in English
 - [ElementsGreekEnglish.pdf](https://github.com/sergev/Elements-of-Euclid/releases/latest/download/ElementsGreekEnglish.pdf) — the original Greek and the English side by side, with a small Greek–English dictionary
-- [ElementsLean.pdf](https://github.com/sergev/Elements-of-Euclid/releases/latest/download/ElementsLean.pdf) — Book 1 in English, each proposition followed by its proof in the [Lean](https://lean-lang.org/) proof assistant
+- [ElementsLean.pdf](https://github.com/sergev/Elements-of-Euclid/releases/latest/download/ElementsLean.pdf) — Books 1 and 2 in English, each proposition followed by its proof in the [Lean](https://lean-lang.org/) proof assistant
 
 ## What's inside
 
@@ -28,6 +28,7 @@ The propositions come with their diagrams.
   by L. Murphy, K. Yang et al. (MIT license), written in the formal system E
   of Avigad, Dean and Mumma. The interface to the SMT solvers comes from
   [lean-smt](https://github.com/ufmg-smite/lean-smt) (Apache 2.0).
+  Book 2's proofs were written for this edition in the same system.
 - Title picture: detail of Raphael's *School of Athens*.
 - Book title pictures are drawn in the colorful style of Oliver Byrne's 1847 Euclid.
 
