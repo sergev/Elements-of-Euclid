@@ -5,11 +5,6 @@ Do them in order. After each task:
 - when a statement or name changes, also check Book 2;
 - commit.
 
-## 1. Baseline
-- Record each Book 1 proposition's build time from a clean `make check`, and save it in `tmp/`.
-- Run `tools/SmtFree.lean` and record which Book 1 theorems are SMT-free.
-- Later tasks are measured against these numbers.
-
 ## 2. Prop 47: drop `maxHeartbeats 0`
 - File: `lean/Elements/Book1/Prop47.lean` (currently 254–365 s, and it blocks Prop 48 and Book 2).
 - Use the Prop 2.8 recipe:
