@@ -69,4 +69,21 @@ by
   use d, e, DE, AC, BE
   euclid_finish
 
+/--
+Parallels keep order: three parallel lines meeting one line at `x₁, x₂, x₃` in that order
+meet any other line in the same order. Euclid reads this off his figures.
+-/
+theorem parallel_between : ∀ (x₁ x₂ x₃ y₁ y₂ y₃ : Point) (L₁ L₂ L₃ T : Line),
+  x₁.onLine L₁ ∧ y₁.onLine L₁ ∧ x₂.onLine L₂ ∧ y₂.onLine L₂ ∧ x₃.onLine L₃ ∧ y₃.onLine L₃ ∧
+  y₁.onLine T ∧ y₂.onLine T ∧ y₃.onLine T ∧ between x₁ x₂ x₃ ∧
+  L₁ ≠ L₂ ∧ L₂ ≠ L₃ ∧ ¬(L₁.intersectsLine L₂) ∧ ¬(L₂.intersectsLine L₃) ∧ ¬(L₁.intersectsLine L₃) →
+  between y₁ y₂ y₃ :=
+by
+  euclid_intros
+  euclid_assert x₁.opposingSides x₃ L₂
+  euclid_assert y₁.sameSide x₁ L₂
+  euclid_assert y₃.sameSide x₃ L₂
+  euclid_assert y₁.opposingSides y₃ L₂
+  euclid_finish
+
 end Elements.Book2

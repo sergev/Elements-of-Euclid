@@ -24,3 +24,4 @@
     [Thus, if a straight-line is cut at random, (then) the sum of the squares on the whole (straight-line), and one of the pieces (of the straight-line), is equal to twice the rectangle contained by the whole, and the said piece, and the square on the remaining piece. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book2/Prop07.lean")
