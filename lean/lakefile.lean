@@ -10,6 +10,10 @@ require mathlib from git "https://github.com/leanprover-community/mathlib4" @ "v
 
 lean_lib Smt
 
+-- the saturation engine, compiled natively
+lean_lib SaturateCore where
+  precompileModules := true
+
 lean_lib SystemE
 
 @[default_target]

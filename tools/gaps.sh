@@ -13,15 +13,20 @@ else
   files=$(for p in "$@"; do echo Elements/Book$book/Prop$p.lean; done)
 fi
 echo "$files" | xargs -P "$(nproc)" -I{} sh -c \
-  'lake env lean -Dweak.systemE.smt=false -Dweak.systemE.stats=true {} > '"$out"'/$(basename {} .lean).log 2>&1 || true'
+  'lake env lean --load-dynlib=.lake/build/lib/libelements_SaturateCore.so -Dweak.systemE.smt=false -Dweak.systemE.stats=true {} > '"$out"'/$(basename {} .lean).log 2>&1 || true'
 total=0
 for f in $files; do
   n=$(basename "$f" .lean)
   log=$out/$n.log
   sat=$(grep -c "stats: saturated" "$log" || true)
-  # first unproved literal of each failing step (by line)
-  gaps=$(grep "could not prove" "$log" | sed -E 's/^[^:]*:([0-9]+):[0-9]+: error: saturation could not prove (.*), and systemE.smt is off$/\1: \2/' |
-    awk -F': ' '!seen[$1]++')
+  # each failing step (by line) with why saturation failed: the literal it
+  # got stuck on, or the budget running out
+  gaps=$(awk '
+    /^stats: (stuck|budget)/ { why = substr($0, 8) }
+    /could not prove/ {
+      split($0, a, ":"); l = a[2]
+      if (!(l in seen)) { seen[l] = 1; print l ": " why }
+    }' "$log")
   steps=$(printf '%s' "$gaps" | grep -c . || true)
   total=$((total + steps))
   if [ "$steps" -eq 0 ]; then
