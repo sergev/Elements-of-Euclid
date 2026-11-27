@@ -4,12 +4,6 @@ Book 2 has 14 propositions, all in System E, building on Book 1's area results (
 
 A proof's file `lean/Elements/Book2/PropNN.lean` and the `#lean-proof("/lean/Elements/Book2/PropNN.lean")` line in `Book02/PropNN.typ` are always added in the same task. Typst's `read` fails on a missing file.
 
-## T2. Scaffolding
-
-- `lean/Elements/Book2.lean`, imported by `lean/Elements.lean`.
-- Add `2` to `lean-books` in `functions.typ`. Book 2 then appears in `ElementsLean.pdf` (still without proofs), and the subtitle reads "Books 1, 2".
-- Check that `make` still builds all three PDFs, and that only the Lean edition changed.
-
 ## T3. Book 2 definitions and helper lemmas
 
 In `lean/SystemE/Book2.lean`, following the System E rule in the roadmap:
@@ -20,7 +14,7 @@ In `lean/SystemE/Book2.lean`, following the System E rule in the roadmap:
 
 ## T4. Props. 2.1–2.3: splitting a rectangle
 
-A rectangle on a line cut at several points equals the sum of the rectangles on the pieces. The figure is parallels through the cut points, and the proof uses `sum_parallelograms_area`. These three are the first real test of the convention from T1 and of the T3 lemmas, so revise those here if needed.
+A rectangle on a line cut at several points equals the sum of the rectangles on the pieces. The figure is parallels through the cut points, and the proof uses `sum_parallelograms_area`. These three are the first real test of the convention in `lean/Elements/Book2.lean` and of the T3 lemmas, so revise those here if needed.
 
 ## T5. Prop. 2.4 and its corollary: the square of a sum
 
@@ -58,7 +52,7 @@ This is the end of Book 2. It uses Prop. 1.45 for the parallelogram, then a semi
 
 ## T12. Primer and docs
 
-- `Book00/Lean.typ`: reword "the propositions of Book 1" for several books, and explain the convention for rectangles and squares from T1.
+- `Book00/Lean.typ`: reword "the propositions of Book 1" for several books, and explain the convention for rectangles and squares from `lean/Elements/Book2.lean`.
 - `CLAUDE.md`: the Lean project notes for Book 2, and where `lean/SystemE/Book2.lean` fits.
 - `Roadmap.md`: mark Milestone 2 done in the table.
 
