@@ -178,6 +178,34 @@ partial def angles (e : Expr) (acc : Array (Expr × Expr × Expr) := #[]) :
     | .app f a => angles a (angles f acc)
     | _ => acc
 
+/-- Triangles `△ x:y:z` whose areas occur in `e`. -/
+partial def triangles (e : Expr) (acc : Array (Expr × Expr × Expr) := #[]) :
+    Array (Expr × Expr × Expr) :=
+  if e.isAppOfArity `Triangle.area 1 then
+    match e.appArg!.getAppFnArgs with
+    | (`Triangle.ofPoints, #[x, y, z]) => acc.push (x, y, z)
+    | _ => acc
+  else match e with
+    | .app f a => triangles a (triangles f acc)
+    | _ => acc
+
+def areaOf (t : Expr × Expr × Expr) : Expr :=
+  mkApp (mkConst `Triangle.area) (mkApp3 (mkConst `Triangle.ofPoints) t.1 t.2.1 t.2.2)
+
+/-- `area △s = area △t` for a permutation `t` of `s`, by rotations and swaps. -/
+def areaPerm (s t : Expr × Expr × Expr) : MetaM (Option Expr) := do
+  let mut queue := #[(s, ← mkEqRefl (areaOf s))]
+  let mut i := 0
+  for _ in [0:6] do
+    if i ≥ queue.size then break
+    let ((a, b, c), p) := queue[i]!
+    i := i + 1
+    if (a, b, c) == t then return some p
+    for (h, q) in [(mkApp3 (mkConst `area_symm_1) a b c, (c, a, b)),
+                   (mkApp3 (mkConst `area_symm_2) a b c, (a, c, b))] do
+      unless queue.any (·.1 == q) do queue := queue.push (q, ← mkEqTrans p h)
+  return none
+
 /-- Unordered key of a segment. -/
 def segKey (p : Expr × Expr) : Expr × Expr :=
   if Expr.lt p.2 p.1 then (p.2, p.1) else p
@@ -430,6 +458,18 @@ def arithWith (hyps : Array Fact) (ne : Expr → MetaM (Option Expr)) (e : Expr)
       let some h2 ← ne t2 | continue
       proofs := proofs.push
         (mkApp4 (mkConst `angle_symm) x y z (mkApp4 (mkConst ``And.intro) t1 t2 h1 h2))
+  -- each triangle's area equals that of its first occurrence in another order
+  let mut tris := triangles e
+  for f in hyps do tris := triangles f.type tris
+  let mut refs : Array (Expr × Expr × Expr) := #[]
+  let mut doneT : Array (Expr × Expr × Expr) := #[]
+  for t in tris do
+    if doneT.contains t then continue
+    doneT := doneT.push t
+    let key := fun (u : Expr × Expr × Expr) => #[u.1, u.2.1, u.2.2].qsort Expr.lt
+    match refs.find? (key · == key t) with
+    | some r => if let some p ← areaPerm r t then proofs := proofs.push p
+    | none => refs := refs.push t
   let lin0 := (← configRef.get).linarith
   let mut types := hyps.map (·.type)
   for p in proofs.extract hyps.size proofs.size do types := types.push (← inferType p)

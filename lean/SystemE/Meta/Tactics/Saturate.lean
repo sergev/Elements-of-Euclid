@@ -176,6 +176,15 @@ theorem same_side_of_opposite : ∀ (a b c : Point) (L : Line),
   · exact absurd h hac
   · exact h
 
+/-- Two points of a line that does not meet `L` are on the same side of `L`. -/
+theorem same_side_of_parallel : ∀ (a b : Point) (L M : Line),
+    a.onLine M ∧ b.onLine M ∧ ¬(a.onLine L) ∧ ¬(M.intersectsLine L) → a.sameSide b L := by
+  intro a b L M ⟨ha, hb, haL, hML⟩
+  have hbL : ¬(b.onLine L) := fun h =>
+    hML (intersection_lines_common_point b M L ⟨hb, h, fun e => haL (e ▸ ha)⟩)
+  by_contra h
+  exact hML (intersection_symm _ _ (intersection_lines_opposing a b L M ⟨⟨haL, hbL, h⟩, ha, hb⟩))
+
 theorem line_ne_symm : ∀ (L M : Line), L ≠ M → M ≠ L := fun _ _ h => h.symm
 
 theorem circle_ne_symm : ∀ (α β : Circle), α ≠ β → β ≠ α := fun _ _ h => h.symm
@@ -205,7 +214,7 @@ initialize configRef.set {
     ``length_pos_of_ne, ``ne_of_length_pos,
     ``not_inside_circle_of_ge, ``not_on_circle_of_gt, ``not_on_circle_of_lt,
     ``between_trans_in', ``angle_pos_of_not_on_line,
-    ``same_side_of_opposite]
+    ``same_side_of_opposite, ``same_side_of_parallel]
   backwardLemmas := #[
     ``ne_of_lines_ne, ``not_between_of_same_side, ``not_on_line_of_triangle,
     ``eq_of_same_ray, ``on_line_of_eq_angle]
