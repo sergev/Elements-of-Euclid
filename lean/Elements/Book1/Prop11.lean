@@ -40,6 +40,7 @@ by
   euclid_intros
   euclid_apply (extend_point AB b a) as c
   euclid_apply (proposition_11 c b a AB) as f
+  euclid_apply (perpendicular_onlyif c b a f AB)
   use f
   euclid_finish
 
@@ -52,6 +53,7 @@ by
   euclid_apply (extend_point AB b a) as c
   euclid_apply (exists_point_opposite AB x) as g
   euclid_apply (proposition_11' c b a g AB) as f
+  euclid_apply (perpendicular_onlyif c b a f AB)
   use f
   euclid_finish
 

@@ -12,7 +12,7 @@ by
   euclid_intros
   euclid_apply (line_from_points a c) as AC
   by_cases (a = e)
-  ·  -- Omitted by Euclid.
+  · -- Omitted by Euclid.
     euclid_assert (Triangle.area △ a:b:c : ℝ) = (Triangle.area △ e:b:c)
     euclid_apply (proposition_34 d a c b AE BC CD AB AC)
     euclid_finish

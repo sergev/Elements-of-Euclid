@@ -17,6 +17,8 @@ by
   · euclid_finish
   · euclid_apply (proposition_16 c e d b AC BD DC)
     euclid_apply (proposition_16 b a e c AB AC BD)
+    euclid_apply (equal_angles e d b c c BD AC)
+    euclid_apply (equal_angles a e c b b AC AB)
     euclid_finish
 
 end Elements.Book1

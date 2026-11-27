@@ -15,7 +15,7 @@ by
   by_cases (g.sameSide b EF)
   · euclid_apply (proposition_16 f g e a FD AE EF)
     euclid_finish
-  ·  -- Omitted by Euclid.
+  · -- Omitted by Euclid.
     euclid_apply (proposition_16 e g f d AE FD EF)
     euclid_finish
 

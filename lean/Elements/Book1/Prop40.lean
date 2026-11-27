@@ -15,7 +15,7 @@ by
   euclid_apply (proposition_31 a b c BC) as AF
   euclid_apply (intersection_lines AF CD) as f
   by_cases (a = f)
-  ·  -- Omitted by Euclid.
+  · -- Omitted by Euclid.
     euclid_apply (intersection_lines AF DE) as g
     euclid_apply (line_from_points g c) as GC
     euclid_apply (proposition_38 a b c g c e AF BC AB AC GC DE)

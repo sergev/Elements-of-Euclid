@@ -17,7 +17,7 @@ by
       euclid_apply (proposition_13 h g a b EF AB)
       euclid_assert ∠ b:g:h + ∠ g:h:d < ∟ + ∟
       euclid_finish
-    ·  -- Omitted by Euclid.
+    · -- Omitted by Euclid.
       euclid_assert ∠ a:g:h < ∠ g:h:d
       euclid_assert ∠ a:g:h + ∠ c:h:g < ∠ g:h:d + ∠ c:h:g
       euclid_apply (proposition_13 g h c d EF CD)

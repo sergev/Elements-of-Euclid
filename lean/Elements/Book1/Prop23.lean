@@ -12,14 +12,18 @@ theorem proposition_23' : ∀ (a b c d e x : Point) (AB CD CE : Line),
 by
   euclid_intros
   by_cases (d.onLine CE)
-  ·  -- Omitted by Euclid.
+  · -- Omitted by Euclid.
     by_cases (∠ d:c:e = 0)
-    · use b
-      euclid_finish
-    · euclid_assert ∠ d:c:e = ∟ + ∟
+    · euclid_apply (degenerated_angle_if a b b AB)
+      refine ⟨b, ?_, Or.inl ?_, ?_⟩ <;> euclid_finish
+    · have : between d c e := by
+        by_contra
+        euclid_apply (degenerated_angle_if c d e CE)
+        euclid_finish
+      euclid_apply (flat_angle_onlyif d c e)
       euclid_apply (extend_point AB b a) as b'
-      use b'
-      euclid_finish
+      euclid_apply (flat_angle_onlyif b' a b)
+      refine ⟨b', ?_, Or.inl ?_, ?_⟩ <;> euclid_finish
   euclid_apply (line_from_points d e) as DE
   -- Euclid didn't explicitly apply proposition_20.
   euclid_apply (proposition_20 c d e CD DE CE)
@@ -29,8 +33,8 @@ by
   euclid_apply (line_from_points a f) as AF
   euclid_apply (line_from_points f g) as FG
   euclid_apply (proposition_8 c d e a f g CD DE CE AF FG AB)
-  use f
-  euclid_finish
+  euclid_apply (equal_angles a f f b g AF AB)
+  refine ⟨f, ?_, Or.inr ?_, ?_⟩ <;> euclid_finish
 
 theorem proposition_23 : ∀ (a b c d e : Point) (AB CD CE : Line),
   distinctPointsOnLine a b AB ∧ formRectilinearAngle d c e CD CE →
