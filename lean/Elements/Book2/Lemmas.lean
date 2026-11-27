@@ -43,4 +43,30 @@ by
   use d, e, DE, AC, BE
   euclid_finish
 
+/--
+`rectangle_on` without a side: Prop. 1.46 with the side cut off equal to `a₁a₂`.
+-/
+theorem rectangle_on' : ∀ (a b a₁ a₂ : Point) (AB : Line),
+  distinctPointsOnLine a b AB ∧ a₁ ≠ a₂ →
+  ∃ (d e : Point) (DE AD BE : Line), formParallelogram d e a b DE AB AD BE ∧
+  |(d─e)| = |(a─b)| ∧ |(a─d)| = |(a₁─a₂)| ∧ |(b─e)| = |(a₁─a₂)| ∧
+  (∠ b:a:d : ℝ) = ∟ ∧ (∠ a:d:e : ℝ) = ∟ ∧ (∠ a:b:e : ℝ) = ∟ ∧ (∠ b:e:d : ℝ) = ∟ ∧
+  Triangle.area △ d:a:b + Triangle.area △ d:e:b = |(a─b)| * |(a₁─a₂)| :=
+by
+  euclid_intros
+  euclid_apply (line_from_points a₁ a₂) as A₁₂
+  euclid_apply (proposition_11'' a b AB) as c'
+  euclid_apply (line_from_points a c') as AC
+  euclid_apply (extend_point_longer AC a c' (a₁─a₂)) as c
+  euclid_apply (proposition_3 a c a₁ a₂ AC A₁₂) as d
+  euclid_apply (proposition_31 d a b AB) as DE
+  euclid_apply (proposition_31 b a d AC) as BE
+  euclid_apply (intersection_lines DE BE) as e
+  euclid_apply (proposition_34' d e a b DE AB AC BE)
+  euclid_apply (proposition_29''''' e b d a DE AB AC)
+  euclid_apply (proposition_34' d e a b DE AB AC BE)
+  euclid_apply (rectangle_area d e a b DE AB AC BE)
+  use d, e, DE, AC, BE
+  euclid_finish
+
 end Elements.Book2

@@ -4,10 +4,6 @@ Book 2 has 14 propositions, all in System E, building on Book 1's area results (
 
 A proof's file `lean/Elements/Book2/PropNN.lean` and the `#lean-proof("/lean/Elements/Book2/PropNN.lean")` line in `Book02/PropNN.typ` are always added in the same task. Typst's `read` fails on a missing file.
 
-## T4. Props. 2.1–2.3: splitting a rectangle
-
-A rectangle on a line cut at several points equals the sum of the rectangles on the pieces. The figure is parallels through the cut points, and the proof uses `sum_parallelograms_area`. These three are the first real test of the convention in `lean/Elements/Book2.lean` and of the T3 lemmas, so revise those here if needed.
-
 ## T5. Prop. 2.4 and its corollary: the square of a sum
 
 The square on AB, cut at C, equals the squares on AC and CB plus twice the rectangle on them. This uses the diagonal of the square, Prop. 1.5, Prop. 1.29 and Prop. 1.34 to show that the parallelograms about the diagonal are squares. The corollary becomes `proposition_4_corollary`. The figure is the model for 2.5–2.8, so its constructions may move into the T3 lemmas.
@@ -45,6 +41,7 @@ This is the end of Book 2. It uses Prop. 1.45 for the parallelogram, then a semi
 ## T12. Primer and docs
 
 - `Book00/Lean.typ`: reword "the propositions of Book 1" for several books, and explain the convention for rectangles and squares from `lean/Elements/Book2.lean`.
+- Typeset `lean/Elements/Book2/Lemmas.lean` (`rectangle_on`, `rectangle_on'` and later lemmas) in the Lean edition, e.g. after Book 2's definitions, so readers see what the proofs call.
 - `CLAUDE.md`: the Lean project notes for Book 2, and where `lean/Elements/Book2/Lemmas.lean` fits.
 - `Roadmap.md`: mark Milestone 2 done in the table.
 

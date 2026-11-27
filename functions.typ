@@ -113,7 +113,7 @@
 
 // Lean proof of a proposition, typeset from its .lean file (Lean edition only)
 #let lean-proof(path) = if with-lean {
-  let skip(l) = l.starts-with("import ") or l.starts-with("namespace ") or l.starts-with("end ")
+  let skip(l) = l.starts-with("import ") or l.starts-with("namespace ") or l.starts-with("open ") or l.starts-with("end ")
   let lines = read(path).split("\n").filter(l => not skip(l))
   while lines.len() > 0 and lines.first().trim() == "" { lines.remove(0) }
   while lines.len() > 0 and lines.last().trim() == "" { let _ = lines.pop() }
