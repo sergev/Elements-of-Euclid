@@ -118,7 +118,7 @@ The golden section (13.1–13.6), pentagon and decagon side relations (13.7–13
 | Milestone | Book | Props | Basis | Risk |
 |---|---|---|---|---|
 | 1 | 1 | 48 | System E | done |
-| 2 | 2 | 14 | System E | low |
+| 2 | 2 | 14 | System E | done |
 | 3 | 3 | 37 | System E + tangency | medium |
 | 4 | 4 | 16 | System E | medium |
 | 5 | 5 | 25 | abstract magnitudes | medium |

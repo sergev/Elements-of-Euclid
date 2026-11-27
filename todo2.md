@@ -4,13 +4,6 @@ Book 2 has 14 propositions, all in System E, building on Book 1's area results (
 
 A proof's file `lean/Elements/Book2/PropNN.lean` and the `#lean-proof("/lean/Elements/Book2/PropNN.lean")` line in `Book02/PropNN.typ` are always added in the same task. Typst's `read` fails on a missing file.
 
-## T12. Primer and docs
-
-- `Book00/Lean.typ`: reword "the propositions of Book 1" for several books, and explain the convention for rectangles and squares from `lean/Elements/Book2.lean`.
-- Typeset `lean/Elements/Book2/Lemmas.lean` (`rectangle_on`, `rectangle_on'` and later lemmas) in the Lean edition, e.g. after Book 2's definitions, so readers see what the proofs call.
-- `CLAUDE.md`: the Lean project notes for Book 2, and where `lean/Elements/Book2/Lemmas.lean` fits.
-- `Roadmap.md`: mark Milestone 2 done in the table.
-
 ## T13. Final check
 
 - Run `make check` from clean, all books, and note the time.

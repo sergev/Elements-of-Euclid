@@ -4,7 +4,7 @@
 
 #v(1em)
 
-This edition gives the propositions of Book 1 twice. First comes Euclid's text in Richard Fitzpatrick's translation, then a formal version written in Lean 4, a programming language and proof assistant. Each proposition's formal statement and proof is printed after the English, under the heading _Formalization_. The proofs come from LeanEuclid, by L. Murphy, K. Yang, J. Sun, Z. Li, A. Anandkumar and X. Si, "Autoformalizing Euclidean Geometry", ICML 2024. They are distributed under the MIT license.
+This edition gives each proposition of the books it contains twice. First comes Euclid's text in Richard Fitzpatrick's translation, then a formal version written in Lean 4, a programming language and proof assistant. Each proposition's formal statement and proof is printed after the English, under the heading _Formalization_. The proofs of Book 1 come from LeanEuclid, by L. Murphy, K. Yang, J. Sun, Z. Li, A. Anandkumar and X. Si, "Autoformalizing Euclidean Geometry", ICML 2024, distributed under the MIT license. The proofs of Book 2 were written for this edition, in the same system.
 
 The Lean proofs are written in System E, a formal system that J. Avigad, E. Dean and J. Mumma designed to follow Euclid closely ("A formal system for Euclid's Elements", _Review of Symbolic Logic_ 2, 2009). In particular, it can draw the conclusions that Euclid reads off his diagrams. The result is that a formal proof reads step for step like Euclid's text, and seldom like an exercise in coordinates.
 
@@ -94,6 +94,18 @@ The proof of Proposition 1 then reads like Euclid's:
   use c
   euclid_finish
 ```
+
+== Rectangles and squares
+
+Book 2 speaks of "the rectangle contained by $A B$ and $C D$" and "the square on $A B$". The formal statements write these as products of lengths: `|(a─b)| * |(c─d)|` and `|(a─b)| * |(a─b)|`. "Twice" is `2 * …`. Prop.~1.47 already uses this form. The bridge to figures is the rule `rectangle_area`, which says that the area of a constructed rectangle, as two triangles cut off by a diagonal, is the product of its sides. The rules `parallelogram_area` and `sum_parallelograms_area` say that a parallelogram has the same area whichever diagonal cuts it, and that a parallelogram cut by a parallel to two of its sides is the sum of the two parts.
+
+Written this way, most of Book 2 consists of identities of algebra, and the solvers could prove them without any figure. The proofs in this edition do not take that shortcut. Each one draws Euclid's figure and argues with its areas, as he does.
+
+Book 2 adds a few lemmas of its own, printed after its definitions:
+- `rectangle_on`, a rectangle on a given line with a given height, drawn as in Prop.~1.46;
+- `parallel_between`, which says that parallel lines keep the order of points.
+
+Euclid reads such orders off his figure, and the proofs mark the places with `-- Missed by Euclid.` Two proofs, 2.8 and 2.14, also have a lemma of their own: `proposition_8_sums` adds up the areas of Euclid's nine pieces, and `proposition_14_lemma` is the semicircle construction.
 
 == What is checked, and what is assumed
 
