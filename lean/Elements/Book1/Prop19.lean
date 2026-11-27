@@ -11,9 +11,9 @@ by
   euclid_intros
   by_contra
   by_cases |(a─c)| = |(a─b)|
-  . euclid_apply (proposition_5' a b c AB BC AC)
+  · euclid_apply (proposition_5' a b c AB BC AC)
     euclid_finish
-  . euclid_apply (proposition_18 a c b AC BC AB)
+  · euclid_apply (proposition_18 a c b AC BC AB)
     euclid_finish
 
 end Elements.Book1

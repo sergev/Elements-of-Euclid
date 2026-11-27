@@ -5,14 +5,6 @@ Do them in order. After each task:
 - when a statement or name changes, also check Book 2;
 - commit.
 
-## 9. Formatting pass
-- Use 2-space indentation everywhere (Props 8, 15 and 29′–29″ differ).
-- Use the `·` bullet only.
-- Use `∃`, not `exists` (Props 11, 12).
-- Remove stray spaces: `( line_from_points … )`, and `△ e :b :c` in Prop 41.
-- Make doc-comment style consistent (`/-` vs `/--`).
-- Check: rebuild `ElementsLean.pdf` and look at a few pages.
-
 ## 10. SMT-free push
 - Use `tools/gaps.sh` to target the short proofs first: Props 1–4, 8, 13–15, 17, 19, 25.
 - Then regenerate the SMT-free list.

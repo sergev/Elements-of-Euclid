@@ -13,10 +13,10 @@ theorem proposition_28 : ∀ (a b c d e f g h : Point) (AB CD EF : Line),
 by
   euclid_intros
   split_ors
-  . euclid_apply (proposition_15 a b e h g AB EF)
+  · euclid_apply (proposition_15 a b e h g AB EF)
     euclid_apply (proposition_27 a d g h AB CD EF)
     euclid_finish
-  . euclid_apply (proposition_13 h g a b EF AB)
+  · euclid_apply (proposition_13 h g a b EF AB)
     euclid_apply (proposition_27 a d g h AB CD EF)
     euclid_finish
 

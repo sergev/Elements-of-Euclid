@@ -28,9 +28,9 @@ theorem proposition_37' : ∀ (a b c d : Point) (AB BC AC BD CD AD : Line),
 by
   euclid_intros
   by_cases (d.sameSide c AB)
-  . euclid_apply (proposition_37 a b c d AB BC AC BD CD AD)
+  · euclid_apply (proposition_37 a b c d AB BC AC BD CD AD)
     assumption
-  . euclid_apply (proposition_37 d b c a BD BC CD AB AC AD)
+  · euclid_apply (proposition_37 d b c a BD BC CD AB AC AD)
     euclid_finish
 
 end Elements.Book1

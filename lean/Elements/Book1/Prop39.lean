@@ -13,13 +13,13 @@ by
   euclid_intros
   by_contra
   by_cases c.sameSide d AB
-  . euclid_apply (proposition_31 a b c BC) as AE
+  · euclid_apply (proposition_31 a b c BC) as AE
     euclid_apply (intersection_lines AE BD) as e
     euclid_apply (line_from_points e c) as EC
     euclid_apply (proposition_37 a b c e AB BC AC BD EC AE)
     euclid_assert (△ e:b:c : ℝ) = (△ d:b:c)
     euclid_finish
-  . -- Omitted by Euclid.
+  ·  -- Omitted by Euclid.
     euclid_apply (proposition_31 d b c BC) as DE
     euclid_apply (intersection_lines DE AB) as e
     euclid_apply (line_from_points e c) as EC

@@ -12,7 +12,7 @@ import Elements.Book1.Prop46
 namespace Elements.Book1
 
 set_option maxHeartbeats 400000 in
-theorem proposition_47 : ∀ (a b c: Point) (AB BC AC : Line),
+theorem proposition_47 : ∀ (a b c : Point) (AB BC AC : Line),
   formTriangle a b c AB BC AC ∧ (∠ b:a:c : ℝ) = ∟ →
   |(b─c)| * |(b─c)| = |(b─a)| * |(b─a)| + |(a─c)| * |(a─c)| :=
 by

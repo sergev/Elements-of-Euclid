@@ -17,7 +17,7 @@ by
       euclid_apply (proposition_13 h g a b EF AB)
       euclid_assert ∠ b:g:h + ∠ g:h:d < ∟ + ∟
       euclid_finish
-    · -- Omitted by Euclid.
+    ·  -- Omitted by Euclid.
       euclid_assert ∠ a:g:h < ∠ g:h:d
       euclid_assert ∠ a:g:h + ∠ c:h:g < ∠ g:h:d + ∠ c:h:g
       euclid_apply (proposition_13 g h c d EF CD)
@@ -33,10 +33,10 @@ theorem proposition_29' : ∀ (a b c d e g h : Point) (AB CD EF : Line),
   (between a g b) ∧ (between c h d) ∧ (between e g h) ∧ (b.sameSide d EF) ∧ ¬(AB.intersectsLine CD) →
   ∠ a:g:h = ∠ g:h:d ∧ ∠ e:g:b = ∠ g:h:d ∧ ∠ b:g:h + ∠ g:h:d = ∟ + ∟ :=
 by
-    euclid_intros
-    euclid_apply (extend_point EF g h) as f
-    euclid_apply (proposition_29 a b c d e f g h AB CD EF)
-    euclid_finish
+  euclid_intros
+  euclid_apply (extend_point EF g h) as f
+  euclid_apply (proposition_29 a b c d e f g h AB CD EF)
+  euclid_finish
 
 -- Alternate angles: AGH equals GHD.
 theorem proposition_29_alternate : ∀ (a d g h : Point) (AB CD GH : Line),

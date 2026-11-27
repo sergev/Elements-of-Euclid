@@ -20,9 +20,7 @@ by
   euclid_apply (sum_angles_onlyif c a f b AC FC)
   euclid_finish
 
-/--
-A restriction of proposition_5.
--/
+-- A restriction of proposition_5.
 theorem proposition_5' : ∀ (a b c : Point) (AB BC AC : Line),
   formTriangle a b c AB BC AC ∧ (|(a─b)| = |(a─c)|) →
   (∠ a:b:c = ∠ a:c:b) :=

@@ -7,7 +7,7 @@ namespace Elements.Book1
 
 theorem proposition_11' : ∀ (a b c x : Point) (AB : Line),
   (distinctPointsOnLine a b AB) ∧ (between a c b) ∧ ¬(x.onLine AB) →
-  exists f : Point, (f.sameSide x AB) ∧ (∠ a:c:f = ∟) :=
+  ∃ f : Point, (f.sameSide x AB) ∧ (∠ a:c:f = ∟) :=
 by
   euclid_intros
   euclid_apply (point_between_points_shorter_than AB c a (c─b)) as d
@@ -24,7 +24,7 @@ by
 
 theorem proposition_11 : ∀ (a b c : Point) (AB : Line),
   distinctPointsOnLine a b AB ∧ between a c b →
-  exists f : Point, ¬(f.onLine AB) ∧ (∠ a:c:f = ∟) :=
+  ∃ f : Point, ¬(f.onLine AB) ∧ (∠ a:c:f = ∟) :=
 by
   euclid_intros
   euclid_apply (proposition_1 a b AB) as x
@@ -35,7 +35,7 @@ by
 -- Prop. 11 at an end A of the straight line.
 theorem proposition_11_end : ∀ (a b : Point) (AB : Line),
   distinctPointsOnLine a b AB →
-  exists (f : Point), ¬(f.onLine AB) ∧ (∠ f:a:b = ∟) :=
+  ∃ (f : Point), ¬(f.onLine AB) ∧ (∠ f:a:b = ∟) :=
 by
   euclid_intros
   euclid_apply (extend_point AB b a) as c
@@ -46,7 +46,7 @@ by
 -- Prop. 11 at an end A, on the opposite side of AB from x.
 theorem proposition_11_end_opposite : ∀ (a b x : Point) (AB : Line),
   ¬(x.onLine AB) ∧ (distinctPointsOnLine a b AB) →
-  exists (f : Point), ¬(f.onLine AB) ∧ (f.opposingSides x AB) ∧ (∠ f:a:b = ∟) :=
+  ∃ (f : Point), ¬(f.onLine AB) ∧ (f.opposingSides x AB) ∧ (∠ f:a:b = ∟) :=
 by
   euclid_intros
   euclid_apply (extend_point AB b a) as c

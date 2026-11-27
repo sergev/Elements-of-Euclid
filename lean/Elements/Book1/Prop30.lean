@@ -19,7 +19,7 @@ by
   euclid_apply (point_on_line_same_side GK EF a) as e
   euclid_apply (extend_point EF e h) as f
   euclid_apply (point_on_line_same_side GK CD a) as c
-  euclid_apply (extend_point CD c k ) as d
+  euclid_apply (extend_point CD c k) as d
 
   by_cases (between g h k)
   · euclid_apply (proposition_29_alternate a f g h AB EF GK)
@@ -27,7 +27,7 @@ by
     euclid_apply (proposition_29' e f c d g h k EF CD GK)
     euclid_apply (proposition_27 a d g k AB CD GK)
     euclid_finish
-  · -- Omitted by Euclid.
+  ·  -- Omitted by Euclid.
     by_cases (between g k h)
     · euclid_apply (proposition_29_alternate a f g h AB EF GK)
       euclid_apply (proposition_29_interior b f g h AB EF GK)

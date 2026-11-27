@@ -16,7 +16,7 @@ theorem proposition_44' : ∀ (a b c₁ c₂ c₃ d₁ d₂ d₃ x : Point) (AB 
   (∠ a:b:m : ℝ) = (∠ d₁:d₂:d₃) ∧ (Triangle.area △ a:b:m) + (Triangle.area △ a:l:m) = (Triangle.area △ c₁:c₂:c₃) :=
 by
   euclid_intros
-  euclid_apply (proposition_42_on_line_side c₁ c₂ c₃ d₁ d₂ d₃ a b x C₁₂ C₂₃ C₃₁ D₁₂ D₂₃ AB) as (g, f ,e ,FG, BG, EF)
+  euclid_apply (proposition_42_on_line_side c₁ c₂ c₃ d₁ d₂ d₃ a b x C₁₂ C₂₃ C₃₁ D₁₂ D₂₃ AB) as (g, f, e, FG, BG, EF)
   euclid_apply (proposition_31 a b g BG) as AH
   euclid_apply (proposition_30 AH EF BG)
   euclid_apply (intersection_lines AH FG) as h

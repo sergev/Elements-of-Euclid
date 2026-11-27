@@ -6,7 +6,7 @@ namespace Elements.Book1
 
 theorem proposition_12 : ∀ (a b c : Point) (AB : Line),
   distinctPointsOnLine a b AB ∧ ¬(c.onLine AB) →
-  exists h : Point, h.onLine AB ∧ (∠ a:h:c = ∟ ∨ ∠ b:h:c = ∟) :=
+  ∃ h : Point, h.onLine AB ∧ (∠ a:h:c = ∟ ∨ ∠ b:h:c = ∟) :=
 by
   euclid_intros
   euclid_apply (exists_point_opposite AB c) as d

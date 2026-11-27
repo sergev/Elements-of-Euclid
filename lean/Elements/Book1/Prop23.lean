@@ -12,11 +12,11 @@ theorem proposition_23' : ∀ (a b c d e x : Point) (AB CD CE : Line),
 by
   euclid_intros
   by_cases (d.onLine CE)
-  . -- Omitted by Euclid.
+  ·  -- Omitted by Euclid.
     by_cases (∠ d:c:e = 0)
-    . use b
+    · use b
       euclid_finish
-    . euclid_assert ∠ d:c:e = ∟ + ∟
+    · euclid_assert ∠ d:c:e = ∟ + ∟
       euclid_apply (extend_point AB b a) as b'
       use b'
       euclid_finish

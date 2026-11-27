@@ -13,7 +13,7 @@ theorem proposition_33 : ∀ (a b c d : Point) (AB CD AC BD : Line),
   AC ≠ BD ∧ ¬(AC.intersectsLine BD) ∧ |(a─c)|= |(b─d)| :=
 by
   euclid_intros
-  euclid_apply (line_from_points b c ) as BC
+  euclid_apply (line_from_points b c) as BC
   euclid_apply (proposition_29_alternate a d b c AB CD BC)
   euclid_apply (proposition_4 c b d b c a BC BD CD BC AC AB)
   euclid_apply (proposition_27 a d c b AC BD BC)

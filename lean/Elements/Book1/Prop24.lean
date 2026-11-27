@@ -37,7 +37,7 @@ by
     euclid_assert (∠ e:f:g > ∠ e:g:f)
     euclid_apply (proposition_19 e f g EF FG EG)
     euclid_finish
-  · -- Omitted by Euclid.
+  ·  -- Omitted by Euclid.
     by_cases g.onLine EF
     · euclid_finish
     · euclid_apply (extend_point FG g f) as h

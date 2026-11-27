@@ -13,9 +13,9 @@ by
   euclid_apply (extend_point BC c b) as e
   euclid_apply (proposition_13 a b e c AB BC)
   by_cases a.sameSide e BD
-  . euclid_apply (sum_angles_onlyif b a d e AB BD)
+  · euclid_apply (sum_angles_onlyif b a d e AB BD)
     euclid_finish
-  . -- Omitted by Euclid.
+  ·  -- Omitted by Euclid.
     euclid_apply (sum_angles_onlyif b a e d AB BC)
     euclid_finish
 

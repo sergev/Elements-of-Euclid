@@ -19,7 +19,7 @@ theorem proposition_45 : ∀ (a b c d e₁ e₂ e₃ : Point) (AB BC CD AD DB E�
   (∠ f:k:m = ∠ e₁:e₂:e₃) ∧ (Triangle.area △ f:k:m + Triangle.area △ f:l:m = Triangle.area △ a:b:d + Triangle.area △ d:b:c) :=
 by
   euclid_intros
-  euclid_apply (proposition_42 a b d e₁ e₂ e₃ AB DB AD E₁₂ E₂₃) as (f, g, k, h , FG, KH, FK, GH)
+  euclid_apply (proposition_42 a b d e₁ e₂ e₃ AB DB AD E₁₂ E₂₃) as (f, g, k, h, FG, KH, FK, GH)
   euclid_apply (proposition_44' g h d b c e₁ e₂ e₃ k GH DB BC CD E₁₂ E₂₃) as (m, l, HM, G, LM)
   euclid_assert ((∠ h:k:f : ℝ) = ∠ g:h:m)
   euclid_assert ((∠ h:k:f : ℝ) + (∠ k:h:g) = (∠ g:h:m) + (∠ k:h:g))

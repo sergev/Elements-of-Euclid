@@ -20,7 +20,7 @@ by
         euclid_apply (line_from_points g c) as GC
         euclid_apply (proposition_4 b g c e d f AB GC BC DE DF EF)
         euclid_finish
-      · -- Omitted by Euclid.
+      ·  -- Omitted by Euclid.
         euclid_assert (|(d─e)| > |(a─b)|)
         euclid_apply (proposition_3 e d b a DE AB) as g
         euclid_apply (line_from_points g f) as GF
@@ -32,11 +32,11 @@ by
       by_contra
       by_cases (|(b─c)| > |(e─f)|)
       · euclid_apply (proposition_3 b c e f BC EF) as h
-        euclid_apply (line_from_points a h)  as AH
+        euclid_apply (line_from_points a h) as AH
         euclid_apply (proposition_4 b a h e d f AB AH BC DE DF EF)
         euclid_apply (proposition_16 a c h b AC BC AH)
         euclid_finish
-      · -- Omitted by Euclid.
+      ·  -- Omitted by Euclid.
         euclid_assert (|(e─f)| > |(b─c)|)
         euclid_apply (proposition_3 e f b c EF BC) as h
         euclid_apply (line_from_points d h) as DH

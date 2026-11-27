@@ -14,8 +14,8 @@ by
   euclid_apply (proposition_20 a b e AB BD AC)
   euclid_apply (proposition_20 e d c BD DC AC)
   constructor
-  . euclid_finish
-  . euclid_apply (proposition_16 c e d b AC BD DC)
+  · euclid_finish
+  · euclid_apply (proposition_16 c e d b AC BD DC)
     euclid_apply (proposition_16 b a e c AB AC BD)
     euclid_finish
 

@@ -9,8 +9,8 @@ theorem proposition_13 : ∀ (a b c d : Point) (AB CD : Line),
 by
   euclid_intros
   by_cases ∠ c:b:a = ∠ a:b:d
-  . euclid_finish
-  . euclid_apply (proposition_11' d c b a CD) as e
+  · euclid_finish
+  · euclid_apply (proposition_11' d c b a CD) as e
     euclid_apply (line_from_points b e) as BE
     euclid_finish
 

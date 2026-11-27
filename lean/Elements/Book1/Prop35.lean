@@ -11,7 +11,7 @@ namespace Elements.Book1
 theorem proposition_35 : ∀ (a b c d e f g : Point) (AF BC AB CD EB FC : Line),
   formParallelogram a d b c AF BC AB CD ∧ formParallelogram e f b c AF BC EB FC ∧
   between a d e ∧ between d e f ∧ g.onLine CD ∧ g.onLine EB →
-  Triangle.area △a:b:d + Triangle.area △d:b:c = Triangle.area △e:b:c + Triangle.area △ e:c:f :=
+  Triangle.area △ a:b:d + Triangle.area △ d:b:c = Triangle.area △ e:b:c + Triangle.area △ e:c:f :=
 by
   euclid_intros
   euclid_apply (proposition_34' a d b c AF BC AB CD)
@@ -25,7 +25,7 @@ by
 -- Prop. 35 in general, wherever E and F fall on AF.
 theorem proposition_35' : ∀ (a b c d e f : Point) (AF BC AB CD EB FC : Line),
   formParallelogram a d b c AF BC AB CD ∧ formParallelogram e f b c AF BC EB FC →
-  Triangle.area △a:b:d  + Triangle.area △d:b:c = Triangle.area △e:b:c + Triangle.area △ e:c:f :=
+  Triangle.area △ a:b:d + Triangle.area △ d:b:c = Triangle.area △ e:b:c + Triangle.area △ e:c:f :=
 by
   euclid_intros
   euclid_apply (proposition_34' a d b c AF BC AB CD)

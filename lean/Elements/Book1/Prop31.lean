@@ -17,8 +17,8 @@ by
   euclid_apply (extend_point EF e a) as f
   use EF
   constructor
-  . euclid_finish
-  . euclid_apply (proposition_27 e c a d EF BC AD)
+  · euclid_finish
+  · euclid_apply (proposition_27 e c a d EF BC AD)
     euclid_finish
 
 end Elements.Book1
