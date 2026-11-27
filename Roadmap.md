@@ -10,7 +10,7 @@ Book 1 is done: 48 propositions from LeanEuclid, written in System E, typeset in
 - **Trust.** No `sorry`. New axioms are allowed only for what Euclid assumes (his definitions and postulates, or System E's rules). They live in one file per book, `lean/Elements/BookN/Axioms.lean`, and the primer lists them.
 - **Definitions.** A book's definitions are formalized where they are used, as Lean `def`s with the Euclid number in a doc comment. They are not typeset separately unless that turns out useful.
 - **Done.** `make check` passes. `make` builds the PDF with the book included, and its pages have been inspected. The primer (`Book00/Lean.typ`) covers any new notation.
-- **Toolchain.** Stay on Lean 4.19 and the LeanEuclid pin until Milestone 0 decides otherwise.
+- **Toolchain.** Lean 4.36 and Mathlib v4.36, with System E kept in `lean/SystemE/`. Upgrade Lean and Mathlib together, between milestones, not during one.
 
 ## Milestone 0 — Infrastructure
 
@@ -18,7 +18,7 @@ Prerequisite for everything below.
 
 - `Elements.typ`: select the books of the Lean edition from a list rather than hard-coding Book 1. Change the title-page subtitle to match, e.g. "Books 1–3, with proofs formalized in Lean".
 - Our own extensions of System E go in `lean/Elements/SystemE/`, never into the upstream package. Examples are new relations, such as tangency, and derived lemmas.
-- **Decide the toolchain.** Either stay on Lean 4.19 and the LeanEuclid pin, or fork LeanEuclid and move to a current Lean and Mathlib. Books 7–10 lean on Mathlib, and a newer one is better there. The cost is porting lean-smt and SystemE.
+- **Toolchain: done.** System E and the needed part of lean-smt are copied into `lean/` and ported to Lean 4.36 and Mathlib v4.36; all 48 Book 1 proofs pass.
 - `make check` per book, e.g. `make check BOOK=2`, so a slow book doesn't block work on another.
 
 ## Milestone 2 — Book 2: geometric algebra (14 propositions)

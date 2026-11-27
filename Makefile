@@ -17,8 +17,7 @@ ElementsLean.pdf: $(SRCS)
 
 # Check the Lean proofs; needs z3, cvc5 and smt-portfolio
 check:
-	cd lean && lake exe cache get && \
-	LD_LIBRARY_PATH="$$(lean --print-prefix)/lib/lean$${LD_LIBRARY_PATH:+:$$LD_LIBRARY_PATH}" lake build
+	cd lean && lake exe cache get && lake build
 
 clean:
 	rm -f $(PDFS) $(MAIN).pdf

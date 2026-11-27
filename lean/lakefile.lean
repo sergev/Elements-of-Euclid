@@ -1,11 +1,15 @@
 import Lake
 open Lake DSL
 
--- Book 1 proofs from LeanEuclid (MIT), checked against its System E
+-- SystemE and Smt are copied from LeanEuclid (MIT) and lean-smt (Apache 2.0)
 package elements where
   leanOptions := #[⟨`relaxedAutoImplicit, true⟩]
 
-require lib from git "https://github.com/loganrjmurphy/LeanEuclid" @ "33a72c0fa83914202532998a2e7b8771295c3cc7"
+require mathlib from git "https://github.com/leanprover-community/mathlib4" @ "v4.36.0"
+
+lean_lib Smt
+
+lean_lib SystemE
 
 @[default_target]
 lean_lib Elements

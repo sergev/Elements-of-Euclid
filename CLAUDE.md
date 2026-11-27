@@ -22,9 +22,11 @@ The Lean edition (`--input lean=yes`, which implies no Greek) is the Introductio
 
 ### Lean project (`lean/`)
 
-- Pinned to Lean 4.19 (`lean/lean-toolchain`) and LeanEuclid commit `33a72c0` (`lean/lakefile.lean`), which supplies System E, Mathlib and lean-smt. Don't bump one without the other.
-- `lean/Elements/Book1/PropNN.lean` are LeanEuclid's `Book/PropNN.lean` (MIT, `lean/LICENSE-LeanEuclid`) with imports renamed to `Elements.Book1.PropNN`. Primed variants stay in their proposition's file.
-- `make check` runs `lake build` in `lean/`. Steps closed by SMT are admitted by LeanEuclid's `SMT_VERIF` axiom, so a passing build trusts the solvers.
+- Lean 4.36 (`lean/lean-toolchain`) and Mathlib `v4.36.0` (`lean/lakefile.lean`), the only dependency. Bump them together; Mathlib tags match Lean versions.
+- `lean/SystemE/` is System E from LeanEuclid commit `33a72c0` (MIT, `lean/LICENSE-LeanEuclid`), ported to 4.36, without UniGeo and the commented-out `Formalization` files. It is ours now: extend it here (e.g. tangency for Book 3).
+- `lean/Smt/` is the part of lean-smt that SystemE uses (Apache 2.0, `lean/Smt/LICENSE`): SMT-LIB terms and commands, and `Smt.Solver`, which runs the external `smt-portfolio` (z3 + cvc5). `Data/Sexp.lean` and `Dsl/Sexp.lean` are upstream's 4.36 versions; the rest is from the 4.19 fork, ported.
+- `lean/Elements/Book1/PropNN.lean` are LeanEuclid's `Book/PropNN.lean` with imports renamed to `Elements.Book1.PropNN`. Primed variants stay in their proposition's file.
+- `make check` runs `lake build` in `lean/` (about 6 minutes from clean). Steps closed by SMT are admitted by SystemE's `SMT_VERIF` axiom, so a passing build trusts the solvers; a step the solvers can't close is a build error.
 
 There are no package dependencies and no tests; verify by compiling and inspecting the PDF (`pdftoppm -f N -l N -png` to look at a page).
 

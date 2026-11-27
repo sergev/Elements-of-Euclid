@@ -26,7 +26,8 @@ The propositions come with their diagrams.
   from his [original edition](https://github.com/rfitzp/Elements).
 - Lean proofs of Book 1: [LeanEuclid](https://github.com/loganrjmurphy/LeanEuclid)
   by L. Murphy, K. Yang et al. (MIT license), written in the formal system E
-  of Avigad, Dean and Mumma.
+  of Avigad, Dean and Mumma. The interface to the SMT solvers comes from
+  [lean-smt](https://github.com/ufmg-smite/lean-smt) (Apache 2.0).
 - Title picture: detail of Raphael's *School of Athens*.
 - Book title pictures are drawn in the colorful style of Oliver Byrne's 1847 Euclid.
 
