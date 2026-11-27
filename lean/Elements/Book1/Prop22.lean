@@ -4,6 +4,7 @@ import Elements.Book1.Prop03
 namespace Elements.Book1
 
 -- Prop. 22' with K on the same side of FE as x.
+set_option maxHeartbeats 400000 in
 theorem proposition_22_side : ∀ (a a' b b' c c' f e x : Point) (A B C FE : Line),
   distinctPointsOnLine a a' A ∧ distinctPointsOnLine b b' B ∧ distinctPointsOnLine c c' C ∧ distinctPointsOnLine f e FE ∧ ¬(x.onLine FE) ∧
   (|(a─a')| + |(b─b')| > |(c─c')|) ∧
@@ -17,11 +18,41 @@ by
   euclid_apply (extend_point_longer FE f e' (c─c')) as e''
   euclid_apply (proposition_3 f e'' a a' FE A) as d
   euclid_apply (proposition_3 f e'' b b' FE B) as g
+  euclid_apply (between_if f e e')
+  euclid_apply (between_if f e' e'')
+  euclid_apply (between_if f g e'')
   euclid_apply (proposition_3 g e'' c c' FE C) as h
   euclid_apply (circle_from_points f d) as DKL
   euclid_apply (circle_from_points g h) as KLH
   -- Euclid didn't need to explicitly note the existence of i.
   euclid_apply (intersection_circle_line_extending_points KLH FE g h) as i
+  -- Omitted by Euclid: the circles meet, since D is inside KLH and I inside DKL.
+  euclid_apply (point_on_circle_onlyif g h i KLH)
+  have : i.insideCircle DKL := by
+    by_cases (between g i f)
+    · euclid_apply (between_if g i f)
+      euclid_apply (point_in_circle_if f d i DKL)
+      euclid_finish
+    · by_cases (i = f)
+      · euclid_finish
+      · rcases between_points g f i FE (by euclid_finish) with hb | hb | hb
+        · euclid_apply (between_if g f i)
+          euclid_apply (point_in_circle_if f d i DKL)
+          euclid_finish
+        · euclid_apply (between_not_trans h g f i)
+          euclid_finish
+        · contradiction
+  have : d.insideCircle KLH := by
+    by_cases (between f d g)
+    · euclid_apply (between_if f d g)
+      euclid_apply (point_in_circle_if g h d KLH)
+      euclid_finish
+    · by_cases (d = g)
+      · euclid_finish
+      · euclid_apply (between_if f g d)
+        euclid_apply (point_in_circle_if g h d KLH)
+        euclid_finish
+  euclid_apply (intersection_circle_circle_2 d i DKL KLH)
   euclid_apply (intersection_same_side KLH DKL x g f FE) as k
   use k, g
   euclid_apply (point_on_circle_onlyif f d k DKL)
