@@ -218,9 +218,180 @@ def metricPool (facts : Array Fact) : MetaM (Array (Fact × Array (Array Expr)))
 def maxLayers : Nat := 4
 def maxHyps : Nat := 120
 
+/-! A linear arithmetic oracle: does a Farkas certificate exist, and which
+facts does it use? `linarith` is then run on those only. -/
+
+/-- A linear form: a constant and coefficients by atom. -/
+structure Lin where
+  c : Rat := 0
+  xs : Std.HashMap Nat Rat := {}
+deriving Inhabited
+
+def Lin.add (a b : Lin) : Lin :=
+  ⟨a.c + b.c, b.xs.fold (fun m k v =>
+    let w := m.getD k 0 + v
+    if w == 0 then m.erase k else m.insert k w) a.xs⟩
+
+def Lin.scale (r : Rat) (a : Lin) : Lin :=
+  if r == 0 then {} else ⟨r * a.c, a.xs.fold (fun m k v => m.insert k (r * v)) {}⟩
+
+abbrev AtomM := StateM (Std.HashMap Expr Nat)
+
+def Lin.atom (e : Expr) : AtomM Lin := do
+  let m ← get
+  let i ← match m[e]? with
+    | some i => pure i
+    | none => do set (m.insert e m.size); pure m.size
+  return ⟨0, ({} : Std.HashMap Nat Rat).insert i 1⟩
+
+/-- `e` as a linear form; other terms are atoms. -/
+partial def linOf (e : Expr) : AtomM Lin := do
+  let e := e.consumeMData
+  match e.getAppFnArgs with
+  | (``HAdd.hAdd, #[_, _, _, _, a, b]) => return (← linOf a).add (← linOf b)
+  | (``HSub.hSub, #[_, _, _, _, a, b]) => return (← linOf a).add ((← linOf b).scale (-1))
+  | (``Neg.neg, #[_, _, a]) => return (← linOf a).scale (-1)
+  | (``HMul.hMul, #[_, _, _, _, a, b]) =>
+    let s ← get
+    let la ← linOf a
+    let lb ← linOf b
+    if la.xs.isEmpty then return lb.scale la.c
+    if lb.xs.isEmpty then return la.scale lb.c
+    set s
+    Lin.atom e
+  | (``HDiv.hDiv, #[_, _, _, _, a, b]) =>
+    let s ← get
+    let lb ← linOf b
+    if lb.xs.isEmpty && lb.c != 0 then return (← linOf a).scale lb.c⁻¹
+    set s
+    Lin.atom e
+  | (``OfNat.ofNat, #[_, n, _]) =>
+    match n.rawNatLit? with
+    | some k => return ⟨k, {}⟩
+    | none => Lin.atom e
+  | _ => Lin.atom e
+
+/-- A real comparison as `p R 0`, `R` 0 for `=`, 1 for `≤`, 2 for `<`. -/
+def relOf (e : Expr) : AtomM (Option (Lin × Nat)) := do
+  let real := fun (t : Expr) => t.consumeMData.isConstOf `Real
+  let d := fun (a b : Expr) => do return (← linOf a).add ((← linOf b).scale (-1))
+  match e.consumeMData.getAppFnArgs with
+  | (``Eq, #[t, a, b]) => if real t then return some (← d a b, 0) else return none
+  | (``LE.le, #[t, _, a, b]) => if real t then return some (← d a b, 1) else return none
+  | (``LT.lt, #[t, _, a, b]) => if real t then return some (← d a b, 2) else return none
+  | (``GE.ge, #[t, _, a, b]) => if real t then return some (← d b a, 1) else return none
+  | (``GT.gt, #[t, _, a, b]) => if real t then return some (← d b a, 2) else return none
+  | (``Not, #[p]) =>
+    match p.consumeMData.getAppFnArgs with
+    | (``LT.lt, #[t, _, a, b]) => if real t then return some (← d b a, 1) else return none
+    | (``LE.le, #[t, _, a, b]) => if real t then return some (← d b a, 2) else return none
+    | (``GT.gt, #[t, _, a, b]) => if real t then return some (← d a b, 1) else return none
+    | (``GE.ge, #[t, _, a, b]) => if real t then return some (← d a b, 2) else return none
+    | _ => return none
+  | _ => return none
+
+/-- A Farkas certificate for the rows `p R 0`: multipliers (nonnegative unless
+`R` is `=`) cancelling every atom, with a constant `C ≥ 0` and `C + Σ strict > 0`.
+Its rows, if one exists. Phase-1 simplex over `Rat`, Bland's rule. -/
+def farkas (rows : Array (Lin × Nat)) (atoms : Nat) : Option (Array Nat) := Id.run do
+  -- columns: a multiplier per row (two for `=`), then the slacks of C and C + S
+  let mut cols : Array (Nat × Rat) := #[]
+  for i in [0:rows.size] do
+    cols := cols.push (i, 1)
+    if rows[i]!.2 == 0 then cols := cols.push (i, -1)
+  let n := cols.size + 2
+  let m := atoms + 2
+  -- tableau rows: atoms, C - s1 = 0, C + S - s2 = 1; then artificials
+  let mut t : Array (Array Rat) := Array.replicate m (Array.replicate (n + m + 1) 0)
+  for j in [0:cols.size] do
+    let (i, sg) := cols[j]!
+    let (p, r) := rows[i]!
+    for (k, v) in p.xs.toList do
+      t := t.modify k (·.set! j (sg * v))
+    t := t.modify atoms (·.set! j (sg * p.c))
+    t := t.modify (atoms + 1) (·.set! j (sg * p.c + (if r == 2 then 1 else 0)))
+  t := t.modify atoms (·.set! cols.size (-1))
+  t := t.modify (atoms + 1) (·.set! (cols.size + 1) (-1))
+  t := t.modify (atoms + 1) (·.set! (n + m) 1)
+  for r in [0:m] do t := t.modify r (·.set! (n + r) 1)
+  let mut basis : Array Nat := (List.range m).toArray.map (n + ·)
+  -- objective: minimize the sum of the artificials; reduced costs
+  let mut obj : Array Rat := Array.replicate (n + m + 1) 0
+  for r in [0:m] do
+    for j in [0:n] do obj := obj.set! j (obj[j]! - t[r]![j]!)
+    obj := obj.set! (n + m) (obj[n + m]! - t[r]![n + m]!)
+  for _ in [0:500] do
+    -- entering: the first column with a negative reduced cost
+    let some pc := (List.range n).find? (obj[·]!.blt 0) | break
+    -- leaving: least ratio, ties by least basic variable
+    let mut leave : Option Nat := none
+    for r in [0:m] do
+      let a := t[r]![pc]!
+      unless (0 : Rat).blt a do continue
+      match leave with
+      | none => leave := some r
+      | some q =>
+        let x := t[r]![n + m]! / a
+        let y := t[q]![n + m]! / t[q]![pc]!
+        if x.blt y || (x == y && basis[r]! < basis[q]!) then leave := some r
+    let some pr := leave | return none
+    let piv := t[pr]![pc]!
+    let prow := t[pr]!.map (· / piv)
+    let nz := (List.range (n + m + 1)).filter (prow[·]! != 0)
+    t := t.set! pr prow
+    for r in [0:m] do
+      if r == pr then continue
+      let f := t[r]![pc]!
+      if f == 0 then continue
+      t := t.modify r fun row => nz.foldl (fun row j => row.set! j (row[j]! - f * prow[j]!)) row
+    let f := obj[pc]!
+    obj := nz.foldl (fun o j => o.set! j (o[j]! - f * prow[j]!)) obj
+    basis := basis.set! pr pc
+  if obj[n + m]! != 0 then return none
+  -- rows whose multiplier is positive
+  let mut used : Array Nat := #[]
+  for r in [0:m] do
+    let b := basis[r]!
+    if b < cols.size && t[r]![n + m]! != 0 && !used.contains cols[b]!.1 then
+      used := used.push cols[b]!.1
+  return some used
+
+/-- The facts a certificate for `e` uses (indices into `hyps`), `some none` if
+there is none, `none` if `e` is not a comparison. -/
+def oracle (hyps : Array Expr) (e : Expr) : Option (Option (Array Nat)) := Id.run do
+  let (res, st) := (do
+    let rs ← hyps.mapM relOf
+    let g : Option (Option (Lin × Nat)) ←
+      if e.isConstOf ``False then pure (some none) else pure ((← relOf e).map some)
+    return (rs, g) : AtomM _).run {}
+  let (rs, g) := res
+  let some g := g | return none
+  let mut idx : Array Nat := #[]
+  let mut rows : Array (Lin × Nat) := #[]
+  for i in [0:rs.size] do
+    if let some row := rs[i]! then
+      idx := idx.push i
+      rows := rows.push row
+  -- the negated goal: `p ≤ 0` to `-p < 0`, `p < 0` to `-p ≤ 0`, `p = 0` to either
+  let negs : List (Option (Lin × Nat)) := match g with
+    | none => [none]
+    | some (p, 1) => [some (p.scale (-1), 2)]
+    | some (p, 2) => [some (p.scale (-1), 1)]
+    | some (p, _) => [some (p.scale (-1), 2), some (p, 2)]
+  let mut used : Array Nat := #[]
+  for ng in negs do
+    let rows' := match ng with | some r => rows.push r | none => rows
+    let some u := farkas rows' st.size | return some none
+    for k in u do
+      if k < idx.size && !used.contains idx[k]! then used := used.push idx[k]!
+  return some (some used)
+
+/-- Goals and hypothesis sets (hashed) `arithWith` failed on in this step. -/
+initialize arithFails : IO.Ref (Std.HashSet (Expr × UInt64 × Bool)) ← IO.mkRef {}
+
 /-- `linarith only` over `hyps`, plus the symmetries of the segments and angles. -/
-def arithWith (hyps : Array Fact) (ne : Expr → MetaM (Option Expr)) (e : Expr) :
-    MetaM (Option Expr) := do
+def arithWith (hyps : Array Fact) (ne : Expr → MetaM (Option Expr)) (e : Expr)
+    (split := true) : MetaM (Option Expr) := do
   let neqs ← hyps.filterM (isRealNe ·.type)
   let hyps ← hyps.filterM (fun f => return !(← isRealNe f.type))
   let mut segs := segments e
@@ -249,18 +420,36 @@ def arithWith (hyps : Array Fact) (ne : Expr → MetaM (Option Expr)) (e : Expr)
       let some h2 ← ne t2 | continue
       proofs := proofs.push
         (mkApp4 (mkConst `angle_symm) x y z (mkApp4 (mkConst ``And.intro) t1 t2 h1 h2))
-  let lin := (← configRef.get).linarith
-  if let some p ← lin proofs.toList e then return some p
+  let lin0 := (← configRef.get).linarith
+  let mut types := hyps.map (·.type)
+  for p in proofs.extract hyps.size proofs.size do types := types.push (← inferType p)
+  -- `linarith` on the facts of the oracle's certificate, or not at all
+  let lin := fun (ps : List Expr) (ts : Array Expr) => do
+    match oracle ts e with
+    | none => lin0 ps e
+    | some none => return none
+    | some (some used) =>
+      let ps' := used.toList.map (ps[·]!)
+      if let some p ← lin0 ps' e then return some p
+      lin0 ps e
+  -- failed already
+  let key := (e, hash (hyps.map (·.type)), split)
+  if (← arithFails.get).contains key then return none
+  if let some p ← lin proofs.toList types then return some p
+  unless split do
+    arithFails.modify (·.insert key)
+    return none
   -- by cases on `x ≠ y` about the goal's quantities: `x < y` or `x > y`
   let ks := atoms e
   let neqs := neqs.filter fun n => ks.isEmpty || (atoms n.type).any ks.contains
   for n in neqs.extract 0 2 do
     let some (_, x, y) := n.type.ne? | continue
     let branch := fun (t : Expr) => withLocalDeclD `h t fun h => do
-      (← lin (h :: proofs.toList) e).mapM (mkLambdaFVars #[h])
+      (← lin (h :: proofs.toList) (#[t] ++ types)).mapM (mkLambdaFVars #[h])
     let some p1 ← branch (← mkAppM ``LT.lt #[x, y]) | continue
     let some p2 ← branch (← mkAppM ``GT.gt #[x, y]) | continue
     return some (← mkAppM ``Or.elim #[← mkAppM `lt_or_gt_of_ne #[n.proof], p1, p2])
+  arithFails.modify (·.insert key)
   return none
 
 /-- An atom with a repeated point, like `∠aba`. -/
@@ -316,8 +505,13 @@ def arith (pool : Array (Fact × Array (Array Expr))) (ne : Expr → MetaM (Opti
     -- every atom of the goal must occur in some fact
     let seen := hyps.foldl (fun s f => (atoms f.type).foldl (·.insert ·) s) ({} : Std.HashSet (Array Expr))
     unless (atoms e).all seen.contains do continue
-    if let some p ← arithWith hyps ne e then return some p
+    if let some p ← arithWith hyps ne e (split := false) then return some p
     if full then break
+  -- case splits only over all the facts
+  let neq ← hyps.anyM (isRealNe ·.type)
+  if neq && (atoms e).all (hyps.foldl (fun s f => (atoms f.type).foldl (·.insert ·) s)
+      ({} : Std.HashSet (Array Expr))).contains then
+    return ← arithWith hyps ne e
   return none
 
 /-- Ground objects (points, lines, circles) of the context, by sort. -/
@@ -396,6 +590,10 @@ structure Clause where
   sorts : Array Expr := #[]
   arith : Array Bool := #[]
 deriving Inhabited
+
+/-- Some object is bound by no needed literal. -/
+def Clause.free (cl : Clause) : Bool :=
+  (List.range cl.sorts.size).any fun k => !cl.needT.any (·.hasLooseBVar k)
 
 /-- Literals a clause needs, and the literal it gives. -/
 def Clause.shape (cl : Clause) (i : Inst) : MetaM (List Expr × Expr) := do
@@ -607,6 +805,7 @@ def fire (map : Std.HashMap Expr Expr) (idx : Index) (objs : Objects) (round : N
     (keep : Expr → Bool := fun _ => true) (σ0 : Subst := {}) : MetaM (Array Fact) := do
   let out ← IO.mkRef (#[] : Array Fact)
   let k := fun (σ : Subst) => do
+    Core.checkSystem "saturate"
     let res := fill cl.resT σ
     -- skip `x = x`
     if let some (_, x, y) := res.eq? then if x == y then return
@@ -765,20 +964,21 @@ def neByMetric (ctx : Ctx) (x y : Expr) : MetaM (Option Expr) := do
 /-- Per clause: time (ns) and facts produced; filled when `systemE.stats` is on. -/
 initialize profRef : IO.Ref (Std.HashMap String (Nat × Nat)) ← IO.mkRef {}
 
-/-- Close the facts under the forward clauses. With `extra`, `facts0` is
-already closed: only consequences of the extra facts are derived (and no metric
-pass; those are derived on demand). -/
+/-- Close the facts under the forward clauses. If `closed`, `facts0` is already
+closed: only consequences of `extra` are derived (and of `objs`' new objects if
+`newObjs`). The metric pass, if `metric`, adds metric facts about known atoms. -/
 def saturate (objs : Objects) (facts0 : Array Fact) (goal : Expr) (extra : Array Fact := #[])
-    (conflict := false) : MetaM (Array Fact) := do
+    (conflict := false) (closed := !extra.isEmpty) (metric := extra.isEmpty)
+    (newObjs := false) : MetaM (Array Fact) := do
   let prof := systemE.stats.get (← getOptions)
   let mut facts := facts0
   let mut idx : Index := {}
   for f in facts do idx := idx.alter (head f.type) fun a => some ((a.getD #[]).push (f, 0))
   let mut map : Std.HashMap Expr Expr :=
     facts.foldl (fun m f => if m.contains f.type then m else m.insert f.type f.proof) {}
-  let start := if extra.isEmpty then 0 else 1
+  let start := if closed then 1 else 0
   let mut fresh : Std.HashSet (Option (Name × Bool)) := idx.keys.foldl (·.insert ·) {}
-  unless extra.isEmpty do
+  if closed then
     fresh := {}
     for f in extra do
       unless map.contains f.type do
@@ -795,9 +995,12 @@ def saturate (objs : Objects) (facts0 : Array Fact) (goal : Expr) (extra : Array
     let mut added := false
     let mut new := #[]
     for cl in cls do
-      unless cl.needs.all idx.contains && cl.needs.any fresh.contains do continue
+      Core.checkSystem "saturate"
+      -- clauses with objects bound by no fact: also on new objects
+      let all := newObjs && round == start && closed && cl.free
+      unless cl.needs.all idx.contains && (all || cl.needs.any fresh.contains) do continue
       let t0 ← IO.monoNanosNow
-      let fs ← fire map idx objs round fresh cl
+      let fs ← fire map idx objs (if all then 0 else round) fresh cl
       if prof then
         let dt := (← IO.monoNanosNow) - t0
         profRef.modify fun m => m.alter s!"{cl.rule} {cl.drop}" fun v =>
@@ -813,7 +1016,7 @@ def saturate (objs : Objects) (facts0 : Array Fact) (goal : Expr) (extra : Array
       facts := facts.push f
       idx := idx.alter (head f.type) fun a => some ((a.getD #[]).push (f, round + 1))
     if !added || facts.size > maxFacts then break
-  unless extra.isEmpty do return facts
+  unless metric do return facts
   -- metric clauses: one pass, keeping results about atoms mostly mentioned
   let known : Std.HashSet (Array Expr) :=
     facts.foldl (fun s f => (atoms f.type).foldl (·.insert ·) s) ((atoms goal).foldl (·.insert ·) {})
@@ -903,7 +1106,14 @@ def tryRefute (ctx : Ctx) (e : Expr) : MetaM (Option Expr) := do
     return none
   ctx.refutes.modify (· + 1)
   ctx.refuted.modify (·.insert e)
-  refute ctx e
+  let t0 ← IO.monoNanosNow
+  let r ← refute ctx e
+  if systemE.stats.get (← getOptions) then
+    let dt := (← IO.monoNanosNow) - t0
+    profRef.modify fun m => m.alter s!"refute {r.isSome}" fun v =>
+      let (a, b) := v.getD (0, 0)
+      some (a + dt, b + 1)
+  return r
 
 /-- `L ≠ M` for lines: a point of one line refuted on the other. -/
 def lineNe (ctx : Ctx) (e : Expr) : MetaM (Option Expr) := do
@@ -930,6 +1140,7 @@ partial def proveLit (ctx : Ctx) (depth : Nat) (e : Expr) :
     if r.isSome || depth ≤ d then return r
   ctx.calls.modify (· + 1)
   if (← ctx.calls.get) > maxCalls then return none
+  Core.checkSystem "saturate"
   let r ← proveLitCore ctx depth e
   -- a failure after a cap was hit may not be final
   if r.isSome || ((← ctx.calls.get) ≤ maxCalls && (← ctx.ariths.get) ≤ maxAriths &&
@@ -965,8 +1176,13 @@ partial def proveLitCore (ctx : Ctx) (depth : Nat) (e : Expr) : MetaM (Option Ex
     let t0 ← IO.monoNanosNow
     let mut r ← arith ctx.pool ne e
     if r.isNone then
+      let mut size := ctx.pool.size
       for level in [0:2] do
-        if let some p ← arith (← metricFor ctx (atomTerms e) level) ne e then r := some p; break
+        let pool ← metricFor ctx (atomTerms e) level
+        -- nothing new
+        if pool.size == size then continue
+        size := pool.size
+        if let some p ← arith pool ne e then r := some p; break
     if systemE.stats.get (← getOptions) then
       let dt := (← IO.monoNanosNow) - t0
       profRef.modify fun m => m.alter s!"arith {r.isSome}" fun v =>
@@ -1118,6 +1334,58 @@ def worthTrying (facts : Array Fact) (goal : Expr) : MetaM Bool := do
 def stat (m : MessageData) : MetaM Unit := do
   if systemE.stats.get (← getOptions) then logInfo m!"stats: {m}"
 
+/-- A diagrammatic closure: its facts (type to proof) and objects, and the result. -/
+structure Closure where
+  inputs : Std.HashMap Expr Expr
+  objs : Objects
+  out : Array Fact
+
+/-- Closures computed in recent declarations (keyed by their start). -/
+initialize closuresRef : IO.Ref (Std.HashMap Nat (Array Closure)) ← IO.mkRef {}
+
+/-- The declaration being elaborated (its start heartbeats). -/
+initialize declRef : IO.Ref Nat ← IO.mkRef 0
+
+/-- Most closures kept per declaration. -/
+def maxClosures : Nat := 16
+
+/-- The diagrammatic closure of `facts0`: from the largest earlier closure of the
+same declaration whose facts are all among them, only the consequences of the
+new facts and objects are derived. Hypotheses reintroduced since (by `simp_all`)
+are matched by type, and the closure's proofs moved to them. -/
+def closure (objs : Objects) (facts0 : Array Fact) : MetaM (Array Fact) := do
+  let decl ← declRef.get
+  let have_ : Std.HashMap Expr Expr :=
+    facts0.foldl (fun m f => if m.contains f.type then m else m.insert f.type f.proof) {}
+  let sub := fun (a b : Objects) => a.all fun (n, xs) =>
+    xs.all fun x => (b.find? (·.1 == n)).any (·.2.contains x)
+  let cs := (← closuresRef.get).getD decl #[]
+  let mut best : Option Closure := none
+  for c in cs do
+    if c.inputs.size > (best.map (·.inputs.size)).getD 0 &&
+        c.inputs.toList.all (have_.contains ·.1) && sub c.objs objs then
+      best := some c
+  let mut out := #[]
+  if let some c := best then
+    let extra := facts0.filter fun f => !c.inputs.contains f.type
+    let newObjs := !sub objs c.objs
+    -- old proofs of the inputs to the current ones
+    let moved : Std.HashMap Expr Expr := c.inputs.fold (fun m t p =>
+      let q := have_[t]!
+      if p == q then m else m.insert p q) {}
+    out := if moved.isEmpty then c.out else
+      c.out.map fun f => { f with proof := f.proof.replace (moved[·]?) }
+    if !extra.isEmpty || newObjs then
+      out ← saturate objs out (mkConst ``False) extra (closed := true) (metric := false) (newObjs := newObjs)
+  else
+    out ← saturate objs facts0 (mkConst ``False) (metric := false)
+  let c : Closure := ⟨have_, objs, out⟩
+  closuresRef.modify fun m =>
+    let m := if m.size > 8 && !m.contains decl then {} else m
+    m.insert decl (((m.getD decl #[]).push c).toList.drop
+      (((m.getD decl #[]).size + 1) - maxClosures)).toArray
+  return out
+
 /-- An equality between distinct objects among the facts. -/
 def objectEq? (facts : Array Fact) : MetaM (Option Fact) := do
   for f in facts do
@@ -1135,7 +1403,8 @@ partial def attempt (g : MVarId) (phase : IO.Ref MessageData) (last : IO.Ref Exp
   let facts0 ← contextFacts
   let objs ← contextObjects
   phase.set m!"saturating {facts0.size} facts"
-  let mut facts ← saturate objs facts0 goal
+  let mut facts ← closure objs facts0
+  facts ← saturate objs facts goal (closed := true) (metric := true)
   let mut ctx ← Ctx.new facts objs
   let new ← guarded ctx
   unless new.isEmpty do
@@ -1172,12 +1441,14 @@ def close (g : MVarId) : TacticM Bool := do
   let core ← readThe Core.Context
   let (decl, spent) ← spentRef.get
   let spent := if decl == core.initHeartbeats then spent else 0
+  declRef.set core.initHeartbeats
   let budget := if core.maxHeartbeats == 0 then budget else
     min budget ((3 * core.maxHeartbeats / 10 - min spent (3 * core.maxHeartbeats / 10)) / 1000)
   if budget * 10 < systemE.saturateBudget.get (← getOptions) then
     stat m!"capped"
     return false
   let start ← IO.getNumHeartbeats
+  arithFails.set {}
   let phase ← IO.mkRef m!"start"
   let r ← tryCatchRuntimeEx (withoutRecover <| withCurrHeartbeats <|
       withTheReader Core.Context ({ · with maxHeartbeats := budget * 1000 }) do
@@ -1196,7 +1467,9 @@ def close (g : MVarId) : TacticM Bool := do
       s.restore
       stat m!"budget, {← phase.get}"
       return false
-  spentRef.set (core.initHeartbeats, spent + ((← IO.getNumHeartbeats) - start))
+  let dh := (← IO.getNumHeartbeats) - start
+  spentRef.set (core.initHeartbeats, spent + dh)
+  stat m!"cost {r} {dh / 1000}"
   return r
 
 /-- Log the clauses that took the most time in saturation so far. -/
