@@ -20,3 +20,4 @@
     [Thus, if a straight-line is cut into equal and unequal (pieces, then) the rectangle contained by the unequal pieces of the whole (straight-line), plus the square on the (difference) between the (equal and unequal) pieces, is equal to the square on half (of the straight-line). (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book2/Prop05.lean")

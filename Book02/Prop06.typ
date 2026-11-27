@@ -24,3 +24,4 @@
     [Thus, if a straight-line is cut in half, and any straight-line added to it straight-on, (then) the rectangle contained by the whole (straight-line) with the (straight-line) having been added, and the (straight-line) having been added, plus the square on half (of the original straight-line), is equal to the square on the sum of half (of the original straight-line) and the (straight-line) having been added. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book2/Prop06.lean")

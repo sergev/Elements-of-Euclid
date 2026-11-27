@@ -4,10 +4,6 @@ Book 2 has 14 propositions, all in System E, building on Book 1's area results (
 
 A proof's file `lean/Elements/Book2/PropNN.lean` and the `#lean-proof("/lean/Elements/Book2/PropNN.lean")` line in `Book02/PropNN.typ` are always added in the same task. Typst's `read` fails on a missing file.
 
-## T6. Props. 2.5–2.6: the gnomon
-
-A line cut equally and unequally (2.5), and a line produced (2.6). Both are proved by equating gnomons, using Prop. 1.36, Prop. 1.43 and Prop. 2.4's figure. Prop. 2.6 is Prop. 2.5 with the point outside the segment. Keep the two proofs parallel.
-
 ## T7. Props. 2.7–2.8
 
 2.7: the squares on the whole and on one piece equal twice the rectangle plus the square on the other piece. 2.8: four times the rectangle plus a square, set out on a line produced. Prop. 2.8 is long, with eight parallelograms. Split it into `have` steps so each SMT query stays small.
