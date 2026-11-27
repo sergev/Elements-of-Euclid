@@ -20,3 +20,4 @@
     [Thus, in obtuse-angled triangles, the square on the side subtending the obtuse angle is greater than the (sum of the) squares on the sides containing the obtuse angle by twice the (rectangle) contained by one of the sides around the obtuse angle, to which a perpendicular (straight-line) falls, and the (straight-line) cut off outside (the triangle) by the perpendicular (straight-line) towards the obtuse angle. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book2/Prop12.lean")

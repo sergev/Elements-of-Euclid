@@ -4,13 +4,6 @@ Book 2 has 14 propositions, all in System E, building on Book 1's area results (
 
 A proof's file `lean/Elements/Book2/PropNN.lean` and the `#lean-proof("/lean/Elements/Book2/PropNN.lean")` line in `Book02/PropNN.typ` are always added in the same task. Typst's `read` fails on a missing file.
 
-## T10. Props. 2.12–2.13: the law of cosines
-
-2.12 is the obtuse triangle, with the perpendicular falling outside. 2.13 is the acute angle. Both use Props. 1.12, 1.47, 2.4 and 2.7.
-- Euclid proves 2.13 for one position of the foot of the perpendicular only. Prove the case he proves.
-- If the formal statement needs the position as a hypothesis, mark that `-- Missed by Euclid.` and note it in the primer's list of gaps.
-- Watch the angle conditions "obtuse" and "acute", written as `> ∟` and `< ∟`.
-
 ## T11. Prop. 2.14: squaring a rectilinear figure
 
 This is the end of Book 2. It uses Prop. 1.45 for the parallelogram, then a semicircle, Prop. 2.5 and Prop. 1.47.
