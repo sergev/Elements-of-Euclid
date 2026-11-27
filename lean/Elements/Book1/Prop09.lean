@@ -32,6 +32,13 @@ by
     euclid_finish
   euclid_apply (proposition_8 a d f a e f AB FD AF AC FE AF)
   euclid_apply (intersection_lines AF DE) as g
+  -- Missed by Euclid: AF cuts DE in half at G, so F is within the angle.
+  euclid_apply (equal_angles a d d f g AB AF)
+  euclid_apply (equal_angles a e e f g AC AF)
+  euclid_apply (proposition_4 a d g a e g AB DE AF AC DE AF)
+  euclid_assert between d g e
+  euclid_apply (equal_angles a d b f f AB AF)
+  euclid_apply (equal_angles a e c f f AC AF)
   euclid_finish
 
 end Elements.Book1
