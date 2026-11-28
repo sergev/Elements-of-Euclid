@@ -20,3 +20,4 @@
     [Thus, if two triangles, having two sides proportional to two sides, are placed together at a single angle such that the corresponding sides are also parallel, (then) the remaining sides of the triangles will be straight-on (with respect to one another). (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book6/Prop32.lean")

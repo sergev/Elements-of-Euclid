@@ -24,3 +24,4 @@
     [Thus, in right-angled triangles, the figure (drawn) on the side subtending the right-angle is equal to the (sum of the) similar, and similarly described, figures on the sides surrounding the right-angle. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book6/Prop31.lean")

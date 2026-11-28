@@ -31,6 +31,8 @@ import Elements.Book6.Prop27
 import Elements.Book6.Prop28
 import Elements.Book6.Prop29
 import Elements.Book6.Prop30
+import Elements.Book6.Prop31
+import Elements.Book6.Prop32
 
 /-
 Book 6: similar figures.
@@ -89,4 +91,13 @@ parallelogram equal to a quadrilateral given as two triangles `abd`, `dbc` with 
 on opposite sides of `db`, which is `□b:c:d:a` up to the order of the vertices. So the
 given figures of Props. 6.25, 6.28 and 6.29 are triangles, or quadrilaterals given as
 1.45 takes them.
+
+Prop. 6.33 is not proved. Euclid lays off "any number whatsoever" of circumferences equal
+to a given one, consecutively around the circle, and takes the angle they make together,
+for Def. 5.5 with all equal multiples. Past the whole circle, such a circumference is not
+one of Book 3's (`α.arc b c s` is at most the circumference), and past four right angles
+such an angle is not one of System E's (an angle is at most two right angles). So Def. 5.5
+cannot be applied to them as Euclid does. A faithful proof needs angles and circumferences
+as kinds of magnitude closed under multiples, with Prop. 3.27 for them: new axioms, which
+are not added here.
 -/

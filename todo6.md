@@ -29,16 +29,6 @@ How Book 6 differs from Books 1–5:
 - **Faithfulness to Book 5.** Every ratio step cites a Book 5 proposition or Def. 5.5. Don't use `Positive.proportion_of_mul_eq`, `Positive.mult_val` or `Length.fourth` where Euclid has an argument; they are facts of the model. Record each use, with the reason, in a comment.
 - **No reals for ratios.** A ratio of lines or areas is never `|(a─b)| / |(c─d)|`.
 
-## T10. Props. 6.31–6.33
-
-- **6.31:** in a right-angled triangle, the figure on the hypotenuse equals the similar figures on the sides. State it for the figures T1 defines (triangles at least, as `proposition_31`); Euclid's proof is by 6.8, 6.19 corr. and 5.24. The fourth proportional that 5.24 needs comes from 6.12 for lines, or `Area.fourth` with a comment if the figure gives none.
-- **6.32:** triangles with two sides proportional and parallel, placed at an angle, have their third sides in a straight line.
-- **6.33:** in equal circles, angles at the centers or at the circumferences are as the circumferences they stand on.
-  - Angles need a kind of magnitude. Decide whether `Plane.lean` gets `Angle` like `Length`, and Book 3's arcs `α.arc b c s` an instance as well.
-  - Euclid lays off equal circumferences around the circle "any number" of times, and takes their angles together. Past the whole circle, neither the angle nor the circumference is one of System E or Book 3. Find what can be proved faithfully: multiples within the circle, by T2-style induction with Props. 3.26–3.28, and Def. 5.5 over them. If the proposition can't be proved without more, stop and write down what is missing. Don't add axioms.
-
-Risk: high (6.33).
-
 ## T11. Primer and docs
 
 - **`Book00/Lean.typ`:** a section on Book 6:
