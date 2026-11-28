@@ -34,16 +34,6 @@ How Book 7 differs from Books 1–6:
   Once a proposition is proved, cite it, or a tactic that does the same, with a comment naming the proposition.
 - **No division, no rationals.** A ratio of numbers is never `a / b`, in `ℕ` or `ℚ`.
 
-## T3. Props. 7.4–7.10: part and parts
-
-- **7.4:** any number is part or parts of any greater number. The cases are "measures", "prime to it" and "neither", through 7.2.
-- **7.5, 7.6:** the same part (parts) of two numbers: their sum is the same part (parts) of the sum.
-- **7.7, 7.8:** the same with a part taken away: the remainder of the remainder.
-- **7.9, 7.10:** alternately: what part (parts) the first is of the third, the second is of the fourth.
-  - 7.10 has "part, or parts" in both directions. State the cases as Euclid does.
-
-These are distributive laws over numbers in disguise. Prove them from the definitions of T1, not with `Nat.add_mul` or `ring`.
-
 ## T4. Props. 7.11–7.15: proportion of numbers
 
 - **7.11:** as whole to whole, so a part taken away to a part taken away: the remainder to the remainder.
