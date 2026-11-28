@@ -19,14 +19,6 @@ When the solvers struggle:
 - **Segment orientation:** when a goal compares products of the same segments written in different orders (`|(a─b)|` against `|(b─a)|`), add the symmetric step as an assert.
 - **`simp_all`:** if it blows up, turn it off for that step with `set_option systemE.simpAll false in`.
 
-## T4. Props. 3.5–3.9: centers, and lines from a point to the circle
-
-- **3.5–3.6:** circles that cut, or touch, don't share a center. 3.6 uses T1.
-- **3.7–3.8:** lines from a point on a diameter (3.7), or outside the circle (3.8), to the circumference. These are long comparisons of lengths using Props. 1.20, 1.24 and 1.7.
-  - Euclid's "the greatest, the least, the nearer is greater than the further" becomes several conjuncts.
-  - State each part separately if one statement gets too big.
-- **3.9:** a point inside with three equal lines to the circle is the center.
-
 ## T5. Props. 3.10–3.13: circles meeting circles
 
 - **3.10:** two circles don't cut at more than two points.

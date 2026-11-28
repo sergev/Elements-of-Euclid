@@ -6,8 +6,8 @@ import Elements.Book1.Prop26
 namespace Elements.Book3
 
 /--
-A straight line through the center `E` cutting a chord `AB`, not through the center, in half
-at `F` cuts it at right angles.
+A straight line through the center `E` cutting a chord `AB`, not through the center,
+in half at `F` cuts it at right angles.
 -/
 theorem proposition_3 : ∀ (a b e f : Point) (AB : Line) (α : Circle),
   distinctPointsOnLine a b AB ∧ a.onCircle α ∧ b.onCircle α ∧ e.isCentre α ∧

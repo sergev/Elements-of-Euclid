@@ -39,7 +39,8 @@ by
       euclid_finish
 
 /-- A circle has a center (Def. 1.15); the proposition finds it. -/
-theorem proposition_1 : ∀ (α : Circle) (o : Point), o.isCentre α → ∃ f : Point, f.isCentre α :=
+theorem proposition_1 : ∀ (α : Circle) (o : Point),
+  o.isCentre α → ∃ f : Point, f.isCentre α :=
 by
   euclid_intros
   euclid_apply (exists_point_on_circle α) as a

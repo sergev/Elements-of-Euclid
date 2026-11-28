@@ -20,3 +20,4 @@
     [Thus, if two circles cut one another, (then) they will not have the same center. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book3/Prop05.lean")

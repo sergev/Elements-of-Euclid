@@ -1677,6 +1677,10 @@ partial def attempt (g : MVarId) (phase : IO.Ref MessageData) (last : IO.Ref Exp
   let dmap : Std.HashMap Expr Expr :=
     diag.foldl (fun m f => if m.contains f.type then m else m.insert f.type f.proof) {}
   for f in diag do
+    if let some (_, x, y) := f.type.ne? then
+      if x == y then
+        g.assign (← mkAppOptM ``False.elim #[goal, mkApp f.proof (← mkEqRefl x)])
+        return true
     if let some q := dmap[← negLit f.type]? then
       g.assign (← mkAppOptM ``False.elim #[goal, contra f.type f.proof q])
       return true

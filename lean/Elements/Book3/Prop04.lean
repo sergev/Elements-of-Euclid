@@ -3,7 +3,10 @@ import Elements.Book3.Prop03
 
 namespace Elements.Book3
 
-/-- Two chords `AC`, `BD` cutting at `E`, neither through the center, do not bisect each other. -/
+/--
+Two chords `AC`, `BD` cutting at `E`, neither through the center, do not bisect
+each other.
+-/
 theorem proposition_4 : ∀ (a b c d e f : Point) (AC BD : Line) (α : Circle),
   distinctPointsOnLine a c AC ∧ distinctPointsOnLine b d BD ∧ AC ≠ BD ∧
   a.onCircle α ∧ b.onCircle α ∧ c.onCircle α ∧ d.onCircle α ∧

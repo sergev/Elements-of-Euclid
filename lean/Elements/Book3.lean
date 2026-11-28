@@ -2,6 +2,11 @@ import Elements.Book3.Prop01
 import Elements.Book3.Prop02
 import Elements.Book3.Prop03
 import Elements.Book3.Prop04
+import Elements.Book3.Prop05
+import Elements.Book3.Prop06
+import Elements.Book3.Prop07
+import Elements.Book3.Prop08
+import Elements.Book3.Prop09
 
 /-
 Book 3: circles.
