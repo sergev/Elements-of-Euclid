@@ -34,17 +34,6 @@ How Book 7 differs from Books 1–6:
   Once a proposition is proved, cite it, or a tactic that does the same, with a comment naming the proposition.
 - **No division, no rationals.** A ratio of numbers is never `a / b`, in `ℕ` or `ℚ`.
 
-## T10. Primer and docs
-
-- **`Book00/Lean.typ`:** a section on Book 7:
-  - numbers over `ℕ`, the unit, and Def. 7.15's multiplication;
-  - part, parts, and proportion by Def. 7.20, and why it is not Book 5's;
-  - what is taken from Mathlib, and from which proposition on;
-  - the gaps marked `Missed by Euclid`: the Book 5 citations, associativity, the common notions.
-- **`CLAUDE.md`:** Book 7 notes: the basis, the rule about Mathlib, where the definitions are. Update "Books 1–6".
-- **`Roadmap.md`:** delete Milestone 7. Record in Milestone 8 the choices Books 8 and 9 inherit: the "any multitude" representation, the definitions of similar plane and solid numbers, square and cube.
-- **README:** Books 1–7.
-
 ## T11. Final check
 
 - `make check` from a clean build, all books, under the cap. Note the time.

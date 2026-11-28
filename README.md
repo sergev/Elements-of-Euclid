@@ -9,7 +9,7 @@ Get the free PDF books from the [latest release](https://github.com/sergev/Eleme
 
 - [ElementsEnglish.pdf](https://github.com/sergev/Elements-of-Euclid/releases/latest/download/ElementsEnglish.pdf) — in English
 - [ElementsGreekEnglish.pdf](https://github.com/sergev/Elements-of-Euclid/releases/latest/download/ElementsGreekEnglish.pdf) — the original Greek and the English side by side, with a small Greek–English dictionary
-- [LeanElementsOfEuclid.pdf](https://github.com/sergev/Elements-of-Euclid/releases/latest/download/LeanElementsOfEuclid.pdf) — Books 1–6 in English, each proposition followed by its proof in the [Lean](https://lean-lang.org/) proof assistant
+- [LeanElementsOfEuclid.pdf](https://github.com/sergev/Elements-of-Euclid/releases/latest/download/LeanElementsOfEuclid.pdf) — Books 1–7 in English, each proposition followed by its proof in the [Lean](https://lean-lang.org/) proof assistant
 
 ## What's inside
 
@@ -39,9 +39,10 @@ Install [Typst](https://typst.app/open-source/#download), then run `make` in thi
 
 ## Check the Lean proofs
 
-The proofs of Books 1–6 are in [`lean/`](lean). Books 1–4 and 6 are written in System E,
+The proofs of Books 1–7 are in [`lean/`](lean). Books 1–4 and 6 are written in System E,
 a formal system for Euclid's style of geometry; Book 5, on proportion, is plain
-Lean over a class of magnitudes, which Book 6 applies to figures. Every step is checked by the Lean kernel.
+Lean over a class of magnitudes, which Book 6 applies to figures; Book 7, on
+numbers, is plain Lean over the natural numbers. Every step is checked by the Lean kernel.
 
 ### Install Lean on Debian or Ubuntu
 
@@ -60,7 +61,7 @@ first build. The only Lean library used is Mathlib.
 
 ```sh
 make cache          # download prebuilt Mathlib (a few GB, once)
-make check          # check Books 1–6
+make check          # check Books 1–7
 make check BOOK=1   # check one book
 ```
 
@@ -77,7 +78,7 @@ lake env lean --load-dynlib=.lake/build/lib/libelements_SaturateCore.so Elements
 
 Each step of a proof is first closed by a built-in search that produces a proof
 Lean can check. Only when that fails is the step handed to the SMT solvers Z3 and
-CVC5, and the solvers' answer is then taken on trust. Books 1–6 need no solver,
+CVC5, and the solvers' answer is then taken on trust. Books 1–7 need no solver,
 so you can check them without installing any. To write new proofs, install the
 solvers and `smt-portfolio`, which runs them in parallel:
 

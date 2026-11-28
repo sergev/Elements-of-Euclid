@@ -1,6 +1,6 @@
-# Roadmap: Lean proofs for Books 7–13
+# Roadmap: Lean proofs for Books 8–13
 
-Books 1–6 are done (Milestones 1–6): Book 1's 48 propositions from LeanEuclid and Books 2, 3 and 4 (14, 37 and 16) written here in System E, Book 5's 25 in plain Lean over a class of magnitudes, and Book 6's 33 in System E with Book 5's proportion, typeset in `LeanElementsOfEuclid.pdf` and checked by `make check`. This file plans the remaining books, one milestone per book, numbered to match: Milestone N is Book N. A book depends on the books before it, so the milestones run in sequence. Only Milestones 7–9 (Books 7–9) can be done in parallel with the geometry.
+Books 1–7 are done (Milestones 1–7): Book 1's 48 propositions from LeanEuclid and Books 2, 3 and 4 (14, 37 and 16) written here in System E, Book 5's 25 in plain Lean over a class of magnitudes, Book 6's 33 in System E with Book 5's proportion, and Book 7's 39 in plain Lean over `ℕ`, typeset in `LeanElementsOfEuclid.pdf` and checked by `make check`. This file plans the remaining books, one milestone per book, numbered to match: Milestone N is Book N. A book depends on the books before it, so the milestones run in sequence. Only Milestones 8 and 9 (Books 8, 9) can be done in parallel with the geometry.
 
 ## Common rules for every milestone
 
@@ -13,20 +13,16 @@ Books 1–6 are done (Milestones 1–6): Book 1's 48 propositions from LeanEucli
 - **System E.** It is our own copy in `lean/SystemE/`. New relations or rules a book needs go there, in files named for the book that introduces them. Lemmas proved from earlier propositions, such as repeated constructions, go in `lean/Elements/BookN/Lemmas.lean`.
 - **Toolchain.** Lean 4.36 and Mathlib v4.36. Upgrade Lean and Mathlib together, between milestones, not during one.
 
-## Milestone 7 — Book 7: numbers (39 propositions)
-
-The Euclidean algorithm (7.1–7.2), proportion of numbers, primes, relatively prime numbers, least common multiple.
-
-- **Basis.** Mathlib's `ℕ`, not System E. A "number" is a multitude of units, so `n ≥ 2` and the unit is separate. "A measures B" is `A ∣ B`, and "parts" are proper fractions of a number. Define proportion of numbers by Def. 7.20, and do not use Book 5's. Books 8 and 9 build on this basis.
-- **New.** Definitions for 7.Def.1–23 (part, parts, prime, relatively prime, plane and solid numbers, perfect). The proofs follow Euclid's subtractive algorithm and avoid Mathlib's ready-made `Nat.gcd` theorems except where Euclid has already proved the fact.
-- **Risk.** Low. Each step is easy for Lean. It can run in parallel with Milestones 3–6, since only 7.Def.20 comes near Book 5 and it is defined separately.
-
 ## Milestone 8 — Book 8: continued proportions (27 propositions)
 
 Numbers in continued proportion, mean proportionals between numbers, square and cube numbers.
 
-- **Basis.** Milestone 7.
-- **New.** Continued proportion of a sequence of numbers. Euclid's "let there be any multitude of numbers A, B, C…" means lists of arbitrary length; use `List ℕ` or `Fin n → ℕ`, and choose once for Books 8 and 9.
+- **Basis.** Milestone 7, `lean/Elements/Book7.lean` and its `Definitions.lean`, `Lemmas.lean`. Inherited:
+  - numbers are `ℕ` with `1 < a`, `a * b` is `a` taken `b` times, "measures" is `∣`; proportion is Def. 7.20, `a ∶ b ∷ c ∶ d` (scoped in `Elements.Book7`), with `proportion_iff`, `proportion_trans` and Prop. 7.19 to move to and from `d * a = c * b`;
+  - "any multitude of numbers" is `Fin (n + 1) → ℕ` with `sum`, as in Book 5 and Props. 7.12, 7.14; three numbers with the same ratio as three are `SameRatio₃` (the same parts, each of each), the least such `Least₃`;
+  - plane and solid numbers (`PlaneNumber`, `SolidNumber`, sides greater than the unit), `SquareNumber` `p * p` and `CubeNumber` `p * p * p`, and `SimilarPlane`, `SimilarSolid`: the sides proportional, `p ∶ q ∷ r ∶ s` (and `q ∶ r ∷ t ∶ u` for solids);
+  - mul_comm is Prop. 7.16 and may be cited; associativity is Mathlib's, marked `-- Missed by Euclid.`
+- **New.** Continued proportion of a sequence of numbers, over `Fin (n + 1) → ℕ`.
 - **Risk.** Low to medium. The arbitrary-length sequences need induction, where Euclid argues with three or four named numbers and "similarly".
 
 ## Milestone 9 — Book 9: primes and series (36 propositions)
@@ -83,7 +79,7 @@ The golden section (13.1–13.6), pentagon and decagon side relations (13.7–13
 | 4 | 4 | 16 | System E | medium |
 | 5 | 5 | 25 | abstract magnitudes | medium |
 | 6 | 6 | 33 | E + Book 5 | done |
-| 7 | 7 | 39 | Mathlib `ℕ` | low, can run in parallel |
+| 7 | 7 | 39 | Mathlib `ℕ` | done |
 | 8 | 8 | 27 | Book 7 | low–medium |
 | 9 | 9 | 36 | Books 7–8 | low–medium |
 | 10 | 10 | 115 | `ℝ` + Book 5 | high (size) |
