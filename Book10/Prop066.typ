@@ -24,3 +24,4 @@
     [Hence, a (straight-line) commensurable in length with a binomial (straight-line) is a binomial (straight-line), and the same in order. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book10/Prop066.lean")

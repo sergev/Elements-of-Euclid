@@ -24,3 +24,4 @@
     [Thus, $D G$ is a third binomial (straight-line) [Def.~10.7]. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book10/Prop062.lean")

@@ -20,3 +20,4 @@
     [Thus, a (straight-line) commensurable (in length) with a major (straight-line) is major. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book10/Prop068.lean")

@@ -20,3 +20,4 @@
     [Thus, $C D$ is the square-root of (the sum of) two medial (areas) [Prop.~10.41]. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book10/Prop070.lean")

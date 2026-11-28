@@ -24,3 +24,4 @@
     [Thus, when a rational and a medial (area) are added together, four irrational (straight-lines) arise (as the square-roots of the total area)---either a binomial, or a first bimedial, or a major, or the square-root of a rational plus a medial (area). (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book10/Prop071.lean")

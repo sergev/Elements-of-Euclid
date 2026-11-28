@@ -106,6 +106,15 @@ theorem mean_proportional_unique {a b x y : M} (hx : Proportion a x x b)
   · exact h
   · exact absurd h (key hy hx)
 
+/-- Prop. 5.12 for two: if `a ∶ b ∷ c ∶ d`, then `a ∶ b ∷ a + c ∶ b + d`. -/
+theorem proportion_add {a b c d : M} (h : Proportion a b c d) :
+    Proportion a b (a + c) (b + d) :=
+  Elements.Book5.proposition_12 (n := 1) (a := fun i => if i = 0 then a else c)
+    (b := fun i => if i = 0 then b else d) (fun i => by
+      match i with
+      | ⟨0, _⟩ => exact Proportion.refl a b
+      | ⟨1, _⟩ => exact h)
+
 theorem Rational.self (ρ : Length) : Rational ρ ρ := Or.inl (.refl ρ)
 
 /-! The model. -/

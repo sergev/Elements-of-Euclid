@@ -20,3 +20,4 @@
     [Thus, $C D$ is the square-root of a rational plus a medial (area) [Prop.~10.40]. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book10/Prop069.lean")

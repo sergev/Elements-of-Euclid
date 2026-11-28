@@ -24,3 +24,4 @@
     [And, on account of this, $C D$ will be the same in order as $A B$. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book10/Prop067.lean")

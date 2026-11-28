@@ -32,14 +32,6 @@ How Book 10 differs from the books before it:
 - **Numbers.** "The ratio which a number has to a number" joins Book 5's proportion with Books 7–9's numbers (`ℕ`, Def. 7.20). 10.5–10.9 make the bridge; after that, Book 7–9 propositions are cited as Lean terms (8.24, 8.26, 9.1, 9.2 for squares).
 - **Irrational means Euclid's irrational.** Rational and irrational are relative to an assigned line `ρ` (Def. 10.3), and a line is rational when commensurable with `ρ` in length or in square only. Incommensurability is proved as Euclid proves it, from the hypotheses (10.13, 10.16 and so on), not from the irrationality of a real number.
 
-## T8. Props. 10.60–10.72: squares applied; same order
-
-- **10.60–10.65:** the square on each irrational sum, applied to a rational line, makes the binomial of the same order as breadth. The converses of 10.54–10.59.
-- **10.66–10.70:** a line commensurable in length with each kind is of the same kind and order. Through 10.13, 10.15, 10.23.
-- **10.71, 10.72:** a rational and a medial area, or two incommensurable medial areas, added together: the square root is one of four (two) irrational sums. Case analyses; keep Euclid's cases.
-
-Risk: medium.
-
 ## T9. Props. 10.73–10.90: the six differences, and the six apotomes
 
 - **10.73–10.78:** the difference of the terms of each kind is irrational (apotome, first and second apotome of a medial, minor, that which with a rational area makes a medial whole, that which with a medial area makes a medial whole). Mirror 10.36–10.41, through the lemmas of T6.

@@ -24,3 +24,4 @@
     [Thus, $D G$ is a second binomial (straight-line) [Def.~10.6].],
   )
 ]
+#lean-proof("/lean/Elements/Book10/Prop061.lean")
