@@ -27,14 +27,6 @@ How Book 5 differs from Books 1–4:
   - Mathlib's lemmas may be used for what Euclid takes for granted: arithmetic of the counting numbers, and the algebra of addition (C.N. 1–5).
 - **No reals, no division.** Ratios are not numbers. "A : B :: C : D" is Def. 5.5, over equimultiples. Don't define a ratio as `a / b`, which would make the book trivial.
 
-## T4. Props. 5.11–5.15: ratios combined
-
-- **5.11:** transitivity of the same ratio.
-- **5.12:** as one leading magnitude to its following, so all the leading to all the following. It uses 5.1, and "any number" by T1's decision.
-- **5.13:** same and greater ratio give greater ratio.
-- **5.14:** in a proportion, the first and the third are greater, equal or less together with the second and the fourth. Uses 5.8 and 5.10.
-- **5.15:** parts have the ratio of their equimultiples. Uses 5.7, 5.12.
-
 ## T5. Props. 5.16–5.19: alternation, separation, composition, the remainder
 
 - **5.16:** alternation. All four magnitudes must be of one kind: the statement takes one type.

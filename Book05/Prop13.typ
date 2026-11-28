@@ -24,3 +24,4 @@
     [Thus, if a first (magnitude) has the same ratio to a second that a third (has) to a fourth, and a third (magnitude) has a greater ratio to a fourth than a fifth (has) to a sixth, (then) the first (magnitude) will also have a greater ratio to the second than the fifth (has) to the sixth. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book5/Prop13.lean")

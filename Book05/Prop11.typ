@@ -24,3 +24,4 @@
     [Thus, (ratios which are) the same with the same ratio are also the same with one another. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book5/Prop11.lean")

@@ -24,3 +24,4 @@
     [Thus, if there are any number of magnitudes whatsoever (which are) proportional, (then) as one of the leading (magnitudes is) to one of the following, so will all of the leading (magnitudes) be to all of the following. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book5/Prop12.lean")

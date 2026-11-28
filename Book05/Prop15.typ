@@ -20,3 +20,4 @@
     [Thus, parts have the same ratio as similar multiples, taken in corresponding order. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book5/Prop15.lean")

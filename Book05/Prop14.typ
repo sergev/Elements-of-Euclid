@@ -24,3 +24,4 @@
     [Thus, if a first (magnitude) has the same ratio to a second that a third (has) to a fourth, and the first (magnitude) is greater than the third, (then) the second will also be greater than the fourth. And if (the first magnitude is) equal (to the third then the second will also be) equal (to the fourth). And if (the first magnitude is) less (than the third then the second will also be) less (than the fourth). (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book5/Prop14.lean")
