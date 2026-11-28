@@ -27,17 +27,6 @@ How Book 5 differs from Books 1–4:
   - Mathlib's lemmas may be used for what Euclid takes for granted: arithmetic of the counting numbers, and the algebra of addition (C.N. 1–5).
 - **No reals, no division.** Ratios are not numbers. "A : B :: C : D" is Def. 5.5, over equimultiples. Don't define a ratio as `a / b`, which would make the book trivial.
 
-## T5. Props. 5.16–5.19: alternation, separation, composition, the remainder
-
-- **5.16:** alternation. All four magnitudes must be of one kind: the statement takes one type.
-- **5.17:** separation. This is the second long proof, with many equimultiples.
-- **5.18:** composition, by contradiction. It assumes a fourth proportional exists, per T1, and the step is marked.
-- **5.19:** as whole to whole, so remainder to remainder. Uses 5.16 and 5.17.
-  - The corollary (conversion) is `proposition_19_corollary`.
-  - Euclid only says it is "clear, from this". Prove it from 5.17 and 5.19, and mark the steps he leaves out.
-
-Risk: medium to high. Euclid's proof of 5.17 names eight magnitudes and four equimultiples. Split it into lemmas: one for the multiples, one for the comparisons.
-
 ## T6. Props. 5.20–5.25: ex aequali, perturbed proportion, and the last two
 
 - **5.20–5.21:** the comparison lemmas for ex aequali, ordinary and perturbed. Uses 5.8, 5.10, 5.13, and 5.16 or 5.11.

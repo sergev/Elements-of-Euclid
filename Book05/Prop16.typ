@@ -24,3 +24,4 @@
     [Thus, if four magnitudes are proportional, (then) they will also be proportional alternately. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book5/Prop16.lean")

@@ -24,3 +24,4 @@
     [Thus, if separated magnitudes are proportional, (then) they will also be proportional (when) composed. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book5/Prop18.lean")

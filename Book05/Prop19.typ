@@ -29,3 +29,4 @@
     [So (it is) clear, from this, that if composed magnitudes are proportional, (then) they will also be proportional (when) converted. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book5/Prop19.lean")
