@@ -20,3 +20,4 @@
     [So I say that $A$ also has to $B$ a cubed ratio with respect to (that) a corresponding side (has) to a corresponding side---that is to say, with respect to (that) the number $C$ (has) to $F$, or $D$ to $G$, and, further, $E$ to $H$. For since $A$, $N$, $O$, $B$ are four continuously proportional numbers, $A$ thus has to $B$ a cubed ratio with respect to (that) $A$ (has) to $N$ [Def.~5.10]. But, as $A$ (is) to $N$, so it was shown (is) $C$ to $F$, and $D$ to $G$, and, further, $E$ to $H$. And thus $A$ has to $B$ a cubed ratio with respect to (that) a corresponding side (has) to a corresponding side---that is to say, with respect to (that) the number $C$ (has) to $F$, and $D$ to $G$, and, further, $E$ to $H$. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book8/Prop19.lean")

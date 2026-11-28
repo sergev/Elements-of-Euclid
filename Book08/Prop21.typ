@@ -20,3 +20,4 @@
     [[So] I say that (they are) also similar. For since $N$, $O$ have made $A$, $C$ (by) multiplying $E$, thus as $N$ is to $O$, so $A$ (is) to $C$---that is to say, $E$ to $F$ [Prop.~7.18]. But, as $E$ (is) to $F$, so $H$ (is) to $L$, and $K$ to $M$. And thus as $H$ (is) to $L$, so $K$ (is) to $M$, and $N$ to $O$. And $H$, $K$, $N$ are the sides of $A$, and $L$, $M$, $O$ the sides of $B$.#content-box-note[The Greek text has "$O$, $L$, $M$", which is obviously a mistake.] Thus, $A$ and $B$ are similar solid numbers [Def.~7.21]. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book8/Prop21.lean")

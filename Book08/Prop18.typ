@@ -20,3 +20,4 @@
     [So I say that $A$ also has to $B$ a squared ratio with respect to (that) a corresponding side (has) to a corresponding side---that is to say, with respect to (that) $C$ (has) to $E$, or $D$ to $F$. For since $A$, $G$, $B$ are continuously proportional, $A$ has to $B$ a squared ratio with respect to (that $A$ has) to $G$ [Def.~5.9]. And as $A$ is to $G$, so $C$ (is) to $E$, and $D$ to $F$. And thus $A$ has to $B$ a squared ratio with respect to (that) $C$ (has) to $E$, or $D$ to $F$. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book8/Prop18.lean")

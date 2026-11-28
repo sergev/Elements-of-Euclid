@@ -32,14 +32,6 @@ How Book 8 differs from Book 7:
   - Where Euclid states only three or four numbers, the doc comment says so. A general statement is still preferred when the induction is natural.
 - **Squares and cubes.** A square is a number multiplying itself, `a * a`; a cube is `a * a * a` (Defs. 7.18, 7.19). Don't use `^`.
 
-## T7. Props. 8.18–8.21: similar plane and solid numbers
-
-- **8.18:** one mean proportional falls between similar plane numbers, and plane has to plane the squared ratio of corresponding sides.
-- **8.19:** two between similar solid numbers, and the cubed ratio.
-- **8.20, 8.21:** the converses: if one (two) mean proportionals fall between two numbers, they are similar plane (solid) numbers.
-  - Fitzpatrick notes that 8.20's proof is defective: it does not show that `F × E = C`. Prove that step and mark it `-- Missed by Euclid.`
-  - The step that shows `D : E :: A : C` is not needed, since that is a hypothesis; say so in a comment and skip it.
-
 ## T8. Props. 8.22–8.27: squares and cubes in ratios
 
 - **8.22, 8.23:** of three (four) continuous proportionals, if the first is a square (cube), so is the third (fourth). Through 8.20 (8.21) and 7.22-type steps.
