@@ -16,3 +16,4 @@
     [In fact, (it is) clear that ($A$) is an even-times-odd (number). For its half, being odd, measures it an even number of times [Def.~7.9]. So I also say that (it is an even-times-odd number) only. For if $A$ is also an even-times-even (number) then it will be measured by an even (number) according to an even number [Def.~7.8]. Hence, its half will also be measured by an even number, (despite) being odd. The very thing is absurd. Thus, $A$ is an even-times-odd (number) only. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book9/Prop33.lean")

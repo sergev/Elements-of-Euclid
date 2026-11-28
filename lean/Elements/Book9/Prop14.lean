@@ -10,8 +10,8 @@ theorem proposition_14 {n : ℕ} {p : Fin (n + 1) → ℕ} {a q : ℕ}
     (hp : ∀ i, PrimeNumber (p i)) (ha : LeastMeasuredSeq a p) (hq : PrimeNumber q)
     (hqa : q ∣ a) : ∃ i, q = p i := by
   -- if possible, let `q` be none of them
-  by_contra hne
-  push_neg at hne
+  by_contra hne'
+  have hne : ∀ i, q ≠ p i := fun i h => hne' ⟨i, h⟩
   have hq0 : 0 < q := by have := hq.1; omega
   -- `q` measures `a` according to some `f`
   obtain ⟨f, hf⟩ := hqa

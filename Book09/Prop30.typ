@@ -16,3 +16,4 @@
     [For since $A$ measures $B$, let it measure it according to $C$. I say that $C$ is not odd. For, if possible, let it be (odd). And since $A$ measures $B$ according to $C$, $A$ has thus made $B$ (by) multiplying $C$. Thus, $B$ is composed out of odd numbers, (and) the multitude of them is odd. $B$ is thus odd [Prop.~9.23]. The very thing (is) absurd. For ($B$) was assumed (to be) even. Thus, $C$ is not odd. Thus, $C$ is even. Hence, $A$ measures $B$ an even number of times. So, on account of this, ($A$) will also measure (one) half of ($B$). (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book9/Prop30.lean")

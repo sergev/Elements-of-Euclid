@@ -16,3 +16,4 @@
     [For if [$A$ and $C$] are not prime (to one another) then some number will measure them. Let it measure (them), and let it be $D$. And $A$ is odd. Thus, $D$ (is) also odd. And since $D$, which is odd, measures $C$, and $C$ is even, [$D$] will thus also measure half of $C$ [Prop.~9.30]. And $B$ is half of $C$. Thus, $D$ measures $B$. And it also measures $A$. Thus, $D$ measures (both) $A$ and $B$, (despite) them being prime to one another. The very thing is impossible. Thus, $A$ is not unprime to $C$. Thus, $A$ and $C$ are prime to one another. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book9/Prop31.lean")

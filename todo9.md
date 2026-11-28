@@ -30,19 +30,6 @@ How Book 9 differs from Book 8:
 - **From a unit.** "Continuously proportional, from a unit" is `Continued a` with `a 0 = 1`; `a 1` is "the number after the unit", and Euclid's "third from the unit" is `a 2`, counting the unit as first. `eq_powers_one` (Book 8, Prop. 8.10) makes such numbers `powers 1 (a 1)`.
 - **Squares and cubes.** `a * a`, `a * a * a`, never `^`. `SquareNumber`, `CubeNumber` need the side greater than the unit; where the side may be the unit (as in 8.20), state the product with positive sides, and say so.
 
-## T6. Props. 9.30–9.34: odd measuring even; even-times-even and even-times-odd
-
-- **9.30:** an odd number measuring an even measures its half, through 9.23.
-- **9.31:** an odd number prime to a number is prime to its double, through 9.30.
-- **9.32:** numbers doubled from a dyad are even-times-even only, through 9.13. "Only" means not even-times-odd.
-- **9.33:** a number with an odd half is even-times-odd only.
-- **9.34:** a number neither doubled from a dyad nor with an odd half is both.
-  - Euclid's first step, "even-times-even, for it does not have an odd half", reads Def. 7.8 differently from 7.8 as stated. Check it against T1's definition, and prove the step or mark it `-- Missed by Euclid.`
-  - The number must be even (Euclid assumes it); make that a hypothesis.
-  - "Cut in half continually" is a descent: an induction on the number, as in 7.31.
-
-Risk: medium, because of the definitions. Settle T1's choices before this.
-
 ## T7. Props. 9.35–9.36: the sum of a continued proportion; perfect numbers
 
 - **9.35:** for continuous proportionals, as the excess of the second over the first is to the first, so the excess of the last over the first is to the sum of all before it. Euclid's proof is through separation (7.11, 7.13) and 7.12, over any multitude. The numbers increase ("beginning from the least"), so the subtractions are in `ℕ`.

@@ -16,3 +16,4 @@
     [In fact, (it is) clear that $A$ is an even-times-even (number) [Def.~7.8]. For it does not have an odd half. So I say that it is also an even-times-odd (number). For if we cut $A$ in half, and (then cut) its half in half, and we do this continually, then we will arrive at some odd number which will measure $A$ according to an even number. For if not, we will arrive at a dyad, and $A$ will be (one) of the (numbers) doubled from a dyad. The very opposite thing (was) assumed. Hence, $A$ is an even-times-odd (number) [Def.~7.9]. And it was also shown (to be) an even-times-even (number). Thus, $A$ is (both) an even-times-even and an even-times-odd (number). (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book9/Prop34.lean")

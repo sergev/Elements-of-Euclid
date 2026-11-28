@@ -16,3 +16,4 @@
     [In fact, (it is) clear that each [of $B$, $C$, $D$] is an even-times-even (number). For it is doubled from a dyad [Def.~7.8]. I also say that (they are even-times-even numbers) only. For let a unit be laid down. Therefore, since any multitude of numbers whatsoever are continuously proportional, starting from a unit, and the (number) $A$ after the unit is prime, the greatest of $A$, $B$, $C$, $D$, (namely) $D$, will not be measured by any other (numbers) except $A$, $B$, $C$ [Prop.~9.13]. And each of $A$, $B$, $C$ is even. Thus, $D$ is an even-times-even (number) only [Def.~7.8]. So, similarly, we can show that each of $B$, $C$ is [also] an even-times-even (number) only. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book9/Prop32.lean")
