@@ -64,7 +64,8 @@ import the space rules, so their saturation is unchanged (checked by `gaps.sh` a
 Because transport is a relation, saturation moves facts between space and the plane
 itself: after `obtain ⟨a', ha⟩ := pull_point π a h` for the vertices of a figure, the
 pulled-back figure gets System E's facts, and
-`euclid_apply Elements.Book1.proposition_4 …` works on it as in Books 1–6; its conclusions come back by `over_dist`, `over_angle`.
+`euclid_apply Elements.Book1.proposition_4 …` works on it as in Books 1–6; its
+conclusions come back by `over_dist`, `over_angle`.
 Steps in space (11.4's "the line is in the plane", 11.13's two perpendiculars) are
 closed by saturation over the space rules. Where a step won't saturate, the same
 remedies as Books 1–6.
