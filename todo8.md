@@ -32,13 +32,6 @@ How Book 8 differs from Book 7:
   - Where Euclid states only three or four numbers, the doc comment says so. A general statement is still preferred when the induction is natural.
 - **Squares and cubes.** A square is a number multiplying itself, `a * a`; a cube is `a * a * a` (Defs. 7.18, 7.19). Don't use `^`.
 
-## T4. Props. 8.8–8.10: numbers falling between
-
-- **8.8:** as many numbers fall between two numbers in continued proportion, so many between any two in the same ratio.
-- **8.9:** if two numbers prime to one another have numbers falling between them, as many fall between each of them and the unit.
-  - The unit is in the sequence. Check that T1's continued proportion allows it, since the unit is not a number (Def. 7.2).
-- **8.10:** the converse: between each of two numbers and the unit, so many between the two.
-
 ## T5. Props. 8.11–8.13: means between squares and cubes
 
 - **8.11:** one mean proportional falls between two squares, and square has to square the squared ratio of side to side.
