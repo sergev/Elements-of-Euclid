@@ -1,0 +1,33 @@
+import SystemE
+
+/-
+Book 4: figures inscribed in and circumscribed about circles.
+
+Conventions. System E has no polygons. A figure is its vertices, in order around it:
+triangle `a b c`, square `a b c d`, pentagon `a b c d e`, hexagon `a b c d e f`, with the
+lines of its sides, `AB`, `BC`, …, ending with the side back to `a`. A figure is convex:
+each side's line has the other vertices on one side. The definitions are in
+`SystemE/Book4.lean`:
+- `quadrilateral`, `pentagon`, `hexagon`: the vertices on the sides' lines, convex. A
+  triangle is Book 1's `formTriangle a b c AB BC CA`.
+- Def. 1.22, `square a b c d AB BC CD DA`: a quadrilateral with equal sides and right
+  angles.
+- `equilateralPentagon a b c d e`, `equiangularPentagon a b c d e`, and the same for
+  hexagons: equal sides, and equal angles at the vertices, written out.
+  `equiangularTriangles a b c d e f`: the angles at `a`, `b`, `c` equal those at `d`, `e`,
+  `f`. Equal chords give equal circumferences (Prop. 3.28), so these are stated with
+  lengths and angles, not arcs.
+- Defs. 4.3 and 4.6, `inscribedTriangle a b c α` (and `inscribedQuadrilateral`, …): each
+  vertex is on the circle. The figure is inscribed in the circle, and the circle
+  circumscribed about the figure.
+- Defs. 4.4 and 4.5, `circumscribedTriangle a b c AB BC CA p q r α` (and for quadrilaterals
+  and pentagons): each side's line touches the circle (Def. 3.2), `AB` at `p` and so on,
+  at a point between the side's ends. The figure is circumscribed about the circle, and
+  the circle inscribed in the figure.
+- Def. 4.7, `insertedInto a b α`: a straight line inserted into a circle, both ends on it.
+
+Prop. 4.16. Euclid constructs one side of the fifteen-sided figure and says the rest
+follow. The statement is that the side `BE` cuts off a fifteenth of the circumference,
+`α.arc b e x * 15 = α.circumference` (Book 3's circumferences); the proof has it, as
+Euclid does, as half the difference of the triangle's and the pentagon's circumferences.
+-/
