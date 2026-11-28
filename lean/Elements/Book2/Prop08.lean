@@ -21,36 +21,36 @@ The closing sums of Prop. 2.8: Euclid's equalities of the pieces, and how they m
 -/
 theorem proposition_8_sums : ∀ (a b c d e f g h k l m n o p q r : Point),
   -- CK = KD, GR = RN [1.36]; RN = CK [1.43]
-  Triangle.area △ g:c:k + Triangle.area △ k:c:b = Triangle.area △ k:b:n + Triangle.area △ n:b:d ∧
-  Triangle.area △ q:g:r + Triangle.area △ r:g:k = Triangle.area △ r:k:p + Triangle.area △ p:k:n ∧
-  Triangle.area △ n:p:r + Triangle.area △ n:r:k = Triangle.area △ b:k:g + Triangle.area △ b:g:c ∧
+  ▱ c:b:g:k = ▱ b:d:k:n ∧
+  ▱ g:k:q:r = ▱ k:n:r:p ∧
+  ▱ n:k:p:r = ▱ b:c:k:g ∧
   -- AG = MQ, QL = RF [1.36]; QL = MQ [1.43]
-  Triangle.area △ m:g:a + Triangle.area △ a:g:c = Triangle.area △ o:q:m + Triangle.area △ m:q:g ∧
-  Triangle.area △ h:q:l + Triangle.area △ l:q:r = Triangle.area △ l:r:f + Triangle.area △ f:r:p ∧
-  Triangle.area △ r:l:h + Triangle.area △ r:h:q = Triangle.area △ g:q:o + Triangle.area △ g:o:m ∧
+  ▱ g:c:m:a = ▱ q:g:o:m ∧
+  ▱ q:r:h:l = ▱ r:p:l:f ∧
+  ▱ r:q:l:h = ▱ g:m:q:o ∧
   -- AK, OH, AEFD as rectangles
   ▱ m:k:a:b = |(m─k)| * |(m─a)| ∧
   ▱ e:h:o:q = |(e─h)| * |(e─o)| ∧
   ▱ e:f:a:d = |(e─f)| * |(e─a)| ∧
   -- how the pieces make up AK and the whole
-  Triangle.area △ m:a:c + Triangle.area △ m:c:g + Triangle.area △ g:c:b + Triangle.area △ g:b:k = Triangle.area △ m:a:b + Triangle.area △ m:b:k ∧
-  Triangle.area △ e:a:c + Triangle.area △ e:c:h + Triangle.area △ h:c:d + Triangle.area △ h:d:f = Triangle.area △ e:a:d + Triangle.area △ e:d:f ∧
-  Triangle.area △ h:c:b + Triangle.area △ h:b:l + Triangle.area △ l:b:d + Triangle.area △ l:d:f = Triangle.area △ h:c:d + Triangle.area △ h:d:f ∧
-  Triangle.area △ e:h:q + Triangle.area △ e:q:o + Triangle.area △ o:q:c + Triangle.area △ o:c:a = Triangle.area △ e:h:c + Triangle.area △ e:c:a ∧
-  Triangle.area △ o:q:g + Triangle.area △ o:g:m + Triangle.area △ m:g:c + Triangle.area △ m:c:a = Triangle.area △ o:q:c + Triangle.area △ o:c:a ∧
-  Triangle.area △ h:l:r + Triangle.area △ h:r:q + Triangle.area △ q:r:b + Triangle.area △ q:b:c = Triangle.area △ h:l:b + Triangle.area △ h:b:c ∧
-  Triangle.area △ q:r:k + Triangle.area △ q:k:g + Triangle.area △ g:k:b + Triangle.area △ g:b:c = Triangle.area △ q:r:b + Triangle.area △ q:b:c ∧
-  Triangle.area △ l:f:p + Triangle.area △ l:p:r + Triangle.area △ r:p:d + Triangle.area △ r:d:b = Triangle.area △ l:f:d + Triangle.area △ l:d:b ∧
-  Triangle.area △ r:p:n + Triangle.area △ r:n:k + Triangle.area △ k:n:d + Triangle.area △ k:d:b = Triangle.area △ r:p:d + Triangle.area △ r:d:b ∧
+  ▱ m:g:a:c + ▱ b:c:k:g = ▱ m:k:a:b ∧
+  ▱ e:h:a:c + ▱ h:f:c:d = ▱ e:f:a:d ∧
+  ▱ h:l:c:b + ▱ l:f:b:d = ▱ h:f:c:d ∧
+  ▱ e:h:o:q + ▱ o:a:q:c = ▱ e:h:a:c ∧
+  ▱ g:m:q:o + ▱ m:g:a:c = ▱ o:a:q:c ∧
+  ▱ r:q:l:h + ▱ q:c:r:b = ▱ h:l:c:b ∧
+  ▱ q:g:r:k + ▱ b:c:k:g = ▱ q:c:r:b ∧
+  ▱ l:r:f:p + ▱ r:b:p:d = ▱ l:f:b:d ∧
+  ▱ n:k:p:r + ▱ k:b:n:d = ▱ r:b:p:d ∧
   -- the two diagonals of each piece [parallelogram_area]
-  Triangle.area △ g:c:b + Triangle.area △ g:b:k = Triangle.area △ k:g:c + Triangle.area △ k:c:b ∧
-  Triangle.area △ k:b:d + Triangle.area △ k:d:n = Triangle.area △ n:k:b + Triangle.area △ n:b:d ∧
-  Triangle.area △ q:g:k + Triangle.area △ q:k:r = Triangle.area △ r:q:g + Triangle.area △ r:g:k ∧
-  Triangle.area △ r:k:n + Triangle.area △ r:n:p = Triangle.area △ p:r:k + Triangle.area △ p:k:n ∧
-  Triangle.area △ m:a:c + Triangle.area △ m:c:g = Triangle.area △ g:m:a + Triangle.area △ g:a:c ∧
-  Triangle.area △ o:m:g + Triangle.area △ o:g:q = Triangle.area △ q:o:m + Triangle.area △ q:m:g ∧
-  Triangle.area △ h:q:r + Triangle.area △ h:r:l = Triangle.area △ l:h:q + Triangle.area △ l:q:r ∧
-  Triangle.area △ l:r:p + Triangle.area △ l:p:f = Triangle.area △ f:l:r + Triangle.area △ f:r:p ∧
+  ▱ b:c:k:g = ▱ c:b:g:k ∧
+  ▱ k:b:n:d = ▱ b:d:k:n ∧
+  ▱ q:g:r:k = ▱ g:k:q:r ∧
+  ▱ n:k:p:r = ▱ k:n:r:p ∧
+  ▱ m:g:a:c = ▱ g:c:m:a ∧
+  ▱ g:m:q:o = ▱ q:g:o:m ∧
+  ▱ r:q:l:h = ▱ q:r:h:l ∧
+  ▱ l:r:f:p = ▱ r:p:l:f ∧
   -- lengths
   |(m─k)| = |(a─b)| ∧ |(m─a)| = |(k─b)| ∧ |(b─k)| = |(b─d)| ∧ |(b─d)| = |(c─b)| ∧
   |(e─h)| = |(o─q)| ∧ |(o─q)| = |(a─c)| ∧ |(o─e)| = |(o─q)| ∧
@@ -65,15 +65,14 @@ by
   euclid_assert ▱ e:h:o:q = |(a─c)| * |(a─c)|
   euclid_assert ▱ e:f:a:d = (|(a─b)| + |(b─c)|) * (|(a─b)| + |(b─c)|)
   -- the four squares are equal, and so are the four rectangles
-  euclid_assert Triangle.area △ g:c:k + Triangle.area △ k:c:b = Triangle.area △ k:b:n + Triangle.area △ n:b:d
-  euclid_assert Triangle.area △ g:c:k + Triangle.area △ k:c:b = Triangle.area △ q:g:r + Triangle.area △ r:g:k
-  euclid_assert Triangle.area △ g:c:k + Triangle.area △ k:c:b = Triangle.area △ r:k:p + Triangle.area △ p:k:n
-  euclid_assert Triangle.area △ m:g:a + Triangle.area △ a:g:c = Triangle.area △ o:q:m + Triangle.area △ m:q:g
-  euclid_assert Triangle.area △ m:g:a + Triangle.area △ a:g:c = Triangle.area △ h:q:l + Triangle.area △ l:q:r
-  euclid_assert Triangle.area △ m:g:a + Triangle.area △ a:g:c = Triangle.area △ l:r:f + Triangle.area △ f:r:p
+  euclid_assert ▱ c:b:g:k = ▱ b:d:k:n
+  euclid_assert ▱ c:b:g:k = ▱ g:k:q:r
+  euclid_assert ▱ c:b:g:k = ▱ k:n:r:p
+  euclid_assert ▱ g:c:m:a = ▱ q:g:o:m
+  euclid_assert ▱ g:c:m:a = ▱ q:r:h:l
+  euclid_assert ▱ g:c:m:a = ▱ r:p:l:f
   -- AK is AG and CK; the eight are four AK; with OH they are the whole
-  euclid_assert ▱ m:k:a:b =
-    (Triangle.area △ m:g:a + Triangle.area △ a:g:c) + (Triangle.area △ g:c:k + Triangle.area △ k:c:b)
+  euclid_assert ▱ m:k:a:b = ▱ g:c:m:a + ▱ c:b:g:k
   euclid_assert ▱ e:f:a:d = 4 * ▱ m:k:a:b + ▱ e:h:o:q
   euclid_finish
 
@@ -158,37 +157,83 @@ by
   euclid_apply (equal_angles d q e a a DE AB)
   have i₂ := Elements.Book1.proposition_6 o e q AE DE OP (by euclid_finish)
   -- the four squares CK, KD, GR, RN are equal
-  have s₁ := proposition_36' g c b k k b d n MN AB CH BL BL DF (by euclid_finish)
-  have s₂ := proposition_36' q g k r r k n p OP MN CH BL BL DF (by euclid_finish)
-  have s₃ := proposition_43 d p q c n g r b k AB OP DF CH DE MN BL (by euclid_finish)
+  have s₁ : ▱ c:b:g:k = ▱ b:d:k:n := by
+    have := proposition_36' g c b k k b d n MN AB CH BL BL DF (by euclid_finish)
+    euclid_finish
+  have s₂ : ▱ g:k:q:r = ▱ k:n:r:p := by
+    have := proposition_36' q g k r r k n p OP MN CH BL BL DF (by euclid_finish)
+    euclid_finish
+  have s₃ : ▱ n:k:p:r = ▱ b:c:k:g := by
+    have := proposition_43 d p q c n g r b k AB OP DF CH DE MN BL (by euclid_finish)
+    euclid_finish
   -- the four rectangles AG, MQ, QL, RF are equal
-  have r₁ := proposition_36' m g c a o q g m AE CH MN AB OP MN (by euclid_finish)
-  have r₂ := proposition_36' h q r l l r p f EF OP CH BL BL DF (by euclid_finish)
-  have r₃ := proposition_43 k l e m r o h g q MN EF BL AE DE OP CH (by euclid_finish)
+  have r₁ : ▱ g:c:m:a = ▱ q:g:o:m := by
+    have := proposition_36' m g c a o q g m AE CH MN AB OP MN (by euclid_finish)
+    euclid_finish
+  have r₂ : ▱ q:r:h:l = ▱ r:p:l:f := by
+    have := proposition_36' h q r l l r p f EF OP CH BL BL DF (by euclid_finish)
+    euclid_finish
+  have r₃ : ▱ r:q:l:h = ▱ g:m:q:o := by
+    have := proposition_43 k l e m r o h g q MN EF BL AE DE OP CH (by euclid_finish)
+    euclid_finish
   -- AK, OH and the whole AEFD are rectangles
   euclid_apply (proposition_29_exterior q d e o a OP AB AE)
   have a₁ := (rectangle_area m k a b MN AB AE BL (by euclid_finish)).1
   have a₂ := (rectangle_area e h o q EF OP AE CH (by euclid_finish)).1
   have a₃ := (rectangle_area e f a d EF AB AE DF (by euclid_finish)).1
   -- AK is AG and CK; the whole is cut into nine
-  have u₁ := sum_parallelograms_area m k a b g c MN AB AE BL (by euclid_finish)
-  have u₂ := sum_parallelograms_area e f a d h c EF AB AE DF (by euclid_finish)
-  have u₃ := sum_parallelograms_area h f c d l b EF AB CH DF (by euclid_finish)
-  have u₄ := sum_parallelograms_area e a h c o q AE CH EF AB (by euclid_finish)
-  have u₅ := sum_parallelograms_area o a q c m g AE CH OP AB (by euclid_finish)
-  have u₆ := sum_parallelograms_area h c l b q r CH BL EF AB (by euclid_finish)
-  have u₇ := sum_parallelograms_area q c r b g k CH BL OP AB (by euclid_finish)
-  have u₈ := sum_parallelograms_area l b f d r p BL DF EF AB (by euclid_finish)
-  have u₉ := sum_parallelograms_area r b p d k n BL DF OP AB (by euclid_finish)
+  have u₁ : ▱ m:g:a:c + ▱ b:c:k:g = ▱ m:k:a:b := by
+    have := sum_parallelograms_area m k a b g c MN AB AE BL (by euclid_finish)
+    euclid_finish
+  have u₂ : ▱ e:h:a:c + ▱ h:f:c:d = ▱ e:f:a:d := by
+    have := sum_parallelograms_area e f a d h c EF AB AE DF (by euclid_finish)
+    euclid_finish
+  have u₃ : ▱ h:l:c:b + ▱ l:f:b:d = ▱ h:f:c:d := by
+    have := sum_parallelograms_area h f c d l b EF AB CH DF (by euclid_finish)
+    euclid_finish
+  have u₄ : ▱ e:h:o:q + ▱ o:a:q:c = ▱ e:h:a:c := by
+    have := sum_parallelograms_area e a h c o q AE CH EF AB (by euclid_finish)
+    euclid_finish
+  have u₅ : ▱ g:m:q:o + ▱ m:g:a:c = ▱ o:a:q:c := by
+    have := sum_parallelograms_area o a q c m g AE CH OP AB (by euclid_finish)
+    euclid_finish
+  have u₆ : ▱ r:q:l:h + ▱ q:c:r:b = ▱ h:l:c:b := by
+    have := sum_parallelograms_area h c l b q r CH BL EF AB (by euclid_finish)
+    euclid_finish
+  have u₇ : ▱ q:g:r:k + ▱ b:c:k:g = ▱ q:c:r:b := by
+    have := sum_parallelograms_area q c r b g k CH BL OP AB (by euclid_finish)
+    euclid_finish
+  have u₈ : ▱ l:r:f:p + ▱ r:b:p:d = ▱ l:f:b:d := by
+    have := sum_parallelograms_area l b f d r p BL DF EF AB (by euclid_finish)
+    euclid_finish
+  have u₉ : ▱ n:k:p:r + ▱ k:b:n:d = ▱ r:b:p:d := by
+    have := sum_parallelograms_area r b p d k n BL DF OP AB (by euclid_finish)
+    euclid_finish
   -- the two diagonals of each piece
-  have v₁ := parallelogram_area g k c b MN AB CH BL (by euclid_finish)
-  have v₂ := parallelogram_area k n b d MN AB BL DF (by euclid_finish)
-  have v₃ := parallelogram_area q r g k OP MN CH BL (by euclid_finish)
-  have v₄ := parallelogram_area r p k n OP MN BL DF (by euclid_finish)
-  have v₅ := parallelogram_area m g a c MN AB AE CH (by euclid_finish)
-  have v₆ := parallelogram_area o q m g OP MN AE CH (by euclid_finish)
-  have v₇ := parallelogram_area h l q r EF OP CH BL (by euclid_finish)
-  have v₈ := parallelogram_area l f r p EF OP BL DF (by euclid_finish)
+  have v₁ : ▱ b:c:k:g = ▱ c:b:g:k := by
+    have := parallelogram_area g k c b MN AB CH BL (by euclid_finish)
+    euclid_finish
+  have v₂ : ▱ k:b:n:d = ▱ b:d:k:n := by
+    have := parallelogram_area k n b d MN AB BL DF (by euclid_finish)
+    euclid_finish
+  have v₃ : ▱ q:g:r:k = ▱ g:k:q:r := by
+    have := parallelogram_area q r g k OP MN CH BL (by euclid_finish)
+    euclid_finish
+  have v₄ : ▱ n:k:p:r = ▱ k:n:r:p := by
+    have := parallelogram_area r p k n OP MN BL DF (by euclid_finish)
+    euclid_finish
+  have v₅ : ▱ m:g:a:c = ▱ g:c:m:a := by
+    have := parallelogram_area m g a c MN AB AE CH (by euclid_finish)
+    euclid_finish
+  have v₆ : ▱ g:m:q:o = ▱ q:g:o:m := by
+    have := parallelogram_area o q m g OP MN AE CH (by euclid_finish)
+    euclid_finish
+  have v₇ : ▱ r:q:l:h = ▱ q:r:h:l := by
+    have := parallelogram_area h l q r EF OP CH BL (by euclid_finish)
+    euclid_finish
+  have v₈ : ▱ l:r:f:p = ▱ r:p:l:f := by
+    have := parallelogram_area l f r p EF OP BL DF (by euclid_finish)
+    euclid_finish
   -- the sides
   obtain ⟨p₁, p₁', -⟩ := proposition_34' m k a b MN AB AE BL (by euclid_finish)
   obtain ⟨p₂, -⟩ := proposition_34' e h o q EF OP AE CH (by euclid_finish)
