@@ -32,17 +32,6 @@ How Book 10 differs from the books before it:
 - **Numbers.** "The ratio which a number has to a number" joins Book 5's proportion with Books 7–9's numbers (`ℕ`, Def. 7.20). 10.5–10.9 make the bridge; after that, Book 7–9 propositions are cited as Lean terms (8.24, 8.26, 9.1, 9.2 for squares).
 - **Irrational means Euclid's irrational.** Rational and irrational are relative to an assigned line `ρ` (Def. 10.3), and a line is rational when commensurable with `ρ` in length or in square only. Incommensurability is proved as Euclid proves it, from the hypotheses (10.13, 10.16 and so on), not from the irrationality of a real number.
 
-## T12. Primer and docs
-
-- **`Book00/Lean.typ`:** a section on Book 10:
-  - commensurable, in square, rational and medial, and the choices of T1 (numbers as magnitudes, lines and areas as products, the assigned line `ρ`);
-  - the construction lemmas from Books 2 and 6 and why they are facts of the model;
-  - the twelve irrationals as pairs of terms with plus or minus, and the six binomials and apotomes;
-  - 10.1 and 10.2 as the first infinite processes; the interpolations (10.10, 10.112–10.115) and the steps marked missed.
-- **`CLAUDE.md`:** Book 10 notes: the definitions and where they are, the two layers, the shared lemmas for the mirrored halves, file names with three digits. Update "Books 1–9".
-- **`Roadmap.md`:** delete Milestone 10, and update the table and the opening paragraph. Record in Milestones 12 and 13 what they inherit: 10.1 for exhaustion (12.2, 12.5, 12.10–12.12, 12.18), and the binomial and apotome definitions for 13.6, 13.11, 13.17, 13.18.
-- **README:** Books 1–10.
-
 ## T13. Final check
 
 - `make check` from a clean build (remove `lean/.lake/build` only), all books, under the cap. Note the time (Book 9's was 2m28s).

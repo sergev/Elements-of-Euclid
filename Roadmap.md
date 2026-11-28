@@ -1,6 +1,6 @@
-# Roadmap: Lean proofs for Books 9–13
+# Roadmap: Lean proofs for Books 11–13
 
-Books 1–9 are done (Milestones 1–9): Book 1's 48 propositions from LeanEuclid and Books 2, 3 and 4 (14, 37 and 16) written here in System E, Book 5's 25 in plain Lean over a class of magnitudes, Book 6's 33 in System E with Book 5's proportion, and Books 7, 8 and 9 (39, 27 and 36) in plain Lean over `ℕ`, typeset in `LeanElementsOfEuclid.pdf` and checked by `make check`. This file plans the remaining books, one milestone per book, numbered to match: Milestone N is Book N. A book depends on the books before it, so the milestones run in sequence.
+Books 1–10 are done (Milestones 1–10): Book 1's 48 propositions from LeanEuclid and Books 2, 3 and 4 (14, 37 and 16) written here in System E, Book 5's 25 in plain Lean over a class of magnitudes, Book 6's 33 in System E with Book 5's proportion, Books 7, 8 and 9 (39, 27 and 36) in plain Lean over `ℕ`, and Book 10's 115 in plain Lean over Book 5's magnitudes, lines and areas, typeset in `LeanElementsOfEuclid.pdf` and checked by `make check`. This file plans the remaining books, one milestone per book, numbered to match: Milestone N is Book N. A book depends on the books before it, so the milestones run in sequence.
 
 ## Common rules for every milestone
 
@@ -12,16 +12,6 @@ Books 1–9 are done (Milestones 1–9): Book 1's 48 propositions from LeanEucli
 - **Done.** `make check` passes (`make check BOOK=N` checks one book while working on it). `make` builds the PDF with the book included, and its pages have been inspected. The primer (`Book00/Lean.typ`) covers any new notation.
 - **System E.** It is our own copy in `lean/SystemE/`. New relations or rules a book needs go there, in files named for the book that introduces them. Lemmas proved from earlier propositions, such as repeated constructions, go in `lean/Elements/BookN/Lemmas.lean`.
 - **Toolchain.** Lean 4.36 and Mathlib v4.36. Upgrade Lean and Mathlib together, between milestones, not during one.
-
-## Milestone 10 — Book 10: incommensurable magnitudes (115 propositions)
-
-10.1 (the basis of exhaustion), commensurability, the irrationality of √2 type results, and the classification of the 13 kinds of irrational lines (binomials, apotomes, medials …).
-
-- **Basis.** Segment lengths as positive reals with Book 5's ratios linked to `ℝ` division, plus Mathlib's `Irrational`. Commensurable means the ratio is rational. "Rational" in Euclid's sense is commensurable with a chosen line, in length or in square; define it so, not as `ℚ`.
-- **New.** The 13 kinds of irrational lines as definitions over `ℝ`; the lemmas Euclid needs (10.28 lemmas, Pythagorean triples).
-- **Risk.** High, due to size. It is the longest book, at about a quarter of the Elements, and highly repetitive: 10.36–10.72 and 10.73–10.110 mirror each other. Split it into sub-milestones of about 25 propositions each. Make proofs of the mirrored propositions share lemmas. The connection to geometry (lines and squares on them) depends on Milestone 6.
-- **Left by Book 6.** Lines and areas are magnitudes through `Figure` (`Elements/Book6/Definitions.lean`), with `p ∶ q ∷ r ∶ s`; Book 10 can state its ratios of lines and of squares so. The application of areas (6.28, 6.29) takes the given figure as a quadrilateral cut into two triangles and the defect or excess similar to a parallelogram, which covers Book 10's rectangles falling short or exceeding by squares. Angles and circumferences are magnitudes too (`∡a:b:c`, `⌒α:b:c:s`, for Prop. 6.33).
-- **Left by Books 7–9.** Numbers in the ratio of a square number to a square number, for 10.9 (commensurable in square) and the lemmas before 10.29 (Pythagorean triples): Prop. 8.26 (similar plane numbers have the ratio of a square to a square, `c * d ∶ e * f ∷ x * x ∶ y * y`), Prop. 8.24 (a number in that ratio to a square is a square), Props. 9.1, 9.2 (two numbers make a square exactly when they are similar plane numbers, with sides that may be the unit). Numbers are `ℕ` with proportion of numbers (Def. 7.20), not Book 5's; 10.5–10.8 must connect the two, a ratio of numbers being a ratio of magnitudes commensurable with a unit.
 
 ## Milestone 11 — Book 11: solid geometry (39 propositions)
 
@@ -40,6 +30,7 @@ Lines and planes in space, perpendiculars to planes, parallel planes, solid angl
 Circles are to one another as the squares on their diameters (12.2), and the volumes of pyramids, cones, cylinders and spheres (12.18).
 
 - **Basis.** Milestone 11's solid geometry, Book 5's proportion, and 10.1. Areas and volumes of curved figures need a notion of magnitude beyond triangle sums: axioms for area and volume as additive and monotone, in the spirit of Book 5 magnitudes, rather than Mathlib's measure theory.
+- **Left by Book 10.** 10.1 is `Elements.Book10.proposition_1` over `[Magnitude M]`: a sequence `x : ℕ → M` of remainders, from each more than half taken (`proposition_1'` for halves), some remainder less than a given magnitude. It is what 12.2, 12.5, 12.10–12.12 and 12.18 cite for exhaustion; their areas and volumes need only be a kind of magnitude.
 - **New.** Area of a circle and volume of a solid as magnitudes, inscribed polygons and polyhedra approximating them.
 - **Risk.** High. The double reductio of exhaustion proofs (12.2, 12.5, 12.10–12.12, 12.18) is the hardest logic in the Elements to state faithfully.
 
@@ -47,7 +38,8 @@ Circles are to one another as the squares on their diameters (12.2), and the vol
 
 The golden section (13.1–13.6), pentagon and decagon side relations (13.7–13.12), the construction of the five regular solids in a sphere (13.13–13.17), and their comparison (13.18). The closing claim that there are no other regular solids gets a separate theorem.
 
-- **Basis.** Milestones 4, 10 and 11. 13.1–13.12 are planar, so they can start once Book 10's binomial and apotome definitions exist (13.6, 13.11 use them).
+- **Basis.** Milestones 4, 10 and 11. 13.1–13.12 are planar, so they can start now.
+- **Left by Book 10.** Lines are `Length`, with `sq`, `rect`, and rational relative to an assigned `ρ` (`Rational ρ x`, `RationalArea`, `Medial`). 13.6 (the cut in extreme and mean ratio of a rational line is an apotome) uses `Apotome ρ l` and `FirstApotome ρ r l` (`Definitions3.lean`); 13.11 (the side of a pentagon in a circle with a rational diameter is minor) uses `Minor ρ l`; 13.17, 13.18 use the same. The lines of Book 13's figures are System E segments, so `Length.of a b h` (`Elements/Book5/Plane.lean`) connects them, as Book 6 does. 10.111's corollary (`LineKind`) gives that the kinds differ.
 - **New.** Regular polyhedra inscribed in a sphere, described by their vertices; an icosahedron and dodecahedron are 12 and 20 points.
 - **Risk.** High for 13.16–13.17 (icosahedron, dodecahedron): many points and many solid-geometry steps.
 
@@ -63,7 +55,7 @@ The golden section (13.1–13.6), pentagon and decagon side relations (13.7–13
 | 7 | 7 | 39 | Mathlib `ℕ` | done |
 | 8 | 8 | 27 | Book 7 | done |
 | 9 | 9 | 36 | Books 7–8 | done |
-| 10 | 10 | 115 | `ℝ` + Book 5 | high (size) |
+| 10 | 10 | 115 | Book 5 + model of lines | done |
 | 11 | 11 | 39 | new solid system | high |
 | 12 | 12 | 18 | Book 11 + magnitudes | high |
 | 13 | 13 | 18 | Books 4, 10, 11 | high |
