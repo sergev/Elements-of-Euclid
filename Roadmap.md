@@ -26,6 +26,10 @@ Eudoxus's theory of ratios of magnitudes: equimultiples (Def. 5.5), alternation,
 6.1 (triangles of equal height are as their bases), 6.2 (parallels cut sides proportionally), similar triangles (6.4–6.8), mean proportionals, application of areas (6.27–6.29), 6.31 (generalized 1.47), 6.33 (angles at the center are as arcs).
 
 - **Basis.** System E plus Book 5 proportion, through the Milestone 5 instance for lengths and areas.
+- **Magnitudes** (`Elements/Book5/Plane.lean`). `Length` and `Area` are two kinds of magnitude, both all the positive reals, not only those that occur as lengths or areas of a figure. So sums, remainders and Archimedes come from the reals, with no construction, and Book 5 applies at once. `Length.of a b h` is `|(a─b)|`, `Area.triangle a b c L h` is `△a:b:c`, `Area.parallelogram …` is `▱ a:b:c:d`; `Length.of_add` adds lengths along a line. Effects on Book 6:
+  - a multiple `m • Length.of a b h` is a magnitude, not a segment. 6.1 must still construct Euclid's `m` copies of the base and show that their length is that multiple (`Positive.mult_val` relates it to `m * |(a─b)|`); this is the induction outside E's style noted below.
+  - the fourth proportional that 5.18 and 5.24 assume is `Length.fourth` / `Area.fourth`, a fact of the model. Prop. 6.12 constructs it for lines, as Euclid does.
+  - `Positive.proportion_of_mul_eq` (proportion from `p * s = q * r`) is a fact of the model too: use it only where Euclid has no argument, not in place of Book 5.
 - **New.** Similar rectilinear figures (Def. 6.1), reciprocally proportional figures, duplicate ratio (Def. 5.9 used here). Areas of general rectilinear figures as sums of triangles.
 - **Risk.** High. 6.1 is the bridge between geometry and Book 5, and its proof by equimultiples needs constructing m copies of a segment for arbitrary m. That requires induction, which is outside E's style. 6.27–6.29 are long. 6.33 needs Book 3's arcs.
 

@@ -24,6 +24,7 @@ import Elements.Book5.Prop22
 import Elements.Book5.Prop23
 import Elements.Book5.Prop24
 import Elements.Book5.Prop25
+import Elements.Book5.Plane
 
 /-
 Book 5: proportion, Eudoxus's theory of the ratios of magnitudes.
@@ -59,4 +60,6 @@ is not used: the proofs are plain Lean. The basis, in `Elements/Book5/Magnitude.
 - Prop. 5.18 assumes that a fourth proportional exists. It does not follow from the laws
   of magnitudes, so 5.18 (and 5.24, which uses it) take it as a hypothesis, marked in the
   proof. Book 6 constructs it for lines (Prop. 6.12).
+- Magnitudes in the plane (`Elements/Book5/Plane.lean`): `Length` and `Area` of System E,
+  both the positive reals, as the bridge to Book 6.
 -/

@@ -27,18 +27,6 @@ How Book 5 differs from Books 1–4:
   - Mathlib's lemmas may be used for what Euclid takes for granted: arithmetic of the counting numbers, and the algebra of addition (C.N. 1–5).
 - **No reals, no division.** Ratios are not numbers. "A : B :: C : D" is Def. 5.5, over equimultiples. Don't define a ratio as `a / b`, which would make the book trivial.
 
-## T7. Magnitudes in the plane
-
-The bridge to Book 6: instances of T1's class for magnitudes of System E.
-- **Lengths:** segments of positive length, `|(a─b)|` with `a ≠ b`, as a type with addition and order.
-  - Addition needs a segment equal to the sum: `extend_point_longer` and Prop. 1.3 give one.
-  - The instance may use the reals of System E's `|(a─b)|` underneath. The point is that Book 6 can take ratios of lengths with Book 5's propositions.
-- **Areas:** triangle and parallelogram areas, positive.
-- **Archimedes:** for lengths and areas it follows from the reals underneath. Say so in the doc comment: it is a fact of the model, not one Euclid proves.
-- Decide whether the carrier is the positive reals that occur as lengths, or all positive reals. Choose whatever Book 6 needs. Write down the decision, and its effect on Book 6, in `Roadmap.md` under Milestone 6.
-
-Risk: medium. If an instance needs more than System E gives, stop and write down what is missing. Don't add axioms.
-
 ## T8. Primer and docs
 
 - **`Book00/Lean.typ`:** a section on Book 5:
