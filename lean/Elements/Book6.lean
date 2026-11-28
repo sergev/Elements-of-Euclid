@@ -27,6 +27,10 @@ import Elements.Book6.Prop23
 import Elements.Book6.Prop24
 import Elements.Book6.Prop25
 import Elements.Book6.Prop26
+import Elements.Book6.Prop27
+import Elements.Book6.Prop28
+import Elements.Book6.Prop29
+import Elements.Book6.Prop30
 
 /-
 Book 6: similar figures.

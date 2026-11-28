@@ -9,6 +9,7 @@ import Elements.Book6.Prop01
 import Elements.Book6.Prop13
 import Elements.Book6.Prop18
 import Elements.Book6.Prop19
+import Elements.Book6.Prop20
 import Elements.Book6.Prop21
 import Elements.Book4.Lemmas
 
@@ -122,5 +123,67 @@ by
   have := area_symm_2 l f l₂
   have := area_symm_1 l₂ l c
   linarith
+
+/--
+Prop. 6.25 for a quadrilateral `abcd` as the figure to be similar to: the same
+construction, with Prop. 6.18 for quadrilaterals and the squared ratio of Prop. 6.20's
+corollary. The constructed `pqrs` corresponds to `abcd`.
+-/
+theorem proposition_25' : ∀ (a b c d d₁ d₂ d₃ d₄ : Point)
+    (AB BC CD DA D₁₂ D₂₄ D₄₁ D₂₃ D₃₄ : Line),
+  quadrilateral a b c d AB BC CD DA ∧ formTriangle d₁ d₂ d₄ D₁₂ D₂₄ D₄₁ ∧
+  formTriangle d₄ d₂ d₃ D₂₄ D₂₃ D₃₄ ∧ d₁.opposingSides d₃ D₂₄ →
+  ∃ (p q r s : Point) (PQ QR RS SP : Line), quadrilateral p q r s PQ QR RS SP ∧
+  similarQuadrilaterals a b c d p q r s ∧
+  Triangle.area △p:q:r + Triangle.area △p:r:s =
+    Triangle.area △d₁:d₂:d₄ + Triangle.area △d₄:d₂:d₃ :=
+by
+  euclid_intros
+  euclid_apply (line_from_points a c) as AC
+  -- the parallelogram `BE` (`cl b m`) applied to `BC` equal to `ABCD` [Prop. 1.45]
+  have := angle_pos_of_not_on_line b c a BC (by euclid_finish)
+  euclid_apply (Elements.Book4.angle_lt_flat a b c BC)
+  euclid_apply (proposition_25_apply b c d b a d c a b c BC AB AC BC DA CD AB BC)
+    as (l, m, CL, BM, ML)
+  -- and `CM` applied to `CE` equal to `D`, in the angle `FCE` equal to `CBL` [Prop. 1.45]
+  have := angle_pos_of_not_on_line b c m BC (by euclid_finish)
+  euclid_apply (Elements.Book4.angle_lt_flat m b c BC)
+  euclid_apply (proposition_25_apply c l b d₁ d₂ d₃ d₄ c b m CL D₁₂ D₂₄ D₄₁ D₂₃ D₃₄ BC BM)
+    as (l₂, f, LL, CF, LM)
+  -- `BC` is straight-on to `CF`, and `LE` to `EM` [Prop. 1.14]
+  euclid_apply (Elements.Book1.proposition_29_interior m l b c BM CL BC)
+  euclid_apply (Elements.Book1.proposition_14 l c b f CL BC CF)
+  euclid_apply (parallel_line_unique l BC ML LL)
+  euclid_assert between b c f
+  -- `BC : CF :: BE : EF` [Prop. 6.1]
+  have h₁ := proposition_1' l b c f m l₂ ML BC BM CL LM (by euclid_finish)
+  euclid_apply (parallelogram_area l l₂ c f ML BC CL LM)
+  euclid_apply (parallelogram_area c l b m CL BM BC ML)
+  -- `XY` the mean proportional to `BC`, `CF` [Prop. 6.13], and on it `XYHG` similar
+  -- and similarly laid down to `BCDA` [Prop. 6.18]
+  obtain ⟨x, y, h₂⟩ := proposition_13 b c c f (by euclid_finish)
+  have hxy : x ≠ y := size_segment_pos.mp h₂.2.2.1
+  euclid_apply (line_from_points x y) as XY
+  obtain ⟨g, h, YH, HG, GX, hq, s₁⟩ := proposition_18 x y b c d a XY BC CD DA AB
+    (by euclid_finish)
+  -- `BC : CF :: ABCD : GXYH` [Prop. 6.20 corollary]
+  obtain ⟨-, -, -, -, q⟩ := proposition_20_corollary b c d a x y h g BC CD DA AB XY YH HG
+    GX ⟨by euclid_finish, hq, s₁⟩
+  have h₃ := q.third h₂
+  -- so `ABCD : GXYH :: BE : EF`, and alternately `ABCD : BE :: GXYH : EF` [Props. 5.11,
+  -- 5.16]; `ABCD` is equal to `BE`, so `GXYH` to `EF`, that is, to `D` [Def. 5.5]
+  have h₄ := (h₃.symm.trans h₁).alt
+  obtain ⟨habcd, hbe, hg, hef, h₄⟩ := h₄
+  have e₁ : size (□a:b:c:d) = size (□m:b:c:l) := by
+    rw [size_quadrilateral, size_quadrilateral]
+    area_linarith
+  have e₂ := (h₄.eq 1 1).mp (by rw [one_mult, one_mult]; exact mag_congr e₁)
+  rw [one_mult, one_mult] at e₂
+  have e₂ : size (□g:x:y:h) = size (□l₂:l:c:f) := mag_inj.mp e₂
+  rw [size_quadrilateral, size_quadrilateral] at e₂
+  have s₂ := similarQuadrilaterals_rot (similarQuadrilaterals_rot
+    (similarQuadrilaterals_rot s₁))
+  refine ⟨g, x, y, h, GX, XY, YH, HG, by euclid_finish, s₂, ?_⟩
+  area_linarith
 
 end Elements.Book6

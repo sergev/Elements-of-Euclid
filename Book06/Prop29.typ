@@ -24,3 +24,4 @@
     [Thus, the parallelogram $A O$, equal to the given rectilinear figure $C$, has been applied to the given straight-line $A B$, overshooting by the parallelogramic figure $Q P$ which is similar to $D$, since $P Q$ is also similar to $E L$ [Prop.~6.24]. (Which is) the very thing it was required to do.],
   )
 ]
+#lean-proof("/lean/Elements/Book6/Prop29.lean")

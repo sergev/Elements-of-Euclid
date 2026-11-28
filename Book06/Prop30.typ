@@ -24,3 +24,4 @@
     [Thus, the straight-line $A B$ has been cut in extreme and mean ratio at $E$, and $A E$ is its greater piece. (Which is) the very thing it was required to do.],
   )
 ]
+#lean-proof("/lean/Elements/Book6/Prop30.lean")

@@ -88,6 +88,18 @@ theorem of_eq {A B C : Type} [Figure A K] [Figure B K] [Figure C K] {p : A} {q :
   ⟨hp, hr, h ▸ hp, hr,
     (Elements.Book5.proposition_7 (mag r hr) (mag_congr (hq := h ▸ hp) h)).1⟩
 
+/-- Of four proportionals of one kind, if the second exceeds the fourth, the first exceeds
+the third [Prop. 5.14]. -/
+theorem lt_first {A B C D : Type} [Figure A K] [Figure B K] [Figure C K] [Figure D K]
+    {p : A} {q : B} {r : C} {s : D} (h : p ∶ q ∷ r ∶ s) (hs : size s < size q) :
+    size r < size p := by
+  obtain ⟨hp, hq, hr, hs₀, h⟩ := h
+  have h₁ := Elements.Book5.proposition_14 h
+  rcases lt_trichotomy (mag r hr) (mag p hp) with e | e | e
+  · exact mag_lt.mp e
+  · exact absurd (h₁.2.1 e.symm) (ne_of_gt (mag_lt.mpr hs))
+  · exact absurd (h₁.2.2 e) (lt_asymm (mag_lt.mpr hs))
+
 end Proportional
 
 /-- Two magnitudes `x`, `y`, as Prop. 5.12 takes them. -/
@@ -164,6 +176,22 @@ theorem eq {p : X} {q : Y} {r : Z} {s : W} (h : SquaredRatio' p q r s)
   · exact absurd (h₃.2.2 e) (lt_asymm e)
   · exact mag_inj.mp e
   · exact absurd (h₃.1 e) (lt_asymm e)
+
+/-- In the squared ratio of `r : s`, if `p` exceeds `q`, then `r` exceeds `s`: of the
+third proportional `z`, `r` exceeds `z` [Def. 5.5], and `r : s :: s : z` [Prop. 5.14]. -/
+theorem lt {p : X} {q : Y} {r : Z} {s : W} (h : SquaredRatio' p q r s)
+    (hpq : size q < size p) : size s < size r := by
+  obtain ⟨hp, hq, hr, hs, z, h₁, h₂⟩ := h
+  have hz : z < mag r hr := by
+    have := (h₂.gt 1 1).mp (by rw [one_mult, one_mult]; exact mag_lt.mpr hpq)
+    rwa [one_mult, one_mult] at this
+  have h₃ := Elements.Book5.proposition_14 h₁
+  rcases lt_trichotomy (mag s hs) (mag r hr) with e | e | e
+  · exact mag_lt.mp e
+  · have h₄ : mag s hs = z := h₃.2.1 e.symm
+    rw [← h₄, e] at hz
+    exact absurd hz (lt_irrefl _)
+  · exact absurd (lt_trans (lt_trans hz e) (h₃.2.2 e)) (lt_irrefl _)
 
 end SquaredRatio'
 
@@ -298,6 +326,32 @@ by
   euclid_apply (Elements.Book1.proposition_3 d y c₀ c₁ L C) as g
   use g
   euclid_finish
+
+/-- A straight line `M` through `x` and `o`, on opposite sides of `L`, meets `L` between
+them. -/
+theorem between_of_opposite : ∀ (x q o : Point) (L M : Line),
+  q.onLine L ∧ x.onLine M ∧ q.onLine M ∧ o.onLine M ∧ x.opposingSides o L →
+  between x q o :=
+by
+  euclid_intros
+  have : x ≠ q := by
+    intro h
+    subst h
+    exact ‹¬(x.onLine L)› ‹_›
+  have : o ≠ q := by
+    intro h
+    subst h
+    exact ‹¬(o.onLine L)› ‹_›
+  have : x ≠ o := by
+    intro h
+    subst h
+    euclid_finish
+  euclid_apply (between_points x q o M)
+  rcases ‹between x q o ∨ between q x o ∨ between x o q› with h | h | h
+  · exact h
+  · exact absurd (pasch_2 q x o L ⟨h, ‹_›, ‹_›⟩) ‹¬(x.sameSide o L)›
+  · exact absurd (pasch_2 q o x L ⟨by euclid_finish, ‹_›, ‹_›⟩)
+      (fun h' => ‹¬(x.sameSide o L)› (by euclid_finish))
 
 /--
 One more copy: on the line `L` beyond `g` (which is `c`, or beyond `c` from `b`), a point

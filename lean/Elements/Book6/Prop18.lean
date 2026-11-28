@@ -27,21 +27,22 @@ by
   exact proposition_4 c d e a b g CD DE EC AB BG GA (by euclid_finish)
 
 /--
-To describe on a given straight line `ab` a quadrilateral `abhg` similar, and similarly
+Prop. 6.18, on `y`'s side of `AB`: to describe on a given straight line `ab` a
+quadrilateral `abhg` similar, and similarly
 laid down, to a given quadrilateral `cdef`, as in Euclid's figure. Join `DF`; on `AB` the
 triangle `GAB` equiangular to `FCD`, and on `BG` the triangle `GBH` equiangular to `FDE`
 [Props. 1.23, 1.32]. The whole angles at `b`, `g` are equal to those at `d`, `f`, and the
 sides are proportional [Props. 6.4, 5.22].
 -/
-theorem proposition_18 : ∀ (a b c d e f : Point) (AB CD DE EF FC : Line),
-  distinctPointsOnLine a b AB ∧ quadrilateral c d e f CD DE EF FC →
+theorem proposition_18_side : ∀ (a b c d e f y : Point) (AB CD DE EF FC : Line),
+  distinctPointsOnLine a b AB ∧ ¬(y.onLine AB) ∧ quadrilateral c d e f CD DE EF FC →
   ∃ (g h : Point) (BH HG GA : Line), quadrilateral a b h g AB BH HG GA ∧
-  similarQuadrilaterals c d e f a b h g :=
+  g.sameSide y AB ∧ similarQuadrilaterals c d e f a b h g :=
 by
   euclid_intros
   euclid_apply (line_from_points d f) as DF
-  -- on `AB`, the angles `GAB`, `ABG` equal to the angle at `c` and `CDF` [Prop. 1.23]
-  euclid_apply (Elements.Book1.proposition_1 a b AB) as y
+  -- on `AB`, on `y`'s side, the angles `GAB`, `ABG` equal to the angle at `c` and `CDF`
+  -- [Prop. 1.23]
   euclid_apply (triangle_on f c d a b y FC CD DF AB) as g
   euclid_apply (line_from_points b g) as BG
   euclid_apply (line_from_points g a) as GA
@@ -67,6 +68,19 @@ by
   -- via equality, `CD : DE :: AB : BH` and `EF : FC :: HG : GA` [Prop. 5.22]
   have h₇ := h₂.exAequali (h₄.congr (by size_perm) rfl (by size_perm) rfl)
   have h₈ := h₆.exAequali (h₃.congr (by size_perm) rfl (by size_perm) rfl)
-  exact ⟨g, h, BH, HG, GA, by euclid_finish, by euclid_finish, h₁, h₇, h₅, h₈⟩
+  exact ⟨g, h, BH, HG, GA, by euclid_finish, ‹_›, by euclid_finish, h₁, h₇, h₅, h₈⟩
+
+/-- To describe on a given straight line `ab` a quadrilateral `abhg` similar, and
+similarly laid down, to a given quadrilateral `cdef` (`proposition_18_side`). -/
+theorem proposition_18 : ∀ (a b c d e f : Point) (AB CD DE EF FC : Line),
+  distinctPointsOnLine a b AB ∧ quadrilateral c d e f CD DE EF FC →
+  ∃ (g h : Point) (BH HG GA : Line), quadrilateral a b h g AB BH HG GA ∧
+  similarQuadrilaterals c d e f a b h g :=
+by
+  euclid_intros
+  euclid_apply (Elements.Book1.proposition_1 a b AB) as y
+  obtain ⟨g, h, BH, HG, GA, hq, -, hs⟩ := proposition_18_side a b c d e f y AB CD DE EF FC
+    (by euclid_finish)
+  exact ⟨g, h, BH, HG, GA, hq, hs⟩
 
 end Elements.Book6

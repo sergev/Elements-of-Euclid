@@ -28,3 +28,4 @@
     [Thus, the parallelogram $S T$, equal to the given rectilinear figure $C$, has been applied to the given straight-line $A B$, falling short by the parallelogramic figure $Q B$, which is similar to $D$ [inasmuch as $Q B$ is similar to $G Q$ [Prop.~6.24] ]. (Which is) the very thing it was required to do.],
   )
 ]
+#lean-proof("/lean/Elements/Book6/Prop28.lean")

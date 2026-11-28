@@ -24,3 +24,4 @@
     [Thus, for all parallelograms applied to the same straight-line, and falling short by a parallelogramic figure similar, and similarly laid out, to the (parallelogram) described on half (the straight-line), the greatest is the [parallelogram] applied to half (the straight-line). (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book6/Prop27.lean")

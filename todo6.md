@@ -29,15 +29,6 @@ How Book 6 differs from Books 1–5:
 - **Faithfulness to Book 5.** Every ratio step cites a Book 5 proposition or Def. 5.5. Don't use `Positive.proportion_of_mul_eq`, `Positive.mult_val` or `Length.fourth` where Euclid has an argument; they are facts of the model. Record each use, with the reason, in a comment.
 - **No reals for ratios.** A ratio of lines or areas is never `|(a─b)| / |(c─d)|`.
 
-## T9. Props. 6.27–6.30: application of areas
-
-- **6.27:** of parallelograms applied to a line and falling short by figures similar to the one on half the line, the one on half is the greatest.
-- **6.28:** to apply a parallelogram falling short; with its condition (the given figure not greater than the one on half the line) as a hypothesis.
-- **6.29:** to apply a parallelogram overshooting.
-- **6.30:** to cut a line in extreme and mean ratio. Euclid applies a parallelogram (6.29) to the square on the line (1.46), and argues with 6.14. Prop. 2.11 cuts a line the same way (Fitzpatrick's note); don't use it in place of his proof.
-
-Risk: high. These are the longest proofs of the book. Split them as Book 4's pentagon was: a lemma for the figure, lemmas for each comparison.
-
 ## T10. Props. 6.31–6.33
 
 - **6.31:** in a right-angled triangle, the figure on the hypotenuse equals the similar figures on the sides. State it for the figures T1 defines (triangles at least, as `proposition_31`); Euclid's proof is by 6.8, 6.19 corr. and 5.24. The fourth proportional that 5.24 needs comes from 6.12 for lines, or `Area.fourth` with a comment if the figure gives none.
