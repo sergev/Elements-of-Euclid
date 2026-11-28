@@ -16,8 +16,6 @@ by
   euclid_assert ▱ h:g:a:c + ▱ g:k:c:b + ▱ k:g:e:f + ▱ g:k:c:b = 2 * ▱ h:k:a:b
   -- add HF, the square on AC
   euclid_assert ▱ d:e:a:b + ▱ g:k:c:b = 2 * ▱ h:k:a:b + ▱ d:f:h:g
-  euclid_assert |(b─c)| * |(b─c)| = |(c─b)| * |(c─b)|
-  euclid_assert |(c─a)| * |(c─a)| = |(a─c)| * |(a─c)|
   euclid_finish
 
 end Elements.Book2

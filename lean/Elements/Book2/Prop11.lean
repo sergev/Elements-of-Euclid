@@ -11,7 +11,7 @@ namespace Elements.Book2
 
 open Elements.Book1
 
-set_option maxHeartbeats 2000000 in
+set_option maxHeartbeats 500000 in
 theorem proposition_11 : ∀ (a b : Point) (AB : Line),
   distinctPointsOnLine a b AB →
   ∃ h : Point, between a h b ∧ |(a─b)| * |(b─h)| = |(a─h)| * |(a─h)| :=
@@ -41,18 +41,9 @@ by
   euclid_assert AH = AB
   -- CF, FA with the square on AE make the square on EF [Prop. 2.6]
   euclid_apply (Elements.Book2.proposition_6 c a e f)
-  set_option systemE.simpAll false in
-    euclid_assert |(e─f)| * |(e─f)| = |(e─b)| * |(e─b)|
-  set_option systemE.simpAll false in
-    euclid_assert |(b─e)| * |(b─e)| = |(e─b)| * |(e─b)|
-  set_option systemE.simpAll false in
-    euclid_assert |(b─a)| * |(b─a)| = |(a─b)| * |(a─b)|
-  set_option systemE.simpAll false in
-    euclid_assert |(a─e)| * |(a─e)| = |(e─a)| * |(e─a)|
-  set_option systemE.simpAll false in
-    euclid_assert |(e─b)| * |(e─b)| = |(a─b)| * |(a─b)| + |(e─a)| * |(e─a)|
-  set_option systemE.simpAll false in
-    euclid_assert |(c─f)| * |(f─a)| = |(a─b)| * |(a─b)|
+  euclid_assert |(e─f)| * |(e─f)| = |(e─b)| * |(e─b)|
+  euclid_assert |(e─b)| * |(e─b)| = |(a─b)| * |(a─b)| + |(e─a)| * |(e─a)|
+  euclid_assert |(c─f)| * |(f─a)| = |(a─b)| * |(a─b)|
   -- Missed by Euclid: H falls between A and B, since AH = FA is less than AB.
   have hfa : |(f─a)| < |(a─b)| := by
     have h1 : |(c─f)| * |(f─a)| = |(a─b)| * |(a─b)| := by euclid_finish
@@ -80,30 +71,21 @@ by
   euclid_apply (proposition_34' f g c k FG CD AC GH)
   euclid_apply (rectangle_area f g c k FG CD AC GH)
   euclid_apply (rectangle_area a b c d AB CD AC BD)
-  euclid_assert |(f─g)| = |(f─a)| ∧ |(f─c)| = |(c─f)|
-  set_option systemE.simpAll false in
-    euclid_assert |(f─g)| * |(f─c)| = |(c─f)| * |(f─a)|
-  set_option systemE.simpAll false in
-    euclid_assert ▱ f:g:c:k = |(c─f)| * |(f─a)|
+  euclid_assert |(f─g)| = |(f─a)|
+  euclid_assert ▱ f:g:c:k = |(c─f)| * |(f─a)|
   -- take away AK: FH = HD
   euclid_apply (sum_parallelograms_area f c g k a h AC GH FG CD)
   euclid_apply (sum_parallelograms_area a b c d h k AB CD AC BD)
   euclid_apply (proposition_34' h b k d AB CD GH BD)
   euclid_apply (rectangle_area h b k d AB CD GH BD)
   euclid_apply (rectangle_area f g a h FG AB AC GH)
-  set_option systemE.simpAll false in
-    euclid_assert ▱ f:g:a:h = ▱ h:b:k:d
+  euclid_assert ▱ f:g:a:h = ▱ h:b:k:d
   -- HD is the rectangle on AB, BH; FH the square on AH
-  euclid_assert |(h─k)| = |(a─b)| ∧ |(h─b)| = |(b─h)| ∧ |(a─h)| = |(f─a)| ∧ |(f─g)| = |(f─a)|
-  set_option systemE.simpAll false in
-    euclid_assert ▱ h:b:k:d = |(a─b)| * |(b─h)|
-  set_option systemE.simpAll false in
-    euclid_assert ▱ f:g:a:h = |(f─g)| * |(f─a)|
-  set_option systemE.simpAll false in
-    euclid_assert |(f─g)| * |(f─a)| = |(a─h)| * |(a─h)|
-  set_option systemE.simpAll false in
-    euclid_assert ▱ f:g:a:h = |(a─h)| * |(a─h)|
+  euclid_assert |(h─k)| = |(a─b)| ∧ |(a─h)| = |(f─a)| ∧ |(f─g)| = |(f─a)|
+  euclid_assert ▱ h:b:k:d = |(a─b)| * |(b─h)|
+  euclid_assert ▱ f:g:a:h = |(f─g)| * |(f─a)|
+  euclid_assert ▱ f:g:a:h = |(a─h)| * |(a─h)|
   use h
-  set_option systemE.simpAll false in euclid_finish
+  euclid_finish
 
 end Elements.Book2

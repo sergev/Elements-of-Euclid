@@ -21,7 +21,8 @@ by
   euclid_finish
 
 /--
-Heath's second case: the perpendicular `AD` falls beyond `C`, the angle at `C` being obtuse.
+Heath's second case: the perpendicular `AD` falls beyond `C`,
+the angle at `C` being obtuse.
 -/
 theorem proposition_13' : ∀ (a b c d : Point) (AB BC AC : Line),
   formTriangle a b c AB BC AC ∧ (∠ a:b:c : ℝ) < ∟ ∧ between b c d ∧ (∠ a:d:b : ℝ) = ∟ →

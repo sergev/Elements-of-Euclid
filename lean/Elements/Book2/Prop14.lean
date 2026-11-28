@@ -47,11 +47,13 @@ theorem proposition_14 : ∀ (a b c d : Point) (AB BC CD AD DB : Line),
 by
   euclid_intros
   -- a straight-line EH whose square is the figure
-  have : ∃ (e h : Point), |(e─h)| * |(e─h)| = Triangle.area △ a:b:d + Triangle.area △ d:b:c := by
+  have : ∃ (e h : Point),
+      |(e─h)| * |(e─h)| = Triangle.area △ a:b:d + Triangle.area △ d:b:c := by
     -- the right-angled parallelogram equal to the figure [Prop. 1.45]
     euclid_apply (proposition_11_end d b DB) as x
     euclid_apply (line_from_points x d) as XD
-    euclid_apply (proposition_45 a b c d x d b AB BC CD AD DB XD DB) as (f, l, k, m, FL, KM, FK, LM)
+    euclid_apply (proposition_45 a b c d x d b AB BC CD AD DB XD DB)
+      as (f, l, k, m, FL, KM, FK, LM)
     euclid_apply (proposition_34' f l k m FL KM FK LM)
     euclid_apply (rectangle_area f l k m FL KM FK LM)
     euclid_assert Triangle.area △ a:b:d + Triangle.area △ d:b:c = |(k─f)| * |(k─m)|

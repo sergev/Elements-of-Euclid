@@ -14,7 +14,7 @@ namespace Elements.Book2
 
 open Elements.Book1
 
-set_option maxHeartbeats 2000000 in
+set_option maxHeartbeats 500000 in
 theorem proposition_6 : ∀ (a b c d : Point),
   between a c b ∧ between c b d ∧ |(a─c)| = |(c─b)| →
   |(a─d)| * |(d─b)| + |(c─b)| * |(c─b)| = |(c─d)| * |(c─d)| :=

@@ -78,7 +78,7 @@ by
   euclid_finish
 
 
-set_option maxHeartbeats 2000000 in
+set_option maxHeartbeats 1000000 in
 theorem proposition_8 : ∀ (a b c : Point),
   between a c b →
   4 * (|(a─b)| * |(b─c)|) + |(a─c)| * |(a─c)| = (|(a─b)| + |(b─c)|) * (|(a─b)| + |(b─c)|) :=

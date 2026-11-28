@@ -13,14 +13,15 @@ namespace Elements.Book2
 open Elements.Book1
 
 /--
-The figure of Props. 2.4 and 2.7: the square `ADEB` on `AB`, its diagonal `BD`, the parallel
-`CF` to `AD` meeting `BD` at `G`, and `HK` through `G` parallel to `AB`.
+The figure of Props. 2.4 and 2.7: the square `ADEB` on `AB`, its diagonal `BD`,
+the parallel `CF` to `AD` meeting `BD` at `G`, and `HK` through `G` parallel to `AB`.
 -/
 theorem proposition_4_figure : ∀ (a b c : Point),
   between a c b →
   ∃ (d e f g h k : Point),
-  ▱ d:e:a:b = |(a─b)| * |(a─b)| ∧ ▱ d:f:h:g = |(a─c)| * |(a─c)| ∧ ▱ g:k:c:b = |(c─b)| * |(c─b)| ∧
-  ▱ h:g:a:c = |(a─c)| * |(c─b)| ∧ ▱ k:g:e:f = |(a─c)| * |(c─b)| ∧ ▱ h:k:a:b = |(a─b)| * |(b─c)| ∧
+  ▱ d:e:a:b = |(a─b)| * |(a─b)| ∧ ▱ d:f:h:g = |(a─c)| * |(a─c)| ∧
+  ▱ g:k:c:b = |(c─b)| * |(c─b)| ∧ ▱ h:g:a:c = |(a─c)| * |(c─b)| ∧
+  ▱ k:g:e:f = |(a─c)| * |(c─b)| ∧ ▱ h:k:a:b = |(a─b)| * |(b─c)| ∧
   ▱ d:e:a:b = ▱ d:f:h:g + ▱ g:k:c:b + ▱ h:g:a:c + ▱ k:g:e:f ∧
   ▱ h:k:a:b = ▱ h:g:a:c + ▱ g:k:c:b ∧ ▱ f:e:c:b = ▱ g:k:c:b + ▱ k:g:e:f :=
 by
