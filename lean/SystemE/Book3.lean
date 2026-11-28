@@ -73,3 +73,11 @@ theorem not_on_line_of_on_circle : ∀ (a b c : Point) (L : Line) (α : Circle),
 
 theorem point_ne_of_centre : ∀ (a b : Point) (α : Circle),
     a.isCentre α ∧ ¬(b.isCentre α) → a ≠ b := fun _ _ _ ⟨h, hn⟩ e => hn (e ▸ h)
+
+/--
+Defs. 3.6 and 3.8: `c` is on the circumference of the segment of `α` cut off by the
+chord `AB` on the side of `s`; the angle in the segment is then `∠ a:c:b`.
+-/
+@[simp]
+abbrev Point.onSegment (c : Point) (α : Circle) (a b : Point) (AB : Line) (s : Point) : Prop :=
+  distinctPointsOnLine a b AB ∧ a.onCircle α ∧ b.onCircle α ∧ c.onCircle α ∧ c.sameSide s AB

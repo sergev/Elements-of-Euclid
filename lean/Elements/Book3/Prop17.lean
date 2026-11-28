@@ -5,7 +5,7 @@ import Elements.Book3.Prop16
 
 namespace Elements.Book3
 
-/-- To draw a straight line `AB` touching a given circle from a given point `A` outside. -/
+/-- To draw a line `AB` touching a given circle from a given point `A` outside. -/
 theorem proposition_17 : ∀ (a e : Point) (α : Circle),
   a.outsideCircle α ∧ e.isCentre α →
   ∃ (b : Point) (AB : Line), a.onLine AB ∧ AB.touchesCircleAt α b :=

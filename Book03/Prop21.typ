@@ -24,3 +24,4 @@
     [Thus, in a circle, angles in the same segment are equal to one another. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book3/Prop21.lean")

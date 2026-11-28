@@ -19,16 +19,6 @@ When the solvers struggle:
 - **Segment orientation:** when a goal compares products of the same segments written in different orders (`|(a─b)|` against `|(b─a)|`), add the symmetric step as an assert.
 - **`simp_all`:** if it blows up, turn it off for that step with `set_option systemE.simpAll false in`.
 
-## T8. Props. 3.20–3.22: angles in segments
-
-First, define the segment of a circle (Def. 3.6) and the angle in a segment (Def. 3.8), in `lean/SystemE/Book3.lean` or as hypotheses. A segment is a chord `ab` with the points of the circle on one side of line `ab`.
-
-- **3.20:** the angle at the center is double the angle at the circumference.
-  - Euclid proves one position of the figure and leaves the other ("let it be bent").
-  - Prove the cases he treats, and mark any case the statement then has to assume.
-- **3.21:** angles in the same segment are equal.
-- **3.22:** the opposite angles of a quadrilateral in a circle sum to two right angles.
-
 ## T9. Props. 3.23–3.25: similar segments
 
 - **Def. 3.11:** similar segments admit equal angles. Define it with T8's angle in a segment.

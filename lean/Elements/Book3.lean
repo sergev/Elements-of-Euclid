@@ -18,6 +18,9 @@ import Elements.Book3.Prop16
 import Elements.Book3.Prop17
 import Elements.Book3.Prop18
 import Elements.Book3.Prop19
+import Elements.Book3.Prop20
+import Elements.Book3.Prop21
+import Elements.Book3.Prop22
 
 /-
 Book 3: circles.
@@ -31,6 +34,13 @@ they *cut*, at two points. Book 3's definitions are in `SystemE/Book3.lean`:
 - Def. 3.3, circles touching, `α.touchesCircleAt β a`: distinct circles through `a` that
   do not cut. `α.touchesInternallyAt β a`: `α` is within `β`, every point inside `α`
   inside `β`; `α.touchesExternallyAt β a`: each is outside the other, no point inside both.
+- Defs. 3.6 and 3.8, segments, `c.onSegment α a b AB s`: `c` is on the circumference of
+  the segment of `α` on the chord `AB`, on the side of `s`; the angle in the segment is
+  `∠ a:c:b`.
+
+Prop. 3.20 is proved in the position Euclid treats, the center on the side of the angle
+at the circumference, and in those he leaves out (`proposition_20'`, `proposition_20''`);
+Prop. 3.21 needs them for segments not greater than a semicircle.
 
 The corollaries to 3.1 and 3.16 are `proposition_1_corollary` and `proposition_16_corollary`.
 -/

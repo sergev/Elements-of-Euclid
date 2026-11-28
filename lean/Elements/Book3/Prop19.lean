@@ -4,7 +4,7 @@ import Elements.Book3.Prop18
 
 namespace Elements.Book3
 
-/-- The perpendicular `CA` to a tangent at the point of contact goes through the center. -/
+/-- A perpendicular `CA` to a tangent at the point of contact goes through the center. -/
 theorem proposition_19 : ∀ (a c d f : Point) (DE CA : Line) (α : Circle),
   DE.touchesCircleAt α c ∧ d.onLine DE ∧ d ≠ c ∧ c.onLine CA ∧ a.onLine CA ∧ a ≠ c ∧
   ∠ d:c:a = ∟ ∧ f.isCentre α → f.onLine CA :=
