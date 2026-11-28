@@ -49,3 +49,4 @@
     [And it will be clear, from (what) has been demonstrated, that (straight-lines) commensurable in length (are) always also (commensurable) in square, but (straight-lines commensurable) in square (are) not always also (commensurable) in length.],
   )
 ]
+#lean-proof("/lean/Elements/Book10/Prop009.lean")

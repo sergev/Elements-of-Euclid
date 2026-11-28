@@ -24,3 +24,4 @@
     [Thus, if four magnitudes, and so on ....],
   )
 ]
+#lean-proof("/lean/Elements/Book10/Prop011.lean")

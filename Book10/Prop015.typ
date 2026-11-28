@@ -28,3 +28,4 @@
     [Thus, if two magnitudes, and so on ....],
   )
 ]
+#lean-proof("/lean/Elements/Book10/Prop015.lean")

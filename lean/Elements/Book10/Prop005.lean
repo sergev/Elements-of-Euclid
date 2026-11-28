@@ -21,10 +21,10 @@ theorem proposition_5 {a b : M} (h : Commensurable a b) :
   obtain ⟨c, ⟨m, rfl⟩, ⟨n, rfl⟩⟩ := h
   -- as `c` is to `a`, so the unit to `m` [Def. 7.20]; inversely, as `a` to `c`, so `m` to
   -- the unit [Prop. 5.7 corr.]
-  have h₁ := proposition_7_corollary (proportion_unit m c)
+  have h₁ := Elements.Book5.proposition_7_corollary (proportion_unit m c)
   -- as `c` is to `b`, so the unit to `n` [Def. 7.20]
   have h₂ := proportion_unit n c
   -- via equality, as `a` is to `b`, so `m` to `n` [Prop. 5.22]
-  exact ⟨m, n, proposition_22' h₁ h₂⟩
+  exact ⟨m, n, Elements.Book5.proposition_22' h₁ h₂⟩
 
 end Elements.Book10

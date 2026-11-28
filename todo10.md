@@ -32,16 +32,6 @@ How Book 10 differs from the books before it:
 - **Numbers.** "The ratio which a number has to a number" joins Book 5's proportion with Books 7–9's numbers (`ℕ`, Def. 7.20). 10.5–10.9 make the bridge; after that, Book 7–9 propositions are cited as Lean terms (8.24, 8.26, 9.1, 9.2 for squares).
 - **Irrational means Euclid's irrational.** Rational and irrational are relative to an assigned line `ρ` (Def. 10.3), and a line is rational when commensurable with `ρ` in length or in square only. Incommensurability is proved as Euclid proves it, from the hypotheses (10.13, 10.16 and so on), not from the irrationality of a real number.
 
-## T3. Props. 10.9–10.16: squares; commensurability
-
-- **10.9:** squares on lines commensurable in length have the ratio of a square number to a square number, and conversely; lines with squares not so are incommensurable in length. Corollary: commensurable in length implies in square, not conversely. Through 6.20 (squares, in `Lemmas.lean`), 8.11 and 8.24, 8.26.
-- **10.10:** to find two lines incommensurable with a given line, in length only and in square too. Heiberg considers it interpolated; prove it as given. Needs two numbers not in the ratio of a square to a square (say `2` and `1`, by Book 8) and the mean proportional (6.13).
-- **10.11–10.13:** proportional magnitudes keep commensurability; commensurable with the same are commensurable; commensurable with one, incommensurable with another. The lemma after 10.13: for two unequal lines, to find the line by whose square the square on the greater exceeds that on the lesser (through 3.31 and 1.47, in the model: a construction lemma).
-- **10.14:** if four lines are proportional, and the square on the first exceeds the square on the second by the square on a line commensurable with the first, so the third and fourth. Through 6.22 for squares.
-- **10.15, 10.16:** sums of commensurable (incommensurable) magnitudes. The lemma after 10.16: a rectangle applied to a line, falling short by a square, equals the rectangle contained by the pieces of the line (for 10.17, 10.18).
-
-Risk: medium.
-
 ## T4. Props. 10.17–10.26: application of areas; rational and medial
 
 - **10.17, 10.18:** a rectangle equal to the fourth part of the square on the lesser, applied to the greater and falling short by a square, divides it into commensurable (incommensurable) parts exactly when the square on the greater exceeds the square on the lesser by the square on a line commensurable (incommensurable) with the greater. Fitzpatrick's notes give the algebra; the proof follows Euclid, through 2.5, 6.28 (the construction lemma), 10.6, 10.15, 10.16.

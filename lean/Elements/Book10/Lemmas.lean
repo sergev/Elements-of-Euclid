@@ -273,6 +273,23 @@ theorem rect_comm (a b : Length) : rect a b = rect b a := Model.ext (by simp [mu
 
 theorem sq_eq_rect (a : Length) : sq a = rect a a := rfl
 
+/-- Lines on which the squares are equal are equal. -/
+theorem sq_inj {a b : Length} (h : sq a = sq b) : a = b := by
+  have h' : val a * val a = val b * val b := by rw [← val_sq, ← val_sq, h]
+  have := pos a; have := pos b
+  exact Model.ext (by nlinarith)
+
+/-- The greater line has the greater square. -/
+theorem sq_lt_sq {a b : Length} : sq a < sq b ↔ a < b := by
+  rw [← val_lt, ← val_lt, val_sq, val_sq]
+  have := pos a; have := pos b
+  constructor <;> intro h <;> nlinarith
+
+/-- Equal rectangles on the same side have equal other sides. -/
+theorem rect_inj {a b c : Length} (h : rect c a = rect c b) : a = b := by
+  have h' : val c * val a = val c * val b := by rw [← val_rect, ← val_rect, h]
+  exact Model.ext (mul_left_cancel₀ (pos c).ne' h')
+
 /-- Prop. 6.1: rectangles of the same height are to one another as their bases. -/
 theorem rect_proportion (a b c : Length) : Proportion (rect a c) (rect b c) a b :=
   proportion_iff_mul.mpr (by simp; ring)
@@ -329,6 +346,19 @@ theorem Length.part (a : Length) (n : ℕ+) : ∃ c : Length, a = n • c := by
   have hn : (0 : ℝ) < n := by exact_mod_cast n.pos
   exact ⟨Length.mk' (val a / n) (div_pos (pos a) hn), Model.ext (by simp; field_simp)⟩
 
+/-- Magnitudes of a kind that can be divided into any number of equal parts, as Euclid
+divides a magnitude in 10.6: lines by Prop. 6.9 (`Length.divisible`), areas by applying
+them to a line and dividing the breadth (`Area.divisible`). -/
+def Divisible (K : Type*) [Magnitude K] : Prop := ∀ (a : K) (n : ℕ+), ∃ c, a = n • c
+
+theorem Length.divisible : Divisible Length := Length.part
+
+/-- An area divided into equal parts: applied to a line (1.44), the breadth divided
+(6.9). -/
+theorem Area.divisible : Divisible Area := fun A n => by
+  have hn : (0 : ℝ) < n := by exact_mod_cast n.pos
+  exact ⟨Area.mk' (val A / n) (div_pos (pos A) hn), Model.ext (by simp; field_simp)⟩
+
 /-- Prop. 6.12: to find a fourth proportional to two magnitudes and a line: as `p` to
 `q`, so `c` to some line. For areas `p`, `q` Euclid applies them to a line first (6.1). -/
 theorem Length.fourth' {K : Type} [Magnitude K] [Model K] (p q : K) (c : Length) :
@@ -382,6 +412,13 @@ theorem Length.exceeds {a b : Length} (h : b < a) : ∃ c : Length, sq b + sq c 
   have h' : val b < val a := val_lt.mpr h
   obtain ⟨c, hc, hcc⟩ :=
     exists_mul_self (by nlinarith [pos b] : 0 < val a * val a - val b * val b)
+  exact ⟨Length.mk' c hc, Model.ext (by simp; linarith)⟩
+
+/-- Prop. 1.47 (the lemma after 10.13): for two lines, the line on which the square is
+the squares on both. -/
+theorem Length.hypotenuse (a b : Length) : ∃ c : Length, sq a + sq b = sq c := by
+  obtain ⟨c, hc, hcc⟩ :=
+    exists_mul_self (by nlinarith [pos a, pos b] : 0 < val a * val a + val b * val b)
   exact ⟨Length.mk' c hc, Model.ext (by simp; linarith)⟩
 
 end Elements.Book10

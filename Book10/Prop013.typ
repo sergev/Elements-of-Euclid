@@ -42,3 +42,4 @@
     [Let $A D$ and $D B$ be the two given straight-lines. And let it be necessary to find the square-root of (the sum of the squares on) them. For let them be laid down such as to encompass a right-angle---(namely), that (angle encompassed) by $A D$ and $D B$. And let $A B$ be joined. (It is) again clear that $A B$ is the square-root of (the sum of the squares on) $A D$ and $D B$ [Prop.~1.47]. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book10/Prop013.lean")

@@ -12,7 +12,8 @@ theorem proportion_parts (m n : ℕ+) (c : M) :
     Proportion (m • c) (n • c) (m : Number) (n : Number) :=
   -- as `c` is to `a`, so the unit to `m` [Def. 7.20]; inversely [Prop. 5.7 corr.]; as `c`
   -- to `f`, so the unit to `n` [Def. 7.20]; via equality [Prop. 5.22]
-  proposition_22' (proposition_7_corollary (proportion_unit m c)) (proportion_unit n c)
+  Elements.Book5.proposition_22'
+    (Elements.Book5.proposition_7_corollary (proportion_unit m c)) (proportion_unit n c)
 
 /--
 If two magnitudes have to one another the ratio which a number has to a number, they are
@@ -27,7 +28,8 @@ theorem proposition_6 {a b : M} {m n : ℕ+} (h : Proportion a b (m : Number) (n
   -- via equality, as `a` is to `f`, so `m` to `n` [Prop. 5.22]
   have h₁ := proportion_parts m n c
   -- so as `a` is to `b`, so to `f` [Prop. 5.11]: `b` is equal to `f` [Prop. 5.9]
-  have hb : b = n • c := proposition_9' (proposition_11 h h₁.symm)
+  have hb : b = n • c :=
+    Elements.Book5.proposition_9' (Elements.Book5.proposition_11 h h₁.symm)
   -- `c` measures `a` and `b`
   exact ⟨c, ⟨m, rfl⟩, ⟨n, hb⟩⟩
 
@@ -46,8 +48,9 @@ theorem proposition_6_corollary (m n : ℕ+) (a : Length) :
   obtain ⟨b, hb⟩ := Length.mean a (n • c)
   -- as `a` is to `f`, so the square on `a` to the square on `b` [Prop. 6.19 corr.]
   obtain ⟨e, he₁, he₂⟩ := squaredRatio_sq a b
-  have he : e = n • c := proposition_9' (proposition_11 he₁.symm hb)
+  have he : e = n • c :=
+    Elements.Book5.proposition_9' (Elements.Book5.proposition_11 he₁.symm hb)
   subst he
-  exact ⟨n • c, b, h₁.symm, proposition_11 h₁.symm he₂.symm⟩
+  exact ⟨n • c, b, h₁.symm, Elements.Book5.proposition_11 h₁.symm he₂.symm⟩
 
 end Elements.Book10

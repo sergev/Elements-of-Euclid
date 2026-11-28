@@ -10,6 +10,14 @@ import Elements.Book10.Prop005
 import Elements.Book10.Prop006
 import Elements.Book10.Prop007
 import Elements.Book10.Prop008
+import Elements.Book10.Prop009
+import Elements.Book10.Prop010
+import Elements.Book10.Prop011
+import Elements.Book10.Prop012
+import Elements.Book10.Prop013
+import Elements.Book10.Prop014
+import Elements.Book10.Prop015
+import Elements.Book10.Prop016
 
 /-
 Book 10: incommensurable magnitudes.

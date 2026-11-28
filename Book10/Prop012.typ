@@ -24,3 +24,4 @@
     [Thus, (magnitudes) commensurable with the same magnitude are also commensurable with one another. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book10/Prop012.lean")

@@ -20,3 +20,4 @@
     [Thus, two straight-lines, $D$ and $E$, (which are) incommensurable with the given straight-line $A$, have been found, the one, $D$, (incommensurable) in length only, the other, $E$, (incommensurable) in square, and, clearly, also in length. [(Which is) the very thing it was required to show.]],
   )
 ]
+#lean-proof("/lean/Elements/Book10/Prop010.lean")
