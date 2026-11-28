@@ -30,20 +30,6 @@ Book 1–3 SMT-free rules hold for Book 4: every step closes by saturation. What
 - **Squares of lengths:** use `Elements/Book3/Lemmas.lean` (`length_eq_of_square_eq`, `lt_of_square_lt`). Add symmetric asserts when products are written in different orders.
 - **Circumferences:** use the Book 3 axioms (`arc_*`), and Props. 3.26–3.30.
 
-## T5. Props. 4.11–4.14: the pentagon
-
-- **4.11:** inscribe a regular pentagon.
-  - Draw a triangle equiangular with the golden triangle (Props. 4.10, 4.2), then bisect its base angles (Prop. 1.9).
-  - Equal angles stand on equal circumferences (Prop. 3.26), and equal circumferences on equal chords (Prop. 3.29).
-  - The equal angles need equal circumferences again (Prop. 3.27).
-  - Book 3's 3.27 at the circumference assumes the circumferences are less than semicircles. Check that the pentagon's are, and prove it if needed.
-- **4.12:** circumscribe a regular pentagon: tangents at the five vertices of 4.11. It uses Props. 3.17–3.18, 1.47, 1.8, 1.26.
-  - The tangents meet (Missed by Euclid).
-- **4.13–4.14:** inscribe a circle in a regular pentagon, and circumscribe one about it: bisect two angles, and show the other bisectors meet at the same point.
-  - Euclid says "similarly" for three of the five vertices. Write those steps out, or use a lemma for one vertex applied five times.
-
-State the pentagon facts once, as abbrevs or lemmas, and reuse them in 4.12–4.14. Five points and their lines make big contexts, so split each proof into lemmas.
-
 ## T6. Props. 4.15–4.16: the hexagon and the fifteen-sided figure
 
 - **4.15:** inscribe a regular hexagon: equilateral triangles on the radius. It uses Props. 1.32, 1.13, 1.15, 3.26, 3.29.

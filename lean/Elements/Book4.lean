@@ -10,6 +10,10 @@ import Elements.Book4.Prop07
 import Elements.Book4.Prop08
 import Elements.Book4.Prop09
 import Elements.Book4.Prop10
+import Elements.Book4.Prop11
+import Elements.Book4.Prop12
+import Elements.Book4.Prop13
+import Elements.Book4.Prop14
 
 /-
 Book 4: figures inscribed in and circumscribed about circles.

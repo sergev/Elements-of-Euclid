@@ -10,6 +10,7 @@ import Elements.Book1.Prop29
 import Elements.Book1.Prop32
 import Elements.Book3.Prop16
 import Elements.Book3.Prop18
+import Elements.Book3.Prop31
 
 /-
 Facts Book 4 takes from the figure.
@@ -27,6 +28,17 @@ by
   · euclid_apply (flat_angle_onlyif x y z)
     euclid_finish
   · euclid_apply (degenerated_angle_if y x z L)
+    euclid_finish
+
+/-- An angle whose sides are on different lines is less than two right angles. -/
+theorem angle_lt_flat : ∀ (a b c : Point) (L : Line),
+  distinctPointsOnLine b c L ∧ ¬(a.onLine L) → ∠ a:b:c < ∟ + ∟ :=
+by
+  euclid_intros
+  rcases lt_or_eq_of_le (angle_range (Angle.ofPoints a b c)).2 with h | h
+  · exact h
+  · exfalso
+    euclid_apply (flat_angle_if a b c)
     euclid_finish
 
 /-- A line cutting a circle through a point `a` on it meets it again. -/
@@ -249,5 +261,109 @@ by
   euclid_apply (Elements.Book1.proposition_27 a' d b c AB CD BC)
   euclid_apply (Elements.Book1.proposition_27 b' a c d BC DA CD)
   euclid_finish
+
+/-- A quadrilateral `abcd` in a circle, with `b`, `d` on either side of `ac`, is convex:
+its diagonals cut one another within the circle. -/
+theorem quadrilateral_of_circle : ∀ (a b c d : Point) (AB BC CD DA AC : Line)
+    (α : Circle),
+  a.onCircle α ∧ b.onCircle α ∧ c.onCircle α ∧ d.onCircle α ∧
+  distinctPointsOnLine a b AB ∧ distinctPointsOnLine b c BC ∧
+  distinctPointsOnLine c d CD ∧ distinctPointsOnLine d a DA ∧
+  distinctPointsOnLine a c AC ∧ b.opposingSides d AC →
+  quadrilateral a b c d AB BC CD DA :=
+by
+  euclid_intros
+  euclid_apply (line_from_points b d) as BD
+  euclid_apply (intersection_lines_opposing b d AC BD)
+  euclid_apply (intersection_lines AC BD) as p
+  euclid_apply (circle_points_between b d p α)
+  euclid_apply (circle_line_intersections p a c AC α)
+  euclid_apply (quadrilateral_of_diagonals a b c d p AB BC CD DA AC)
+  euclid_finish
+
+/--
+A pentagon `abcde` in a circle, with `b` across `ac` from `d`, and `e` across `ad` from
+`c`, is convex: each four of its vertices make a convex quadrilateral.
+-/
+theorem pentagon_of_circle : ∀ (a b c d e : Point) (AB BC CD DE EA AC AD : Line)
+    (α : Circle),
+  a.onCircle α ∧ b.onCircle α ∧ c.onCircle α ∧ d.onCircle α ∧ e.onCircle α ∧
+  distinctPointsOnLine a b AB ∧ distinctPointsOnLine b c BC ∧
+  distinctPointsOnLine c d CD ∧ distinctPointsOnLine d e DE ∧
+  distinctPointsOnLine e a EA ∧ distinctPointsOnLine a c AC ∧
+  distinctPointsOnLine a d AD ∧ b.opposingSides d AC ∧ e.opposingSides c AD →
+  pentagon a b c d e AB BC CD DE EA :=
+by
+  euclid_intros
+  euclid_apply (line_from_points b d) as BD
+  euclid_apply (quadrilateral_of_circle a b c d AB BC CD AD AC α)
+  euclid_apply (line_from_points b e) as BE
+  euclid_apply (line_from_points c e) as CE
+  euclid_apply (quadrilateral_of_circle a c d e AC CD DE EA AD α)
+  euclid_apply (quadrilateral_of_circle a b c e AB BC CE EA AC α)
+  euclid_apply (quadrilateral_of_circle a b d e AB BD DE EA AD α)
+  euclid_apply (quadrilateral_of_circle b c d e BC CD DE BE BD α)
+  euclid_finish
+
+/-- An angle `bxc` in a circle less than a right angle has the center on its side of
+`bc` [Props. 3.31, 3.31'']. -/
+theorem centre_same_side_of_acute : ∀ (b c k x : Point) (BC : Line) (α : Circle),
+  k.isCentre α ∧ b.onCircle α ∧ c.onCircle α ∧ x.onCircle α ∧
+  distinctPointsOnLine b c BC ∧
+  ¬(x.onLine BC) ∧ ∠ b:x:c < ∟ → k.sameSide x BC :=
+by
+  euclid_intros
+  by_cases (k.onLine BC)
+  · exfalso
+    euclid_apply (Elements.Book3.proposition_31 x b c k BC α)
+    euclid_finish
+  · by_cases (k.sameSide x BC)
+    · assumption
+    · exfalso
+      euclid_apply (Elements.Book3.proposition_31'' b c x k BC α)
+      euclid_finish
+
+/-- A line `CX` within an angle `ACD` in a circle meets the circle again at `E`, across
+`AD` from `C`. -/
+theorem ray_meets_circle : ∀ (a c d x : Point) (AC CD AD : Line) (α : Circle),
+  a.onCircle α ∧ c.onCircle α ∧ d.onCircle α ∧ distinctPointsOnLine a c AC ∧
+  distinctPointsOnLine c d CD ∧ distinctPointsOnLine a d AD ∧ x.sameSide d AC ∧
+  x.sameSide a CD →
+  ∃ e : Point, e.onCircle α ∧ e.opposingSides c AD ∧ ∠ a:c:e = ∠ a:c:x ∧
+  ∠ d:c:e = ∠ d:c:x :=
+by
+  euclid_intros
+  euclid_apply (line_from_points c x) as CX
+  euclid_apply (intersection_lines_opposing a d CX AD)
+  euclid_apply (intersection_lines CX AD) as p
+  euclid_apply (circle_points_between a d p α)
+  euclid_apply (intersection_circle_line_extending_points α CX p c) as e
+  euclid_apply (equal_angles c x e a a CX AC)
+  euclid_apply (equal_angles c x e d d CX CD)
+  use e
+  euclid_finish
+
+/-- The perpendicular from `d` falls between `a` and `b` when the angles at both are less
+than right angles [Prop. 1.12]. -/
+theorem foot_between : ∀ (a b d : Point) (AB : Line),
+  distinctPointsOnLine a b AB ∧ ¬(d.onLine AB) ∧ ∠ a:b:d < ∟ ∧ ∠ b:a:d < ∟ →
+  ∃ e : Point, between a e b ∧ ∠ a:e:d = ∟ ∧ ∠ b:e:d = ∟ :=
+by
+  euclid_intros
+  euclid_apply (perpendicular_foot a b d AB) as e
+  have : e ≠ a := by
+    intro
+    euclid_finish
+  euclid_apply (right_angle_move b e d a AB)
+  euclid_apply (foot_on_ray b a d e AB)
+  euclid_apply (between_points a e b AB)
+  use e
+  rcases ‹between a e b ∨ between e a b ∨ between a b e› with h | h | h
+  · euclid_finish
+  · exfalso
+    euclid_finish
+  · exfalso
+    euclid_apply (between_symm a b e)
+    euclid_finish
 
 end Elements.Book4

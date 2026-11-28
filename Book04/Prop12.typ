@@ -24,3 +24,4 @@
     [[Thus, an equilateral and equiangular pentagon has been circumscribed about the given circle]. (Which is) the very thing it was required to do.],
   )
 ]
+#lean-proof("/lean/Elements/Book4/Prop12.lean")

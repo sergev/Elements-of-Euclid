@@ -20,3 +20,4 @@
     [Thus, a circle has been inscribed in the given pentagon which is equilateral and equiangular. (Which is) the very thing it was required to do.],
   )
 ]
+#lean-proof("/lean/Elements/Book4/Prop13.lean")
