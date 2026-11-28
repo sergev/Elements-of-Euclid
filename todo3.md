@@ -19,15 +19,6 @@ When the solvers struggle:
 - **Segment orientation:** when a goal compares products of the same segments written in different orders (`|(a─b)|` against `|(b─a)|`), add the symmetric step as an assert.
 - **`simp_all`:** if it blows up, turn it off for that step with `set_option systemE.simpAll false in`.
 
-## T12. Props. 3.35–3.37: the power of a point
-
-These use products, as in Book 2.
-- **3.35:** for two intersecting chords, the rectangles on their pieces are equal. Uses Props. 2.5 and 1.47.
-- **3.36:** for a secant and a tangent from an outside point, the rectangle on the secant and its outer part equals the square on the tangent. Uses Prop. 2.6.
-- **3.37:** the converse of 3.36.
-
-Expect the Book 2 orientation asserts.
-
 ## T13. Primer and docs
 
 - **`Book00/Lean.typ`:**

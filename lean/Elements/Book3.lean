@@ -34,6 +34,9 @@ import Elements.Book3.Prop31
 import Elements.Book3.Prop32
 import Elements.Book3.Prop33
 import Elements.Book3.Prop34
+import Elements.Book3.Prop35
+import Elements.Book3.Prop36
+import Elements.Book3.Prop37
 
 /-
 Book 3: circles.

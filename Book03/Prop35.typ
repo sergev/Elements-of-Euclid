@@ -28,3 +28,4 @@
     [Thus, if two straight-lines in a circle cut one another, (then) the rectangle contained by the pieces of one is equal to the rectangle contained by the pieces of the other. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book3/Prop35.lean")
