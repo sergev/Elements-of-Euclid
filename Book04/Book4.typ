@@ -2,7 +2,7 @@
 
 #chapter([Book 4], [ELEMENTS BOOK 4])
 
-== _Construction of Rectilinear Figures In and_
+== _Construction of Rectilinear Figures In and Around Circles_
 
 #v(2cm)
 #align(center, image("front.svg", height: 4.5in))
