@@ -1,4 +1,4 @@
-#import "../functions.typ": parallel, no-footer, chapter, content-box, content-box-note, running-header
+#import "../functions.typ": parallel, no-footer, chapter, content-box, content-box-note, running-header, lean-proof
 
 #chapter([Book 3], [ELEMENTS BOOK 3])
 
@@ -14,6 +14,10 @@
 #set page(header: running-header([ΣΤΟΙΧΕΙΩΝ γʹ.], [ELEMENTS BOOK 3]))
 
 #include "Definitions.typ"
+
+#lean-proof("/lean/Elements/Book3/Axioms.lean", title: [Circumferences: axioms for the Lean proofs])
+
+#lean-proof("/lean/Elements/Book3/Lemmas.lean", title: [Lemmas for the Lean proofs])
 
 #pagebreak()
 

@@ -1,6 +1,6 @@
 # Roadmap: Lean proofs for Books 3–13
 
-Books 1 and 2 are done (Milestones 1 and 2): Book 1's 48 propositions from LeanEuclid and Book 2's 14 written here, all in System E, typeset in `ElementsLean.pdf` and checked by `make check`. This file plans the remaining books, one milestone per book, numbered to match: Milestone N is Book N. A book depends on the books before it, so the milestones run in sequence. Only Milestones 7–9 (Books 7–9) can be done in parallel with the geometry.
+Books 1–3 are done (Milestones 1–3): Book 1's 48 propositions from LeanEuclid and Books 2 and 3 (14 and 37) written here, all in System E, typeset in `ElementsLean.pdf` and checked by `make check`. This file plans the remaining books, one milestone per book, numbered to match: Milestone N is Book N. A book depends on the books before it, so the milestones run in sequence. Only Milestones 7–9 (Books 7–9) can be done in parallel with the geometry.
 
 ## Common rules for every milestone
 
@@ -13,13 +13,14 @@ Books 1 and 2 are done (Milestones 1 and 2): Book 1's 48 propositions from LeanE
 - **System E.** It is our own copy in `lean/SystemE/`. New relations or rules a book needs go there, in files named for the book that introduces them. Lemmas proved from earlier propositions, such as repeated constructions, go in `lean/Elements/BookN/Lemmas.lean`.
 - **Toolchain.** Lean 4.36 and Mathlib v4.36. Upgrade Lean and Mathlib together, between milestones, not during one.
 
-## Milestone 3 — Book 3: circles (37 propositions)
+## Milestone 3 — Book 3: circles (37 propositions) — done
 
 Chords, tangents, angles in segments, the angle in a semicircle (3.31), the power of a point (3.35–3.37).
 
 - **Basis.** System E covers circles: centers, inside/on/outside, line–circle and circle–circle intersection. Avigad, Dean and Mumma designed it for Books 1–4.
 - **New.** Tangency ("touches"): a line or circle meets a circle without cutting it, defined from the existing relations. Segments of circles and "angle in a segment", and similar segments (Def. 3.11) for 3.23–3.24. Arcs, defined via the angles that stand on them, for 3.26–3.29.
 - **Risk.** Medium. Definitions of arcs and segments are not primitive in E, and Euclid reasons about them freely. Several proofs (3.2, 3.10, 3.13) are proofs by contradiction from impossible diagrams, which may need many `-- Missed by Euclid.` steps.
+- **Done.** All 37, SMT-free. Arcs became magnitudes with axioms (`Elements/Book3/Axioms.lean`) rather than definitions; touching circles internally and externally are defined by their insides; 3.24 superposes the triangle on the chord with apex the center. The horn angles of 3.16 and 3.31 are left out.
 
 ## Milestone 4 — Book 4: inscribed and circumscribed figures (16 propositions)
 

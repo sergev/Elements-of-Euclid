@@ -4,7 +4,7 @@
 
 #v(1em)
 
-This edition gives each proposition of the books it contains twice. First comes Euclid's text in Richard Fitzpatrick's translation, then a formal version written in Lean 4, a programming language and proof assistant. Each proposition's formal statement and proof is printed after the English, under the heading _Formalization_. The proofs of Book 1 come from LeanEuclid, by L. Murphy, K. Yang, J. Sun, Z. Li, A. Anandkumar and X. Si, "Autoformalizing Euclidean Geometry", ICML 2024, distributed under the MIT license. The proofs of Book 2 were written for this edition, in the same system.
+This edition gives each proposition of the books it contains twice. First comes Euclid's text in Richard Fitzpatrick's translation, then a formal version written in Lean 4, a programming language and proof assistant. Each proposition's formal statement and proof is printed after the English, under the heading _Formalization_. The proofs of Book 1 come from LeanEuclid, by L. Murphy, K. Yang, J. Sun, Z. Li, A. Anandkumar and X. Si, "Autoformalizing Euclidean Geometry", ICML 2024, distributed under the MIT license. The proofs of Books 2 and 3 were written for this edition, in the same system.
 
 The Lean proofs are written in System E, a formal system that J. Avigad, E. Dean and J. Mumma designed to follow Euclid closely ("A formal system for Euclid's Elements", _Review of Symbolic Logic_ 2, 2009). In particular, it can draw the conclusions that Euclid reads off his diagrams. The result is that a formal proof reads step for step like Euclid's text, and seldom like an exercise in coordinates.
 
@@ -108,8 +108,34 @@ Book 2 adds a few lemmas of its own, printed after its definitions:
 
 Euclid reads such orders off his figure, and the proofs mark the places with `-- Missed by Euclid.` Three proofs also have a lemma of their own: `proposition_4_figure` is the figure of 2.4, which 2.7 uses again; `proposition_8_sums` adds up the areas of Euclid's nine pieces; and `proposition_14_lemma` is the semicircle construction. Prop.~2.13 has a second form, `proposition_13'`, for the case in which the perpendicular falls outside the triangle.
 
+== Circles
+
+In System E a line that meets a circle "intersects" it only if it cuts it, at two points, and likewise for two circles. Book 3's definitions are written with these relations:
+
+#table(
+  columns: (auto, 1fr),
+  stroke: none,
+  inset: (x: 0pt, y: 3pt),
+  column-gutter: 1.5em,
+  [`L.touchesCircleAt α a`], [the line $L$ touches $alpha$ at $a$: it meets the circle there and does not cut it (Def.~3.2)],
+  [`α.touchesCircleAt β a`], [the circles touch at $a$: they meet there and do not cut (Def.~3.3)],
+  [`α.touchesInternallyAt β a`], [they touch, $alpha$ within $beta$: every point inside $alpha$ is inside $beta$],
+  [`α.touchesExternallyAt β a`], [they touch, each outside the other: no point is inside both],
+  [`equalCircles α β c₁ p₁ c₂ p₂`], [equal circles, with equal radii $c_1 p_1$ and $c_2 p_2$ (Def.~3.1)],
+  [`c.onSegment α a b AB s`], [$c$ is on the circumference of the segment of $alpha$ on the chord $a b$, on the side of $s$; the angle in the segment is `∠ a:c:b` (Defs.~3.6, 3.8)],
+  [`similarSegments α a b AB x β c d CD y`], [the segments admit equal angles, `∠ a:x:b = ∠ c:y:d` (Def.~3.11)],
+)
+
+Euclid compares segments and circumferences as figures and magnitudes. In Prop.~3.24 he applies one segment to another. System E's superposition moves only triangles, so the proof applies the triangle on the chord whose apex is the center. Then it shows, by Prop.~3.23, that the circle about the image of the center is the other segment's circle. "Equal segments" are thus segments on equal chords of equal circles, which coincide when applied.
+
+System E has no circumferences, so Book 3 adds them. `α.arc b c s` is the circumference of $alpha$ from $b$ to $c$ on the side of the chord away from $s$, the one on which an angle at $s$ stands (Def.~3.9), and `α.circumference` is the whole circle. Their axioms are printed after Book 3's definitions. They say only what Euclid assumes of magnitudes: a circumference is the same from either end and is positive; the two circumferences on a chord make the whole circle; a point on a circumference divides it into two parts (C.N.~2); equal circles have equal circumferences; and equal segments have equal circumferences (C.N.~4). Props.~3.26--3.30 are proved from these.
+
+Some positions Euclid leaves out are proved as separate cases. Prop.~3.20 holds for the center on either side of the chord, or on it (`proposition_20'`, `proposition_20''`), and Prop.~3.21 needs these cases for segments not greater than a semicircle. Prop.~3.27 at the circumference assumes circumferences less than semicircles, as in Euclid's figure.
+
+Two claims are left out. In Props.~3.16 and 3.31, Euclid compares the "angle of the semicircle" and the horn angle between a circle and its tangent with rectilinear angles. These angles are contained by a curve, and System E has only rectilinear ones. What makes the claims true is proved: no straight line falls between the tangent and the circle (`proposition_16'`).
+
 == What is checked, and what is assumed
 
 Euclid often passes over small steps without comment. He says that two circles cut one another, or that a point falls inside an angle, because the figure shows it. In System E, such facts follow by a fixed set of diagrammatic, metric and transfer rules. The tactics `euclid_apply`, `euclid_assert` and `euclid_finish` find these small steps automatically. They apply the rules to the facts at hand, and to the facts so obtained, until the step follows or nothing new appears. Each rule they apply is recorded, so the result is an ordinary Lean proof of the step. When a gap is larger than that, the formal proof has to fill it explicitly. The comment `-- Missed by Euclid.` marks such places, where Euclid relied on a fact that he never proved.
 
-One thing is taken on trust: the points, lines and circles of System E and its rules are _axioms_. They are not derived from a model of the plane, such as pairs of real numbers. Everything else, every step, the order of the steps and the use of each proposition and rule, is checked by Lean. The proofs in this book were checked with Lean 4.36, using a version of System E taken from LeanEuclid and extended for this edition. The command `make check` in the source repository repeats the check.
+One thing is taken on trust: the points, lines and circles of System E and its rules are _axioms_, as are Book 3's circumferences. They are not derived from a model of the plane, such as pairs of real numbers. Everything else, every step, the order of the steps and the use of each proposition and rule, is checked by Lean. The proofs in this book were checked with Lean 4.36, using a version of System E taken from LeanEuclid and extended for this edition. The command `make check` in the source repository repeats the check.

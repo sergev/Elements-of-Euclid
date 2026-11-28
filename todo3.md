@@ -19,15 +19,6 @@ When the solvers struggle:
 - **Segment orientation:** when a goal compares products of the same segments written in different orders (`|(a─b)|` against `|(b─a)|`), add the symmetric step as an assert.
 - **`simp_all`:** if it blows up, turn it off for that step with `set_option systemE.simpAll false in`.
 
-## T13. Primer and docs
-
-- **`Book00/Lean.typ`:**
-  - the Book 3 definitions (touching, segments, arcs);
-  - the decisions from T9 and T10;
-  - a note on what is left out: the horn angles in 3.16 and 3.31.
-- **Typeset any `lean/Elements/Book3/Lemmas.lean`** after Book 3's definitions, as in Book 2.
-- **`CLAUDE.md`:** the Book 3 notes. **`Roadmap.md`:** Milestone 3 done.
-
 ## T14. Final check
 
 - `make check` from clean, all books, under the cap. Note the time.
