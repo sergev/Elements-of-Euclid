@@ -20,3 +20,4 @@
     [Thus, $E G$ is a second binomial (straight-line) [Def.~10.6].#content-box-note[If the rational straight-line has unit length then the length of a second binomial straight-line is $k \/ sqrt(1-k'^(2)) +k$. This, and the second apotome, whose length is $k \/ sqrt(1-k'^(2)) -k$ [Prop.~10.86], are the roots of $x^2- (2 thin k \/ sqrt(1-k'^(2)) ) thin x+k^2 thin [k'^(2) \/ (1-k'^(2))]=0$.] (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book10/Prop049.lean")

@@ -34,3 +34,4 @@
     [For let $A B$ be cut in half at $D$. Therefore, since a straight-line has been cut into equal (parts) at $D$, and into unequal (parts) at $C$, the (rectangle contained) by $A C$ and $C B$, plus the (square) on $C D$, is thus equal to the (square) on $A D$ [Prop.~2.5]. Hence, the (rectangle contained) by $A C$ and $C B$ is less than the (square) on $A D$. Thus, twice the (rectangle contained) by $A C$ and $C B$ is less than double the (square) on $A D$. But, (the sum of) the (squares) on $A C$ and $C B$ [is] double (the sum of) the (squares) on $A D$ and $D C$ [Prop.~2.9]. Thus, (the sum of) the (squares) on $A C$ and $C B$ is greater than twice the (rectangle contained) by $A C$ and $C B$. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book10/Prop059.lean")

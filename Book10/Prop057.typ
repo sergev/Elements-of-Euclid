@@ -24,3 +24,4 @@
     [Thus, $M O$ is the irrational (straight-line which is) called major. And (it is) the square-root of area $A C$. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book10/Prop057.lean")

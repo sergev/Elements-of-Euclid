@@ -20,3 +20,4 @@
     [Thus, $E G$ is a fourth binomial (straight-line) [Def.~10.8].#content-box-note[If the rational straight-line has unit length then the length of a fourth binomial straight-line is $k thin (1+1 \/ sqrt(1+k') )$. This, and the fourth apotome, whose length is $k thin (1-1 \/ sqrt(1+k') )$ [Prop.~10.88], are the roots of $x^2- 2 thin k thin x+k^2 thin k' \/ (1+k')=0$.] (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book10/Prop051.lean")

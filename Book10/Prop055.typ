@@ -24,3 +24,4 @@
     [Thus, $M O$ is a first bimedial (straight-line). (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book10/Prop055.lean")

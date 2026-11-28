@@ -32,14 +32,6 @@ How Book 10 differs from the books before it:
 - **Numbers.** "The ratio which a number has to a number" joins Book 5's proportion with Books 7–9's numbers (`ℕ`, Def. 7.20). 10.5–10.9 make the bridge; after that, Book 7–9 propositions are cited as Lean terms (8.24, 8.26, 9.1, 9.2 for squares).
 - **Irrational means Euclid's irrational.** Rational and irrational are relative to an assigned line `ρ` (Def. 10.3), and a line is rational when commensurable with `ρ` in length or in square only. Incommensurability is proved as Euclid proves it, from the hypotheses (10.13, 10.16 and so on), not from the irrationality of a real number.
 
-## T7. Props. 10.48–10.59: the six binomials
-
-- **10.48–10.53:** to find the first to sixth binomial, from 10.28's numbers and 10.6. The lemma after 10.53: two squares set side by side, the rectangle between them is their mean proportional (6.1).
-- **10.54–10.59:** the square root of a rectangle of a rational line and a binomial of order k is the k-th irrational sum. Through 10.17 and the lemmas. The lemma after 10.59: a line cut unequally, the squares on the parts together exceed twice their rectangle (2.7).
-- Statements are `∃` for the constructions and `∀` for the correspondences; the square root of an area is a line whose square equals it (2.14, a construction lemma), not `Real.sqrt`.
-
-Risk: medium.
-
 ## T8. Props. 10.60–10.72: squares applied; same order
 
 - **10.60–10.65:** the square on each irrational sum, applied to a rational line, makes the binomial of the same order as breadth. The converses of 10.54–10.59.

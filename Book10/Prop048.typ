@@ -20,3 +20,4 @@
     [Thus, $E G$ is a first binomial (straight-line) [Def.~10.5].#content-box-note[If the rational straight-line has unit length then the length of a first binomial straight-line is $k+k sqrt(1-k'^(2))$. This, and the first apotome, whose length is $k-k thin sqrt(1-k'^(2))$ [Prop.~10.85], are the roots of $x^2- 2 thin k thin x+k^2 thin k'^(2)=0$.] (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book10/Prop048.lean")

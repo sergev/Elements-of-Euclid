@@ -42,3 +42,4 @@
     [For since as $A D$ is to $D K$, so $K G$ (is) to $G C$. For [they are] respectively equal. And, via composition, as $A K$ (is) to $K D$, so $K C$ (is) to $C G$ [Prop.~5.18]. But as $A K$ (is) to $K D$, so $A C$ (is) to $C D$, and as $K C$ (is) to $C G$, so $D C$ (is) to $C B$ [Prop.~6.1]. Thus, also, as $A C$ (is) to $D C$, so $D C$ (is) to $B C$ [Prop.~5.11]. Thus, $D C$ is the mean proportional to $A C$ and $C B$. Which (is the very thing) it was prescribed to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book10/Prop053.lean")

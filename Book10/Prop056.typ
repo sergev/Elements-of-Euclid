@@ -24,3 +24,4 @@
     [Thus, $M O$ is a second bimedial (straight-line) [Prop.~10.38]. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book10/Prop056.lean")

@@ -24,3 +24,4 @@
     [Thus, $M O$ is (both) a binomial (straight-line) [Prop.~10.36], and the square-root of $A C$. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book10/Prop054.lean")

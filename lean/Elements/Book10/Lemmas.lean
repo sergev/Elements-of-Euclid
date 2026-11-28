@@ -91,6 +91,21 @@ third is greater than the fourth [Props. 5.16, 5.14]. -/
 theorem lt_of_proportion {a b c d : M} (h : Proportion a b c d) (hba : b < a) : d < c :=
   (Elements.Book5.proposition_14 (Elements.Book5.proposition_16 h)).1 hba
 
+/-- Two magnitudes are the mean proportional of the same two only if equal: of unequal
+means, the lesser has the greater ratio to it from the first [Prop. 5.8], and the smaller
+to the last [Prop. 5.8], which cannot both be [Props. 5.13, 5.10]. -/
+theorem mean_proportional_unique {a b x y : M} (hx : Proportion a x x b)
+    (hy : Proportion a y y b) : x = y := by
+  have key : ∀ {x y : M}, Proportion a x x b → Proportion a y y b → ¬ x < y := by
+    intro x y hx hy hlt
+    have h₁ := Elements.Book5.proposition_13' (Elements.Book5.proposition_8 hlt a).2 hy
+    have h₂ := Elements.Book5.proposition_13 hx.symm h₁
+    exact Elements.Book5.proposition_10_lemma (Elements.Book5.proposition_8 hlt b).1 h₂
+  rcases lt_trichotomy x y with h | h | h
+  · exact absurd h (key hx hy)
+  · exact h
+  · exact absurd h (key hy hx)
+
 theorem Rational.self (ρ : Length) : Rational ρ ρ := Or.inl (.refl ρ)
 
 /-! The model. -/
@@ -359,6 +374,13 @@ theorem sq_double (t : Length) : sq (t + t) = (4 : ℕ+) • sq t :=
 between the cuts, is the square on the half. -/
 theorem rect_add_sq {x y e t : Length} (hx : e + t = x) (hy : y + t = e) :
     rect x y + sq t = sq e := by
+  subst hx hy; exact Model.ext (by simp; ring)
+
+/-- Prop. 2.9: a line `e + e` cut in half and unequally, into `x = e + t` and `y`, with
+`y + t = e`: the squares on the unequal pieces are double the squares on the half and on
+the line between the cuts. -/
+theorem sq_add_sq_half {x y e t : Length} (hx : e + t = x) (hy : y + t = e) :
+    sq x + sq y = (2 : ℕ+) • (sq e + sq t) := by
   subst hx hy; exact Model.ext (by simp; ring)
 
 /-- Prop. 6.14: equal rectangles have their sides reciprocally proportional. -/

@@ -24,3 +24,4 @@
     [Thus, $M O$ is the square-root of a rational plus a medial (area) [Prop.~10.40]. And (it is) the square-root of area $A C$. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book10/Prop058.lean")

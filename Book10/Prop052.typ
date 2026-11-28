@@ -20,3 +20,4 @@
     [Thus, $E G$ is a fifth binomial (straight-line) [Def.~10.9].#content-box-note[If the rational straight-line has unit length then the length of a fifth binomial straight-line is $k thin ( sqrt(1+k') +1)$. This, and the fifth apotome, whose length is $k thin ( sqrt(1+k') -1)$ [Prop.~10.89], are the roots of $x^2- 2 thin k thin sqrt(1+k') thin x+k^2 thin k'=0$.] (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book10/Prop052.lean")

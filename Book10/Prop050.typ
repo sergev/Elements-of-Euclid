@@ -20,3 +20,4 @@
     [Thus, $F H$ is a third binomial (straight-line) [Def.~10.7].#content-box-note[If the rational straight-line has unit length then the length of a third binomial straight-line is $k^(1 \/ 2) thin (1+ sqrt(1-k'^(2)) )$. This, and the third apotome, whose length is $k^(1 \/ 2) thin (1- sqrt(1-k'^(2)) )$ [Prop.~10.87], are the roots of $x^2- 2 thin k^(1 \/ 2) thin x+k thin k'^(2)=0$.] (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book10/Prop050.lean")
