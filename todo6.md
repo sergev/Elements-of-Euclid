@@ -29,12 +29,6 @@ How Book 6 differs from Books 1–5:
 - **Faithfulness to Book 5.** Every ratio step cites a Book 5 proposition or Def. 5.5. Don't use `Positive.proportion_of_mul_eq`, `Positive.mult_val` or `Length.fourth` where Euclid has an argument; they are facts of the model. Record each use, with the reason, in a comment.
 - **No reals for ratios.** A ratio of lines or areas is never `|(a─b)| / |(c─d)|`.
 
-## T6. Props. 6.14–6.17: reciprocal proportion
-
-- **6.14, 6.15:** equal parallelograms (triangles) with an equal angle have their sides reciprocally proportional, and conversely.
-- **6.16, 6.17:** four (three) lines proportional iff the rectangle of the outer equals the rectangle of the middle (the square on the middle).
-  - Book 2 writes rectangles as products of lengths. Euclid proves 6.16 from 6.14 with the rectangles drawn: build them (Book 2's `rectangle_on`), relate their areas to the products, and argue with 6.14. Don't replace the proof with `Positive.proportion_of_mul_eq`.
-
 ## T7. Props. 6.18–6.22: similar figures
 
 - **6.18:** to describe on a given line a figure similar and similarly laid down to a given one. Do it for a quadrilateral, as in Euclid's figure, and for a triangle; a pentagon if 6.20 needs it.

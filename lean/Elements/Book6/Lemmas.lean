@@ -74,6 +74,11 @@ theorem eq_right {A B C D : Type} [Figure A K] [Figure B K] [Figure C K] [Figure
   let ⟨hr₀, hp, hr', hq, h⟩ := h
   mag_inj.mp (proposition_9' (by rwa [mag_congr (hp := hr') (hq := hr₀) hr.symm] at h))
 
+/-- Equal magnitudes have the same ratio to the same [Prop. 5.7]. -/
+theorem of_eq {A B C : Type} [Figure A K] [Figure B K] [Figure C K] {p : A} {q : B}
+    {r : C} (hp : 0 < size p) (hr : 0 < size r) (h : size p = size q) : p ∶ r ∷ q ∶ r :=
+  ⟨hp, hr, h ▸ hp, hr, (proposition_7 (mag r hr) (mag_congr (hq := h ▸ hp) h)).1⟩
+
 end Proportional
 
 /-- The angles of a triangle are equal to two right angles [Prop. 1.32]. -/

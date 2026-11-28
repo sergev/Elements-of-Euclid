@@ -32,3 +32,4 @@
     [Thus, in equal triangles also having one angle equal to one (angle), the sides about the equal angles (are) reciprocally proportional. And those triangles having one angle equal to one angle for which the sides about the equal angles (are) reciprocally proportional are equal. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book6/Prop15.lean")

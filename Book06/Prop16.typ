@@ -32,3 +32,4 @@
     [Thus, if four straight-lines are proportional, (then) the rectangle contained by the (two) outermost is equal to the rectangle contained by the middle (two). And if the rectangle contained by the (two) outermost is equal to the rectangle contained by the middle (two), (then) the four straight-lines will be proportional. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book6/Prop16.lean")

@@ -32,3 +32,4 @@
     [Thus, if three straight-lines are proportional, (then) the rectangle contained by the (two) outermost is equal to the square on the middle (one). And if the rectangle contained by the (two) outermost is equal to the square on the middle (one), (then) the three straight-lines will be proportional. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book6/Prop17.lean")

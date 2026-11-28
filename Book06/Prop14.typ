@@ -28,3 +28,4 @@
     [Thus, in equal and equiangular parallelograms, the sides about the equal angles are reciprocally proportional. And those equiangular parallelograms in which the sides about the equal angles are reciprocally proportional are equal. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book6/Prop14.lean")

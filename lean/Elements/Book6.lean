@@ -14,6 +14,10 @@ import Elements.Book6.Prop10
 import Elements.Book6.Prop11
 import Elements.Book6.Prop12
 import Elements.Book6.Prop13
+import Elements.Book6.Prop14
+import Elements.Book6.Prop15
+import Elements.Book6.Prop16
+import Elements.Book6.Prop17
 
 /-
 Book 6: similar figures.
