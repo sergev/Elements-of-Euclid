@@ -24,3 +24,4 @@
     [Thus, $C A$, equal to the given straight-line $D$, has been inserted into the given circle $A B C$. (Which is) the very thing it was required to do.],
   )
 ]
+#lean-proof("/lean/Elements/Book4/Prop01.lean")

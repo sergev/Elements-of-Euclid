@@ -1,4 +1,10 @@
 import SystemE
+import Elements.Book4.Lemmas
+import Elements.Book4.Prop01
+import Elements.Book4.Prop02
+import Elements.Book4.Prop03
+import Elements.Book4.Prop04
+import Elements.Book4.Prop05
 
 /-
 Book 4: figures inscribed in and circumscribed about circles.
@@ -20,10 +26,10 @@ each side's line has the other vertices on one side. The definitions are in
 - Defs. 4.3 and 4.6, `inscribedTriangle a b c α` (and `inscribedQuadrilateral`, …): each
   vertex is on the circle. The figure is inscribed in the circle, and the circle
   circumscribed about the figure.
-- Defs. 4.4 and 4.5, `circumscribedTriangle a b c AB BC CA p q r α` (and for quadrilaterals
-  and pentagons): each side's line touches the circle (Def. 3.2), `AB` at `p` and so on,
-  at a point between the side's ends. The figure is circumscribed about the circle, and
-  the circle inscribed in the figure.
+- Defs. 4.4 and 4.5, `circumscribedTriangle a b c AB BC CA p q r α` (and for
+  quadrilaterals and pentagons): each side's line touches the circle (Def. 3.2), `AB`
+  at `p` and so on, at a point between the side's ends. The figure is circumscribed
+  about the circle, and the circle inscribed in the figure.
 - Def. 4.7, `insertedInto a b α`: a straight line inserted into a circle, both ends on it.
 
 Prop. 4.16. Euclid constructs one side of the fifteen-sided figure and says the rest

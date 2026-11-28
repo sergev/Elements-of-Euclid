@@ -24,3 +24,4 @@
     [Thus, the circle $E F G$ has been inscribed in the given triangle $A B C$. (Which is) the very thing it was required to do.],
   )
 ]
+#lean-proof("/lean/Elements/Book4/Prop04.lean")

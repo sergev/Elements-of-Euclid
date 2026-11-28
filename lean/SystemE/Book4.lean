@@ -36,8 +36,8 @@ abbrev hexagon (a b c d e f : Point) (AB BC CD DE EF FA : Line) : Prop :=
   a.sameSide b EF ∧ b.sameSide c EF ∧ c.sameSide d EF ∧
   b.sameSide c FA ∧ c.sameSide d FA ∧ d.sameSide e FA
 
-/-- Triangles `abc` and `def` are equiangular, the angles at `a`, `b`, `c` equal to those at
-`d`, `e`, `f`. -/
+/-- Triangles `abc` and `def` are equiangular, the angles at `a`, `b`, `c` equal to those
+at `d`, `e`, `f`. -/
 @[simp]
 abbrev equiangularTriangles (a b c d e f : Point) : Prop :=
   ∠ b:a:c = ∠ e:d:f ∧ ∠ a:b:c = ∠ d:e:f ∧ ∠ a:c:b = ∠ d:f:e
@@ -93,7 +93,8 @@ abbrev inscribedHexagon (a b c d e f : Point) (α : Circle) : Prop :=
   a.onCircle α ∧ b.onCircle α ∧ c.onCircle α ∧ d.onCircle α ∧ e.onCircle α ∧ f.onCircle α
 
 /-- Defs. 4.4 and 4.5: the triangle `abc` is circumscribed about `α`, and `α` inscribed in
-it: each side touches the circle, `AB` at `p`, `BC` at `q`, `CA` at `r`, between its ends. -/
+it: each side touches the circle, `AB` at `p`, `BC` at `q`, `CA` at `r`, between its
+ends. -/
 @[simp]
 abbrev circumscribedTriangle (a b c : Point) (AB BC CA : Line) (p q r : Point)
     (α : Circle) : Prop :=
@@ -115,7 +116,8 @@ abbrev circumscribedPentagon (a b c d e : Point) (AB BC CD DE EA : Line)
   DE.touchesCircleAt α s ∧ EA.touchesCircleAt α t ∧
   between a p b ∧ between b q c ∧ between c r d ∧ between d s e ∧ between e t a
 
-/-- Def. 4.7: the straight line `ab` is inserted into `α`, its ends on the circumference. -/
+/-- Def. 4.7: the straight line `ab` is inserted into `α`, its ends on the
+circumference. -/
 @[simp]
 abbrev insertedInto (a b : Point) (α : Circle) : Prop :=
   a.onCircle α ∧ b.onCircle α

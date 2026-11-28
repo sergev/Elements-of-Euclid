@@ -32,3 +32,4 @@
     [Thus, a circle has been circumscribed about the given triangle. (Which is) the very thing it was required to do.],
   )
 ]
+#lean-proof("/lean/Elements/Book4/Prop05.lean")

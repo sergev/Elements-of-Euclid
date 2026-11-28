@@ -24,3 +24,4 @@
     [Thus, a triangle, equiangular with the given triangle, has been circumscribed about the given circle. (Which is) the very thing it was required to do.],
   )
 ]
+#lean-proof("/lean/Elements/Book4/Prop03.lean")

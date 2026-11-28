@@ -30,20 +30,6 @@ Book 1–3 SMT-free rules hold for Book 4: every step closes by saturation. What
 - **Squares of lengths:** use `Elements/Book3/Lemmas.lean` (`length_eq_of_square_eq`, `lt_of_square_lt`). Add symmetric asserts when products are written in different orders.
 - **Circumferences:** use the Book 3 axioms (`arc_*`), and Props. 3.26–3.30.
 
-## T2. Props. 4.1–4.5: triangles
-
-- **4.1:** insert a chord equal to a given line not greater than the diameter. It uses Props. 1.3 and 3.1, and a circle about one end.
-- **4.2–4.3:** inscribe, and circumscribe, a triangle equiangular with a given one.
-  - 4.2 uses the tangent (Props. 3.17, 3.32) and Prop. 1.23.
-  - 4.3 uses tangents at the ends of radii (Props. 3.16 corollary, 3.18), angles at the center (Prop. 1.23), and angle sums (Props. 1.13, 1.32).
-  - Missed by Euclid: in 4.3, the tangents meet (Post. 5).
-- **4.4:** inscribe a circle in a triangle: angle bisectors (Prop. 1.9), perpendiculars (Prop. 1.12), Prop. 1.26.
-  - Missed by Euclid: the bisectors meet inside the triangle.
-  - The feet of the perpendiculars fall on the sides.
-- **4.5:** circumscribe a circle about a triangle: perpendicular bisectors (Props. 1.10, 1.11), Prop. 1.4.
-  - Euclid has three figures: the center inside the triangle, on a side, or outside it. Prove each.
-  - The bisectors meet (Missed by Euclid). Book 3's `proposition_9'` and `proposition_25` have similar steps.
-
 ## T3. Props. 4.6–4.9: squares
 
 - **4.6:** inscribe a square: two diameters at right angles. It uses Props. 1.4, 3.31 and 1.47.
