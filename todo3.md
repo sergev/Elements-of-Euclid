@@ -19,18 +19,6 @@ When the solvers struggle:
 - **Segment orientation:** when a goal compares products of the same segments written in different orders (`|(a─b)|` against `|(b─a)|`), add the symmetric step as an assert.
 - **`simp_all`:** if it blows up, turn it off for that step with `set_option systemE.simpAll false in`.
 
-## T1. Tangency and equal circles
-
-System E's `L.intersectsCircle α` means that `L` *cuts* `α`, at two points; Euclid's "touch" is not in System E. Before any proof uses them:
-
-- **Line touching a circle (Def. 3.2):** `L.touchesCircleAt α a` means `a` is on both, and every other point of `L` is outside `α`. It goes in `lean/SystemE/Book3.lean` as a `@[simp] abbrev` over existing relations, so the solvers see through it, as with `formTriangle`.
-- **Circles touching (Def. 3.3):** state "touch at `a`" in the same way.
-- **Internal and external touching:** for 3.6 and 3.11–3.13, internal means inside, and external means outside, apart from the point of contact.
-- **Equal circles (Def. 3.1):** equal radii, `|(c₁─p₁)| = |(c₂─p₂)|` for centers and points on the circles.
-- **Test the translator.** Check that it accepts the new definitions: a `∀` inside an `abbrev` is translated, but check the form. If it can't, add a relation and its rules to SystemE, and discuss that first, since new rules are new axioms.
-
-Output: the definitions, a short comment on each with its Euclid number, and the two Book 3 corollaries' naming (`proposition_1_corollary`, `proposition_16_corollary`).
-
 ## T2. Scaffolding
 
 - `lean/Elements/Book3.lean` with a header comment (conventions from T1), imported by `lean/Elements.lean`.

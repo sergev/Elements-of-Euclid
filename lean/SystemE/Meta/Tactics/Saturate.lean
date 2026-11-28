@@ -1,5 +1,6 @@
 import Mathlib.Tactic.Linarith
 import SystemE.Theory
+import SystemE.Book3
 import SaturateCore
 
 /-!
@@ -255,7 +256,7 @@ initialize configRef.set {
     ``length_pos_of_ne, ``ne_of_length_pos,
     ``not_inside_circle_of_ge, ``not_on_circle_of_gt, ``not_on_circle_of_lt,
     ``between_trans_in', ``angle_pos_of_not_on_line,
-    ``same_side_of_opposite, ``same_side_of_parallel]
+    ``same_side_of_opposite, ``same_side_of_parallel, ``not_on_circle_of_touches]
   backwardLemmas := #[
     ``ne_of_lines_ne, ``not_between_of_same_side, ``not_on_line_of_triangle,
     ``eq_of_same_ray, ``on_line_of_eq_angle, ``right_angle_on_lines]
