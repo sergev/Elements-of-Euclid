@@ -28,3 +28,4 @@
     [Thus, for (magnitudes) having a ratio to the same (magnitude), that (magnitude which) has the greater ratio is (the) greater. And that (magnitude) to which the latter (magnitude) has a greater ratio is (the) lesser. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book5/Prop10.lean")

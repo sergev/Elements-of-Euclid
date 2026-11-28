@@ -36,3 +36,4 @@
     [Thus, for unequal magnitudes, the greater (magnitude) has a greater ratio than the lesser to the same (magnitude). And the latter (magnitude) has a greater ratio to the lesser (magnitude) than to the greater. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book5/Prop08.lean")

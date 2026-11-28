@@ -27,19 +27,6 @@ How Book 5 differs from Books 1–4:
   - Mathlib's lemmas may be used for what Euclid takes for granted: arithmetic of the counting numbers, and the algebra of addition (C.N. 1–5).
 - **No reals, no division.** Ratios are not numbers. "A : B :: C : D" is Def. 5.5, over equimultiples. Don't define a ratio as `a / b`, which would make the book trivial.
 
-## T3. Props. 5.7–5.10: same and greater ratios
-
-- **5.7:** equal magnitudes have the same ratio to the same magnitude, and it to them. The corollary (inversion) is `proposition_7_corollary`.
-- **5.8:** the greater of two magnitudes has the greater ratio to a third. This is the longest proof of the book.
-  - It uses Def. 5.4 (Archimedes) and the least multiple exceeding a magnitude.
-  - Euclid's two cases (`AE` less or greater than `EB`) are both proved.
-  - "The least multiple" is `Nat.find` over the Archimedean fact. Cite it as Euclid's step.
-- **5.9–5.10:** the converses, by contradiction from 5.7 and 5.8.
-  - They need trichotomy of ratios, which Euclid assumes: same, greater, or less.
-  - Prove what is needed as a lemma, `-- Missed by Euclid.`
-
-Risk: medium (5.8). Take care that the lemmas about the least multiple stay small.
-
 ## T4. Props. 5.11–5.15: ratios combined
 
 - **5.11:** transitivity of the same ratio.

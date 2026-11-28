@@ -37,3 +37,4 @@
     [So (it is) clear, from this, that if some magnitudes are proportional, (then) they will also be proportional inversely. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book5/Prop07.lean")

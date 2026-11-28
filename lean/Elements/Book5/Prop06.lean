@@ -16,8 +16,7 @@ theorem proposition_6 {m n : ℕ+} {a b e : M} {c d f : N}
     (b = e ∧ d = f) ∨ ∃ k : ℕ+, b = k • e ∧ d = k • f := by
   -- Missed by Euclid: `GB` is equal to `E`, or a multiple `k • e` of it
   have hnm : n < m := by
-    have : n • e < m • e := h₃ ▸ h₁ ▸ lt_add a b
-    exact lt_of_not_ge fun h => not_lt_of_ge (mult_le_mult_left e h) this
+    exact lt_of_mult_lt_mult_left (h₃ ▸ h₁ ▸ lt_add a b)
   set k := m - n
   have hm : n + k = m := PNat.add_sub_of_lt hnm
   have hb : b = k • e := by

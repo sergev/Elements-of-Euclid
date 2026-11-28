@@ -67,6 +67,17 @@ instance : AddLeftStrictMono M := ⟨fun c a b (h : a < b) => by
   rw [add_comm c a, add_comm c b]
   exact add_lt_add_right' c h⟩
 
+instance : AddRightMono M := ⟨fun c a b (h : a ≤ b) => by
+  show a + c ≤ b + c
+  rcases h.lt_or_eq with h | rfl
+  · exact (add_lt_add_right' c h).le
+  · rfl⟩
+
+instance : AddLeftMono M := ⟨fun c a b (h : a ≤ b) => by
+  show c + a ≤ c + b
+  rw [add_comm c a, add_comm c b]
+  exact add_le_add_left h c⟩
+
 theorem lt_of_add_lt_add_right' {a b c : M} (h : a + c < b + c) : a < b := by
   rcases lt_trichotomy a b with h' | rfl | h'
   · exact h'
@@ -123,6 +134,10 @@ theorem mult_le_mult_left {m n : ℕ+} (a : M) (h : m ≤ n) : m • a ≤ n •
   rcases h.lt_or_eq with h | rfl
   · exact (mult_lt_mult_left a h).le
   · rfl
+
+/-- The multiple which is greater is taken more times. -/
+theorem lt_of_mult_lt_mult_left {m n : ℕ+} {a : M} (h : m • a < n • a) : m < n :=
+  lt_of_not_ge fun h' => not_lt_of_ge (mult_le_mult_left a h') h
 
 /-- A magnitude is equal multiples of itself only. -/
 theorem mult_inj_left {m n : ℕ+} {a : M} (h : m • a = n • a) : m = n := by

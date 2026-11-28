@@ -28,3 +28,4 @@
     [Thus, (magnitudes) having the same ratio to the same (magnitude) are equal to one another. And those (magnitudes) to which the same (magnitude) has the same ratio are equal. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book5/Prop09.lean")
