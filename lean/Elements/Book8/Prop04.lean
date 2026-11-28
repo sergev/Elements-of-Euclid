@@ -73,6 +73,7 @@ theorem exists_continued_measuring {n : ℕ} {p q : Fin n → ℕ} (hp : ∀ i, 
         rw [← hm (Fin.last n), hz, hu, Nat.mul_assoc])
       have hwvz : w = v * z := Nat.eq_of_mul_eq_mul_left he (by
         rw [← hw₁, hz, hv, Nat.mul_assoc])
+      -- so `t` is the new numbers taken `z` times (associativity -- Missed by Euclid.)
       refine ⟨z, fun i => ?_⟩
       induction i using Fin.lastCases with
       | last =>
