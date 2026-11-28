@@ -29,23 +29,6 @@ How Book 6 differs from Books 1–5:
 - **Faithfulness to Book 5.** Every ratio step cites a Book 5 proposition or Def. 5.5. Don't use `Positive.proportion_of_mul_eq`, `Positive.mult_val` or `Length.fourth` where Euclid has an argument; they are facts of the model. Record each use, with the reason, in a comment.
 - **No reals for ratios.** A ratio of lines or areas is never `|(a─b)| / |(c─d)|`.
 
-## T1. Definitions and scaffolding
-
-Decide the basis before any proof, and write the decisions in the header comment of `lean/Elements/Book6.lean`.
-- **Ratios in the figure.** `Length.of a b h` needs a proof of `a ≠ b`, which makes statements heavy. Decide once how a statement says "AB : CD :: EF : GH" and "△ABC : △DEF :: BC : EF": for example a definition over points that takes the distinctness itself (`∃` or `∀` over the proofs, with a lemma that the choice of proof doesn't matter), or the distinctness as hypotheses. Prove the bridge lemmas it needs: `Length.of` is symmetric and depends only on the length; equal lengths and areas give equal magnitudes; `Area.triangle` doesn't depend on the order of the vertices or on the line.
-- **Where the definitions go.** Book 4's definitions are `@[simp] abbrev`s in `SystemE/Book4.lean`, so that saturation sees through them. Those that mention `Proportion` can't go there unless `SystemE` imports Book 5's `Magnitude.lean`. Choose: purely geometric ones (equiangular figures, "same height") in `SystemE/Book6.lean`, and those with ratios in `lean/Elements/Book6/Definitions.lean`; or another split. Record it.
-- **Def. 6.1, similar figures.** Equal angles, and the sides about the equal angles proportional. Write it for triangles, quadrilaterals and pentagons (6.18 and 6.20 use a quadrilateral and pentagons), per number of sides like Book 4, with the vertices in corresponding order ("similarly laid down"). Reuse Book 4's `quadrilateral`, `pentagon`, `equiangularTriangles`.
-- **Rectilinear figures and their areas.** A figure's area is the sum of the triangles of a fan from one vertex; give quadrilaterals and pentagons an `Area`. Prop. 1.45 makes a parallelogram equal to a quadrilateral, two triangles; check what 6.25, 6.28 and 6.29 need from it.
-- **Def. 6.2,** extreme and mean ratio. **Def. 6.3,** height. 6.1 means by "the same height" what its proof uses: the vertices on one line parallel to the bases' line. State it so.
-- **Def. 5.9, the squared ratio** (6.19, 6.20, 6.22). `a` has to `c` the squared ratio of `a : b` when `a : b :: b : c`. It is a Book 5 definition: add it to `Magnitude.lean`, with a doc comment, and say in the primer that Book 6 is its first user.
-- **The compounded ratio** (6.23). Euclid uses it without a definition in Book 5. Define it as he uses it, through a middle term, with a doc comment that says so.
-- **Reciprocal proportion** (6.14, 6.15) is written out in the statements.
-
-Scaffolding:
-- `lean/Elements/Book6.lean` with the header comment, imported in `lean/Elements.lean`.
-- Add `6` to `lean-books` in `functions.typ`. Check that `ElementsEnglish.pdf` and `ElementsGreekEnglish.pdf` don't change (compare `pdftotext` output).
-- Check that `lean/lean4.sublime-syntax` highlights what Book 6 uses (`Length`, `Area`, new definitions). Add what is missing.
-
 ## T2. Lemmas: multiples in the figure
 
 6.1 takes "any number" of straight lines equal to the base, and 6.9 a part of a line. Both need equal segments laid off `m` times, for any `m`. That is induction, outside E's style.

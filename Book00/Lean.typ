@@ -172,6 +172,7 @@ A kind of magnitude is a type `M` with the class `Magnitude M`, printed after Bo
   column-gutter: 1.5em,
   [`Proportion a b c d`], [$a : b :: c : d$ (Def.~5.5): for all $m$, $n$, `n • b < m • a ↔ n • d < m • c`, `m • a = n • b ↔ m • c = n • d` and `m • a < n • b ↔ m • c < n • d`],
   [`GreaterRatio a b c d`], [$a : b$ is greater than $c : d$ (Def.~5.7): `∃ m n, n • b < m • a ∧ ¬ n • d < m • c`],
+  [`SquaredRatio c d a b`], [$c : d$ is the squared ratio of $a : b$ (Def.~5.9): `∃ e, Proportion a b b e ∧ Proportion c d a e`. Book 5 doesn't use it; Book 6 is its first user],
   [`sum a`], [the magnitudes `a 0`, …, `a n` added together],
 )
 

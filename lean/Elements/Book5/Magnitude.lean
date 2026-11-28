@@ -198,6 +198,15 @@ not exceed that of the fourth.
 def GreaterRatio (a b : M) (c d : N) : Prop :=
   ∃ m n : ℕ+, n • b < m • a ∧ ¬ n • d < m • c
 
+/--
+Def. 5.9: when three magnitudes `a`, `b`, `e` are proportional, `a : b :: b : e`, the
+first has to the third the squared ratio of that it has to the second. `SquaredRatio c d
+a b`: `c : d` is the squared ratio of `a : b`, the same ratio as `a : e` for such an `e`.
+Book 5 does not use it; Book 6 is its first user (Props. 6.19, 6.20, 6.22).
+-/
+def SquaredRatio (c d : N) (a b : M) : Prop :=
+  ∃ e : M, Proportion a b b e ∧ Proportion c d a e
+
 namespace Proportion
 
 variable {a b : M} {c d : N}
