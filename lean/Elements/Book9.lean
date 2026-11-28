@@ -20,6 +20,15 @@ import Elements.Book9.Prop17
 import Elements.Book9.Prop18
 import Elements.Book9.Prop19
 import Elements.Book9.Prop20
+import Elements.Book9.Prop21
+import Elements.Book9.Prop22
+import Elements.Book9.Prop23
+import Elements.Book9.Prop24
+import Elements.Book9.Prop25
+import Elements.Book9.Prop26
+import Elements.Book9.Prop27
+import Elements.Book9.Prop28
+import Elements.Book9.Prop29
 
 /-
 Book 9: applications of number theory.

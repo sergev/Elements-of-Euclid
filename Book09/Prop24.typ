@@ -16,3 +16,4 @@
     [For since $A B$ is even, it has a half part [Def.~7.6]. So, for the same (reasons), $B C$ also has a half part. And hence the remainder [$C A$ has a half part]. [Thus,] $A C$ is even. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book9/Prop24.lean")

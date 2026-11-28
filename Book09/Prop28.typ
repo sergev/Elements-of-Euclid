@@ -16,3 +16,4 @@
     [For since $A$ has made $C$ (by) multiplying $B$, $C$ is thus composed out of so many (magnitudes) equal to $B$, as many as (there) are units in $A$ [Def.~7.15]. And $B$ is even. Thus, $C$ is composed out of even (numbers). And if any multitude whatsoever of even numbers is added together then the whole is even [Prop.~9.21]. Thus, $C$ is even. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book9/Prop28.lean")

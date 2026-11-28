@@ -43,6 +43,11 @@ theorem OddNumber.sub_unit {a : ℕ} (h : OddNumber a) (ha : 1 < a) :
   obtain ⟨k, rfl⟩ := odd_iff.mp h
   exact ⟨k, by omega, by omega⟩
 
+/-- An even number less a unit is odd (Def. 7.7). -/
+theorem EvenNumber.sub_unit {a : ℕ} (h : EvenNumber a) : OddNumber (a - 1) := by
+  obtain ⟨k, hk, rfl⟩ := h
+  exact odd_iff.mpr ⟨k - 1, by omega⟩
+
 /-- An even number and a unit make an odd number (Def. 7.7). -/
 theorem EvenNumber.add_unit {a : ℕ} (h : EvenNumber a) : OddNumber (a + 1) := by
   obtain ⟨k, -, rfl⟩ := h
@@ -168,6 +173,17 @@ theorem unit_pos {n : ℕ} {a : Fin (n + 1) → ℕ} (hcon : Continued a) (h0 : 
 /-- All of `n + 2` numbers are all but the last, and the last (Book 7's `sum`). -/
 theorem sum_succ {n : ℕ} (a : Fin (n + 2) → ℕ) :
     sum a = sum (fun i : Fin (n + 1) => a i.castSucc) + a (Fin.last (n + 1)) := rfl
+
+/-- The sums of two multitudes, each to each, added: `sum (f + g)` is `sum f` and
+`sum g`. -/
+theorem sum_add {n : ℕ} (f g : Fin (n + 1) → ℕ) :
+    sum (fun i => f i + g i) = sum f + sum g := by
+  induction n with
+  | zero => rfl
+  | succ n ih =>
+    rw [sum_succ, sum_succ f, sum_succ g,
+      ih (fun i => f i.castSucc) (fun i => g i.castSucc)]
+    omega
 
 /-- The unit and the numbers doubled from it, up to the last, are a unit less than the
 last doubled once more. -/

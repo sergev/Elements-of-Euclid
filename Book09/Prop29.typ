@@ -16,3 +16,4 @@
     [For since $A$ has made $C$ (by) multiplying $B$, $C$ is thus composed out of so many (magnitudes) equal to $B$, as many as (there) are units in $A$ [Def.~7.15]. And each of $A$, $B$ is odd. Thus, $C$ is composed out of odd (numbers), (and) the multitude of them is odd. Hence $C$ is odd [Prop.~9.23]. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book9/Prop29.lean")

@@ -16,3 +16,4 @@
     [For since every one of $A B$, $B C$, $C D$, $D E$ is odd then, a unit being subtracted from each, every one of the remainders will be (made) even [Def.~7.7]. And hence the sum of them will be even [Prop.~9.21]. And the multitude of the units is even. Thus, the whole $A E$ is also even [Prop.~9.21]. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book9/Prop22.lean")

@@ -16,3 +16,4 @@
     [For let the unit $D E$ be subtracted from $C D$. The remainder, $C E$, is thus even [Def.~7.7]. And $C A$ is also even [Prop.~9.22]. Thus, the whole, $A E$, is also even [Prop.~9.21]. And $D E$ is a unit. Thus, $A D$ is odd [Def.~7.7]. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book9/Prop23.lean")

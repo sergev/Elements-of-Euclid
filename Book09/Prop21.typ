@@ -16,3 +16,4 @@
     [For since every one of $A B$, $B C$, $C D$, $D E$ is even, it has a half part [Def.~7.6]. And hence the whole $A E$ has a half part. And an even number is one (which can be) divided in half [Def.~7.6]. Thus, $A E$ is even. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book9/Prop21.lean")

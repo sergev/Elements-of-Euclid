@@ -16,3 +16,4 @@
     [For let the unit $C D$ be subtracted from $B C$. $D B$ is thus even [Def.~7.7]. And $A B$ is also even. And thus the remainder $A D$ is even [Prop.~9.24]. And $C D$ is a unit. Thus, $C A$ is odd [Def.~7.7]. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book9/Prop25.lean")

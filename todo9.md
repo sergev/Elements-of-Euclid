@@ -30,14 +30,6 @@ How Book 9 differs from Book 8:
 - **From a unit.** "Continuously proportional, from a unit" is `Continued a` with `a 0 = 1`; `a 1` is "the number after the unit", and Euclid's "third from the unit" is `a 2`, counting the unit as first. `eq_powers_one` (Book 8, Prop. 8.10) makes such numbers `powers 1 (a 1)`.
 - **Squares and cubes.** `a * a`, `a * a * a`, never `^`. `SquareNumber`, `CubeNumber` need the side greater than the unit; where the side may be the unit (as in 8.20), state the product with positive sides, and say so.
 
-## T5. Props. 9.21–9.29: odd and even
-
-- **9.21–9.23:** a sum of evens is even; a sum of an even multitude of odds is even; of an odd multitude, odd. Over Book 7's `sum`, by induction. The multitude is `n + 1`.
-- **9.24–9.27:** differences of even and odd, with the subtracted number less (or not greater). Euclid uses the unit ("differs by a unit"), so Def. 7.7's second reading is used here.
-- **9.28, 9.29:** an odd number multiplying an even makes an even; multiplying an odd makes an odd, through 9.21 and 9.23 (the product is a sum of as many equals, Def. 7.15).
-
-Risk: low. Keep the proofs Euclid's: 9.21 from the halves, not `omega` on the conclusion.
-
 ## T6. Props. 9.30–9.34: odd measuring even; even-times-even and even-times-odd
 
 - **9.30:** an odd number measuring an even measures its half, through 9.23.
