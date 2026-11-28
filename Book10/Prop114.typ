@@ -25,3 +25,4 @@
     [And it has also been made clear to us, through this, that it is possible for a rational area to be contained by irrational straight-lines. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book10/Prop114.lean")

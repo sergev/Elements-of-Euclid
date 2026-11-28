@@ -474,6 +474,28 @@ theorem Area.fourth' {K : Type} [Magnitude K] [Model K] (p q : K) (c : Area) :
   ⟨Area.mk' (val q * val c / val p) (div_pos (mul_pos (pos q) (pos c)) (pos p)),
     proportion_iff_mul.mpr (by simp; field_simp [(pos p).ne'])⟩
 
+/-- Prop. 6.10: to cut a line `e` in a given ratio, of `m` to `n`. -/
+theorem Length.cut {K : Type} [Magnitude K] [Model K] (e : Length) (m n : K) :
+    ∃ s t : Length, s + t = e ∧ Proportion m n s t := by
+  have hm := pos m; have hn := pos n; have he := pos e
+  refine ⟨Length.mk' (val e * val m / (val m + val n)) (by positivity),
+    Length.mk' (val e * val n / (val m + val n)) (by positivity), Model.ext ?_,
+    proportion_iff_mul.mpr ?_⟩ <;> simp <;> field_simp
+
+/-- Prop. 6.12, for 10.112: to produce a line `f` by `q`, so that as `h` is to `f`, so is
+the whole `f + q` to `q`; `h` greater than `f`. (`q` is the fourth proportional to the
+excess of `h` over `f`, `f`, and `f`.) -/
+theorem Length.extend {h f : Length} (hf : f < h) :
+    ∃ q : Length, Proportion h f (f + q) q := by
+  have h' : val f < val h := val_lt.mpr hf
+  have hf0 := pos f
+  refine ⟨Length.mk' (val f * val f / (val h - val f)) (div_pos (by positivity)
+    (by linarith)), proportion_iff_mul.mpr ?_⟩
+  simp
+  have : val h - val f ≠ 0 := by linarith
+  field_simp
+  ring
+
 /-- Prop. 6.13: to find a mean proportional to two lines. -/
 theorem Length.mean (a b : Length) : ∃ c : Length, Proportion a c c b := by
   obtain ⟨x, hx, hxx⟩ := exists_mul_self (mul_pos (pos a) (pos b))

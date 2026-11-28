@@ -112,6 +112,11 @@ import Elements.Book10.Prop107
 import Elements.Book10.Prop108
 import Elements.Book10.Prop109
 import Elements.Book10.Prop110
+import Elements.Book10.Prop111
+import Elements.Book10.Prop112
+import Elements.Book10.Prop113
+import Elements.Book10.Prop114
+import Elements.Book10.Prop115
 
 /-
 Book 10: incommensurable magnitudes.

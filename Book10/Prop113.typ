@@ -28,3 +28,4 @@
     [$K H$ is thus a binomial whose terms, $K F$ and $F H$, [are] commensurable (in length) with the terms, $B C$ and $C D$, of the apotome, and in the same ratio. Moreover, $K H$ will have the same order as $B C$ [Defs.~10.5--10.10]. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book10/Prop113.lean")

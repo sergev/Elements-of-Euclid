@@ -81,3 +81,4 @@
     [That which with a medial (area) produces a medial whole.],
   )
 ]
+#lean-proof("/lean/Elements/Book10/Prop111.lean")
