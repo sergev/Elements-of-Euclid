@@ -16,3 +16,4 @@
     [For if $B$ and $A$ are not prime to one another, (then) some number will measure them. Let $C$ measure (them). Since $C$ measures $B$, and $A$ does not measure $B$, $C$ is thus not the same as $A$. And since $C$ measures $B$ and $A$, it thus also measures $A$, which is prime, (despite) not being the same as it. The very thing is impossible. Thus, some number cannot measure (both) $B$ and $A$. Thus, $A$ and $B$ are prime to one another. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book7/Prop29.lean")

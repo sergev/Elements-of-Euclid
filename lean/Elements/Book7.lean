@@ -28,6 +28,10 @@ import Elements.Book7.Prop25
 import Elements.Book7.Prop26
 import Elements.Book7.Prop27
 import Elements.Book7.Prop28
+import Elements.Book7.Prop29
+import Elements.Book7.Prop30
+import Elements.Book7.Prop31
+import Elements.Book7.Prop32
 
 /-
 Book 7: numbers.

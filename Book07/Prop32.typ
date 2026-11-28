@@ -20,3 +20,4 @@
     [Thus, every number is either prime, or is measured by some prime number. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book7/Prop32.lean")

@@ -34,15 +34,6 @@ How Book 7 differs from Books 1–6:
   Once a proposition is proved, cite it, or a tactic that does the same, with a comment naming the proposition.
 - **No division, no rationals.** A ratio of numbers is never `a / b`, in `ℕ` or `ℚ`.
 
-## T8. Props. 7.29–7.32: primes
-
-- **7.29:** a prime is prime to every number it does not measure.
-- **7.30:** a prime measuring a product measures one of the factors. Euclid's proof goes through 7.19 and 7.20. Don't use `Nat.Prime.dvd_mul`.
-- **7.31:** every composite number is measured by some prime.
-  - Euclid argues by infinite descent: "an infinite series of numbers will measure the number, each less than the other, which is impossible in numbers."
-  - Write the descent as well-founded induction on the number. A comment should say that this is Euclid's "impossible in numbers".
-- **7.32:** every number is prime or measured by a prime.
-
 ## T9. Props. 7.33–7.39: least numbers, least common multiple, parts
 
 - **7.33:** to find the least numbers in the ratio of any given numbers.
