@@ -32,14 +32,6 @@ How Book 10 differs from the books before it:
 - **Numbers.** "The ratio which a number has to a number" joins Book 5's proportion with Books 7–9's numbers (`ℕ`, Def. 7.20). 10.5–10.9 make the bridge; after that, Book 7–9 propositions are cited as Lean terms (8.24, 8.26, 9.1, 9.2 for squares).
 - **Irrational means Euclid's irrational.** Rational and irrational are relative to an assigned line `ρ` (Def. 10.3), and a line is rational when commensurable with `ρ` in length or in square only. Incommensurability is proved as Euclid proves it, from the hypotheses (10.13, 10.16 and so on), not from the irrationality of a real number.
 
-## T6. Props. 10.36–10.47: the six irrational sums
-
-- **10.36–10.41:** the sum of the terms of each kind is irrational. Name the kinds in the doc comments as Euclid does (binomial, first and second bimedial, major, side of a rational plus a medial area, side of two medial areas). The lemma after 10.41: a line cut unequally at two points, the sum of the squares on the parts is greater for the cut further from the middle (through 2.5).
-- **10.42–10.47:** each is divided into its terms at one point only. Fitzpatrick's notes give the algebra; the proofs are Euclid's, through 10.26 and the lemma after 10.41.
-- Write the irrationality arguments over the terms (`x`, `y`) so that T9 applies them to `x - y`.
-
-Risk: high. The uniqueness propositions are the hardest of the binomial half.
-
 ## T7. Props. 10.48–10.59: the six binomials
 
 - **10.48–10.53:** to find the first to sixth binomial, from 10.28's numbers and 10.6. The lemma after 10.53: two squares set side by side, the rectangle between them is their mean proportional (6.1).

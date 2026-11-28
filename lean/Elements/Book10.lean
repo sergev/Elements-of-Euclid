@@ -37,6 +37,18 @@ import Elements.Book10.Prop032
 import Elements.Book10.Prop033
 import Elements.Book10.Prop034
 import Elements.Book10.Prop035
+import Elements.Book10.Prop036
+import Elements.Book10.Prop037
+import Elements.Book10.Prop038
+import Elements.Book10.Prop039
+import Elements.Book10.Prop040
+import Elements.Book10.Prop041
+import Elements.Book10.Prop042
+import Elements.Book10.Prop043
+import Elements.Book10.Prop044
+import Elements.Book10.Prop045
+import Elements.Book10.Prop046
+import Elements.Book10.Prop047
 
 /-
 Book 10: incommensurable magnitudes.

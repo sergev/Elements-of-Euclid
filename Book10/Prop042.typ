@@ -20,3 +20,4 @@
     [Thus, a binomial (straight-line) cannot be divided (into its component terms) at different points. Thus, (it can be so divided) at one point only. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book10/Prop042.lean")
