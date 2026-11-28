@@ -24,3 +24,4 @@
     [Thus, a circle has been circumscribed about the given square. (Which is) the very thing it was required to do.],
   )
 ]
+#lean-proof("/lean/Elements/Book4/Prop09.lean")

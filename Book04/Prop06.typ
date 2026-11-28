@@ -24,3 +24,4 @@
     [Thus, the square $A B C D$ has been inscribed in the given circle. (Which is) the very thing it was required to do.],
   )
 ]
+#lean-proof("/lean/Elements/Book4/Prop06.lean")

@@ -30,15 +30,6 @@ Book 1–3 SMT-free rules hold for Book 4: every step closes by saturation. What
 - **Squares of lengths:** use `Elements/Book3/Lemmas.lean` (`length_eq_of_square_eq`, `lt_of_square_lt`). Add symmetric asserts when products are written in different orders.
 - **Circumferences:** use the Book 3 axioms (`arc_*`), and Props. 3.26–3.30.
 
-## T3. Props. 4.6–4.9: squares
-
-- **4.6:** inscribe a square: two diameters at right angles. It uses Props. 1.4, 3.31 and 1.47.
-- **4.7:** circumscribe a square: tangents at the ends of the diameters. It uses Props. 3.16 corollary and 1.28–1.29.
-- **4.8–4.9:** inscribe a circle in a square, and circumscribe one about it.
-  - Use Book 1's parallelograms (Props. 1.29, 1.34) and Def. 1.22.
-  - Use Book 2's `parallel_between` for the order of points.
-- These figures have many points. Expect lemmas for the square's own facts: sides parallel, right angles, diagonals.
-
 ## T4. Prop. 4.10: the golden triangle
 
 Construct an isosceles triangle whose base angles are each double the vertex angle.

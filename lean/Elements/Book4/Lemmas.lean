@@ -3,7 +3,9 @@ import Elements.Book1.Prop05
 import Elements.Book1.Prop10
 import Elements.Book1.Prop11
 import Elements.Book1.Prop12
+import Elements.Book1.Prop23
 import Elements.Book1.Prop13
+import Elements.Book1.Prop27
 import Elements.Book1.Prop29
 import Elements.Book1.Prop32
 import Elements.Book3.Prop16
@@ -14,6 +16,18 @@ Facts Book 4 takes from the figure.
 -/
 
 namespace Elements.Book4
+
+/-- A side of a right angle is not on the other side's line. -/
+theorem not_on_line_of_right_angle : ∀ (x y z : Point) (L : Line),
+  distinctPointsOnLine y z L ∧ x ≠ y ∧ ∠ x:y:z = ∟ → ¬(x.onLine L) :=
+by
+  euclid_intros
+  have := Elements.Book1.right_angle_pos
+  by_cases (between x y z)
+  · euclid_apply (flat_angle_onlyif x y z)
+    euclid_finish
+  · euclid_apply (degenerated_angle_if y x z L)
+    euclid_finish
 
 /-- A line cutting a circle through a point `a` on it meets it again. -/
 theorem other_intersection : ∀ (a : Point) (L : Line) (α : Circle),
@@ -210,5 +224,30 @@ by
       euclid_apply (extend_point AC a e) as z
       euclid_apply (Elements.Book1.proposition_32 p a e z AB AC M)
       euclid_finish
+
+/-- A quadrilateral whose diagonals `ac`, `bd` cut one another at `e` is convex. -/
+theorem quadrilateral_of_diagonals : ∀ (a b c d e : Point) (AB BC CD DA AC : Line),
+  distinctPointsOnLine a b AB ∧ distinctPointsOnLine b c BC ∧
+  distinctPointsOnLine c d CD ∧ distinctPointsOnLine d a DA ∧
+  distinctPointsOnLine a c AC ∧
+  ¬(b.onLine AC) ∧ between a e c ∧ between b e d →
+  quadrilateral a b c d AB BC CD DA :=
+by
+  euclid_intros
+  euclid_finish
+
+/-- The opposite sides of a square are parallel, the angles at the ends of each side being
+right [Prop. 1.27]. -/
+theorem square_parallel : ∀ (a b c d : Point) (AB BC CD DA : Line),
+  square a b c d AB BC CD DA → ¬(AB.intersectsLine CD) ∧ ¬(BC.intersectsLine DA) :=
+by
+  euclid_intros
+  euclid_apply (extend_point AB a b) as a'
+  euclid_apply (extend_point BC b c) as b'
+  euclid_apply (right_angle_on_lines a b c a' c AB BC)
+  euclid_apply (right_angle_on_lines b c d b' d BC CD)
+  euclid_apply (Elements.Book1.proposition_27 a' d b c AB CD BC)
+  euclid_apply (Elements.Book1.proposition_27 b' a c d BC DA CD)
+  euclid_finish
 
 end Elements.Book4
