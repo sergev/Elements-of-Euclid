@@ -20,3 +20,4 @@
     [Thus, $A B$ and $A F$ are rational (straight-lines which are) commensurable in square only, and the square on $A B$ is greater than (the square on) $A F$ by the (square) on $F B$, (which is) incommensurable (in length) with ($A B$).#content-box-note[$A B$ and $A F$ have lengths $1$ and $1 \/ sqrt(1+k^2)$ times that of $A B$, respectively, where $k= sqrt(D E \/ C E)$.] (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book10/Prop030.lean")

@@ -20,3 +20,4 @@
     [Thus, two rational (straight-lines), $B A$ and $A F$, commensurable in square only, have been found such that the square on the greater, $A B$, is larger than (the square on) the lesser, $A F$, by the (square) on $B F$, (which is) commensurable in length with ($A B$).#content-box-note[$B A$ and $A F$ have lengths $1$ and $sqrt(1-k^2)$ times that of $A B$, respectively, where $k= sqrt(D E \/ C D)$.] (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book10/Prop029.lean")

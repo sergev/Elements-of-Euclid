@@ -20,3 +20,4 @@
     [Thus, (two) medial (straight-lines, $C$ and $D$), containing a rational (area), (which are) commensurable in square only, have been found.#content-box-note[$C$ and $D$ have lengths $k^(1 \/ 4)$ and $k^(3 \/ 4)$ times that of $A$, respectively, where the length of $B$ is $k^(1 \/ 2)$ times that of $A$.] (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book10/Prop027.lean")

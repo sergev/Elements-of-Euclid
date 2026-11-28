@@ -20,3 +20,4 @@
     [Thus, two straight-lines, $A D$ and $D B$, (which are) incommensurable in square, have been found, making the sum of the (squares) on them medial, and the (rectangle contained) by them medial, and, moreover, incommensurable with the sum of the squares on them.#content-box-note[$A D$ and $D B$ have lengths $k'^(1 \/ 4) sqrt([1+k \/ (1+k^2)^(1 \/ 2)] \/ 2)$ and $k'^(1 \/ 4) sqrt([1-k \/ (1+k^2)^(1 \/ 2)] \/ 2)$ times that of $A B$, respectively, where $k$ and $k'$ are defined in the footnote to Prop.~10.32.] (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book10/Prop035.lean")

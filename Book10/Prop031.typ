@@ -20,3 +20,4 @@
     [So, similarly, (the proposition) can also be demonstrated for (some straight-line) incommensurable (in length with $C$), provided that the square on $A$ is greater than (the square on $B$) by the (square) on (some straight-line) incommensurable (in length) with ($A$) [Prop.~10.30].#content-box-note[$C$ and $D$ would have lengths $1 \/ (1+k^2)^(1 \/ 4)$ and $1 \/ (1+k^2)^(3 \/ 4)$ times that of $A$, respectively, where $k$ is defined in the footnote to Prop.~10.30.]],
   )
 ]
+#lean-proof("/lean/Elements/Book10/Prop031.lean")

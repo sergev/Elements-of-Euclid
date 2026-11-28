@@ -32,14 +32,6 @@ How Book 10 differs from the books before it:
 - **Numbers.** "The ratio which a number has to a number" joins Book 5's proportion with Books 7–9's numbers (`ℕ`, Def. 7.20). 10.5–10.9 make the bridge; after that, Book 7–9 propositions are cited as Lean terms (8.24, 8.26, 9.1, 9.2 for squares).
 - **Irrational means Euclid's irrational.** Rational and irrational are relative to an assigned line `ρ` (Def. 10.3), and a line is rational when commensurable with `ρ` in length or in square only. Incommensurability is proved as Euclid proves it, from the hypotheses (10.13, 10.16 and so on), not from the irrationality of a real number.
 
-## T5. Props. 10.27–10.35: lines to be found
-
-- **10.27, 10.28:** medial lines commensurable in square only containing a rational (a medial) area.
-- **10.28 lemmas:** Lemma I, to find two square numbers whose sum is square (Pythagorean triples, through 9.1 and the gnomon of 2.6, in numbers); Lemma II, two square numbers whose sum is not square. Plain Lean over `ℕ`, as Books 7–9, with Book 7's Mathlib rule. These are Book 10's only number-theoretic propositions; they may need 7.27, 8.24, 9.1, 9.2.
-- **10.29–10.35:** pairs of lines commensurable in square only, or incommensurable in square, with the conditions on the sum of the squares and the rectangle that define the six irrational sums. The lemma after 10.32 is about a right-angled triangle with the perpendicular from the right angle (6.8: each side's square is the rectangle of the base and its adjacent segment, and the perpendicular's square the rectangle of the segments); state it over lengths with `sq c = sq a + sq b` (1.47 in the model) and prove the rectangles' equalities as Euclid does. Each is an existence statement: `∃ x y, …` with the conditions as in `Definitions2.lean`; they are used by 10.36–10.41 and 10.73–10.78.
-
-Risk: medium. These are constructions over constructions; keep each statement exactly what the later propositions need.
-
 ## T6. Props. 10.36–10.47: the six irrational sums
 
 - **10.36–10.41:** the sum of the terms of each kind is irrational. Name the kinds in the doc comments as Euclid does (binomial, first and second bimedial, major, side of a rational plus a medial area, side of two medial areas). The lemma after 10.41: a line cut unequally at two points, the sum of the squares on the parts is greater for the cut further from the middle (through 2.5).

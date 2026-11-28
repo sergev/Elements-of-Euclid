@@ -86,6 +86,11 @@ theorem proportion_mult {N : Type*} [Magnitude N] (m : ℕ+) (c : M) (u : N) :
   · rw [Elements.Book5.proposition_3, Elements.Book5.proposition_3, mult_lt_mult_iff,
       mult_lt_mult_iff]
 
+/-- If `a ∶ b ∷ c ∶ d`, all of one kind, and the first is greater than the second, the
+third is greater than the fourth [Props. 5.16, 5.14]. -/
+theorem lt_of_proportion {a b c d : M} (h : Proportion a b c d) (hba : b < a) : d < c :=
+  (Elements.Book5.proposition_14 (Elements.Book5.proposition_16 h)).1 hba
+
 theorem Rational.self (ρ : Length) : Rational ρ ρ := Or.inl (.refl ρ)
 
 /-! The model. -/
@@ -368,6 +373,42 @@ theorem rect_eq_sq_of_proportion {a b c : Length} (h : Proportion a b b c) :
     rect a c = sq b :=
   Model.ext (by simpa using proportion_iff_mul.mp h)
 
+/-- Prop. 6.16: if four lines are proportional, the rectangle contained by the outer is
+the rectangle contained by the middle. -/
+theorem rect_eq_of_proportion {a b c d : Length} (h : Proportion a b c d) :
+    rect a d = rect b c :=
+  Model.ext (by simpa using proportion_iff_mul.mp h)
+
+/-- Props. 6.8, 6.4 and 6.8's corollary: in a right-angled triangle with legs `u`, `v` and
+base `l`, the perpendicular `p` from the right angle cutting the base into `m` (by `u`)
+and `n`, the triangles are similar to the whole and to one another: `l` is to `u` as `u`
+to `m`, and to `v` as `v` to `n`; the perpendicular is the mean proportional of `m` and
+`n`; and `l` is to `v` as `u` to `p`. The right angles are given by the squares (1.47). -/
+theorem right_triangle_proportions {l u v m n p : Length} (hmn : m + n = l)
+    (hu : sq p + sq m = sq u) (hv : sq p + sq n = sq v) (hl : sq u + sq v = sq l) :
+    Proportion l u u m ∧ Proportion l v v n ∧ Proportion m p p n ∧
+      Proportion l v u p := by
+  have hmn' : val m + val n = val l := by rw [← Model.val_add, hmn]
+  have hu' : val p * val p + val m * val m = val u * val u := by
+    rw [← val_sq, ← val_sq, ← val_sq, ← Model.val_add, hu]
+  have hv' : val p * val p + val n * val n = val v * val v := by
+    rw [← val_sq, ← val_sq, ← val_sq, ← Model.val_add, hv]
+  have hl' : val u * val u + val v * val v = val l * val l := by
+    rw [← val_sq, ← val_sq, ← val_sq, ← Model.val_add, hl]
+  have hp : val p * val p = val m * val n := by rw [← hmn'] at hl'; nlinarith
+  have hlm : val l * val m = val u * val u := by rw [← hmn']; nlinarith
+  have hln : val l * val n = val v * val v := by rw [← hmn']; nlinarith
+  have hlp : val l * val p = val u * val v := by
+    have := pos l; have := pos p; have := pos u; have := pos v
+    have hsq : (val l * val p) * (val l * val p) = (val u * val v) * (val u * val v) := by
+      linear_combination
+        (val l * val l) * hp + (val l * val n) * hlm + (val u * val u) * hln
+    rcases mul_self_eq_mul_self_iff.mp hsq with h | h
+    · exact h
+    · nlinarith [mul_pos ‹0 < val l› ‹0 < val p›, mul_pos ‹0 < val u› ‹0 < val v›]
+  exact ⟨proportion_iff_mul.mpr hlm, proportion_iff_mul.mpr hln,
+    proportion_iff_mul.mpr hp.symm, proportion_iff_mul.mpr (hlp.trans (mul_comm _ _))⟩
+
 /-! The constructions by which Euclid finds lines, in the model. -/
 
 /-- Prop. 6.9: to cut off a prescribed part from a line, the `n`th part. -/
@@ -393,6 +434,13 @@ theorem Area.divisible : Divisible Area := fun A n => by
 theorem Length.fourth' {K : Type} [Magnitude K] [Model K] (p q : K) (c : Length) :
     ∃ d : Length, Proportion p q c d :=
   ⟨Length.mk' (val q * val c / val p) (div_pos (mul_pos (pos q) (pos c)) (pos p)),
+    proportion_iff_mul.mpr (by simp; field_simp [(pos p).ne'])⟩
+
+/-- A fourth proportional to two magnitudes and an area [Prop. 6.12, the areas applied to
+a line, 6.1]. -/
+theorem Area.fourth' {K : Type} [Magnitude K] [Model K] (p q : K) (c : Area) :
+    ∃ d : Area, Proportion p q c d :=
+  ⟨Area.mk' (val q * val c / val p) (div_pos (mul_pos (pos q) (pos c)) (pos p)),
     proportion_iff_mul.mpr (by simp; field_simp [(pos p).ne'])⟩
 
 /-- Prop. 6.13: to find a mean proportional to two lines. -/
@@ -449,5 +497,20 @@ theorem Length.hypotenuse (a b : Length) : ∃ c : Length, sq a + sq b = sq c :=
   obtain ⟨c, hc, hcc⟩ :=
     exists_mul_self (by nlinarith [pos a, pos b] : 0 < val a * val a + val b * val b)
   exact ⟨Length.mk' c hc, Model.ext (by simp; linarith)⟩
+
+/-- Props. 3.31, 1.11, 1.47: on the line `l`, cut into `x` and `y`, the semicircle; the
+perpendicular `p` at the cut meets it, and the lines `u`, `v` joined to the ends are the
+legs of a right-angled triangle on `l`, with `x` and `y` the pieces of the base. -/
+theorem Length.semicircle {l x y : Length} (hxy : x + y = l) :
+    ∃ u v p : Length, sq p + sq x = sq u ∧ sq p + sq y = sq v ∧ sq u + sq v = sq l := by
+  obtain ⟨p, hp, hpp⟩ := exists_mul_self (mul_pos (pos x) (pos y))
+  obtain ⟨u, hu, huu⟩ := exists_mul_self (mul_pos (pos l) (pos x))
+  obtain ⟨v, hv, hvv⟩ := exists_mul_self (mul_pos (pos l) (pos y))
+  have hl : val x + val y = val l := by rw [← Model.val_add, hxy]
+  refine ⟨Length.mk' u hu, Length.mk' v hv, Length.mk' p hp, Model.ext ?_, Model.ext ?_,
+    Model.ext ?_⟩ <;> simp only [Model.val_add, val_sq, val_length_mk]
+  · linear_combination hpp - huu + val x * hl
+  · linear_combination hpp - hvv + val y * hl
+  · linear_combination huu + hvv + val l * hl
 
 end Elements.Book10

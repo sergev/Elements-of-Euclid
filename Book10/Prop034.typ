@@ -20,3 +20,4 @@
     [Thus, two straight-lines, $A D$ and $D B$, (which are) incommensurable in square, have been found, making the sum of the squares on them medial, and the (rectangle contained) by them rational.#content-box-note[$A D$ and $D B$ have lengths $sqrt([(1+k^2)^(1 \/ 2)+k] \/ [2 thin (1+k^2)])$ and $sqrt([(1+k^2)^(1 \/ 2)-k] \/ [2 thin (1+k^2)])$ times that of $A B$, respectively, where $k$ is defined in the footnote to Prop.~10.29.] (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book10/Prop034.lean")

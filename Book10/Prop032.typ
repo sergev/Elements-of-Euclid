@@ -46,3 +46,4 @@
     [I also say that the (rectangle contained) by $B C$ and $A D$ is equal to the (rectangle contained) by $B A$ and $A C$. For since, as we said, $A B C$ is similar to $A B D$, thus as $B C$ is to $C A$, so $B A$ (is) to $A D$ [Prop.~6.4]. Thus, the (rectangle contained) by $B C$ and $A D$ is equal to the (rectangle contained) by $B A$ and $A C$ [Prop.~6.16]. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book10/Prop032.lean")
