@@ -1,6 +1,6 @@
-# Roadmap: Lean proofs for Books 3–13
+# Roadmap: Lean proofs for Books 5–13
 
-Books 1–3 are done (Milestones 1–3): Book 1's 48 propositions from LeanEuclid and Books 2 and 3 (14 and 37) written here, all in System E, typeset in `ElementsLean.pdf` and checked by `make check`. This file plans the remaining books, one milestone per book, numbered to match: Milestone N is Book N. A book depends on the books before it, so the milestones run in sequence. Only Milestones 7–9 (Books 7–9) can be done in parallel with the geometry.
+Books 1–4 are done (Milestones 1–4): Book 1's 48 propositions from LeanEuclid and Books 2, 3 and 4 (14, 37 and 16) written here, all in System E, typeset in `ElementsLean.pdf` and checked by `make check`. This file plans the remaining books, one milestone per book, numbered to match: Milestone N is Book N. A book depends on the books before it, so the milestones run in sequence. Only Milestones 7–9 (Books 7–9) can be done in parallel with the geometry.
 
 ## Common rules for every milestone
 
@@ -12,14 +12,6 @@ Books 1–3 are done (Milestones 1–3): Book 1's 48 propositions from LeanEucli
 - **Done.** `make check` passes (`make check BOOK=N` checks one book while working on it). `make` builds the PDF with the book included, and its pages have been inspected. The primer (`Book00/Lean.typ`) covers any new notation.
 - **System E.** It is our own copy in `lean/SystemE/`. New relations or rules a book needs go there, in files named for the book that introduces them. Lemmas proved from earlier propositions, such as repeated constructions, go in `lean/Elements/BookN/Lemmas.lean`.
 - **Toolchain.** Lean 4.36 and Mathlib v4.36. Upgrade Lean and Mathlib together, between milestones, not during one.
-
-## Milestone 4 — Book 4: inscribed and circumscribed figures (16 propositions)
-
-Inscribing triangles, squares, the regular pentagon (4.10–4.11), hexagon (4.15) and 15-gon (4.16) in circles, and circles in them.
-
-- **Basis.** System E with the Book 3 extensions. 4.10 (the golden triangle) uses 2.11 and 3.37.
-- **New.** A "polygon inscribed in a circle" given as a list of points, all `onCircle`, each side a chord, with equal sides and angles for regular ones. Statements about n points need finite indexing, which E's flat style doesn't have. Write them out for n ≤ 6, and for the 15-gon prove only what Euclid proves (one side).
-- **Risk.** Medium. The pentagon construction is long, and SMT time may grow with the number of points; split it into `have` steps.
 
 ## Milestone 5 — Book 5: proportion (25 propositions)
 

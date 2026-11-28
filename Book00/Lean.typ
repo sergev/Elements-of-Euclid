@@ -4,7 +4,7 @@
 
 #v(1em)
 
-This edition gives each proposition of the books it contains twice. First comes Euclid's text in Richard Fitzpatrick's translation, then a formal version written in Lean 4, a programming language and proof assistant. Each proposition's formal statement and proof is printed after the English, under the heading _Formalization_. The proofs of Book 1 come from LeanEuclid, by L. Murphy, K. Yang, J. Sun, Z. Li, A. Anandkumar and X. Si, "Autoformalizing Euclidean Geometry", ICML 2024, distributed under the MIT license. The proofs of Books 2 and 3 were written for this edition, in the same system.
+This edition gives each proposition of the books it contains twice. First comes Euclid's text in Richard Fitzpatrick's translation, then a formal version written in Lean 4, a programming language and proof assistant. Each proposition's formal statement and proof is printed after the English, under the heading _Formalization_. The proofs of Book 1 come from LeanEuclid, by L. Murphy, K. Yang, J. Sun, Z. Li, A. Anandkumar and X. Si, "Autoformalizing Euclidean Geometry", ICML 2024, distributed under the MIT license. The proofs of Books 2–4 were written for this edition, in the same system.
 
 The Lean proofs are written in System E, a formal system that J. Avigad, E. Dean and J. Mumma designed to follow Euclid closely ("A formal system for Euclid's Elements", _Review of Symbolic Logic_ 2, 2009). In particular, it can draw the conclusions that Euclid reads off his diagrams. The result is that a formal proof reads step for step like Euclid's text, and seldom like an exercise in coordinates.
 
@@ -133,6 +133,31 @@ System E has no circumferences, so Book 3 adds them. `α.arc b c s` is the circu
 Some positions Euclid leaves out are proved as separate cases. Prop.~3.20 holds for the center on either side of the chord, or on it (`proposition_20'`, `proposition_20''`), and Prop.~3.21 needs these cases for segments not greater than a semicircle. Prop.~3.27 at the circumference assumes circumferences less than semicircles, as in Euclid's figure.
 
 Two claims are left out. In Props.~3.16 and 3.31, Euclid compares the "angle of the semicircle" and the horn angle between a circle and its tangent with rectilinear angles. These angles are contained by a curve, and System E has only rectilinear ones. What makes the claims true is proved: no straight line falls between the tangent and the circle (`proposition_16'`).
+
+== Figures in and about circles
+
+System E has no polygons. Book 4 writes a figure as its vertices, in order around it, with the lines of its sides: a triangle `a b c` with sides on `AB`, `BC`, `CA`, a square `a b c d`, a pentagon `a b c d e`, a hexagon `a b c d e f`. A triangle is Book 1's `formTriangle`. The other figures are convex: each side's line has the other vertices on one side. Book 4's definitions are written out for each number of sides:
+
+#table(
+  columns: (auto, 1fr),
+  stroke: none,
+  inset: (x: 0pt, y: 3pt),
+  column-gutter: 1.5em,
+  [`quadrilateral a b c d AB BC CD DA`], [the vertices on the sides' lines, convex; likewise `pentagon`, `hexagon`],
+  [`square a b c d AB BC CD DA`], [a quadrilateral with equal sides and right angles (Def.~1.22)],
+  [`equilateralPentagon a b c d e`], [its sides are equal; likewise for hexagons],
+  [`equiangularPentagon a b c d e`], [its angles at the vertices are equal; likewise for hexagons],
+  [`equiangularTriangles a b c d e f`], [the angles at $a$, $b$, $c$ are equal to those at $d$, $e$, $f$],
+  [`inscribedTriangle a b c α`], [each vertex is on $alpha$: the triangle is inscribed in the circle, and the circle circumscribed about it (Defs.~4.3, 4.6); likewise for the other figures],
+  [`circumscribedTriangle a b c AB BC CA p q r α`], [each side touches $alpha$, $A B$ at $p$, $B C$ at $q$, $C A$ at $r$, between its ends: the triangle is circumscribed about the circle, and the circle inscribed in it (Defs.~4.4, 4.5); likewise for quadrilaterals and pentagons],
+  [`insertedInto a b α`], [the straight line $a b$ is inserted into $alpha$, its ends on the circle (Def.~4.7)],
+)
+
+Equal sides of a figure in a circle cut off equal circumferences (Prop.~3.28), so the definitions speak of lengths and angles, not of circumferences. Prop.~4.16 is the exception. Euclid constructs one side of the fifteen-sided figure and says the rest follow, so the statement is about that side alone: it cuts off a fifteenth of the circumference, `α.arc b e c * 15 = α.circumference`. The proof finds it, as Euclid does, as half the difference of the triangle's and the pentagon's circumferences.
+
+Book 4 adds lemmas of its own, printed after its definitions. Most are facts Euclid reads off his figure: a line touching a circle at a given point (`exists_tangent`); the tangents at the ends of a chord, not a diameter, meet (`tangents_meet`); the center is on the circle's side of a tangent; a perpendicular falls on a side when the angles at its ends are less than right angles (`foot_between`); and four or five points of a circle in the right order make a convex figure (`quadrilateral_of_circle`, `pentagon_of_circle`). Prop.~4.1 inserts its line from a given point of the circle, as Euclid's construction does, so that Prop.~4.10 can insert it from $B$. Props.~4.11 and 4.15 compare angles on circumferences greater than semicircles. Book 3's Prop.~3.27 at the circumference assumes them less, so `proposition_11_greater` proves the greater case from it by Prop.~3.22.
+
+Euclid's remarks after Props.~4.15 and 4.16 are left out. He says, without proof, that a hexagon and a fifteen-sided figure can be circumscribed about a circle, and a circle inscribed in and circumscribed about them, "similarly to the pentagon". For the fifteen-sided figure he also says that the other sides follow by inserting lines equal to the first.
 
 == What is checked, and what is assumed
 

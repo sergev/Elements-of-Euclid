@@ -30,16 +30,6 @@ Book 1–3 SMT-free rules hold for Book 4: every step closes by saturation. What
 - **Squares of lengths:** use `Elements/Book3/Lemmas.lean` (`length_eq_of_square_eq`, `lt_of_square_lt`). Add symmetric asserts when products are written in different orders.
 - **Circumferences:** use the Book 3 axioms (`arc_*`), and Props. 3.26–3.30.
 
-## T7. Primer and docs
-
-- **`Book00/Lean.typ`:**
-  - how polygons are written: vertices in order, convex;
-  - the Book 4 definitions;
-  - what is left out: the remarks after 4.15, and the other sides of the fifteen-sided figure.
-- **Lemmas:** typeset any `lean/Elements/Book4/Lemmas.lean` after Book 4's definitions, as in Books 2 and 3.
-- **`CLAUDE.md`:** the Book 4 notes. **`Roadmap.md`:** delete Milestone 4.
-- **README:** Books 1–4.
-
 ## T8. Final check
 
 - `make check` from clean, all books, under the cap. Note the time.

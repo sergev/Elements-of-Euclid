@@ -1,4 +1,4 @@
-#import "../functions.typ": parallel, no-footer, chapter, content-box, content-box-note, running-header
+#import "../functions.typ": parallel, no-footer, chapter, content-box, content-box-note, running-header, lean-proof
 
 #chapter([Book 4], [ELEMENTS BOOK 4])
 
@@ -14,6 +14,8 @@
 #set page(header: running-header([ΣΤΟΙΧΕΙΩΝ δʹ.], [ELEMENTS BOOK 4]))
 
 #include "Definitions.typ"
+
+#lean-proof("/lean/Elements/Book4/Lemmas.lean", title: [Lemmas for the Lean proofs])
 
 #pagebreak()
 

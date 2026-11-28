@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this is
 
-A Typst port of Richard Fitzpatrick's LaTeX edition of Euclid's Elements (Greek Heiberg text + English translation, side by side), all thirteen books and the Greek–English lexicon, plus Lean proofs of Books 1–3. The LaTeX sources (`BookNN/BookN.tex`, `Book00/Introduction.tex`, `Book99/Lexicon.tex`) are kept as reference and as input to `tools/`; never edit them.
+A Typst port of Richard Fitzpatrick's LaTeX edition of Euclid's Elements (Greek Heiberg text + English translation, side by side), all thirteen books and the Greek–English lexicon, plus Lean proofs of Books 1–4. The LaTeX sources (`BookNN/BookN.tex`, `Book00/Introduction.tex`, `Book99/Lexicon.tex`) are kept as reference and as input to `tools/`; never edit them.
 
 ## Build
 
@@ -35,7 +35,7 @@ Proposition file pattern:
   #parallel-image("/Book02/fig01", 2.2in)    // figure pair fig01g.svg / fig01e.svg
   #parallel-subheading([Πόρισμα.], [Corollary])
 ]
-#lean-proof("/lean/Elements/Book1/PropNN.lean")   // Books 1–3; no-op outside the Lean edition
+#lean-proof("/lean/Elements/Book1/PropNN.lean")   // Books 1–4; no-op outside the Lean edition
 ```
 
 Definitions use `#parallel([Greek], [English], n: N)`. `content-box-note` puts footnotes at the bottom of the box.
@@ -53,7 +53,8 @@ Definitions use `#parallel([Greek], [English], n: N)`. `content-box-note` puts f
 - `SystemE/` is System E from LeanEuclid (MIT), ported; it is ours to extend. `Smt/` is the part of lean-smt it uses.
 - `Elements/BookN/PropNN.lean`, with a root `Elements/BookN.lean` per book. Variants and helper lemmas stay in their proposition's file; derive weaker variants from stronger ones rather than repeating a construction. Book 2: rectangles and squares are products of lengths, but proofs build Euclid's figure and argue with areas; shared lemmas are in `Elements/Book2/Lemmas.lean`.
 - Book 3: its definitions (touching, segments, similar segments) are `@[simp] abbrev`s in `SystemE/Book3.lean`, over System E's relations, so saturation sees through them; `intersectsCircle` means *cuts*. Circumferences are the opaque `α.arc b c s` (away from `s`) with the axioms in `Elements/Book3/Axioms.lean`; no other new axioms. Facts with `∀` (internal/external touching) are not used by saturation: instantiate them, `‹∀ x, …› p`.
-- Books 1–3 are SMT-free: every step is closed by saturation and checked by the kernel. Keep them so. Check with `tools/gaps.sh N` (no failing steps; run `Lemmas.lean` directly) and `tools/SmtFree.lean` (none with SMT).
+- Book 4: figures are vertices in order with their sides' lines, convex; the definitions are `@[simp] abbrev`s in `SystemE/Book4.lean`, written out per number of sides (`pentagon`, `inscribedPentagon`, `circumscribedPentagon`, …). Lemmas from the figure (tangents meeting, feet of perpendiculars, order of points on a circle) are in `Elements/Book4/Lemmas.lean`. Big figures: build them in a lemma, and argue in lemmas that take only the facts they need, applied once per vertex or side with the labels rotated.
+- Books 1–4 are SMT-free: every step is closed by saturation and checked by the kernel. Keep them so. Check with `tools/gaps.sh N` (no failing steps; run `Lemmas.lean` directly) and `tools/SmtFree.lean` (none with SMT).
 - Saturation is tried before the solvers on every step. The engine is `SaturateCore.lean`, compiled natively and loaded as a plugin (`lake env lean --load-dynlib=.lake/build/lib/libelements_SaturateCore.so`); its lemmas are in `SystemE/Meta/Tactics/Saturate.lean`. Options: `systemE.smt` (false: unproved steps are errors), `systemE.stats` (log each step). Iterate with `lake build SystemE` and `tools/gaps.sh`, not full builds.
 - When a step won't saturate, supply the fact Euclid takes from the figure as an explicit step: `equal_angles` (angle along a ray), `right_angle_on_lines` (right angle on the opposite ray), `sum_angles_onlyif`/`sum_areas_if`, `between_if`, `parallel_between`, `triple_incidence_1`/`_2`, circle intersections via points inside. Case-split disjunctions with `rcases`. `capped` means the declaration's budget is spent: raise `maxHeartbeats` to a finite value. `budget` over few facts: close with an explicit term or a lemma with only the needed hypotheses.
 - Never `maxHeartbeats 0`. Run checks under `systemd-run --user --scope -p MemoryMax=6G -p MemorySwapMax=0`.

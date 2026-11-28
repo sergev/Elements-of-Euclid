@@ -3,8 +3,8 @@ import Elements.Book1.Prop05
 import Elements.Book1.Prop10
 import Elements.Book1.Prop11
 import Elements.Book1.Prop12
-import Elements.Book1.Prop23
 import Elements.Book1.Prop13
+import Elements.Book1.Prop23
 import Elements.Book1.Prop27
 import Elements.Book1.Prop29
 import Elements.Book1.Prop32
@@ -13,7 +13,9 @@ import Elements.Book3.Prop18
 import Elements.Book3.Prop31
 
 /-
-Facts Book 4 takes from the figure.
+Facts Book 4 takes from the figure, and a few constructions it repeats: tangents and
+where they meet, perpendiculars and where they fall, and the order of points around a
+circle, which makes a figure inscribed in it convex.
 -/
 
 namespace Elements.Book4
