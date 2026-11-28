@@ -14,6 +14,7 @@ import Elements.Book5.Prop14
 import Elements.Book5.Prop16
 import Elements.Book5.Prop22
 import Elements.Book6.Definitions
+import Elements.Book6.Tactics
 
 /-
 Book 5's propositions for figures; constructions Book 6 repeats; and multiples in the

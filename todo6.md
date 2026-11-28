@@ -29,19 +29,6 @@ How Book 6 differs from Books 1–5:
 - **Faithfulness to Book 5.** Every ratio step cites a Book 5 proposition or Def. 5.5. Don't use `Positive.proportion_of_mul_eq`, `Positive.mult_val` or `Length.fourth` where Euclid has an argument; they are facts of the model. Record each use, with the reason, in a comment.
 - **No reals for ratios.** A ratio of lines or areas is never `|(a─b)| / |(c─d)|`.
 
-## T11. Primer and docs
-
-- **`Book00/Lean.typ`:** a section on Book 6:
-  - ratios of lines and areas in the figure, and T1's notation;
-  - similar figures, the squared and compounded ratios;
-  - the multiples of T2: induction with System E steps;
-  - which facts of the model are used, and where;
-  - what is left out or restricted (the figures of 6.18–6.20, 6.31; 6.33).
-- **Typesetting:** typeset `Definitions.lean` and `Lemmas.lean` after Book 6's definitions, as Books 4 and 5 do. The subtitle comes from `lean-books`.
-- **`CLAUDE.md`:** the Book 6 notes: the two kinds of step, where the definitions are, the facts of the model. Update "Books 1–5".
-- **`Roadmap.md`:** delete Milestone 6. Note in Milestone 10 what Book 6 leaves for it.
-- **README:** Books 1–6.
-
 ## T12. Final check
 
 - `make check` from clean, all books, under the cap. Note the time.
