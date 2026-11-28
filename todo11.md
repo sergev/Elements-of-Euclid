@@ -9,7 +9,7 @@ Book 11 is the first book of solid geometry: 39 propositions, 28 definitions, on
 
 The tasks run in order. The common rules in [Roadmap.md](Roadmap.md) apply throughout, and so does Milestone 11 there.
 
-T1 (done) wrote the design note in the header of `lean/Elements/Book11.lean`; T2 starts after the user has approved it.
+T1 and T2 are done: the design (approved) is the header of `lean/Elements/Book11.lean`; the space theory is in `lean/SystemE/Space.lean` and `lean/SystemE/Theory/*/Space.lean`. Book 11 files set `systemE.smt` false (the SMT translator knows no space sorts).
 
 ## Routine for every task
 
@@ -29,17 +29,6 @@ How Book 11 differs from the books before it:
 - **Space, not the plane.** System E is one plane, with global sorts `Point`, `Line`, `Circle`. Book 11 needs points, lines and planes in space, and it cites Books 1 and 6 for figures that lie in any plane (1.4, 1.8 and 1.26 for triangles in space, 6.2 in 11.17, 1.35 and 6.14 in 11.31).
 - **New axioms.** This is the first book since Book 3 to need them. They go in `lean/Elements/Book11/Axioms.lean`, each true in ℝ³, and the primer lists them all.
 - **Solids as magnitudes.** From 11.25 on, solids are equal, added, and in ratio (Def. 5.5 in 11.25, cubed ratio in 11.33). A volume is a Book 5 magnitude, so Book 5 is cited as Lean terms, as Books 6 and 10 do.
-
-## T2. Axioms, definitions and scaffolding
-
-- `lean/Elements/Book11/Axioms.lean`: the axioms approved in T1, each with a doc comment naming what Euclid assumes (Hilbert's axiom, or the definition it stands for).
-- `lean/Elements/Book11/Definitions.lean`: Defs. 11.3, 11.4, 11.8, 11.10–11.13 and the parallelepiped, each with its number. Put `@[simp] abbrev`s where saturation should see through them, as in Books 3, 4 and 6.
-- `lean/Elements/Book11/Lemmas.lean`: the transport lemmas (pull back a triangle, a quadrilateral, a figure of k points in a plane), and the facts of the model for volume if T1 chose some.
-- Typeset `Axioms.lean` and `Definitions.lean` after `#include "Definitions.typ"` in `Book11/Book11.typ`, with `#lean-proof(..., title: [...])`. Any page break goes in the Lean edition only.
-- `lean/Elements/Book11.lean` with the header comment of T1, imported in `lean/Elements.lean`. Add `11` to `lean-books` in `functions.typ`; the subtitle becomes "Books 1–11". Check that `ElementsEnglish.pdf` and `ElementsGreekEnglish.pdf` don't change (compare their `pdftotext` output). Add the Book 11 names to `lean/lean4.sublime-syntax`.
-- Prove one Book 1 citation in space end to end (1.4 for two triangles in different planes) as a test of the transport, before going on.
-
-Risk: high.
 
 ## T3. Props. 11.1–11.10: lines, planes, perpendiculars, parallels
 

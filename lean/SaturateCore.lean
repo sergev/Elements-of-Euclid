@@ -61,6 +61,8 @@ structure Config where
   backwardLemmas : Array Name := #[]
   /-- Lemmas with one metric premise, applied forward when `linarith` proves it. -/
   guardedLemmas : Array Name := #[]
+  /-- Sorts of the objects rules are instantiated with. -/
+  objectSorts : Array Name := #[`Point, `Line, `Circle]
   /-- Prove the goal from the given proofs by `linarith only`. -/
   linarith : List Expr → Expr → MetaM (Option Expr) := fun _ _ => pure none
 deriving Inhabited
@@ -209,6 +211,44 @@ partial def triangles (e : Expr) (acc : Array (Expr × Expr × Expr) := #[]) :
     | .app f a => triangles a (triangles f acc)
     | _ => acc
 
+/-- Space's measures (Book 11): head and arity. -/
+def spaceHeads : Array (Name × Nat) :=
+  #[(`Space.dist, 2), (`Space.angle, 3), (`Space.area, 3), (`Space.volume, 4)]
+
+def isSpaceAtom (e : Expr) : Bool := spaceHeads.any fun (n, k) => e.isAppOfArity n k
+
+/-- Space measures occurring in `e`. -/
+partial def spaceTerms (e : Expr) (acc : Array Expr := #[]) : Array Expr :=
+  if isSpaceAtom e then (if acc.contains e then acc else acc.push e)
+  else match e with
+    | .app f a => spaceTerms a (spaceTerms f acc)
+    | _ => acc
+
+/-- The generators of a space measure's symmetries: lemma and permutation. -/
+def spaceGens : Name → Array (Name × Array Nat)
+  | `Space.dist => #[(`Space.dist_symm, #[1, 0])]
+  | `Space.area => #[(`Space.area_symm_1, #[1, 2, 0]), (`Space.area_symm_2, #[0, 2, 1])]
+  | `Space.volume => #[(`Space.volume_symm_1, #[1, 0, 2, 3]),
+      (`Space.volume_symm_2, #[0, 2, 1, 3]), (`Space.volume_symm_3, #[0, 1, 3, 2])]
+  | _ => #[]
+
+/-- `s = t` for space measures `t` a permutation of `s`, by the generators. -/
+def spacePerm (s t : Expr) : MetaM (Option Expr) := do
+  let some n := s.getAppFn.constName? | return none
+  let gens := spaceGens n
+  let mut queue := #[(s.getAppArgs, ← mkEqRefl s)]
+  let mut i := 0
+  for _ in [0:24] do
+    if i ≥ queue.size then break
+    let (xs, p) := queue[i]!
+    i := i + 1
+    if xs == t.getAppArgs then return some p
+    for (lem, perm) in gens do
+      let ys := perm.map (xs[·]!)
+      unless queue.any (·.1 == ys) do
+        queue := queue.push (ys, ← mkEqTrans p (mkAppN (mkConst lem) xs))
+  return none
+
 def areaOf (t : Expr × Expr × Expr) : Expr :=
   mkApp (mkConst `Triangle.area) (mkApp3 (mkConst `Triangle.ofPoints) t.1 t.2.1 t.2.2)
 
@@ -234,7 +274,11 @@ def segKey (p : Expr × Expr) : Expr × Expr :=
 the symmetries of its points. -/
 partial def atoms (e : Expr) (acc : Array (Array Expr) := #[]) : Array (Array Expr) :=
   let sort := fun (xs : Array Expr) => xs.qsort Expr.lt
-  if e.isAppOfArity `Segment.length 1 then
+  if isSpaceAtom e then
+    let xs := e.getAppArgs
+    if e.isAppOfArity `Space.angle 3 then acc.push (#[e.getAppFn, xs[1]!] ++ sort #[xs[0]!, xs[2]!])
+    else acc.push (#[e.getAppFn] ++ sort xs)
+  else if e.isAppOfArity `Segment.length 1 then
     acc.push (sort e.appArg!.getAppArgs)
   else if e.isAppOfArity `Angle.degree 1 then
     match e.appArg!.getAppArgs with
@@ -249,13 +293,29 @@ partial def atoms (e : Expr) (acc : Array (Array Expr) := #[]) : Array (Array Ex
 /-- Metric atom subterms of `e` (segment lengths, angles, triangle areas). -/
 partial def atomTerms (e : Expr) (acc : Array Expr := #[]) : Array Expr :=
   if e.isAppOfArity `Segment.length 1 || e.isAppOfArity `Angle.degree 1 ||
-     e.isAppOfArity `Triangle.area 1 then acc.push e
+     e.isAppOfArity `Triangle.area 1 || isSpaceAtom e then acc.push e
   else match e with
     | .app f a => atomTerms a (atomTerms f acc)
     | _ => acc
 
 /-- An atom and its forms under the symmetries of its points. -/
 def variants (a : Expr) : Array Expr :=
+  if isSpaceAtom a then
+    let f := a.getAppFn
+    let xs := a.getAppArgs
+    if a.isAppOfArity `Space.angle 3 then #[a, mkApp3 f xs[2]! xs[1]! xs[0]!]
+    else Id.run do
+      -- all permutations reachable by the generators
+      let gens := (spaceGens f.constName!).map (·.2)
+      let mut out := #[xs]
+      let mut i := 0
+      while i < out.size do
+        for g in gens do
+          let ys := g.map (out[i]![·]!)
+          unless out.contains ys do out := out.push ys
+        i := i + 1
+      return out.map (mkAppN f)
+  else
   let f := a.appFn!
   let inner := a.appArg!
   let g := inner.getAppFn
@@ -459,7 +519,7 @@ partial def products (e : Expr) (acc : Array Expr := #[]) : Array Expr :=
 
 def isAtomTerm (e : Expr) : Bool :=
   e.isAppOfArity `Segment.length 1 || e.isAppOfArity `Angle.degree 1 ||
-    e.isAppOfArity `Triangle.area 1
+    e.isAppOfArity `Triangle.area 1 || isSpaceAtom e
 
 /-- The least term equal to `u` along `edges`, and a proof of `u = it`. -/
 def representative (edges : Std.HashMap Expr (Array (Expr × Expr))) (u : Expr) :
@@ -606,6 +666,26 @@ def arithWith (hyps : Array Fact) (ne : Expr → MetaM (Option Expr)) (e : Expr)
     match refs.find? (key · == key t) with
     | some r => if let some p ← areaPerm r t then proofs := proofs.push p
     | none => refs := refs.push t
+  -- space measures: nonnegativity of the goal's, symmetries among all
+  for t in spaceTerms e do
+    if t.isAppOfArity `Space.dist 2 then
+      proofs := proofs.push (mkAppN (mkConst `Space.dist_nonneg) t.getAppArgs)
+    if t.isAppOfArity `Space.volume 4 then
+      proofs := proofs.push (mkAppN (mkConst `Space.volume_nonneg) t.getAppArgs)
+  let sps := hyps.foldl (fun acc f => spaceTerms f.type acc) (spaceTerms e)
+  let mut refsS : Array Expr := #[]
+  for t in sps do
+    let key := fun (u : Expr) => (atoms u)[0]!
+    match refsS.find? (key · == key t) with
+    | none => refsS := refsS.push t
+    | some r =>
+      if t.isAppOfArity `Space.angle 3 then
+        let xs := r.getAppArgs
+        let some h1 ← ne (← mkAppM ``Ne #[xs[0]!, xs[1]!]) | continue
+        let some h2 ← ne (← mkAppM ``Ne #[xs[2]!, xs[1]!]) | continue
+        proofs := proofs.push (mkApp4 (mkConst `Space.angle_symm) xs[0]! xs[1]! xs[2]!
+          (← mkAppM ``And.intro #[h1, h2]))
+      else if let some p ← spacePerm r t then proofs := proofs.push p
   let lin0 := (← configRef.get).linarith
   let mut types := hyps.map (·.type)
   for p in proofs.extract hyps.size proofs.size do types := types.push (← inferType p)
@@ -833,7 +913,8 @@ def compound (e : Expr) : Bool :=
 
 def isObject (e : Expr) : MetaM Bool := do
   let t ← instantiateMVars (← inferType e)
-  return t.isConstOf `Point || t.isConstOf `Line || t.isConstOf `Circle
+  let some n := t.constName? | return false
+  return (← configRef.get).objectSorts.contains n
 
 /-- Clauses needing more literals are used only backward. -/
 def maxForwardNeeds : Nat := 6
@@ -1575,7 +1656,7 @@ def proveTop (ctx : Ctx) (l : Expr) : MetaM (Option Expr) := do
   return none
 
 def contextObjects : MetaM Objects := do
-  let mut objs : Objects := #[(`Point, #[]), (`Line, #[]), (`Circle, #[])]
+  let mut objs : Objects := (← configRef.get).objectSorts.map (·, #[])
   for d in ← getLCtx do
     if d.isImplementationDetail then continue
     if let some n := (← instantiateMVars d.type).constName? then

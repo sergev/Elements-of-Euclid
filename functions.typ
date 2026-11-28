@@ -7,7 +7,7 @@
 #let with-greek = sys.inputs.at("greek", default: "yes") != "no" and not with-lean
 
 // Books with Lean proofs; the Lean edition contains only these
-#let lean-books = (1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
+#let lean-books = (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11)
 
 // The books of an edition: all thirteen, or the Lean ones
 #let edition-books = if with-lean { lean-books } else { range(1, 14) }

@@ -1,7 +1,8 @@
 TYPST	= typst
 MAIN	= Elements
 SRCS	= $(MAIN).typ functions.typ $(wildcard Book*/*.typ) $(wildcard Book*/*.svg) $(wildcard *.jpg) \
-	  $(wildcard lean/Elements/Book*/*.lean) lean/lean4.sublime-syntax
+	  $(wildcard lean/Elements/Book*/*.lean) lean/lean4.sublime-syntax \
+	  $(wildcard lean/SystemE/Theory/*/Space.lean)
 PDFS	= ElementsGreekEnglish.pdf ElementsEnglish.pdf LeanElementsOfEuclid.pdf
 
 all:	$(PDFS)

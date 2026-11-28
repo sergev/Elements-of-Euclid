@@ -1,4 +1,4 @@
-#import "../functions.typ": parallel, no-footer, chapter, content-box, content-box-note, running-header
+#import "../functions.typ": parallel, no-footer, chapter, content-box, content-box-note, running-header, lean-proof
 
 #chapter([Book 11], [ELEMENTS BOOK 11])
 
@@ -14,6 +14,16 @@
 #set page(header: running-header([ΣΤΟΙΧΕΙΩΝ ιαʹ.], [ELEMENTS BOOK 11]))
 
 #include "Definitions.typ"
+
+#lean-proof("/lean/SystemE/Theory/Sorts/Space.lean", title: [Space, for the Lean proofs])
+
+#lean-proof("/lean/SystemE/Theory/Inferences/Space.lean", title: [Axioms of space])
+
+#lean-proof("/lean/SystemE/Theory/Constructions/Space.lean", title: [Constructions in space])
+
+#lean-proof("/lean/Elements/Book11/Definitions.lean", title: [Definitions, for the Lean proofs])
+
+#lean-proof("/lean/Elements/Book11/Lemmas.lean", title: [Lemmas for the Lean proofs])
 
 #pagebreak()
 

@@ -99,6 +99,11 @@ def Area := {x : ℝ // 0 < x}
 
 noncomputable instance : Magnitude Area := inferInstanceAs (Magnitude {x : ℝ // 0 < x})
 
+/-- Volumes, a third kind (Book 11): positive reals. -/
+def Volume := {x : ℝ // 0 < x}
+
+noncomputable instance : Magnitude Volume := inferInstanceAs (Magnitude {x : ℝ // 0 < x})
+
 namespace Length
 
 /-- The length of the straight line `ab`, `a ≠ b`. -/
