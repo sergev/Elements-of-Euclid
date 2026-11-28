@@ -20,3 +20,4 @@
     [So, similarly to the above, we can show that $D$, $L$, $E$ and $G$, $M$, $N$, $H$ are continuously proportional in the ratio of $A$ to $B$, and, further, (that) $E$, $O$, $F$ and $H$, $P$, $Q$, $K$ are continuously proportional in the ratio of $B$ to $C$. And as $A$ is to $B$, so $B$ (is) to $C$. And thus $D$, $L$, $E$ are in the same ratio as $E$, $O$, $F$, and, further, $G$, $M$, $N$, $H$ (are in the same ratio) as $H$, $P$, $Q$, $K$. And the multitude of $D$, $L$, $E$ is equal to the multitude of $E$, $O$, $F$, and that of $G$, $M$, $N$, $H$ to that of $H$, $P$, $Q$, $K$. Thus, via equality, as $D$ is to $E$, so $E$ (is) to $F$, and as $G$ (is) to $H$, so $H$ (is) to $K$ [Prop.~7.14]. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book8/Prop13.lean")

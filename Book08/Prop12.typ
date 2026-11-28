@@ -24,3 +24,4 @@
     [So I say that $A$ also has to $B$ a cubed ratio with respect to (that) $C$ (has) to $D$. For since $A$, $H$, $K$, $B$ are four (continuously) proportional numbers, $A$ thus has to $B$ a cubed ratio with respect to (that) $A$ (has) to $H$ [Def.~5.10]. And as $A$ (is) to $H$, so $C$ (is) to $D$. And [thus] $A$ has to $B$ a cubed ratio with respect to (that) $C$ (has) to $D$. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book8/Prop12.lean")

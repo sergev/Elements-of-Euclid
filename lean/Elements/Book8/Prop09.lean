@@ -27,7 +27,7 @@ theorem powers_last_eq (a b k : ℕ) :
   | succ k ih => rw [powers_last, powers_last, ih]
 
 /-- The numbers from the unit, `powers 1 a k`, fall between the unit and the last. -/
-theorem fallBetween_one {a : ℕ} (ha : 0 < a) (n : ℕ) :
+theorem fallBetween_unit {a : ℕ} (ha : 0 < a) (n : ℕ) :
     FallBetween n 1 (powers 1 a (n + 1) (Fin.last _)) :=
   ⟨_, powers_pos Nat.one_pos ha _,
     (powers_continuedIn Nat.one_pos ha _).continued (powers_pos Nat.one_pos ha _)
@@ -48,6 +48,6 @@ theorem proposition_9 {n a b : ℕ} (hab : PrimeTo a b) (h : FallBetween n a b) 
   -- `f` multiplying itself and the products makes `a`, and `g` makes `b` [Prop. 8.2
   -- corollary]: as the unit is to `f`, so `f` is to `f * f`, and so on [Def. 7.20]
   rw [powers_zero_eq, powers_last_eq f g]
-  exact ⟨fallBetween_one hf n, fallBetween_one hg n⟩
+  exact ⟨fallBetween_unit hf n, fallBetween_unit hg n⟩
 
 end Elements.Book8

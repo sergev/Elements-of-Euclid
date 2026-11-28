@@ -20,3 +20,4 @@
     [So I say that $A$ also has to $B$ a squared ratio with respect to (that) $C$ (has) to $D$. For since $A$, $E$, $B$ are three (continuously) proportional numbers, $A$ thus has to $B$ a squared ratio with respect to (that) $A$ (has) to $E$ [Def.~5.9]. And as $A$ (is) to $E$, so $C$ (is) to $D$. Thus, $A$ has to $B$ a squared ratio with respect to (that) side $C$ (has) to (side) $D$. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book8/Prop11.lean")

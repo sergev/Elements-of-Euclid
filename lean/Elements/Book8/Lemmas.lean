@@ -77,4 +77,45 @@ theorem LeastSeq.eq {n : ℕ} {a b : Fin (n + 1) → ℕ} (ha : ∀ i, 0 < a i)
   rw [h0] at this
   exact (eq_of_proportion (ha 0) (hb i) this)
 
+/-! One or two numbers falling between: three or four numbers, as Euclid has them. -/
+
+/-- One number `e` falls between `a` and `b` when `a ∶ e ∷ e ∶ b`. -/
+theorem fallBetween_one {a e b : ℕ} (ha : 0 < a) (he : 0 < e) (hb : 0 < b)
+    (h : a ∶ e ∷ e ∶ b) : FallBetween 1 a b := by
+  refine ⟨fun i => if i.val = 0 then a else if i.val = 1 then e else b, fun i => ?_,
+    fun ⟨i, hi⟩ => ?_, rfl, rfl⟩
+  · dsimp only
+    split_ifs <;> assumption
+  · match i, hi with
+    | 0, _ => exact Proportion.refl ha he
+    | 1, _ => exact h.symm
+
+/-- Two numbers `e`, `f` fall between `a` and `b` when `a ∶ e ∷ e ∶ f` and
+`e ∶ f ∷ f ∶ b`. -/
+theorem fallBetween_two {a e f b : ℕ} (ha : 0 < a) (he : 0 < e) (hf : 0 < f)
+    (hb : 0 < b) (h₁ : a ∶ e ∷ e ∶ f) (h₂ : e ∶ f ∷ f ∶ b) : FallBetween 2 a b := by
+  refine ⟨fun i => if i.val = 0 then a else if i.val = 1 then e else if i.val = 2 then f
+      else b, fun i => ?_, fun ⟨i, hi⟩ => ?_, rfl, rfl⟩
+  · dsimp only
+    split_ifs <;> assumption
+  · match i, hi with
+    | 0, _ => exact Proportion.refl ha he
+    | 1, _ => exact h₁.symm
+    | 2, _ => exact proportion_trans hf hb he hf h₂.symm h₁.symm
+
+/-- If one number falls between `a` and `b`, it is some `e` with `a ∶ e ∷ e ∶ b`. -/
+theorem FallBetween.one {a b : ℕ} (h : FallBetween 1 a b) :
+    0 < a ∧ 0 < b ∧ ∃ e, 0 < e ∧ a ∶ e ∷ e ∶ b := by
+  obtain ⟨c, hc, hcon, rfl, rfl⟩ := h
+  exact ⟨hc 0, hc _, c 1, hc 1, (hcon 1).symm⟩
+
+/-- If two numbers fall between `a` and `b`, they are some `e`, `f` with
+`a ∶ e ∷ e ∶ f` and `e ∶ f ∷ f ∶ b`. -/
+theorem FallBetween.two {a b : ℕ} (h : FallBetween 2 a b) :
+    0 < a ∧ 0 < b ∧ ∃ e f, 0 < e ∧ 0 < f ∧ a ∶ e ∷ e ∶ f ∧ e ∶ f ∷ f ∶ b := by
+  obtain ⟨c, hc, hcon, rfl, rfl⟩ := h
+  have h₂ : c 2 ∶ c 3 ∷ c 0 ∶ c 1 := hcon 2
+  exact ⟨hc 0, hc _, c 1, c 2, hc 1, hc 2, (hcon 1).symm,
+    proportion_trans (hc 1) (hc 2) (hc 0) (hc 1) (hcon 1) h₂.symm⟩
+
 end Elements.Book8

@@ -32,12 +32,6 @@ How Book 8 differs from Book 7:
   - Where Euclid states only three or four numbers, the doc comment says so. A general statement is still preferred when the induction is natural.
 - **Squares and cubes.** A square is a number multiplying itself, `a * a`; a cube is `a * a * a` (Defs. 7.18, 7.19). Don't use `^`.
 
-## T5. Props. 8.11–8.13: means between squares and cubes
-
-- **8.11:** one mean proportional falls between two squares, and square has to square the squared ratio of side to side.
-- **8.12:** two mean proportionals fall between two cubes, and the cubed ratio of side to side.
-- **8.13:** the squares of continuous proportionals are continuous proportionals, and so are their cubes. Euclid does three numbers and says "similarly"; prove it for any multitude.
-
 ## T6. Props. 8.14–8.17: squares and cubes measuring
 
 - **8.14, 8.15:** a square (cube) measures a square (cube) exactly when the side measures the side. Two directions each.
