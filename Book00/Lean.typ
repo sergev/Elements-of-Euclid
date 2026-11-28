@@ -99,7 +99,7 @@ The proof of Proposition 1 then reads like Euclid's:
 
 Book 2 speaks of "the rectangle contained by $A B$ and $C D$" and "the square on $A B$". The formal statements write these as products of lengths: `|(a─b)| * |(c─d)|` and `|(a─b)| * |(a─b)|`. "Twice" is `2 * …`. Prop.~1.47 already uses this form. The bridge to figures is the rule `rectangle_area`, which says that the area of a constructed rectangle, as two triangles cut off by a diagonal, is the product of its sides. The rules `parallelogram_area` and `sum_parallelograms_area` say that a parallelogram has the same area whichever diagonal cuts it, and that a parallelogram cut by a parallel to two of its sides is the sum of the two parts.
 
-Written this way, most of Book 2 consists of identities of algebra, and the solvers could prove them without any figure. The proofs in this edition do not take that shortcut. Each one draws Euclid's figure and argues with its areas, as he does.
+Written this way, most of Book 2 consists of identities of algebra, which could be proved without any figure. The proofs in this edition do not take that shortcut. Each one draws Euclid's figure and argues with its areas, as he does.
 
 Book 2 adds a few lemmas of its own, printed after its definitions:
 - `rectangle_on`, a rectangle on a given line with a given height, drawn as in Prop.~1.46;

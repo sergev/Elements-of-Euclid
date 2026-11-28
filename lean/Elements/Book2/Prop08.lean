@@ -17,7 +17,7 @@ open Elements.Book1
 
 /--
 The closing sums of Prop. 2.8: Euclid's equalities of the pieces, and how they make up
-`AK` and the whole square, give the statement. Kept apart so the solvers see only areas.
+`AK` and the whole square, give the statement. Kept apart so saturation sees only areas.
 -/
 theorem proposition_8_sums : ∀ (a b c d e f g h k l m n o p q r : Point),
   -- CK = KD, GR = RN [1.36]; RN = CK [1.43]

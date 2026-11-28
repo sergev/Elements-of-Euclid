@@ -1,5 +1,4 @@
 import SystemE
-import Elements.Book1.Prop23
 import Elements.Book1.Prop03
 import Elements.Book1.Prop10
 import Elements.Book1.Prop11
