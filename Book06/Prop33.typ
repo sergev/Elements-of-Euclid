@@ -24,3 +24,4 @@
     [Thus, in equal circles, angles have the same ratio as the (ratio of the) circumferences on which they stand, whether they are standing at the centers (of the circles) or at the circumferences. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book6/Prop33.lean")

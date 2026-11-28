@@ -1,6 +1,6 @@
 # Roadmap: Lean proofs for Books 7–13
 
-Books 1–6 are done (Milestones 1–6): Book 1's 48 propositions from LeanEuclid and Books 2, 3 and 4 (14, 37 and 16) written here in System E, Book 5's 25 in plain Lean over a class of magnitudes, and Book 6's 32 of 33 in System E with Book 5's proportion, typeset in `ElementsLean.pdf` and checked by `make check`. Prop. 6.33 is open; see Milestone 10. This file plans the remaining books, one milestone per book, numbered to match: Milestone N is Book N. A book depends on the books before it, so the milestones run in sequence. Only Milestones 7–9 (Books 7–9) can be done in parallel with the geometry.
+Books 1–6 are done (Milestones 1–6): Book 1's 48 propositions from LeanEuclid and Books 2, 3 and 4 (14, 37 and 16) written here in System E, Book 5's 25 in plain Lean over a class of magnitudes, and Book 6's 33 in System E with Book 5's proportion, typeset in `ElementsLean.pdf` and checked by `make check`. This file plans the remaining books, one milestone per book, numbered to match: Milestone N is Book N. A book depends on the books before it, so the milestones run in sequence. Only Milestones 7–9 (Books 7–9) can be done in parallel with the geometry.
 
 ## Common rules for every milestone
 
@@ -44,7 +44,7 @@ Uniqueness of prime factors (9.14), infinitude of primes (9.20), odd and even nu
 - **Basis.** Segment lengths as positive reals with Book 5's ratios linked to `ℝ` division, plus Mathlib's `Irrational`. Commensurable means the ratio is rational. "Rational" in Euclid's sense is commensurable with a chosen line, in length or in square; define it so, not as `ℚ`.
 - **New.** The 13 kinds of irrational lines as definitions over `ℝ`; the lemmas Euclid needs (10.28 lemmas, Pythagorean triples).
 - **Risk.** High, due to size. It is the longest book, at about a quarter of the Elements, and highly repetitive: 10.36–10.72 and 10.73–10.110 mirror each other. Split it into sub-milestones of about 25 propositions each. Make proofs of the mirrored propositions share lemmas. The connection to geometry (lines and squares on them) depends on Milestone 6.
-- **Left by Book 6.** Lines and areas are magnitudes through `Figure` (`Elements/Book6/Definitions.lean`), with `p ∶ q ∷ r ∶ s`; Book 10 can state its ratios of lines and of squares so. The application of areas (6.28, 6.29) takes the given figure as a quadrilateral cut into two triangles and the defect or excess similar to a parallelogram, which covers Book 10's rectangles falling short or exceeding by squares. Prop. 6.33 is not proved: Euclid takes multiples of an angle and of a circumference past the whole circle, which neither System E nor Book 3 has. Proving it faithfully needs angles and circumferences as magnitudes closed under multiples, new axioms to be decided with the solid geometry of Milestone 11.
+- **Left by Book 6.** Lines and areas are magnitudes through `Figure` (`Elements/Book6/Definitions.lean`), with `p ∶ q ∷ r ∶ s`; Book 10 can state its ratios of lines and of squares so. The application of areas (6.28, 6.29) takes the given figure as a quadrilateral cut into two triangles and the defect or excess similar to a parallelogram, which covers Book 10's rectangles falling short or exceeding by squares. Angles and circumferences are magnitudes too (`∡a:b:c`, `⌒α:b:c:s`, for Prop. 6.33).
 
 ## Milestone 11 — Book 11: solid geometry (39 propositions)
 
@@ -82,7 +82,7 @@ The golden section (13.1–13.6), pentagon and decagon side relations (13.7–13
 | 3 | 3 | 37 | System E + tangency | medium |
 | 4 | 4 | 16 | System E | medium |
 | 5 | 5 | 25 | abstract magnitudes | medium |
-| 6 | 6 | 33 | E + Book 5 | done, 6.33 open |
+| 6 | 6 | 33 | E + Book 5 | done |
 | 7 | 7 | 39 | Mathlib `ℕ` | low, can run in parallel |
 | 8 | 8 | 27 | Book 7 | low–medium |
 | 9 | 9 | 36 | Books 7–8 | low–medium |

@@ -1,5 +1,6 @@
 import SystemE
 import Elements.Book5.Plane
+import Elements.Book3.Axioms
 
 /-
 Book 6's definitions with ratios: lines and figures as magnitudes, their proportion, and
@@ -10,7 +11,8 @@ namespace Elements.Book6
 
 open Elements.Book5
 
-/-- A kind of magnitude in the plane, `Length` or `Area`: a positive real is one. -/
+/-- A kind of magnitude in the plane, `Length`, `Area`, `AngleSize` or `ArcSize`: a
+positive real is one. -/
 class Kind (K : Type) [Magnitude K] where
   of : (x : ℝ) → 0 < x → K
   of_inj {x y : ℝ} {hx : 0 < x} {hy : 0 < y} : of x hx = of y hy ↔ x = y
@@ -30,10 +32,46 @@ noncomputable instance : Kind Area where
   of_add _ _ := Subtype.ext (Positive.coe_add _ _)
   of_lt := Iff.rfl
 
+/-- Angles, a kind of magnitude for Prop. 6.33: System E measures an angle by a real. -/
+def AngleSize := {x : ℝ // 0 < x}
+
+noncomputable instance : Magnitude AngleSize := inferInstanceAs (Magnitude {x : ℝ // 0 < x})
+
+/-- Circumferences, another kind: Book 3 measures them by reals. -/
+def ArcSize := {x : ℝ // 0 < x}
+
+noncomputable instance : Magnitude ArcSize := inferInstanceAs (Magnitude {x : ℝ // 0 < x})
+
+noncomputable instance : Kind AngleSize where
+  of x h := ⟨x, h⟩
+  of_inj := Subtype.mk_eq_mk
+  of_add _ _ := Subtype.ext (Positive.coe_add _ _)
+  of_lt := Iff.rfl
+
+noncomputable instance : Kind ArcSize where
+  of x h := ⟨x, h⟩
+  of_inj := Subtype.mk_eq_mk
+  of_add _ _ := Subtype.ext (Positive.coe_add _ _)
+  of_lt := Iff.rfl
+
+/-- The circumference of `circle` from `b` to `c`, away from `s` (`Circle.arc`). -/
+structure Arc where
+  circle : Circle
+  b : Point
+  c : Point
+  s : Point
+
+/-- The angle `abc` as a figure. -/
+notation:71 "∡" a ":" b ":" c:72 => Angle.ofPoints a b c
+
+/-- The circumference of `α` from `b` to `c`, away from `s`, as a figure. -/
+notation:71 "⌒" α ":" b ":" c ":" s:72 => Arc.mk α b c s
+
 /--
 A figure of System E that is a magnitude of kind `K`: a straight line `(a─b)` a length,
-a triangle `△a:b:c`, quadrilateral `□a:b:c:d` or pentagon `⬠a:b:c:d:e` an area. `size`
-is System E's measure of it, a real; when it is positive, the figure is a magnitude.
+a triangle `△a:b:c`, quadrilateral `□a:b:c:d` or pentagon `⬠a:b:c:d:e` an area, an angle
+`∡a:b:c` or a circumference `⌒α:b:c:s` a magnitude of its own kind. `size` is System E's
+measure of it, a real; when it is positive, the figure is a magnitude.
 -/
 class Figure (X : Type) (K : outParam Type) [Magnitude K] [Kind K] where
   size : X → ℝ
@@ -44,6 +82,8 @@ instance : Figure Segment Length := ⟨Segment.length⟩
 instance : Figure Triangle Area := ⟨Triangle.area⟩
 instance : Figure Quadrilateral Area := ⟨Quadrilateral.area⟩
 instance : Figure Pentagon Area := ⟨Pentagon.area⟩
+instance : Figure Angle AngleSize := ⟨Angle.degree⟩
+instance : Figure Arc ArcSize := ⟨fun p => p.circle.arc p.b p.c p.s⟩
 
 variable {X Y Z W U V : Type} {K L : Type} [Magnitude K] [Kind K] [Magnitude L] [Kind L]
   [Figure X K] [Figure Y K] [Figure Z L] [Figure W L] [Figure U K] [Figure V K]
@@ -114,6 +154,8 @@ theorem mag_lt {p : X} {q : Y} {hp : 0 < size p} {hq : 0 < size q} :
   Kind.of_lt
 
 theorem size_segment (a b : Point) : size (a─b) = |(a─b)| := rfl
+theorem size_angle (a b c : Point) : size (∡a:b:c) = ∠ a:b:c := rfl
+theorem size_arc (α : Circle) (b c s : Point) : size (⌒α:b:c:s) = α.arc b c s := rfl
 theorem size_triangle (a b c : Point) : size (△a:b:c) = Triangle.area △a:b:c := rfl
 theorem size_quadrilateral (a b c d : Point) :
     size (□a:b:c:d) = Triangle.area △a:b:c + Triangle.area △a:c:d := rfl

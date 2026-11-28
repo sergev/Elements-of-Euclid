@@ -33,6 +33,7 @@ import Elements.Book6.Prop29
 import Elements.Book6.Prop30
 import Elements.Book6.Prop31
 import Elements.Book6.Prop32
+import Elements.Book6.Prop33
 
 /-
 Book 6: similar figures.
@@ -45,8 +46,10 @@ and angles come from the figure, become equal magnitudes, and Book 5 is cited.
 Ratios in the figure (`Elements/Book6/Definitions.lean`):
 - A figure is a magnitude through the class `Figure X K`: a straight line `(a─b)` is a
   `Length`, a triangle `△a:b:c`, quadrilateral `□a:b:c:d` or pentagon `⬠a:b:c:d:e` an
-  `Area` (Book 5's kinds, positive reals). `size p` is System E's measure of it, a real,
-  and `mag p h` the magnitude, given `h : 0 < size p`.
+  `Area` (Book 5's kinds, positive reals); for Prop. 6.33, an angle `∡a:b:c` is an
+  `AngleSize` and a circumference `⌒α:b:c:s` (Book 3's `α.arc b c s`) an `ArcSize`.
+  `size p` is System E's measure of it, a real, and `mag p h` the magnitude, given
+  `h : 0 < size p`.
 - `p ∶ q ∷ r ∶ s`, "as `p` is to `q`, so is `r` to `s`", is Def. 5.5 of the four
   magnitudes. The positivity of each, which `mag` needs, is part of it (`∃` over the
   proofs), so statements need no distinctness hypotheses for their ratios, and a
@@ -92,12 +95,14 @@ on opposite sides of `db`, which is `□b:c:d:a` up to the order of the vertices
 given figures of Props. 6.25, 6.28 and 6.29 are triangles, or quadrilaterals given as
 1.45 takes them.
 
-Prop. 6.33 is not proved. Euclid lays off "any number whatsoever" of circumferences equal
-to a given one, consecutively around the circle, and takes the angle they make together,
-for Def. 5.5 with all equal multiples. Past the whole circle, such a circumference is not
-one of Book 3's (`α.arc b c s` is at most the circumference), and past four right angles
-such an angle is not one of System E's (an angle is at most two right angles). So Def. 5.5
-cannot be applied to them as Euclid does. A faithful proof needs angles and circumferences
-as kinds of magnitude closed under multiples, with Prop. 3.27 for them: new axioms, which
-are not added here.
+Prop. 6.33. Euclid lays off "any number whatsoever" of circumferences equal to a given
+one, consecutively round the circle, and takes the angle they make together, for Def. 5.5
+with all equal multiples. Past the whole circle such a circumference is not one of Book
+3's, nor past two right angles such an angle one of System E's; but both are measured by
+reals, so their multiples are reals, and what Def. 5.5 needs is how they compare. `Wound`
+lays the angles round a half-turn at a time: `n` of them make `k` semicircles, and `k`
+times two right angles, and a remainder within a semicircle, an angle at the center and
+its circumference, or nothing. Multiples compare as their numbers of half-turns, and then
+as their remainders; remainders compare as Props. 3.26, 3.27 say (`remainder_compare`).
+No axioms are added: the circumferences are Book 3's.
 -/
