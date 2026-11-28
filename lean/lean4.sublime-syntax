@@ -20,7 +20,7 @@ contexts:
       scope: keyword.other.lean
     - match: "\\b(proposition_[0-9]+'*)"
       scope: entity.name.lean
-    - match: '\b(Point|Line|Circle|Segment|Angle|Triangle|Prop|Type|True|False|Fin|Magnitude|Proportion|GreaterRatio|SquaredRatio|CompoundRatio|Length|Area|Kind|Figure|Quadrilateral|Pentagon|AngleSize|ArcSize|Arc)\b|ℝ|ℕ\+?'
+    - match: '\b(Point|Line|Circle|Segment|Angle|Triangle|Prop|Type|True|False|Fin|Magnitude|Proportion|GreaterRatio|SquaredRatio|CompoundRatio|Length|Area|Kind|Figure|Quadrilateral|Pentagon|AngleSize|ArcSize|Arc|PartOf|PartsOf|PrimeNumber|PrimeTo|CompositeNumber|CompositeTo|PlaneNumber|SolidNumber|SquareNumber|CubeNumber|SimilarPlane|SimilarSolid|Perfect)\b|ℝ|ℕ\+?'
       scope: support.type.lean
     - match: '•|∶|∷'
       scope: keyword.operator.lean

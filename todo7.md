@@ -34,39 +34,6 @@ How Book 7 differs from Books 1–6:
   Once a proposition is proved, cite it, or a tactic that does the same, with a comment naming the proposition.
 - **No division, no rationals.** A ratio of numbers is never `a / b`, in `ℕ` or `ℚ`.
 
-## T1. Definitions and scaffolding
-
-Decide the basis before any proof, and write the decisions in the header comment of `lean/Elements/Book7.lean`.
-- **Numbers and the unit (Defs. 7.1, 7.2).** A number is a multitude of units, at least two; the unit is separate. Many results still use the unit, e.g. "until a unit remains" (7.1), "as many units as" (7.15), or a quotient that may be one. Choose:
-  - `ℕ` with hypotheses `1 < a` where Euclid says "number" and `0 < n` for "as many times"; or
-  - a subtype.
-
-  Recommended: `ℕ` with hypotheses. Say in the doc comments where a statement admits the unit.
-- **Multiplication (Def. 7.15).** "A multiplies B" means B added to itself as many times as there are units in A. Decide which Lean term it is, `a * b` or `b * a`, and keep to it, because 7.16 proves the two equal. Decide how proofs before 7.16 compute: no `mul_comm` and no `ring`, which uses it; `Nat.mul_succ` and `Nat.add_mul` are allowed only where they are Def. 7.15 itself. Record which Mathlib lemmas count as definitional.
-- **Measuring (Defs. 7.3–7.5).** "A measures B" is `a ∣ b`. "A measures B according to the units in C" is `b = c * a` (in the order chosen above).
-  - Part: the lesser measures the greater.
-  - Parts: the lesser is `m` parts `e` of the greater `n e`, with `1 < m < n` and `e` not the lesser itself.
-
-  Define `part` and `parts` with doc comments. "The same part" and "the same parts" mean the same `n`, or the same `m` and `n`; take the choice of `m`, `n` from Euclid's proofs (7.5, 7.6).
-- **Proportion of numbers (Def. 7.20).** The first is the same multiple, the same part, or the same parts of the second as the third is of the fourth. Define it so, as a disjunction of the three cases, with a doc comment.
-  - It is not Book 5's `Proportion`, and not `a * d = b * c`. That equality is Prop. 7.19, which is not used before it is proved.
-  - Euclid allows "parts" with any `m`, `n`. Check whether the definition needs a lemma that the choice doesn't matter, and prove it from Def. 7.20 only.
-- **Primes and the rest (Defs. 7.11–7.14, 7.16–7.19, 7.21, 7.22).** Write them as `def`s with doc comments:
-  - prime, prime to one another, composite, composite to one another;
-  - plane and solid numbers, square and cube;
-  - similar plane and solid numbers, perfect.
-
-  Odd and even (Defs. 7.6–7.10) wait for Book 9.
-- **"Any multitude of numbers"** (7.12, 7.14, 7.33). Book 5 writes it `Fin (n + 1) → M`. Use the same for numbers unless Book 8 needs `List ℕ`; decide once for Books 8 and 9 (Roadmap, Milestone 8) and record it. Where Euclid takes three numbers (7.3, 7.36), state it for three.
-- **Book 5 in Book 7.** Euclid cites Prop. 5.7 and 5.9 in 7.19, and 5.13 in 7.33, for numbers. Proportion of numbers is not Book 5's, so these are gaps. Prove each one for Def. 7.20 as a lemma marked `-- Missed by Euclid.`, in `lean/Elements/Book7/Lemmas.lean`. Don't link Def. 7.20 to Def. 5.5 to get them.
-- **Unstated common notions.** Fitzpatrick's notes to 7.1 name two of them: measuring is transitive, and a measure of the whole and of a part measures the remainder. Put them in `Lemmas.lean`, proved by `omega`-level arithmetic, as Euclid's common notions, with doc comments.
-
-Scaffolding:
-- `lean/Elements/Book7.lean` with the header comment, imported in `lean/Elements.lean`; `lean/Elements/Book7/Definitions.lean` and `Lemmas.lean`.
-- Add `7` to `lean-books` in `functions.typ`. The subtitle becomes "Books 1–7". Check that `ElementsEnglish.pdf` and `ElementsGreekEnglish.pdf` don't change: compare their `pdftotext` output.
-- In `Book07/Book7.typ`, typeset `Definitions.lean` and `Lemmas.lean` after the definitions, as Books 5 and 6 do (`lean-proof(..., title: ...)`).
-- Add the Book 7 names to `lean/lean4.sublime-syntax` and check the glyphs in the code font. Use `fc-match "DejaVu Sans Mono"` and fontTools.
-
 ## T2. Props. 7.1–7.3: the Euclidean algorithm
 
 - **7.1:** if the lesser, subtracted continually from the greater, leaves a unit before any remainder measures the one before it, the numbers are prime to one another.
