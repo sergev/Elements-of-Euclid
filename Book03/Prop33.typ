@@ -48,3 +48,4 @@
     [Thus, a segment $A H B$ of a circle, accepting an angle equal to $C$, has been drawn on the given straight-line $A B$. (Which is) the very thing it was required to do.],
   )
 ]
+#lean-proof("/lean/Elements/Book3/Prop33.lean")

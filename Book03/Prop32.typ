@@ -24,3 +24,4 @@
     [Thus, if some straight-line touches a circle, and some (other) straight-line is drawn across, from the point of contact into the circle, cutting the circle (in two), (then) those angles the (straight-line) makes with the tangent will be equal to the angles in the alternate segments of the circle. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book3/Prop32.lean")

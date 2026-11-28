@@ -30,6 +30,10 @@ import Elements.Book3.Prop27
 import Elements.Book3.Prop28
 import Elements.Book3.Prop29
 import Elements.Book3.Prop30
+import Elements.Book3.Prop31
+import Elements.Book3.Prop32
+import Elements.Book3.Prop33
+import Elements.Book3.Prop34
 
 /-
 Book 3: circles.

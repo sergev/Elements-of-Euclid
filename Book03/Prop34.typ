@@ -24,3 +24,4 @@
     [Thus, the segment $B A C$, accepting an angle equal to the given rectilinear angle $D$, has been cut off from the given circle $A B C$. (Which is) the very thing it was required to do.],
   )
 ]
+#lean-proof("/lean/Elements/Book3/Prop34.lean")

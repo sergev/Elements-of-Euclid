@@ -90,3 +90,14 @@ the side of `x`, and that of `β` on `CD` on the side of `y`, with `x`, `y` on t
 abbrev similarSegments (α : Circle) (a b : Point) (AB : Line) (x : Point)
     (β : Circle) (c d : Point) (CD : Line) (y : Point) : Prop :=
   x.onSegment α a b AB x ∧ y.onSegment β c d CD y ∧ ∠ a:x:b = ∠ c:y:d
+
+/-- The points of a circle, apart from where a line touches it, are on one side of the line. -/
+theorem same_side_of_touches : ∀ (b x y : Point) (L : Line) (α : Circle),
+    L.touchesCircleAt α b ∧ x.onCircle α ∧ y.onCircle α ∧ x ≠ b ∧ y ≠ b → x.sameSide y L := by
+  intro b x y L α ⟨⟨hbL, hb, hL⟩, hx, hy, hxb, hyb⟩
+  have hxL : ¬ x.onLine L := fun h =>
+    not_on_circle_of_touches b x L α ⟨⟨hbL, hb, hL⟩, h, hxb⟩ hx
+  have hyL : ¬ y.onLine L := fun h =>
+    not_on_circle_of_touches b y L α ⟨⟨hbL, hb, hL⟩, h, hyb⟩ hy
+  by_contra h
+  exact hL (intersection_circle_line_1 x y α L ⟨fun h' => h'.2 hx, fun h' => h'.2 hy, hxL, hyL, h⟩)

@@ -36,3 +36,4 @@
     [Thus, in a circle, the angle in a semi-circle is a right-angle, and that in a greater segment (is) less than a right-angle, and that in a lesser [segment] (is) greater than a right-angle. And, further, the [angle] of a segment greater (than a semi-circle) [is] greater than a right-angle, and the [angle] of a segment less (than a semi-circle) is less than a right-angle. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book3/Prop31.lean")

@@ -19,15 +19,6 @@ When the solvers struggle:
 - **Segment orientation:** when a goal compares products of the same segments written in different orders (`|(a─b)|` against `|(b─a)|`), add the symmetric step as an assert.
 - **`simp_all`:** if it blows up, turn it off for that step with `set_option systemE.simpAll false in`.
 
-## T11. Props. 3.31–3.34: semicircle, tangent and chord, segment on an angle
-
-- **3.31:** the angle in a semicircle is right; in a greater segment it's less than right, and in a lesser segment greater. The horn-angle clauses (angle of the segment) are left out, as in 3.16.
-- **3.32:** the angle between tangent and chord equals the angle in the alternate segment.
-- **3.33:** construct, on a given straight line, a segment admitting a given angle.
-- **3.34:** cut off from a given circle a segment admitting a given angle.
-
-Uses T1 and T8.
-
 ## T12. Props. 3.35–3.37: the power of a point
 
 These use products, as in Book 2.

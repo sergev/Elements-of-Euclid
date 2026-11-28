@@ -125,31 +125,34 @@ def notAnd? (e : Expr) : MetaM (Option (Expr × Expr)) := do
   return (← whnfR x).and?
 
 /-- Prove a conjunction, each literal by `leaf`. -/
-partial def prove (leaf : Expr → MetaM (Option Expr)) (e : Expr) : MetaM (Option Expr) := do
+partial def prove (leaf : Expr → MetaM (Option Expr)) (e : Expr)
+    (quick : Expr → MetaM (Option Expr) := fun _ => pure none) : MetaM (Option Expr) := do
   let e ← instantiateMVars e
-  -- `¬(p ∧ q)` from `¬p` or `¬q`
+  -- `¬(p ∧ q)` from `¬p` or `¬q`, a known fact first
   if let some (p, q) ← notAnd? e then
     let pq := mkApp2 (mkConst ``And) p q
-    for (r, pr) in [(p, mkApp2 (mkConst ``And.left) p q), (q, mkApp2 (mkConst ``And.right) p q)] do
-      if let some hr ← prove leaf (mkNot r) then
-        return some (← withLocalDeclD `h pq fun h => mkLambdaFVars #[h] (mkApp hr (mkApp pr h)))
+    let sides := [(p, mkApp2 (mkConst ``And.left) p q), (q, mkApp2 (mkConst ``And.right) p q)]
+    for look in [quick, leaf] do
+      for (r, pr) in sides do
+        if let some hr ← prove look (mkNot r) then
+          return some (← withLocalDeclD `h pq fun h => mkLambdaFVars #[h] (mkApp hr (mkApp pr h)))
     return none
   -- `¬¬p` from `p`
   if let some x := e.not? then
     if let some p := x.not? then
-      let some hp ← prove leaf p | return none
+      let some hp ← prove leaf p quick | return none
       return some (← withLocalDeclD `h x fun h => mkLambdaFVars #[h] (mkApp h hp))
   match (← whnfR e).and? with
   | some (p, q) =>
-    let some hp ← prove leaf p | return none
-    let some hq ← prove leaf q | return none
+    let some hp ← prove leaf p quick | return none
+    let some hq ← prove leaf q quick | return none
     return mkApp4 (mkConst ``And.intro) p q hp hq
   | none =>
     -- a disjunction by either side
     match (← whnfR e).app2? ``Or with
     | some (p, q) =>
-      if let some hp ← prove leaf p then return mkApp3 (mkConst ``Or.inl) p q hp
-      if let some hq ← prove leaf q then return mkApp3 (mkConst ``Or.inr) p q hq
+      if let some hp ← prove leaf p quick then return mkApp3 (mkConst ``Or.inl) p q hp
+      if let some hq ← prove leaf q quick then return mkApp3 (mkConst ``Or.inr) p q hq
       return none
     | none => leaf e
 
@@ -1728,7 +1731,7 @@ partial def attempt (g : MVarId) (phase : IO.Ref MessageData) (last : IO.Ref Exp
     setLastClosure diag'
     let ctx' ← Ctx.new (diag' ++ facts.extract diag.size facts.size) objs
     proveTop ctx' l
-  if let some pf ← prove top goal then
+  if let some pf ← prove top goal (fun l => findDefEq facts l) then
     g.assign pf
     return true
   if fuel == 0 then return false
