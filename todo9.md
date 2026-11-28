@@ -30,23 +30,6 @@ How Book 9 differs from Book 8:
 - **From a unit.** "Continuously proportional, from a unit" is `Continued a` with `a 0 = 1`; `a 1` is "the number after the unit", and Euclid's "third from the unit" is `a 2`, counting the unit as first. `eq_powers_one` (Book 8, Prop. 8.10) makes such numbers `powers 1 (a 1)`.
 - **Squares and cubes.** `a * a`, `a * a * a`, never `^`. `SquareNumber`, `CubeNumber` need the side greater than the unit; where the side may be the unit (as in 8.20), state the product with positive sides, and say so.
 
-## T4. Props. 9.14–9.20: primes and proportionals
-
-- **9.14:** a least number measured by primes is measured by no other prime, through 7.30. Euclid takes three primes; state it for any multitude, with T1's least number measured.
-- **9.15:** if three continuous proportionals are the least in their ratio, any two added together are prime to the third.
-  - Euclid cites Props. 2.3 and 2.4 for numbers. Book 2's are about lines. Prove the identities by Book 7's multiplication (7.5, and 7.16 with a comment), and cite Book 2 in the comment.
-  - Fitzpatrick notes a gap: if `αβ` measures `α² + β² + 2αβ`, it also measures `α² + β² + αβ`. Prove it and mark it `-- Missed by Euclid.`
-- **9.16, 9.17:** if two numbers are prime to one another (if the outermost of continuous proportionals are), there is no third (fourth) proportional in that ratio.
-- **9.18:** a third proportional to `a`, `b` exists exactly when `a` measures `b * b`. State it as an `↔`.
-- **9.19:** a fourth proportional to `a`, `b`, `c` exists exactly when `a` measures `b * c`.
-  - Euclid's case analysis is defective. In his second case, "not continuously proportional, outermost prime: impossible", the proof assumes a fifth proportional `E` exists. It is false: `2`, `4`, `3` have the fourth proportional `6`.
-  - State the true criterion as an `↔`, prove it as his last cases do (7.19), and say in the doc comment which of his cases fail.
-- **9.20:** there are more primes than any assigned multitude.
-  - Euclid takes three primes and the least number they measure (7.36), plus the unit. State it for any multitude, `p : Fin (n + 1) → ℕ`: some prime is none of them.
-  - Use T1's least number measured, and 7.31, 7.28 as Euclid does. Euclid's "either prime or not" is two cases.
-
-Risk: medium, for 9.12–9.15 and 9.19.
-
 ## T5. Props. 9.21–9.29: odd and even
 
 - **9.21–9.23:** a sum of evens is even; a sum of an even multitude of odds is even; of an odd multitude, odd. Over Book 7's `sum`, by induction. The multitude is `n + 1`.

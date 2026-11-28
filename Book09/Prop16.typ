@@ -16,3 +16,4 @@
     [For, if possible, let it be that as $A$ (is) to $B$, (so) $B$ (is) to $C$. And $A$ and $B$ (are) prime (to one another). And (numbers) prime (to one another are) also the least (of those numbers having the same ratio as them) [Prop.~7.21]. And the least numbers measure those (numbers) having the same ratio (as them) an equal number of times, the leading (measuring) the leading, and the following the following [Prop.~7.20]. Thus, $A$ measures $B$, as the leading (measuring) the leading. And ($A$) also measures itself. Thus, $A$ measures $A$ and $B$, which are prime to one another. The very thing (is) absurd. Thus, as $A$ (is) to $B$, so $B$ cannot be to $C$. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book9/Prop16.lean")

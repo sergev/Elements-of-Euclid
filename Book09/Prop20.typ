@@ -20,3 +20,4 @@
     [And so let $E F$ not be prime. Thus, it is measured by some prime number [Prop.~7.31]. Let it be measured by the prime (number) $G$. I say that $G$ is not the same as any of $A$, $B$, $C$. For, if possible, let it be (the same). And $A$, $B$, $C$ (all) measure $D E$. Thus, $G$ will also measure $D E$. And it also measures $E F$. (So) $G$ will also measure the remainder, unit $D F$, (despite) being a number [Prop.~7.28]. The very thing (is) absurd. Thus, $G$ is not the same as one of $A$, $B$, $C$. And it was assumed (to be) prime. Thus, the (set of) prime numbers $A$, $B$, $C$, $G$, (which is) more numerous than the assigned multitude (of prime numbers), $A$, $B$, $C$, has been found. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book9/Prop20.lean")

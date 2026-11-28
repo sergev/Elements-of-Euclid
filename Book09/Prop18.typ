@@ -24,3 +24,4 @@
     [And so let $A$ not measure $C$. I say that it is impossible to find a third number proportional to $A$, $B$. For, if possible, let it be found, (and let it be) $D$. Thus, the (number created) from (multiplying) $A$, $D$ is equal to the (square) on $B$ [Prop.~7.19]. And the (square) on $B$ is $C$. Thus, the (number created) from (multiplying) $A$, $D$ is equal to $C$. Hence, $A$ has made $C$ (by) multiplying $D$. Thus, $A$ measures $C$ according to $D$. But ($A$) was, in fact, also assumed (to be) not measuring ($C$). The very thing (is) absurd. Thus, it is not possible to find a third number proportional to $A$, $B$ when $A$ does not measure $C$. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book9/Prop18.lean")
