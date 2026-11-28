@@ -21,3 +21,4 @@
     [And (it is) clear, from this, that an (area) commensurable with a medial area#content-box-note[A medial area is equal to the square on some medial straight-line. Hence, a medial area is expressible as $k^(1 \/ 2)$.] is medial.],
   )
 ]
+#lean-proof("/lean/Elements/Book10/Prop023.lean")

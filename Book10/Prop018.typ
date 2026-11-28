@@ -28,3 +28,4 @@
     [Thus, if there are two ... straight-lines, and so on ....],
   )
 ]
+#lean-proof("/lean/Elements/Book10/Prop018.lean")

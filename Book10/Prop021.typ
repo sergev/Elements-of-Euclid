@@ -30,3 +30,4 @@
     [For let the square $D F$ be described on $F E$. And let $G D$ be completed. Therefore, since as $F E$ is to $E G$, so $F D$ (is) to $D G$ [Prop.~6.1], and $F D$ is the (square) on $F E$, and $D G$ the (rectangle contained) by $D E$ and $E G$---that is to say, the (rectangle contained) by $F E$ and $E G$---thus as $F E$ is to $E G$, so the (square) on $F E$ (is) to the (rectangle contained) by $F E$ and $E G$. And also, similarly, as the (rectangle contained) by $G E$ and $E F$ is to the (square on) $E F$---that is to say, as $G D$ (is) to $F D$---so $G E$ (is) to $E F$. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book10/Prop021.lean")

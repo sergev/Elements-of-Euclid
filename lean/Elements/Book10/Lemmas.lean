@@ -285,6 +285,11 @@ theorem sq_lt_sq {a b : Length} : sq a < sq b ↔ a < b := by
   have := pos a; have := pos b
   constructor <;> intro h <;> nlinarith
 
+/-- Of rectangles on the same side, the one with the greater other side is greater. -/
+theorem rect_lt_rect {a b c : Length} : rect c a < rect c b ↔ a < b := by
+  rw [← val_lt, ← val_lt, val_rect, val_rect]
+  exact mul_lt_mul_iff_of_pos_left (pos c)
+
 /-- Equal rectangles on the same side have equal other sides. -/
 theorem rect_inj {a b c : Length} (h : rect c a = rect c b) : a = b := by
   have h' : val c * val a = val c * val b := by rw [← val_rect, ← val_rect, h]
@@ -338,6 +343,30 @@ rectangle contained by `x`, `y` and the square on `l`. -/
 theorem sq_add_sq_of_sub {l x y : Length} (h : l + y = x) :
     sq x + sq y = (2 : ℕ+) • rect x y + sq l := by
   subst h; exact Model.ext (by simp; ring)
+
+/-- Prop. 2.4, the line cut in half: the square on `t + t` is four times the square on
+`t`. -/
+theorem sq_double (t : Length) : sq (t + t) = (4 : ℕ+) • sq t :=
+  Model.ext (by simp; ring)
+
+/-- Prop. 2.5: a line `e + e` cut in half and unequally, into `x = e + t` and `y`, with
+`y + t = e`: the rectangle contained by the unequal pieces, with the square on the line
+between the cuts, is the square on the half. -/
+theorem rect_add_sq {x y e t : Length} (hx : e + t = x) (hy : y + t = e) :
+    rect x y + sq t = sq e := by
+  subst hx hy; exact Model.ext (by simp; ring)
+
+/-- Prop. 6.14: equal rectangles have their sides reciprocally proportional. -/
+theorem proportion_of_rect_eq {a b c d : Length} (h : rect a b = rect c d) :
+    Proportion a c d b := by
+  have h' : val a * val b = val c * val d := by rw [← val_rect, ← val_rect, h]
+  exact proportion_iff_mul.mpr h'
+
+/-- Prop. 6.17: if three lines are proportional, the rectangle contained by the outer is
+the square on the middle. -/
+theorem rect_eq_sq_of_proportion {a b c : Length} (h : Proportion a b b c) :
+    rect a c = sq b :=
+  Model.ext (by simpa using proportion_iff_mul.mp h)
 
 /-! The constructions by which Euclid finds lines, in the model. -/
 

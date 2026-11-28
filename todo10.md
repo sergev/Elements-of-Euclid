@@ -32,14 +32,6 @@ How Book 10 differs from the books before it:
 - **Numbers.** "The ratio which a number has to a number" joins Book 5's proportion with Books 7–9's numbers (`ℕ`, Def. 7.20). 10.5–10.9 make the bridge; after that, Book 7–9 propositions are cited as Lean terms (8.24, 8.26, 9.1, 9.2 for squares).
 - **Irrational means Euclid's irrational.** Rational and irrational are relative to an assigned line `ρ` (Def. 10.3), and a line is rational when commensurable with `ρ` in length or in square only. Incommensurability is proved as Euclid proves it, from the hypotheses (10.13, 10.16 and so on), not from the irrationality of a real number.
 
-## T4. Props. 10.17–10.26: application of areas; rational and medial
-
-- **10.17, 10.18:** a rectangle equal to the fourth part of the square on the lesser, applied to the greater and falling short by a square, divides it into commensurable (incommensurable) parts exactly when the square on the greater exceeds the square on the lesser by the square on a line commensurable (incommensurable) with the greater. Fitzpatrick's notes give the algebra; the proof follows Euclid, through 2.5, 6.28 (the construction lemma), 10.6, 10.15, 10.16.
-- **10.19–10.22:** rectangles of rational lines; rational areas applied to rational lines; the medial line (10.21; its lemma: as the first line is to the second, so the square on the first to the rectangle of the two, 6.1); the square on a medial applied to a rational line.
-- **10.23–10.26:** commensurable with a medial is medial (with corollary: areas commensurable with a medial area); rectangles of medial lines; a medial area does not exceed a medial area by a rational area (10.26).
-
-Risk: medium. 10.17 is the template for every later "square on the greater exceeds by …" step; write its statement so that 10.29–10.35 and 10.54–10.65 can use it.
-
 ## T5. Props. 10.27–10.35: lines to be found
 
 - **10.27, 10.28:** medial lines commensurable in square only containing a rational (a medial) area.

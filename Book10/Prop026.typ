@@ -16,3 +16,4 @@
     [Thus, a medial (area) does not exceed a medial (area) by a rational (area). (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book10/Prop026.lean")

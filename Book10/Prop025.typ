@@ -20,3 +20,4 @@
     [Thus, the ... by medial straight-lines (which are) commensurable in square only, and so on ....],
   )
 ]
+#lean-proof("/lean/Elements/Book10/Prop025.lean")

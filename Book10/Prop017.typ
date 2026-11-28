@@ -28,3 +28,4 @@
     [Thus, if there are two unequal straight-lines, and so on ....],
   )
 ]
+#lean-proof("/lean/Elements/Book10/Prop017.lean")

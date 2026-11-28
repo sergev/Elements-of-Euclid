@@ -20,3 +20,4 @@
     [Thus, the ... by rational straight-lines ... commensurable, and so on ....],
   )
 ]
+#lean-proof("/lean/Elements/Book10/Prop019.lean")

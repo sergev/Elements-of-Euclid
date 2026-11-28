@@ -16,3 +16,4 @@
   )
   #parallel-image("/Book10/fig024", 2.2in)
 ]
+#lean-proof("/lean/Elements/Book10/Prop024.lean")

@@ -20,3 +20,4 @@
     [Thus, if a rational (area) is applied to a rational (straight-line), and so on ....],
   )
 ]
+#lean-proof("/lean/Elements/Book10/Prop020.lean")
