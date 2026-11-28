@@ -25,3 +25,4 @@
     [So it is manifest, from this, that if a number measures two numbers, (then) it will also measure their greatest common measure. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book7/Prop02.lean")

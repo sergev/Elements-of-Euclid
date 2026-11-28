@@ -34,19 +34,6 @@ How Book 7 differs from Books 1–6:
   Once a proposition is proved, cite it, or a tactic that does the same, with a comment naming the proposition.
 - **No division, no rationals.** A ratio of numbers is never `a / b`, in `ℕ` or `ℚ`.
 
-## T2. Props. 7.1–7.3: the Euclidean algorithm
-
-- **7.1:** if the lesser, subtracted continually from the greater, leaves a unit before any remainder measures the one before it, the numbers are prime to one another.
-  - The repeated subtraction is a recursion that terminates. Write it as Euclid's process, with well-founded recursion or induction on the greater, and not as `Nat.gcd`.
-  - The proof is by contradiction, with a common measure greater than the unit.
-- **7.2:** to find the greatest common measure of two numbers not prime to one another.
-  - The construction is the same process stopped at the remainder that measures the one before it.
-  - Prove that it is common, and greatest by contradiction.
-  - The corollary, that a common measure measures the greatest common measure, is `proposition_2_corollary`.
-- **7.3:** the greatest common measure of three numbers, through 7.2 twice, with Euclid's cases.
-
-Risk: medium. 7.1 and 7.2 are the only processes in the book. Decide the shape of the recursion once, in `Lemmas.lean`, so that 7.2 reuses 7.1's.
-
 ## T3. Props. 7.4–7.10: part and parts
 
 - **7.4:** any number is part or parts of any greater number. The cases are "measures", "prime to it" and "neither", through 7.2.

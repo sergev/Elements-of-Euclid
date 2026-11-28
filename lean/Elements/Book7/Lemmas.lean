@@ -47,6 +47,31 @@ theorem not_measures_of_lt {a b : ℕ} (hb : 0 < b) (h : b < a) : ¬ a ∣ b := 
   · rw [Nat.mul_succ] at h
     omega
 
+/-- The measure is not greater than the number it measures. -/
+theorem le_of_measures {a b : ℕ} (hb : 0 < b) (h : a ∣ b) : a ≤ b :=
+  Nat.le_of_not_lt fun hab => not_measures_of_lt hb hab h
+
+/-! The process of 7.1 and 7.2. -/
+
+/--
+Two numbers, the lesser subtracted continually, in turn, from the greater (7.1, 7.2): the
+remainder at which the process stops, being equal to the number before it, which it
+measures. It is the unit in 7.1, and the greatest common measure in 7.2. A number
+measuring the one before it is subtracted from it until it is used up; so the last
+remainder measures the one before it exactly when it is the last subtracted.
+-/
+def remainder (a b : ℕ) : ℕ :=
+  if a = 0 then b else if b = 0 then a
+  else if a < b then remainder a (b - a)
+  else if b < a then remainder (a - b) b
+  else a
+termination_by a + b
+decreasing_by all_goals omega
+
+/-- The remainder of two numbers is a number, or the unit. -/
+theorem remainder_pos {a b : ℕ} (ha : 0 < a) (hb : 0 < b) : 0 < remainder a b := by
+  fun_induction remainder a b <;> omega
+
 /-! The four cases of Def. 7.20 at once. -/
 
 /--

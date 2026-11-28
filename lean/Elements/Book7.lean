@@ -1,5 +1,8 @@
 import Elements.Book7.Definitions
 import Elements.Book7.Lemmas
+import Elements.Book7.Prop01
+import Elements.Book7.Prop02
+import Elements.Book7.Prop03
 
 /-
 Book 7: numbers.

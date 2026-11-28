@@ -50,6 +50,19 @@ def PrimeNumber (p : ℕ) : Prop := 1 < p ∧ ∀ d, d ∣ p → d = 1 ∨ d = p
 measure. -/
 def PrimeTo (a b : ℕ) : Prop := ∀ d, d ∣ a → d ∣ b → d = 1
 
+/-- Def. 7.12, three numbers: prime to one another when a unit alone measures all
+three. -/
+def PrimeTo₃ (a b c : ℕ) : Prop := ∀ d, d ∣ a → d ∣ b → d ∣ c → d = 1
+
+/-- The greatest common measure `g` of `a` and `b` (7.2): it measures both, and no
+greater number measures both. -/
+def GreatestCommonMeasure (g a b : ℕ) : Prop :=
+  g ∣ a ∧ g ∣ b ∧ ∀ e, e ∣ a → e ∣ b → e ≤ g
+
+/-- The greatest common measure `g` of `a`, `b` and `c` (7.3). -/
+def GreatestCommonMeasure₃ (g a b c : ℕ) : Prop :=
+  g ∣ a ∧ g ∣ b ∧ g ∣ c ∧ ∀ e, e ∣ a → e ∣ b → e ∣ c → e ≤ g
+
 /-- Def. 7.13: a composite number is measured by some number, other than itself. -/
 def CompositeNumber (a : ℕ) : Prop := ∃ d, 1 < d ∧ d < a ∧ d ∣ a
 
