@@ -11,6 +11,7 @@ namespace Elements.Book2
 
 open Elements.Book1
 
+set_option maxHeartbeats 2000000 in
 theorem proposition_11 : ∀ (a b : Point) (AB : Line),
   distinctPointsOnLine a b AB →
   ∃ h : Point, between a h b ∧ |(a─b)| * |(b─h)| = |(a─h)| * |(a─h)| :=
@@ -22,16 +23,22 @@ by
   euclid_apply (extend_point_longer AC e a (e─b)) as x
   euclid_apply (Elements.Book1.proposition_3 e x e b AC BE) as f
   -- Missed by Euclid: F falls beyond A, since EB is greater than EA.
-  euclid_apply (proposition_47 a b e AB BE AC)
+  have h47 := proposition_47 a b e AB BE AC (by euclid_finish)
+  have : |(e─a)| < |(e─b)| := by
+    have hpos : 0 < |(a─b)| := length_pos_of_ne a b ‹_›
+    have := mul_pos hpos hpos
+    apply lt_of_mul_self_lt_mul_self₀ (segment_gte_zero _)
+    rw [segment_symmetric e b, segment_symmetric e a]
+    rw [segment_symmetric b a] at h47
+    linarith
   euclid_assert between e a f
   euclid_apply (exists_point_opposite AC b) as z
   euclid_apply (proposition_46' f a z AC) as (g, h, GH, FG, AH)
   -- Missed by Euclid: H falls on AB.
+  euclid_apply (right_angle_on_lines c a b f b AC AB)
+  euclid_apply (on_line_of_eq_angle h AB a b f AC)
   euclid_assert h.onLine AB
   euclid_assert AH = AB
-  euclid_apply (proposition_30 GH BD AC)
-  euclid_apply (intersection_lines GH CD) as k
-  euclid_apply (proposition_30 FG CD AB)
   -- CF, FA with the square on AE make the square on EF [Prop. 2.6]
   euclid_apply (Elements.Book2.proposition_6 c a e f)
   set_option systemE.simpAll false in
@@ -47,14 +54,28 @@ by
   set_option systemE.simpAll false in
     euclid_assert |(c─f)| * |(f─a)| = |(a─b)| * |(a─b)|
   -- Missed by Euclid: H falls between A and B, since AH = FA is less than AB.
-  euclid_assert |(c─f)| = |(a─b)| + |(f─a)|
-  euclid_assert |(f─a)| < |(a─b)|
-  euclid_assert |(a─h)| < |(a─b)| ∧ h.sameSide b AC
-  euclid_assert h ≠ a ∧ h ≠ b
-  euclid_assert ¬(between a b h)
-  euclid_assert ¬(between h a b)
-  euclid_apply (between_points a h b AB)
-  euclid_assert between a h b
+  have hfa : |(f─a)| < |(a─b)| := by
+    have h1 : |(c─f)| * |(f─a)| = |(a─b)| * |(a─b)| := by euclid_finish
+    have h2 : |(c─f)| = |(a─b)| + |(f─a)| := by euclid_finish
+    rw [h2] at h1
+    nlinarith [segment_gte_zero (f─a), length_pos_of_ne a b ‹_›]
+  have hah : |(a─h)| < |(a─b)| := by
+    have : |(a─h)| = |(f─a)| := by euclid_finish
+    linarith
+  have hhb : h.sameSide b AC := by euclid_finish
+  have : ¬(between a b h) := fun hb => by
+    have := between_if a b h hb
+    have := segment_gte_zero (b─h)
+    linarith
+  have : ¬(between h a b) := fun hb => pasch_3 h a b AC ⟨hb, ‹_›⟩ hhb
+  have : between a h b := by
+    rcases between_points a h b AB (by euclid_finish) with hb | hb | hb
+    · exact hb
+    · contradiction
+    · contradiction
+  euclid_apply (proposition_30 GH BD AC)
+  euclid_apply (intersection_lines GH CD) as k
+  euclid_apply (proposition_30 FG CD AB)
   -- FK is the rectangle on CF, FA; AD the square on AB
   euclid_apply (proposition_34' f g c k FG CD AC GH)
   euclid_apply (rectangle_area f g c k FG CD AC GH)

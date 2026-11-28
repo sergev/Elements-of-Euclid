@@ -45,6 +45,16 @@ by
   euclid_apply (proposition_23_side a b c d e x AB CD CE) as f
   refine ⟨f, ?_, Or.inr ?_, ?_⟩ <;> euclid_finish
 
+-- A right angle is not nothing: some angle is positive [Prop. 1.1], and none exceeds two right angles.
+theorem right_angle_pos : (0 : ℝ) < ∟ := by
+  euclid_apply arbitrary_point as a
+  euclid_apply (distinct_points a) as b
+  euclid_apply (line_from_points a b) as AB
+  euclid_apply (proposition_1 a b AB) as c
+  have h1 := angle_pos_of_not_on_line a b c AB (by euclid_finish)
+  have h2 := (angle_range (Angle.ofPoints b a c)).2
+  linarith
+
 -- An angle of neither nothing nor two right angles has its sides on different lines.
 theorem not_on_line_of_angle : ∀ (d c e : Point) (CD CE : Line),
   formRectilinearAngle d c e CD CE ∧ 0 < (∠ d:c:e : ℝ) ∧ (∠ d:c:e : ℝ) < ∟ + ∟ → ¬(d.onLine CE) :=

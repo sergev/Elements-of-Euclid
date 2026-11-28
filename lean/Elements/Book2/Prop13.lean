@@ -16,6 +16,7 @@ by
   euclid_apply (Elements.Book2.proposition_7 c b d)
   -- the angle at D is right [Prop. 1.47]
   euclid_apply (proposition_47 d b a BC AB AD)
+  euclid_apply (right_angle_on_lines a d b a c AD BC)
   euclid_apply (proposition_47 d a c AD AC BC)
   euclid_finish
 

@@ -8,11 +8,13 @@ import Elements.Book1.Prop34
 import Elements.Book1.Prop36
 import Elements.Book1.Prop43
 import Elements.Book1.Prop46
+import Elements.Book2.Lemmas
 
 namespace Elements.Book2
 
 open Elements.Book1
 
+set_option maxHeartbeats 2000000 in
 theorem proposition_6 : ∀ (a b c d : Point),
   between a c b ∧ between c b d ∧ |(a─c)| = |(c─b)| →
   |(a─d)| * |(d─b)| + |(c─b)| * |(c─b)| = |(c─d)| * |(c─d)| :=
@@ -52,6 +54,7 @@ by
   euclid_apply (proposition_29_interior e h c b CE BG AB)
   euclid_apply (proposition_29_exterior h d e l c KM AB CE)
   euclid_apply (rectangle_area l h c b KM AB CE BG)
+  euclid_apply (right_angle_on_lines h b c h d BG AB)
   euclid_apply (rectangle_area h m b d KM AB BG DF)
   euclid_apply (rectangle_area e g l h EF KM CE BG)
   euclid_apply (rectangle_area k m a d KM AB AK DF)
@@ -60,8 +63,12 @@ by
   euclid_apply (proposition_36' k a c l l c b h KM AB AK CE CE BG)
   euclid_apply (proposition_43 d f e c m l g b h AB EF DF CE DE KM BG)
   -- how the figures make up one another
+  euclid_apply (parallel_between c b d e g f CE BG DF EF)
   euclid_apply (sum_parallelograms_area e f c d g b EF AB CE DF)
   euclid_apply (sum_parallelograms_area e c g b l h CE BG EF AB)
+  euclid_apply (parallel_between c b d e h d CE BG DF DE)
+  euclid_apply (parallel_between e h d g h b EF KM AB BG)
+  euclid_apply (parallel_between e h d f m d EF KM AB DF)
   euclid_apply (sum_parallelograms_area g b f d h m BG DF EF AB)
   euclid_apply (sum_parallelograms_area k m a d l c KM AB AK DF)
   euclid_apply (sum_parallelograms_area l m c d h b KM AB CE DF)

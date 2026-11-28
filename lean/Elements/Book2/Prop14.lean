@@ -1,4 +1,5 @@
 import SystemE
+import Elements.Book1.Prop23
 import Elements.Book1.Prop03
 import Elements.Book1.Prop10
 import Elements.Book1.Prop11
@@ -31,6 +32,9 @@ by
   -- BF is cut equally at G and unequally at E [Prop. 2.5]
   euclid_apply (Elements.Book2.proposition_5 b f g e)
   -- GH = GF, and the angle at E is right [Prop. 1.47]
+  have := right_angle_pos
+  euclid_apply (not_on_line_of_angle b e d BE ED)
+  euclid_apply (right_angle_on_lines b e d g h BE ED)
   euclid_apply (proposition_47 e h g ED GH BE)
   use h
   euclid_finish

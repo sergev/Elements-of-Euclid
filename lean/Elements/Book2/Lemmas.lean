@@ -37,9 +37,12 @@ by
   euclid_apply (proposition_31 b a d AC) as BE
   euclid_apply (intersection_lines DE BE) as e
   euclid_apply (proposition_34' d e a b DE AB AC BE)
+  euclid_apply (equal_angles a c' d b b AC AB)
   euclid_apply (proposition_29_interior e b d a DE AB AC)
-  euclid_apply (proposition_34' d e a b DE AB AC BE)
-  euclid_apply (rectangle_area d e a b DE AB AC BE)
+  have hde : |(d─e)| = |(a─b)| := by euclid_finish
+  have hda : |(d─a)| = |(a₁─a₂)| := by euclid_finish
+  have harea := (rectangle_area d e a b DE AB AC BE (by euclid_finish)).1
+  rw [hde, hda] at harea
   use d, e, DE, AC, BE
   euclid_finish
 
@@ -54,20 +57,9 @@ theorem rectangle_on' : ∀ (a b a₁ a₂ : Point) (AB : Line),
   Triangle.area △ d:a:b + Triangle.area △ d:e:b = |(a─b)| * |(a₁─a₂)| :=
 by
   euclid_intros
-  euclid_apply (line_from_points a₁ a₂) as A₁₂
-  euclid_apply (proposition_11_end a b AB) as c'
-  euclid_apply (line_from_points a c') as AC
-  euclid_apply (extend_point_longer AC a c' (a₁─a₂)) as c
-  euclid_apply (proposition_3 a c a₁ a₂ AC A₁₂) as d
-  euclid_apply (proposition_31 d a b AB) as DE
-  euclid_apply (proposition_31 b a d AC) as BE
-  euclid_apply (intersection_lines DE BE) as e
-  euclid_apply (proposition_34' d e a b DE AB AC BE)
-  euclid_apply (proposition_29_interior e b d a DE AB AC)
-  euclid_apply (proposition_34' d e a b DE AB AC BE)
-  euclid_apply (rectangle_area d e a b DE AB AC BE)
-  use d, e, DE, AC, BE
-  euclid_finish
+  euclid_apply (Elements.Book1.proposition_1 a b AB) as x
+  euclid_apply (rectangle_on a b x a₁ a₂ AB) as (d, e, DE, AD, BE)
+  use d, e, DE, AD, BE
 
 /--
 Parallels keep order: three parallel lines meeting one line at `x₁, x₂, x₃` in that order

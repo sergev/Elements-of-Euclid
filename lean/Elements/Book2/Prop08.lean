@@ -111,6 +111,10 @@ by
   euclid_apply (proposition_30 CH BL AE)
   euclid_apply (proposition_30 MN EF AB)
   euclid_apply (proposition_30 OP EF AB)
+  euclid_assert k ≠ q
+  euclid_assert ¬(k.onLine AB)
+  euclid_assert ¬(q.onLine AB)
+  euclid_assert ¬(q.onLine MN)
   euclid_apply (proposition_30 MN OP AB)
   -- Missed by Euclid: where the points fall, read off his figure.
   euclid_apply (parallel_between c b d q k d CH BL DF DE)
@@ -142,10 +146,17 @@ by
   euclid_apply (proposition_5' a e d AE DE AB)
   euclid_apply (proposition_29_exterior b a d k e BL AE DE)
   have i₁ := Elements.Book1.proposition_6 b k d BL DE AB (by euclid_finish)
+  euclid_assert c.sameSide a DE
+  euclid_assert g.sameSide c DE
+  have : g.sameSide a DE := same_side_trans c g a DE ⟨same_side_symm g c DE ‹_›, ‹c.sameSide a DE›⟩
+  have : between k q e :=
+    between_trans_in' d q e k ⟨(between_symm e q d ‹between e q d›).1, (between_symm q k d ‹between q k d›).1⟩
   euclid_apply (proposition_29_exterior g a k q e CH AE DE)
   euclid_apply (proposition_29_exterior g a q k d MN AB DE)
   euclid_apply (Elements.Book1.proposition_6 g q k CH DE MN)
   euclid_apply (proposition_29_exterior o a e q d OP AB DE)
+  euclid_apply (equal_angles e o a q d AE DE)
+  euclid_apply (equal_angles d q e a a DE AB)
   have i₂ := Elements.Book1.proposition_6 o e q AE DE OP (by euclid_finish)
   -- the four squares CK, KD, GR, RN are equal
   have s₁ := proposition_36' g c b k k b d n MN AB CH BL BL DF (by euclid_finish)
