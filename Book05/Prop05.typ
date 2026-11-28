@@ -24,3 +24,4 @@
     [Thus, if a magnitude is the same multiple of a magnitude that a (part) taken away (is) of a (part) taken away (respectively), (then) the remainder will also be the same multiple of the remainder as that which the whole (is) of the whole (respectively). (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book5/Prop05.lean")

@@ -24,3 +24,4 @@
     [Thus, if a first (magnitude) has the same ratio to a second that a third (has) to a fourth, (then) equal multiples of the first (magnitude) and the third will also have the same ratio to equal multiples of the second and the fourth, being taken in corresponding order, according to any kind of multiplication whatsoever. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book5/Prop04.lean")

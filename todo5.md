@@ -27,15 +27,6 @@ How Book 5 differs from Books 1–4:
   - Mathlib's lemmas may be used for what Euclid takes for granted: arithmetic of the counting numbers, and the algebra of addition (C.N. 1–5).
 - **No reals, no division.** Ratios are not numbers. "A : B :: C : D" is Def. 5.5, over equimultiples. Don't define a ratio as `a / b`, which would make the book trivial.
 
-## T2. Props. 5.1–5.6: multiples
-
-- **5.1:** a multiple of a sum is the sum of the multiples; "any number" by T1's decision.
-- **5.2:** adding multiples.
-- **5.3:** a multiple of a multiple.
-- **5.5–5.6:** taking away. They need the remainder from T1.
-- Induction on the multiple is the tool. Euclid divides the multiple into its parts equal to the magnitude: follow that, case by case, as far as Lean allows.
-- **5.4:** equal multiples of proportionals are proportional. It is the first use of Def. 5.5, and it uses 5.3.
-
 ## T3. Props. 5.7–5.10: same and greater ratios
 
 - **5.7:** equal magnitudes have the same ratio to the same magnitude, and it to them. The corollary (inversion) is `proposition_7_corollary`.

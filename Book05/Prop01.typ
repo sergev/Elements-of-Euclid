@@ -20,3 +20,4 @@
     [Thus, if there are any number of magnitudes whatsoever (which are) equal multiples, respectively, of some (other) magnitudes, of equal number (to them), (then) as many times as one of the (first) magnitudes is (divisible) by one (of the second), so many times will all (of the first magnitudes) also (be divisible) by all (of the second). (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book5/Prop01.lean")

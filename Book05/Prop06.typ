@@ -28,3 +28,4 @@
     [Thus, if two magnitudes are equal multiples of two (other) magnitudes, and some (parts) taken away (from the former magnitudes) are equal multiples of the latter (magnitudes, respectively), (then) the remainders are also either equal to the latter (magnitudes), or (are) equal multiples of them (respectively). (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book5/Prop06.lean")

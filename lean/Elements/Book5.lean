@@ -1,4 +1,10 @@
 import Elements.Book5.Magnitude
+import Elements.Book5.Prop01
+import Elements.Book5.Prop02
+import Elements.Book5.Prop03
+import Elements.Book5.Prop04
+import Elements.Book5.Prop05
+import Elements.Book5.Prop06
 
 /-
 Book 5: proportion, Eudoxus's theory of the ratios of magnitudes.

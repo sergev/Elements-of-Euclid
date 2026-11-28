@@ -20,3 +20,4 @@
     [Thus, if a first (magnitude) and a third are equal multiples of a second and a fourth (respectively), and a fifth (magnitude) and a sixth (are) also equal multiples of the second and fourth (respectively), (then) the first (magnitude) and the fifth, being added together, and the third and sixth, (being added together), will also be equal multiples of the second (magnitude) and the fourth (respectively). (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book5/Prop02.lean")

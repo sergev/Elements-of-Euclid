@@ -47,7 +47,9 @@ theorem mult_succ (n : ℕ+) (a : M) : (n + 1) • a = n • a + a := by
 /-- Def. 5.4: a multiple of `a` exceeds `b`. -/
 theorem archimedes (a b : M) : ∃ n : ℕ+, b < n • a := by
   obtain ⟨n, h⟩ := ratio a b
-  exact ⟨n.succPNat, by show b < (· + a)^[n.succPNat.natPred] a; rwa [Nat.natPred_succPNat]⟩
+  refine ⟨n.succPNat, ?_⟩
+  show b < (· + a)^[n.succPNat.natPred] a
+  rwa [Nat.natPred_succPNat]
 
 theorem lt_add' (a b : M) : b < a + b := add_comm b a ▸ lt_add b a
 
@@ -216,7 +218,8 @@ theorem symm (h : Proportion a b c d) : Proportion c d a b where
   eq m n := (h.eq m n).symm
   lt m n := (h.lt m n).symm
 
-theorem refl (a b : M) : Proportion a b a b := ⟨fun _ _ => .rfl, fun _ _ => .rfl, fun _ _ => .rfl⟩
+theorem refl (a b : M) : Proportion a b a b :=
+  ⟨fun _ _ => .rfl, fun _ _ => .rfl, fun _ _ => .rfl⟩
 
 /-- The same ratio is not a greater one (Defs. 5.5, 5.7). -/
 theorem not_greaterRatio (h : Proportion a b c d) : ¬ GreaterRatio a b c d := by

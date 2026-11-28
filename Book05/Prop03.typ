@@ -20,3 +20,4 @@
     [Thus, if a first (magnitude) and a third are equal multiples of a second and a fourth (respectively), and equal multiples are taken of the first and the third, (then), via equality, the (magnitudes) taken will also be equal multiples of the second (magnitude) and the fourth, respectively. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book5/Prop03.lean")
