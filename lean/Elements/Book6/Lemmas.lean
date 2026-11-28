@@ -139,6 +139,43 @@ by
   use g
   euclid_finish
 
+/-- A line `N` meeting `M` at `p` meets every parallel `L` to `M` (Post. 5): otherwise
+`M` and `N` would be two parallels to `L` through `p`. -/
+theorem parallel_meets : ∀ (p : Point) (L M N : Line),
+  ¬(L.intersectsLine M) ∧ p.onLine M ∧ p.onLine N ∧ M ≠ N → L.intersectsLine N :=
+by
+  euclid_intros
+  by_contra
+  euclid_apply (parallel_line_unique p L M N)
+  euclid_finish
+
+/-- On the line `DG` beyond `g`, `ge` equal to a given straight line `c₀c₁`
+[Prop. 1.3]. -/
+theorem lay_beyond : ∀ (d g c₀ c₁ : Point) (L : Line),
+  distinctPointsOnLine d g L ∧ c₀ ≠ c₁ →
+  ∃ e : Point, e.onLine L ∧ between d g e ∧ |(g─e)| = |(c₀─c₁)| :=
+by
+  euclid_intros
+  euclid_apply (line_from_points c₀ c₁) as C
+  euclid_apply (extend_point_longer L d g (c₀─c₁)) as y
+  euclid_apply (Elements.Book1.proposition_3 g y c₀ c₁ L C) as e
+  use e
+  euclid_finish
+
+/-- On the ray from `d` through `x`, `dg` equal to a given straight line `c₀c₁`
+[Prop. 1.3]. -/
+theorem lay_on_ray : ∀ (d x c₀ c₁ : Point) (L : Line),
+  distinctPointsOnLine d x L ∧ c₀ ≠ c₁ →
+  ∃ g : Point, g.onLine L ∧ g ≠ d ∧ ¬(between g d x) ∧ |(d─g)| = |(c₀─c₁)| :=
+by
+  euclid_intros
+  euclid_apply (lay_beyond d x c₀ c₁ L) as y
+  euclid_apply (line_from_points c₀ c₁) as C
+  euclid_assert |(d─y)| > |(c₀─c₁)|
+  euclid_apply (Elements.Book1.proposition_3 d y c₀ c₁ L C) as g
+  use g
+  euclid_finish
+
 /--
 One more copy: on the line `L` beyond `g` (which is `c`, or beyond `c` from `b`), a point
 `e` with `ge` equal to `bc` [Prop. 1.3]; the triangle on `ge` with vertex `a` is equal to

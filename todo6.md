@@ -29,14 +29,6 @@ How Book 6 differs from Books 1–5:
 - **Faithfulness to Book 5.** Every ratio step cites a Book 5 proposition or Def. 5.5. Don't use `Positive.proportion_of_mul_eq`, `Positive.mult_val` or `Length.fourth` where Euclid has an argument; they are facts of the model. Record each use, with the reason, in a comment.
 - **No reals for ratios.** A ratio of lines or areas is never `|(a─b)| / |(c─d)|`.
 
-## T5. Props. 6.9–6.13: constructions
-
-- **6.9:** to cut off a prescribed part of a line: the `m`-th part, by T2.
-- **6.10:** to cut a line as a given cut line is cut.
-- **6.11, 6.12, 6.13:** third, fourth and mean proportionals.
-  - 6.12 constructs the fourth proportional that 5.18 assumes. Where later proofs need one for lines, cite 6.12, not `Length.fourth`.
-  - 6.13 uses Prop. 3.31 and the corollary to 6.8.
-
 ## T6. Props. 6.14–6.17: reciprocal proportion
 
 - **6.14, 6.15:** equal parallelograms (triangles) with an equal angle have their sides reciprocally proportional, and conversely.

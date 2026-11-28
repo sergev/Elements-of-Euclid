@@ -9,6 +9,11 @@ import Elements.Book6.Prop05
 import Elements.Book6.Prop06
 import Elements.Book6.Prop07
 import Elements.Book6.Prop08
+import Elements.Book6.Prop09
+import Elements.Book6.Prop10
+import Elements.Book6.Prop11
+import Elements.Book6.Prop12
+import Elements.Book6.Prop13
 
 /-
 Book 6: similar figures.

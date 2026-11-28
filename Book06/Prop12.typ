@@ -24,3 +24,4 @@
     [Thus, a fourth (straight-line), $H F$, has been found (which is) proportional to the three given straight-lines, $A$, $B$, and $C$. (Which is) the very thing it was required to do.],
   )
 ]
+#lean-proof("/lean/Elements/Book6/Prop12.lean")

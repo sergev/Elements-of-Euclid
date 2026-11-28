@@ -24,3 +24,4 @@
     [Thus, $D B$ has been found (which is) in mean proportion to the two given straight-lines, $A B$ and $B C$. (Which is) the very thing it was required to do.],
   )
 ]
+#lean-proof("/lean/Elements/Book6/Prop13.lean")

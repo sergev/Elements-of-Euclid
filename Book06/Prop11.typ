@@ -20,3 +20,4 @@
     [Thus, a third (straight-line), $C E$, has been found (which is) proportional to the two given straight-lines, $A B$ and $A C$. (Which is) the very thing it was required to do.],
   )
 ]
+#lean-proof("/lean/Elements/Book6/Prop11.lean")

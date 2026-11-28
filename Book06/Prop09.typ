@@ -24,3 +24,4 @@
     [Thus, the prescribed third part, $A F$, has been cut off from the given straight-line, $A B$. (Which is) the very thing it was required to do.],
   )
 ]
+#lean-proof("/lean/Elements/Book6/Prop09.lean")

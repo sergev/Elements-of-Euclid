@@ -20,3 +20,4 @@
     [Thus, the given uncut straight-line, $A B$, has been cut similarly to the given cut straight-line, $A C$. (Which is) the very thing it was required to do.],
   )
 ]
+#lean-proof("/lean/Elements/Book6/Prop10.lean")
