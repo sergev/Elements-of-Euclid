@@ -16,3 +16,4 @@
     [For if $A$ does not measure $B$ then no other (number) will measure any other (number) either [Prop.~8.6]. But $A$ measures $D$. Thus, $A$ also measures $B$. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book8/Prop07.lean")

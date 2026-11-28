@@ -20,3 +20,4 @@
     [And since $D$ has made $A$ (by) multiplying $C$, and has made $L$ (by) multiplying $E$, thus as $C$ is to $E$, so $A$ (is) to $L$ [Prop.~7.17]. And as $C$ (is) to $E$, so $G$ (is) to $H$. And thus as $G$ (is) to $H$, so $A$ (is) to $L$. Again, since $E$ has made $L$ (by) multiplying $D$ [Prop.~7.16], but, in fact, has also made $B$ (by) multiplying $F$, thus as $D$ is to $F$, so $L$ (is) to $B$ [Prop.~7.17]. But, as $D$ (is) to $F$, so $H$ (is) to $K$. And thus as $H$ (is) to $K$, so $L$ (is) to $B$. And it was also shown that as $G$ (is) to $H$, so $A$ (is) to $L$. Thus, via equality, as $G$ is to $K$, [so] $A$ (is) to $B$ [Prop.~7.14]. And $G$ has to $K$ the ratio compounded out of (the ratios of) the sides (of $A$ and $B$). Thus, $A$ also has to $B$ the ratio compounded out of (the ratios of) the sides (of $A$ and $B$). (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book8/Prop05.lean")

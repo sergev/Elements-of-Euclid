@@ -4,6 +4,9 @@ import Elements.Book8.Prop01
 import Elements.Book8.Prop02
 import Elements.Book8.Prop03
 import Elements.Book8.Prop04
+import Elements.Book8.Prop05
+import Elements.Book8.Prop06
+import Elements.Book8.Prop07
 
 /-
 Book 8: numbers in continued proportion.

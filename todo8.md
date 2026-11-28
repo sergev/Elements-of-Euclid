@@ -32,12 +32,6 @@ How Book 8 differs from Book 7:
   - Where Euclid states only three or four numbers, the doc comment says so. A general statement is still preferred when the induction is natural.
 - **Squares and cubes.** A square is a number multiplying itself, `a * a`; a cube is `a * a * a` (Defs. 7.18, 7.19). Don't use `^`.
 
-## T3. Props. 8.5–8.7: the compounded ratio; measuring
-
-- **8.5:** plane numbers have to one another the ratio compounded of their sides. This uses T1's compounded ratio and 8.4.
-- **8.6:** if the first of continuous proportionals does not measure the second, none measures any other. Euclid does one case and says "similarly"; the induction covers every pair.
-- **8.7:** if the first measures the last, it measures the second (the contrapositive of 8.6).
-
 ## T4. Props. 8.8–8.10: numbers falling between
 
 - **8.8:** as many numbers fall between two numbers in continued proportion, so many between any two in the same ratio.
