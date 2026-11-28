@@ -12,8 +12,8 @@ the square on `a` by the square on a line incommensurable in length with `l`. Th
 construction as 10.17.
 -/
 theorem proposition_18 {a l h x y : Length} (hal : a < l) (hh : h + h = a)
-    (hxy : x + y = l) (hr : rect x y = sq h) : ¬ Commensurable x y ↔ ExceedsIncomm l a :=
-      by
+    (hxy : x + y = l) (hr : rect x y = sq h) :
+    ¬ Commensurable x y ↔ ExceedsIncomm l a := by
   wlog hyx : y < x generalizing x y
   · rcases (not_lt.mp hyx).lt_or_eq with hlt | rfl
     · rw [show Commensurable x y ↔ Commensurable y x from ⟨.symm, .symm⟩]
