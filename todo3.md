@@ -19,13 +19,6 @@ When the solvers struggle:
 - **Segment orientation:** when a goal compares products of the same segments written in different orders (`|(a─b)|` against `|(b─a)|`), add the symmetric step as an assert.
 - **`simp_all`:** if it blows up, turn it off for that step with `set_option systemE.simpAll false in`.
 
-## T6. Props. 3.14–3.16: chords and the line at the end of a diameter
-
-- **3.14–3.15:** equal chords are equally far from the center; the diameter is the greatest chord, and a nearer chord is greater. These use Prop. 1.47 with products.
-- **3.16:** the perpendicular at the end of a diameter falls outside the circle (a tangent). No other straight line fits between it and the circle.
-  - **The horn angle:** Euclid's further claim is about the curved angle between circle and tangent, and System E has no curved angles. State and prove the straight-line parts. Write a comment saying what is left out; T13 adds a note to the primer.
-- **Corollary:** the perpendicular at the end of a diameter touches the circle (T1).
-
 ## T7. Props. 3.17–3.19: tangents
 
 - **3.17:** draw a tangent from a given point. This is a construction: `∃` a line touching the circle.

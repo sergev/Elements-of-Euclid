@@ -22,7 +22,7 @@ by
     euclid_apply (intersection_circle_circle_1 c f α β)
     euclid_finish
 
-/-- Circles touching externally at `A`: the line `FG` joining the centers goes through `A`. -/
+/-- Circles touching externally at `A`: the line joining the centers goes through `A`. -/
 theorem proposition_12 : ∀ (a f g : Point) (FG : Line) (α β : Circle),
   α.touchesExternallyAt β a ∧ f.isCentre α ∧ g.isCentre β ∧ f.onLine FG ∧ g.onLine FG →
   a.onLine FG :=

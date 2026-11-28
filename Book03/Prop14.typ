@@ -32,3 +32,4 @@
     [Thus, in a circle, equal straight-lines are equally far from the center, and (straight-lines) which are equally far from the center are equal to one another. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book3/Prop14.lean")

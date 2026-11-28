@@ -1,3 +1,4 @@
+import Elements.Book3.Lemmas
 import Elements.Book3.Prop01
 import Elements.Book3.Prop02
 import Elements.Book3.Prop03
@@ -11,6 +12,9 @@ import Elements.Book3.Prop10
 import Elements.Book3.Prop11
 import Elements.Book3.Prop12
 import Elements.Book3.Prop13
+import Elements.Book3.Prop14
+import Elements.Book3.Prop15
+import Elements.Book3.Prop16
 
 /-
 Book 3: circles.

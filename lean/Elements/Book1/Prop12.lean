@@ -6,7 +6,7 @@ namespace Elements.Book1
 
 theorem proposition_12 : ∀ (a b c : Point) (AB : Line),
   distinctPointsOnLine a b AB ∧ ¬(c.onLine AB) →
-  ∃ h : Point, h.onLine AB ∧ (∠ a:h:c = ∟ ∨ ∠ b:h:c = ∟) :=
+  ∃ h : Point, h.onLine AB ∧ (h ≠ a ∧ ∠ a:h:c = ∟ ∨ h ≠ b ∧ ∠ b:h:c = ∟) :=
 by
   euclid_intros
   euclid_apply (exists_point_opposite AB c) as d
@@ -29,13 +29,13 @@ by
   by_cases (h = a)
   · by_cases (between b h e)
     · euclid_apply (equal_angles h b g c c AB CH)
-      refine ⟨?_, Or.inr ?_⟩ <;> euclid_finish
+      refine ⟨?_, Or.inr ⟨?_, ?_⟩⟩ <;> euclid_finish
     · euclid_apply (equal_angles h b e c c AB CH)
-      refine ⟨?_, Or.inr ?_⟩ <;> euclid_finish
+      refine ⟨?_, Or.inr ⟨?_, ?_⟩⟩ <;> euclid_finish
   · by_cases (between a h e)
     · euclid_apply (equal_angles h a g c c AB CH)
-      refine ⟨?_, Or.inl ?_⟩ <;> euclid_finish
+      refine ⟨?_, Or.inl ⟨?_, ?_⟩⟩ <;> euclid_finish
     · euclid_apply (equal_angles h a e c c AB CH)
-      refine ⟨?_, Or.inl ?_⟩ <;> euclid_finish
+      refine ⟨?_, Or.inl ⟨?_, ?_⟩⟩ <;> euclid_finish
 
 end Elements.Book1
