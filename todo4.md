@@ -30,23 +30,6 @@ Book 1–3 SMT-free rules hold for Book 4: every step closes by saturation. What
 - **Squares of lengths:** use `Elements/Book3/Lemmas.lean` (`length_eq_of_square_eq`, `lt_of_square_lt`). Add symmetric asserts when products are written in different orders.
 - **Circumferences:** use the Book 3 axioms (`arc_*`), and Props. 3.26–3.30.
 
-## T4. Prop. 4.10: the golden triangle
-
-Construct an isosceles triangle whose base angles are each double the vertex angle.
-- **Construction:** cut AB by Prop. 2.11, then draw the circle through A, C, D (Prop. 4.5).
-- **Proof:**
-  - Prop. 3.37 gives that BD touches the circle.
-  - Prop. 3.32 gives the alternate angle.
-  - Props. 1.5, 1.6 and 1.32 give the rest.
-
-This is the longest single proof in the book:
-- Build the figure in a lemma (as Book 2's `proposition_4_figure`).
-- Argue the angles in a second lemma.
-- Check how Book 2's `proposition_11` states its conclusion, and restate it if 4.10 needs another form.
-- Expect `-- Missed by Euclid.` steps for where D falls, and for B being outside the circle ACD.
-
-Risk: high. Take it alone.
-
 ## T5. Props. 4.11–4.14: the pentagon
 
 - **4.11:** inscribe a regular pentagon.

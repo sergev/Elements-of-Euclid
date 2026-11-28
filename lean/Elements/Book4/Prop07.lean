@@ -13,8 +13,8 @@ A corner of the square: `GBEA`, with right angles at `E`, `A`, `B`, is a paralle
 -/
 theorem proposition_7_lemma : ∀ (a b e g : Point) (EA EB AG BG : Line),
   distinctPointsOnLine e a EA ∧ distinctPointsOnLine e b EB ∧
-  distinctPointsOnLine a g AG ∧ distinctPointsOnLine b g BG ∧ ∠ a:e:b = ∟ ∧ ∠ e:a:g = ∟ ∧ ∠ e:b:g = ∟ ∧
-  g.sameSide b EA ∧ g.sameSide a EB →
+  distinctPointsOnLine a g AG ∧ distinctPointsOnLine b g BG ∧ ∠ a:e:b = ∟ ∧
+  ∠ e:a:g = ∟ ∧ ∠ e:b:g = ∟ ∧ g.sameSide b EA ∧ g.sameSide a EB →
   |(g─a)| = |(e─b)| ∧ |(g─b)| = |(e─a)| ∧ ∠ a:g:b = ∟ :=
 by
   euclid_intros

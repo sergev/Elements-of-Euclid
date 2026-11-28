@@ -20,3 +20,4 @@
     [Thus, the isosceles triangle $A B D$ has been constructed having each of the angles at the base $B D$ double the remaining (angle). (Which is) the very thing it was required to do.],
   )
 ]
+#lean-proof("/lean/Elements/Book4/Prop10.lean")

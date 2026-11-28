@@ -5,23 +5,22 @@ namespace Elements.Book4
 
 /--
 To insert into a circle `α`, with center `o`, a straight line equal to a given one `D`
-(from `d₀` to `d₁`), not greater than the diameter.
+(from `d₀` to `d₁`), not greater than the diameter. It is inserted from `C`, the end of
+the diameter `BC`, which may be any point of the circle.
 -/
-theorem proposition_1 : ∀ (o p d₀ d₁ : Point) (α : Circle),
-  o.isCentre α ∧ p.onCircle α ∧ d₀ ≠ d₁ ∧ |(d₀─d₁)| ≤ |(o─p)| + |(o─p)| →
-  ∃ (a c : Point), insertedInto c a α ∧ |(c─a)| = |(d₀─d₁)| :=
+theorem proposition_1 : ∀ (o c d₀ d₁ : Point) (α : Circle),
+  o.isCentre α ∧ c.onCircle α ∧ d₀ ≠ d₁ ∧ |(d₀─d₁)| ≤ |(o─c)| + |(o─c)| →
+  ∃ a : Point, insertedInto c a α ∧ |(c─a)| = |(d₀─d₁)| :=
 by
   euclid_intros
   -- let a diameter BC be drawn
-  euclid_apply (line_from_points o p) as BC
-  euclid_apply (intersection_circle_line_extending_points α BC o p) as b
-  euclid_apply (intersection_circle_line_extending_points α BC o b) as c
+  euclid_apply (line_from_points o c) as BC
+  euclid_apply (intersection_circle_line_extending_points α BC o c) as b
   euclid_apply (between_if b o c)
-  euclid_apply (point_on_circle_onlyif o p b α)
-  euclid_apply (point_on_circle_onlyif o p c α)
+  euclid_apply (point_on_circle_onlyif o c b α)
   by_cases (|(b─c)| = |(d₀─d₁)|)
   · -- BC, equal to D, is inserted into the circle
-    use b, c
+    use b
     euclid_finish
   · -- BC is greater than D: let CE be made equal to D [Prop. 1.3]
     euclid_apply (line_from_points d₀ d₁) as D
@@ -33,7 +32,7 @@ by
     euclid_apply (intersection_circles α EAF) as a
     -- CA = CE, and CE = D: CA = D
     euclid_apply (point_on_circle_onlyif c e a EAF)
-    use a, c
+    use a
     euclid_finish
 
 end Elements.Book4
