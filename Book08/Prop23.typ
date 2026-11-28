@@ -16,3 +16,4 @@
     [For since two numbers, $B$ and $C$, are in mean proportion to $A$ and $D$, $A$ and $D$ are thus similar solid numbers [Prop.~8.21]. And $A$ (is) cube. Thus, $D$ (is) also cube [Def.~7.21]. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book8/Prop23.lean")

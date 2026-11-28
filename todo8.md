@@ -32,12 +32,6 @@ How Book 8 differs from Book 7:
   - Where Euclid states only three or four numbers, the doc comment says so. A general statement is still preferred when the induction is natural.
 - **Squares and cubes.** A square is a number multiplying itself, `a * a`; a cube is `a * a * a` (Defs. 7.18, 7.19). Don't use `^`.
 
-## T8. Props. 8.22–8.27: squares and cubes in ratios
-
-- **8.22, 8.23:** of three (four) continuous proportionals, if the first is a square (cube), so is the third (fourth). Through 8.20 (8.21) and 7.22-type steps.
-- **8.24, 8.25:** two numbers in the ratio of a square to a square (cube to cube), the first a square (cube): so is the second.
-- **8.26, 8.27:** similar plane (solid) numbers are in the ratio of a square to a square (cube to cube).
-
 ## T9. Primer and docs
 
 - **`Book00/Lean.typ`:** a section on Book 8:

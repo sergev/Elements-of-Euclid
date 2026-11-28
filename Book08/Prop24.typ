@@ -16,3 +16,4 @@
     [For since $C$ and $D$ are square, $C$ and $D$ are thus similar plane (numbers). Thus, one number falls (between) $C$ and $D$ in mean proportion [Prop.~8.18]. And as $C$ is to $D$, (so) $A$ (is) to $B$. Thus, one number also falls (between) $A$ and $B$ in mean proportion [Prop.~8.8]. And $A$ is square. Thus, $B$ is also square [Prop.~8.22]. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book8/Prop24.lean")

@@ -16,3 +16,4 @@
     [For since one number, $B$, is in mean proportion to $A$ and $C$, $A$ and $C$ are thus similar plane (numbers) [Prop.~8.20]. And $A$ is square. Thus, $C$ is also square [Def.~7.21]. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book8/Prop22.lean")

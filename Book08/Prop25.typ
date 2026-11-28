@@ -16,3 +16,4 @@
     [For since $C$ and $D$ are cube (numbers), $C$ and $D$ are (thus) similar solid (numbers). Thus, two numbers fall (between) $C$ and $D$ in mean proportion [Prop.~8.19]. And as many (numbers) as fall in between $C$ and $D$ in continued proportion, so many also (fall) in (between) those (numbers) having the same ratio as them (in continued proportion) [Prop.~8.8]. And hence two numbers fall (between) $A$ and $B$ in mean proportion. Let $E$ and $F$ (so) fall. Therefore, since the four numbers $A$, $E$, $F$, $B$ are continuously proportional, and $A$ is cube, $B$ (is) thus also cube [Prop.~8.23]. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book8/Prop25.lean")

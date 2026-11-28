@@ -16,3 +16,4 @@
     [For since $A$ and $B$ are similar solid (numbers), two numbers thus fall (between) $A$ and $B$ in mean proportion [Prop.~8.19]. Let $C$ and $D$ have (so) fallen. And let the least numbers, $E$, $F$, $G$, $H$, having the same ratio as $A$, $C$, $D$, $B$, (and) equal in multitude to them, be taken [Prop.~8.2]. Thus, the outermost of them, $E$ and $H$, are cube [Prop.~8.2 corr.]. And as $E$ is to $H$, so $A$ (is) to $B$. And thus $A$ has to $B$ the ratio which (some) cube number (has) to a(nother) cube number. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book8/Prop27.lean")
