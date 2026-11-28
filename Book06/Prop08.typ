@@ -33,3 +33,4 @@
     [So (it is) clear, from this, that if, in a right-angled triangle, a (straight-line) is drawn from the right-angle perpendicular to the base, (then) the (straight-line so) drawn is in mean proportion to the pieces of the base.#content-box-note[In other words, the perpendicular is the geometric mean of the pieces.] (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book6/Prop08.lean")

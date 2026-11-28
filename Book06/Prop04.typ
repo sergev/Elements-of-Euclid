@@ -24,3 +24,4 @@
     [Thus, in equiangular triangles the sides about the equal angles are proportional, and those (sides) subtending equal angles correspond. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book6/Prop04.lean")

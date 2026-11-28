@@ -147,9 +147,11 @@ theorem size_triangle_pos' {a b c : Point} {L : Line} (h : distinctPointsOnLine 
   rw [size_triangle_rot]
   exact size_triangle_pos h ha
 
-/-- `size △… = size △…` for the same vertices in any order. -/
-macro "triangle_perm" : tactic => `(tactic| first
+/-- `size p = size q` for the same straight line with its ends either way, or the same
+triangle with its vertices in any order. -/
+macro "size_perm" : tactic => `(tactic| first
   | rfl
+  | exact size_segment_symm _ _
   | exact size_triangle_rot _ _ _
   | exact (size_triangle_rot _ _ _).symm
   | exact size_triangle_swap _ _ _

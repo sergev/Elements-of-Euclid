@@ -29,12 +29,6 @@ How Book 6 differs from Books 1–5:
 - **Faithfulness to Book 5.** Every ratio step cites a Book 5 proposition or Def. 5.5. Don't use `Positive.proportion_of_mul_eq`, `Positive.mult_val` or `Length.fourth` where Euclid has an argument; they are facts of the model. Record each use, with the reason, in a comment.
 - **No reals for ratios.** A ratio of lines or areas is never `|(a─b)| / |(c─d)|`.
 
-## T4. Props. 6.4–6.8: similar triangles
-
-- **6.4:** equiangular triangles have proportional sides. Euclid's figure places the triangles side by side; build it.
-- **6.5, 6.6, 6.7:** conditions for equiangular triangles. 6.7 has the condition on the remaining angles; state it as Euclid does, both less or both not less than right angles.
-- **6.8:** the perpendicular in a right-angled triangle makes triangles similar to the whole and to one another. The corollary (the perpendicular is the mean proportional) is `proposition_8_corollary`.
-
 ## T5. Props. 6.9–6.13: constructions
 
 - **6.9:** to cut off a prescribed part of a line: the `m`-th part, by T2.

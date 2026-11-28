@@ -32,3 +32,4 @@
     [Thus, if two triangles have one angle equal to one angle, and the sides about other angles proportional, and the remaining angles both less than, or both not less than, right-angles, (then) the triangles will be equiangular, and will have the angles about which the sides (are) proportional equal. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book6/Prop07.lean")

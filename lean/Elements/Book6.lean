@@ -4,6 +4,11 @@ import Elements.Book6.Lemmas
 import Elements.Book6.Prop01
 import Elements.Book6.Prop02
 import Elements.Book6.Prop03
+import Elements.Book6.Prop04
+import Elements.Book6.Prop05
+import Elements.Book6.Prop06
+import Elements.Book6.Prop07
+import Elements.Book6.Prop08
 
 /-
 Book 6: similar figures.

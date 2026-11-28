@@ -24,3 +24,4 @@
     [Thus, if two triangles have proportional sides, (then) the triangles will be equiangular, and will have the angles which corresponding sides subtend equal. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book6/Prop05.lean")

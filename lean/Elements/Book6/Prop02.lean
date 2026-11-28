@@ -22,8 +22,8 @@ by
     by euclid_finish⟩
   have h₂ := proposition_1 d c e a CA ⟨‹_›, by euclid_finish, ‹_›, by euclid_finish,
     by euclid_finish⟩
-  exact ⟨h₁.congr rfl rfl (by triangle_perm) (by triangle_perm),
-    h₂.congr rfl rfl (by triangle_perm) (by triangle_perm)⟩
+  exact ⟨h₁.congr rfl rfl (by size_perm) (by size_perm),
+    h₂.congr rfl rfl (by size_perm) (by size_perm)⟩
 
 /--
 A straight line `DE` parallel to the side `BC` of the triangle `abc` cuts the sides
