@@ -25,3 +25,4 @@
     [So it is clear, from this, that if three continuously proportional numbers are the least of those (numbers) having the same ratio as them then the outermost of them are square, and, if four (numbers), cube.],
   )
 ]
+#lean-proof("/lean/Elements/Book8/Prop02.lean")

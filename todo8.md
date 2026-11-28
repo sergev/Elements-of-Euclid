@@ -32,20 +32,6 @@ How Book 8 differs from Book 7:
   - Where Euclid states only three or four numbers, the doc comment says so. A general statement is still preferred when the induction is natural.
 - **Squares and cubes.** A square is a number multiplying itself, `a * a`; a cube is `a * a * a` (Defs. 7.18, 7.19). Don't use `^`.
 
-## T2. Props. 8.1–8.4: least numbers in continued proportion
-
-- **8.1:** continuous proportionals whose outermost are prime to one another are the least in their ratio. The proof is by contradiction, through 7.14 and 7.20.
-- **8.2:** to find the least numbers in continued proportion in a given ratio, as many as prescribed.
-  - Euclid builds them from the least numbers of the ratio by multiplication (7.17, 7.18), for three and four numbers.
-  - Do it for any multitude, by induction.
-  - The corollary, that the outermost of three or more are squares or cubes or, in general, powers of the least numbers, is `proposition_2_corollary`. State what Euclid states.
-- **8.3:** the least continuous proportionals have their outermost prime to one another (the converse of 8.1), through 8.2 and 7.27.
-- **8.4:** for given ratios in least numbers, to find the least numbers continuously proportional in them.
-  - Euclid takes three ratios, through least common multiples (7.34, 7.35).
-  - State it for three, as in Euclid's figure, unless induction over a list of ratios comes out as simple.
-
-Risk: medium. The arbitrary-length constructions start here; settle the representation and the step lemma before 8.2.
-
 ## T3. Props. 8.5–8.7: the compounded ratio; measuring
 
 - **8.5:** plane numbers have to one another the ratio compounded of their sides. This uses T1's compounded ratio and 8.4.

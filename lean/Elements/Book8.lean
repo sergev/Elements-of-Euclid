@@ -1,5 +1,9 @@
 import Elements.Book8.Definitions
 import Elements.Book8.Lemmas
+import Elements.Book8.Prop01
+import Elements.Book8.Prop02
+import Elements.Book8.Prop03
+import Elements.Book8.Prop04
 
 /-
 Book 8: numbers in continued proportion.
