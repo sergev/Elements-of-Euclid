@@ -48,6 +48,10 @@ def sum : {n : ℕ} → (Fin (n + 1) → ℕ) → ℕ
   | 0, a => a 0
   | n + 1, a => sum (fun i : Fin (n + 1) => a i.castSucc) + a (Fin.last (n + 1))
 
+/-- `a`, `b` are the least of those numbers having the same ratio as them (7.20): there
+are no numbers less than `a` and `b` in the same ratio. -/
+def Least (a b : ℕ) : Prop := ∀ c d, 0 < c → 0 < d → c ∶ d ∷ a ∶ b → ¬ (c < a ∧ d < b)
+
 /-- Def. 7.11: a prime number is measured by a unit alone (and by itself). -/
 def PrimeNumber (p : ℕ) : Prop := 1 < p ∧ ∀ d, d ∣ p → d = 1 ∨ d = p
 

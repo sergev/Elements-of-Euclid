@@ -1,5 +1,6 @@
 import Elements.Book7.Definitions
 import Mathlib.Tactic.Ring
+import Mathlib.Data.Nat.Find
 
 /-
 What Euclid takes for granted in Book 7: the common notions of measuring, and Book 5's
@@ -67,6 +68,10 @@ theorem sum_const (x : ℕ) {n : ℕ} : sum (fun _ : Fin (n + 1) => x) = x * (n 
   | succ n ih =>
     simp only [sum]
     rw [ih, Nat.mul_succ x (n + 1)]
+
+/-- A number taken more than once is greater. -/
+theorem lt_mul {a n : ℕ} (ha : 0 < a) (hn : 1 < n) : a < a * n :=
+  by simpa only [Nat.mul_one] using Nat.mul_lt_mul_of_pos_left hn ha
 
 /-! The process of 7.1 and 7.2. -/
 
@@ -213,6 +218,21 @@ theorem lt_of_proportion {a b c d : ℕ} (ha : 0 < a) (hb : 0 < b) (hc : 0 < c)
   by_contra hdc
   have : b * c < a * c := Nat.mul_lt_mul_of_pos_right hab hc
   have : a * d ≥ a * c := Nat.mul_le_mul_left a (by omega)
+  omega
+
+/-- There are least numbers in the ratio of `a` to `b`, the first of them not greater
+than the first of any numbers in that ratio: numbers cannot be less and less without end.
+Euclid takes them for granted in 7.21. -- Missed by Euclid. -/
+theorem exists_least {a b : ℕ} (ha : 0 < a) (hb : 0 < b) :
+    ∃ c d, 0 < c ∧ 0 < d ∧ c ∶ d ∷ a ∶ b ∧ Least c d ∧
+      ∀ c' d', 0 < c' → 0 < d' → c' ∶ d' ∷ a ∶ b → c ≤ c' := by
+  classical
+  have hP : ∃ c, ∃ d, 0 < c ∧ 0 < d ∧ c ∶ d ∷ a ∶ b :=
+    ⟨a, b, ha, hb, Proportion.refl ha hb⟩
+  obtain ⟨d, hc, hd, h⟩ := Nat.find_spec hP
+  refine ⟨Nat.find hP, d, hc, hd, h, fun c' d' hc' hd' h' hlt => ?_,
+    fun c' d' hc' hd' h' => Nat.find_min' hP ⟨d', hc', hd', h'⟩⟩
+  have := Nat.find_min' hP ⟨d', hc', hd', proportion_trans hc' hd' hc hd h' h⟩
   omega
 
 end Elements.Book7

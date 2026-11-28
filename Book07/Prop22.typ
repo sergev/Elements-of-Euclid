@@ -20,3 +20,4 @@
     [Since $C$ measures $A$ according to the units in $D$, $C$ has thus made $A$ (by) multiplying $D$ [Def.~7.15]. So, for the same (reasons), $C$ has also made $B$ (by) multiplying $E$. So the number $C$ has made $A$ and $B$ (by) multiplying the two numbers $D$ and $E$ (respectively). Thus, as $D$ is to $E$, so $A$ (is) to $B$ [Prop.~7.17]. Thus, $D$ and $E$ are in the same ratio as $A$ and $B$, being less than them. The very thing is impossible. Thus, some number does not measure the numbers $A$ and $B$. Thus, $A$ and $B$ are prime to one another. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book7/Prop22.lean")

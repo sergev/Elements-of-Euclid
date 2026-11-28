@@ -34,14 +34,6 @@ How Book 7 differs from Books 1–6:
   Once a proposition is proved, cite it, or a tactic that does the same, with a comment naming the proposition.
 - **No division, no rationals.** A ratio of numbers is never `a / b`, in `ℕ` or `ℚ`.
 
-## T6. Props. 7.20–7.22: least numbers in a ratio
-
-- **7.20:** the least numbers in a ratio measure those in the same ratio an equal number of times. The proof is by contradiction through "parts" and 7.13; follow it.
-- **7.21:** numbers prime to one another are the least in their ratio.
-- **7.22:** the least numbers in their ratio are prime to one another.
-
-Define "the least numbers having the same ratio as them" once, in `Definitions.lean`, as Euclid uses it: least among all pairs in the same ratio.
-
 ## T7. Props. 7.23–7.28: numbers prime to one another
 
 - **7.23:** a measure of one of two numbers prime to one another is prime to the other.
