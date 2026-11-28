@@ -1,6 +1,6 @@
 # Roadmap: Lean proofs for Books 9–13
 
-Books 1–8 are done (Milestones 1–8): Book 1's 48 propositions from LeanEuclid and Books 2, 3 and 4 (14, 37 and 16) written here in System E, Book 5's 25 in plain Lean over a class of magnitudes, Book 6's 33 in System E with Book 5's proportion, and Books 7 and 8 (39 and 27) in plain Lean over `ℕ`, typeset in `LeanElementsOfEuclid.pdf` and checked by `make check`. This file plans the remaining books, one milestone per book, numbered to match: Milestone N is Book N. A book depends on the books before it, so the milestones run in sequence. Only Milestone 9 (Book 9) can be done in parallel with the geometry.
+Books 1–9 are done (Milestones 1–9): Book 1's 48 propositions from LeanEuclid and Books 2, 3 and 4 (14, 37 and 16) written here in System E, Book 5's 25 in plain Lean over a class of magnitudes, Book 6's 33 in System E with Book 5's proportion, and Books 7, 8 and 9 (39, 27 and 36) in plain Lean over `ℕ`, typeset in `LeanElementsOfEuclid.pdf` and checked by `make check`. This file plans the remaining books, one milestone per book, numbered to match: Milestone N is Book N. A book depends on the books before it, so the milestones run in sequence.
 
 ## Common rules for every milestone
 
@@ -13,18 +13,6 @@ Books 1–8 are done (Milestones 1–8): Book 1's 48 propositions from LeanEucli
 - **System E.** It is our own copy in `lean/SystemE/`. New relations or rules a book needs go there, in files named for the book that introduces them. Lemmas proved from earlier propositions, such as repeated constructions, go in `lean/Elements/BookN/Lemmas.lean`.
 - **Toolchain.** Lean 4.36 and Mathlib v4.36. Upgrade Lean and Mathlib together, between milestones, not during one.
 
-## Milestone 9 — Book 9: primes and series (36 propositions)
-
-Uniqueness of prime factors (9.14), infinitude of primes (9.20), odd and even numbers (9.21–9.34), sums of geometric series (9.35), perfect numbers (9.36).
-
-- **Basis.** Milestones 7 and 8: `lean/Elements/Book7.lean`, `lean/Elements/Book8.lean` and their `Definitions.lean`, `Lemmas.lean`. Inherited from Book 8:
-  - continued proportion over `Fin (n + 1) → ℕ`: `ContinuedIn a r s`, `Continued a`, `SameRatios`, `LeastSeq`; the unit may be among the numbers, so "continuously proportional from a unit" (9.8–9.13, 9.35) is `Continued a` with `a 0 = 1`, and `eq_powers_one` (Prop. 8.10) says such numbers are `powers 1 (a 1)`, each the one before multiplied by `a 1`;
-  - 8.2's numbers `powers a b n` (with `powers_castSucc`, `powers_last`, `powers_zero`, `powers_primeTo`), `eq_powers` (least continuously proportional numbers are `powers` of the least numbers of their ratio), `continued_outer` (Prop. 8.22: the outermost are those of `powers`, taken the same number of times);
-  - the step lemmas: ex aequali along a sequence (`SameRatios.extremes`, `.alt`), `LeastSeq.eq`, `three`/`four` and `fallBetween_one`/`_two` with `FallBetween.one`/`.two`, `eq_mul_of_unit` (`1 ∶ d ∷ x ∶ y` gives `y = x * d`);
-  - squares and cubes are `a * a`, `a * a * a` (`SquareNumber`, `CubeNumber` when the side is greater than the unit), never `^`; squares and cubes measuring (8.14–8.17), squares and cubes in continued proportion (8.22–8.25).
-- **New.** Odd and even numbers as Euclid defines them (7.Def.6–10), and the sum of a sequence for 9.35–9.36.
-- **Risk.** Low to medium: sequences of any length, by induction, as in Book 8.
-
 ## Milestone 10 — Book 10: incommensurable magnitudes (115 propositions)
 
 10.1 (the basis of exhaustion), commensurability, the irrationality of √2 type results, and the classification of the 13 kinds of irrational lines (binomials, apotomes, medials …).
@@ -33,6 +21,7 @@ Uniqueness of prime factors (9.14), infinitude of primes (9.20), odd and even nu
 - **New.** The 13 kinds of irrational lines as definitions over `ℝ`; the lemmas Euclid needs (10.28 lemmas, Pythagorean triples).
 - **Risk.** High, due to size. It is the longest book, at about a quarter of the Elements, and highly repetitive: 10.36–10.72 and 10.73–10.110 mirror each other. Split it into sub-milestones of about 25 propositions each. Make proofs of the mirrored propositions share lemmas. The connection to geometry (lines and squares on them) depends on Milestone 6.
 - **Left by Book 6.** Lines and areas are magnitudes through `Figure` (`Elements/Book6/Definitions.lean`), with `p ∶ q ∷ r ∶ s`; Book 10 can state its ratios of lines and of squares so. The application of areas (6.28, 6.29) takes the given figure as a quadrilateral cut into two triangles and the defect or excess similar to a parallelogram, which covers Book 10's rectangles falling short or exceeding by squares. Angles and circumferences are magnitudes too (`∡a:b:c`, `⌒α:b:c:s`, for Prop. 6.33).
+- **Left by Books 7–9.** Numbers in the ratio of a square number to a square number, for 10.9 (commensurable in square) and the lemmas before 10.29 (Pythagorean triples): Prop. 8.26 (similar plane numbers have the ratio of a square to a square, `c * d ∶ e * f ∷ x * x ∶ y * y`), Prop. 8.24 (a number in that ratio to a square is a square), Props. 9.1, 9.2 (two numbers make a square exactly when they are similar plane numbers, with sides that may be the unit). Numbers are `ℕ` with proportion of numbers (Def. 7.20), not Book 5's; 10.5–10.8 must connect the two, a ratio of numbers being a ratio of magnitudes commensurable with a unit.
 
 ## Milestone 11 — Book 11: solid geometry (39 propositions)
 
@@ -73,10 +62,10 @@ The golden section (13.1–13.6), pentagon and decagon side relations (13.7–13
 | 6 | 6 | 33 | E + Book 5 | done |
 | 7 | 7 | 39 | Mathlib `ℕ` | done |
 | 8 | 8 | 27 | Book 7 | done |
-| 9 | 9 | 36 | Books 7–8 | low–medium |
+| 9 | 9 | 36 | Books 7–8 | done |
 | 10 | 10 | 115 | `ℝ` + Book 5 | high (size) |
 | 11 | 11 | 39 | new solid system | high |
 | 12 | 12 | 18 | Book 11 + magnitudes | high |
 | 13 | 13 | 18 | Books 4, 10, 11 | high |
 
-Milestones 3–4 finish the plane geometry that System E was built for, so they should go first. Milestones 7–9 can start any time. Milestones 11–13 depend on the design decision in Milestone 11 and should not start until Books 2–6 have shown how far E's style stretches.
+Milestones 3–4 finish the plane geometry that System E was built for, so they should go first. Milestones 11–13 depend on the design decision in Milestone 11 and should not start until Books 2–6 have shown how far E's style stretches.

@@ -30,17 +30,6 @@ How Book 9 differs from Book 8:
 - **From a unit.** "Continuously proportional, from a unit" is `Continued a` with `a 0 = 1`; `a 1` is "the number after the unit", and Euclid's "third from the unit" is `a 2`, counting the unit as first. `eq_powers_one` (Book 8, Prop. 8.10) makes such numbers `powers 1 (a 1)`.
 - **Squares and cubes.** `a * a`, `a * a * a`, never `^`. `SquareNumber`, `CubeNumber` need the side greater than the unit; where the side may be the unit (as in 8.20), state the product with positive sides, and say so.
 
-## T8. Primer and docs
-
-- **`Book00/Lean.typ`:** a section on Book 9:
-  - odd and even and the kinds of even numbers, and the choices of T1;
-  - continued proportion from a unit, and the index statements of 9.8–9.13;
-  - the defect in 9.19, and the steps marked missed (9.15, 9.34);
-  - how 9.36 reaches Def. 7.22.
-- **`CLAUDE.md`:** Book 9 notes: the definitions and where they are, "from a unit", the least number measured by any multitude. Update "Books 1–8".
-- **`Roadmap.md`:** delete Milestone 9, and update the table and the opening paragraph. Record in Milestone 10 what Book 10 inherits from the number books: numbers in the ratio of a square to a square (8.24, 8.26, 9.1, 9.2) for 10.9 and the lemmas before 10.29.
-- **README:** Books 1–9.
-
 ## T9. Final check
 
 - `make check` from a clean build (remove `lean/.lake/build` only), all books, under the cap. Note the time.
