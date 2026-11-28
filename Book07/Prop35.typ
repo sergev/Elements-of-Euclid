@@ -16,3 +16,4 @@
     [For if $E$ does not measure $C D$, (then) let $E$ leave $C F$ less than itself (in) measuring $D F$. And since $A$ and $B$ (both) measure $E$, and $E$ measures $D F$, $A$ and $B$ will thus also measure $D F$. And ($A$ and $B$) also measure the whole of $C D$. Thus, they will also measure the remainder $C F$, which is less than $E$. The very thing is impossible. Thus, $E$ cannot not measure $C D$. Thus, ($E$) measures ($C D$). (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book7/Prop35.lean")

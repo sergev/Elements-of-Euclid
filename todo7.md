@@ -34,19 +34,6 @@ How Book 7 differs from Books 1–6:
   Once a proposition is proved, cite it, or a tactic that does the same, with a comment naming the proposition.
 - **No division, no rationals.** A ratio of numbers is never `a / b`, in `ℕ` or `ℚ`.
 
-## T9. Props. 7.33–7.39: least numbers, least common multiple, parts
-
-- **7.33:** to find the least numbers in the ratio of any given numbers.
-  - The construction divides by the greatest common measure: by 7.3 for three numbers, as in Euclid's figure. State it for three, or for any number if T1's "any multitude" makes that no harder.
-  - The step that cites Prop. 5.13 uses T1's number version.
-- **7.34:** to find the least number measured by two numbers, with Euclid's two cases (prime to one another or not).
-- **7.35:** a number measured by two numbers is measured by the least one they measure.
-- **7.36:** the least number measured by three numbers.
-- **7.37, 7.38:** a number measured by a number has a part called the same as it, and conversely.
-- **7.39:** to find the least number that has given parts.
-
-Constructions ("to find") are stated as existence with the property, as in Book 6, plus "least" where Euclid proves it. Don't use `Nat.lcm`.
-
 ## T10. Primer and docs
 
 - **`Book00/Lean.typ`:** a section on Book 7:

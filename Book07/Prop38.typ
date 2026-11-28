@@ -16,3 +16,4 @@
     [For since $B$ is a part of $A$ called the same as $C$, and the unit $D$ is also a part of $C$ called the same as it (i.e., $D$ is the $C$th part of $C$), thus which(ever) part the unit $D$ is of the number $C$, $B$ is also the same part of $A$. Thus, the unit $D$ measures the number $C$ as many times as $B$ (measures) $A$. Thus, alternately, the unit $D$ measures the number $B$ as many times as $C$ (measures) $A$ [Prop.~7.15]. Thus, $C$ measures $A$. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book7/Prop38.lean")

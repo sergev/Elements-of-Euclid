@@ -16,3 +16,4 @@
     [For as many times as $B$ measures $A$, so many units let there be in $C$. Since $B$ measures $A$ according to the units in $C$, and the unit $D$ also measures $C$ according to the units in it, the unit $D$ thus measures the number $C$ as many times as $B$ (measures) $A$. Thus, alternately, the unit $D$ measures the number $B$ as many times as $C$ (measures) $A$ [Prop.~7.15]. Thus, which(ever) part the unit $D$ is of the number $B$, $C$ is also the same part of $A$. And the unit $D$ is a part of the number $B$ called the same as it (i.e., a $B$th part). Thus, $C$ is also a part of $A$ called the same as $B$ (i.e., $C$ is the $B$th part of $A$). Hence, $A$ has a part $C$ which is called the same as $B$ (i.e., $A$ has a $B$th part). (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book7/Prop37.lean")

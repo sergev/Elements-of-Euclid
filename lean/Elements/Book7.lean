@@ -32,6 +32,13 @@ import Elements.Book7.Prop29
 import Elements.Book7.Prop30
 import Elements.Book7.Prop31
 import Elements.Book7.Prop32
+import Elements.Book7.Prop33
+import Elements.Book7.Prop34
+import Elements.Book7.Prop35
+import Elements.Book7.Prop36
+import Elements.Book7.Prop37
+import Elements.Book7.Prop38
+import Elements.Book7.Prop39
 
 /-
 Book 7: numbers.

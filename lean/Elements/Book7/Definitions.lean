@@ -52,6 +52,27 @@ def sum : {n : ℕ} → (Fin (n + 1) → ℕ) → ℕ
 are no numbers less than `a` and `b` in the same ratio. -/
 def Least (a b : ℕ) : Prop := ∀ c d, 0 < c → 0 < d → c ∶ d ∷ a ∶ b → ¬ (c < a ∧ d < b)
 
+/--
+`h`, `k`, `l` have the same ratio as `a`, `b`, `c` (7.33): they are the same multiple,
+part, or parts of `a`, `b`, `c`, each of each, as `proportion_iff` puts Def. 7.20 for
+two; so, alternately, `h ∶ k ∷ a ∶ b` and `k ∶ l ∷ b ∶ c`.
+-/
+def SameRatio₃ (h k l a b c : ℕ) : Prop :=
+  ∃ m n x y z, 0 < m ∧ 0 < n ∧
+    h = x * m ∧ a = x * n ∧ k = y * m ∧ b = y * n ∧ l = z * m ∧ c = z * n
+
+/-- `a`, `b`, `c` are the least of those numbers having the same ratio as them (7.33). -/
+def Least₃ (a b c : ℕ) : Prop :=
+  ∀ h k l, 0 < h → 0 < k → 0 < l → SameRatio₃ h k l a b c → ¬ (h < a ∧ k < b ∧ l < c)
+
+/-- `c` is the least number that `a` and `b` measure (7.34). -/
+def LeastMeasured (c a b : ℕ) : Prop :=
+  0 < c ∧ a ∣ c ∧ b ∣ c ∧ ∀ d, 0 < d → a ∣ d → b ∣ d → c ≤ d
+
+/-- `d` is the least number that `a`, `b` and `c` measure (7.36). -/
+def LeastMeasured₃ (d a b c : ℕ) : Prop :=
+  0 < d ∧ a ∣ d ∧ b ∣ d ∧ c ∣ d ∧ ∀ e, 0 < e → a ∣ e → b ∣ e → c ∣ e → d ≤ e
+
 /-- Def. 7.11: a prime number is measured by a unit alone (and by itself). -/
 def PrimeNumber (p : ℕ) : Prop := 1 < p ∧ ∀ d, d ∣ p → d = 1 ∨ d = p
 

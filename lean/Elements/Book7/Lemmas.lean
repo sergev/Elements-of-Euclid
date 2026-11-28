@@ -77,6 +77,11 @@ theorem lt_mul {a n : ℕ} (ha : 0 < a) (hn : 1 < n) : a < a * n :=
 theorem PrimeTo.symm {a b : ℕ} (h : PrimeTo a b) : PrimeTo b a :=
   fun d hb ha => h d ha hb
 
+/-- A number `e` measuring `c` as far as it can leaves a remainder less than itself, by
+Lean's division with remainder. -/
+theorem exists_remainder (c : ℕ) {e : ℕ} (he : 0 < e) : ∃ q r, c = e * q + r ∧ r < e :=
+  ⟨c / e, c % e, (Nat.div_add_mod c e).symm, Nat.mod_lt c he⟩
+
 /-! The process of 7.1 and 7.2. -/
 
 /--
