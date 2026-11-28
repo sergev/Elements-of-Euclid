@@ -29,17 +29,6 @@ How Book 6 differs from Books 1–5:
 - **Faithfulness to Book 5.** Every ratio step cites a Book 5 proposition or Def. 5.5. Don't use `Positive.proportion_of_mul_eq`, `Positive.mult_val` or `Length.fourth` where Euclid has an argument; they are facts of the model. Record each use, with the reason, in a comment.
 - **No reals for ratios.** A ratio of lines or areas is never `|(a─b)| / |(c─d)|`.
 
-## T2. Lemmas: multiples in the figure
-
-6.1 takes "any number" of straight lines equal to the base, and 6.9 a part of a line. Both need equal segments laid off `m` times, for any `m`. That is induction, outside E's style.
-- In `lean/Elements/Book6/Lemmas.lean`, by induction on `m : ℕ+`, with each step a System E construction closed by saturation:
-  - given `b ≠ c` on a line, a point `g` on the ray beyond `c` with `Length.of b g _ = m • Length.of b c _`, and the `m` points between, each pair the same length apart;
-  - triangles with a common vertex on `m` equal consecutive bases: their area is `m •` the area of one (Prop. 1.38 at each step), and the triangle on the whole base has that area.
-- Keep each lemma small, taking only the facts it needs, as in Book 4's `Lemmas.lean`.
-- Use `Positive.mult_val` only to relate a multiple to a real `m * x` where the induction needs it, with a comment.
-
-Risk: high. If saturation can't close a step of the induction, supply the fact as in Books 1–4 (`between_if`, `sum_areas_if`, …). If System E can't express a step, stop and write down what is missing. Don't add axioms.
-
 ## T3. Props. 6.1–6.3: equal heights, parallels, the bisector
 
 - **6.1:** triangles and parallelograms of the same height are as their bases. The bridge to Book 5: the multiples of T2, then Def. 5.5. The parallelograms follow by Prop. 1.34 (double the triangles) and Prop. 5.15, 5.11.

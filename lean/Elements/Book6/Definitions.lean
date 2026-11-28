@@ -14,7 +14,8 @@ open Elements.Book5
 class Kind (K : Type) [Magnitude K] where
   of : (x : ℝ) → 0 < x → K
   of_inj {x y : ℝ} {hx : 0 < x} {hy : 0 < y} : of x hx = of y hy ↔ x = y
-  of_add {x y : ℝ} (hx : 0 < x) (hy : 0 < y) : of x hx + of y hy = of (x + y) (by positivity)
+  of_add {x y : ℝ} (hx : 0 < x) (hy : 0 < y) :
+    of x hx + of y hy = of (x + y) (by positivity)
   of_lt {x y : ℝ} {hx : 0 < x} {hy : 0 < y} : of x hx < of y hy ↔ x < y
 
 noncomputable instance : Kind Length where
@@ -102,7 +103,8 @@ theorem mag_inj {p : X} {q : Y} {hp : 0 < size p} {hq : 0 < size q} :
 
 /-- Two figures together make a third when their sizes add up. -/
 theorem mag_add {p : X} {q : Y} {r : U} {hp : 0 < size p} {hq : 0 < size q}
-    {hr : 0 < size r} (h : size p + size q = size r) : mag p hp + mag q hq = mag r hr := by
+    {hr : 0 < size r} (h : size p + size q = size r) :
+    mag p hp + mag q hq = mag r hr := by
   unfold mag
   rw [Kind.of_add]
   exact Kind.of_inj.mpr h
@@ -138,6 +140,12 @@ theorem size_triangle_rot (a b c : Point) : size (△a:b:c) = size (△b:c:a) :=
 
 theorem size_triangle_swap (a b c : Point) : size (△a:b:c) = size (△a:c:b) :=
   area_symm_2 a b c
+
+/-- A triangle is a magnitude when its vertex is off its base: the vertex first. -/
+theorem size_triangle_pos' {a b c : Point} {L : Line} (h : distinctPointsOnLine b c L)
+    (ha : ¬ a.onLine L) : 0 < size (△a:b:c) := by
+  rw [size_triangle_rot]
+  exact size_triangle_pos h ha
 
 namespace Proportional
 
