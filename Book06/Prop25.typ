@@ -24,3 +24,4 @@
     [Thus, a single (rectilinear figure) $K G H$ has been constructed (which is) similar to the given rectilinear figure $A B C$, and equal to a different given (rectilinear figure) $D$. (Which is) the very thing it was required to do.],
   )
 ]
+#lean-proof("/lean/Elements/Book6/Prop25.lean")

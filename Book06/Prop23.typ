@@ -24,3 +24,4 @@
     [Thus, equiangular parallelograms have to one another the ratio compounded out of (the ratios of) their sides. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book6/Prop23.lean")

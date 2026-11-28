@@ -24,3 +24,4 @@
     [Thus, if from a parallelogram a(nother) parallelogram is subtracted (which is) similar, and similarly laid out, to the whole, having a common angle with it, (then the subtracted parallelogram) is about the same diagonal as the whole. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book6/Prop26.lean")

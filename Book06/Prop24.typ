@@ -20,3 +20,4 @@
     [Thus, in any parallelogram, the parallelograms about the diagonal are similar to the whole, and to one another. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book6/Prop24.lean")

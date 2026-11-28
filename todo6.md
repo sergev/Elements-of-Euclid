@@ -29,13 +29,6 @@ How Book 6 differs from Books 1–5:
 - **Faithfulness to Book 5.** Every ratio step cites a Book 5 proposition or Def. 5.5. Don't use `Positive.proportion_of_mul_eq`, `Positive.mult_val` or `Length.fourth` where Euclid has an argument; they are facts of the model. Record each use, with the reason, in a comment.
 - **No reals for ratios.** A ratio of lines or areas is never `|(a─b)| / |(c─d)|`.
 
-## T8. Props. 6.23–6.26: the compounded ratio, parallelograms about the diagonal
-
-- **6.23:** equiangular parallelograms are in the ratio compounded of their sides. Uses T1's definition.
-- **6.24:** parallelograms about the diagonal are similar to the whole and to one another.
-- **6.25:** a figure similar to one figure and equal to another. Uses 1.44, 1.45 and 6.13; the given figures are as far as 1.45 reaches (T1).
-- **6.26:** the converse of 6.24, by contradiction.
-
 ## T9. Props. 6.27–6.30: application of areas
 
 - **6.27:** of parallelograms applied to a line and falling short by figures similar to the one on half the line, the one on half is the greatest.

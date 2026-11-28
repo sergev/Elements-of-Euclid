@@ -51,4 +51,19 @@ theorem similarQuadrilaterals_symm {a b c d e f g h : Point}
   let ⟨⟨h₁, h₂, h₃, h₄⟩, r₁, r₂, r₃, r₄⟩ := s
   ⟨⟨h₁.symm, h₂.symm, h₃.symm, h₄.symm⟩, r₁.symm, r₂.symm, r₃.symm, r₄.symm⟩
 
+/-- Similarity of quadrilaterals, with the vertices of both taken from the next. -/
+theorem similarQuadrilaterals_rot {a b c d e f g h : Point}
+    (s : similarQuadrilaterals a b c d e f g h) : similarQuadrilaterals b c d a f g h e :=
+  let ⟨⟨h₁, h₂, h₃, h₄⟩, r₁, r₂, r₃, r₄⟩ := s
+  ⟨⟨h₂, h₃, h₄, h₁⟩, r₂, r₃, r₄, r₁⟩
+
+/-- Similarity of triangles, with the vertices of both taken from the next. -/
+theorem similarTriangles_rot : ∀ (a b c d e f : Point) (AB BC CA DE EF FD : Line),
+  formTriangle a b c AB BC CA ∧ formTriangle d e f DE EF FD ∧
+  similarTriangles a b c d e f → similarTriangles b c a e f d :=
+by
+  euclid_intros
+  exact ⟨by euclid_finish, ‹(b─c) ∶ (c─a) ∷ (e─f) ∶ (f─d)›,
+    ‹(c─a) ∶ (a─b) ∷ (f─d) ∶ (d─e)›, ‹(a─b) ∶ (b─c) ∷ (d─e) ∶ (e─f)›⟩
+
 end Elements.Book6
