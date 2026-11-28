@@ -9,7 +9,7 @@ Book 11 is the first book of solid geometry: 39 propositions, 28 definitions, on
 
 The tasks run in order. The common rules in [Roadmap.md](Roadmap.md) apply throughout, and so does Milestone 11 there.
 
-T1 ends with a design note for the user to review. Stop there: no proofs until the user has approved it.
+T1 (done) wrote the design note in the header of `lean/Elements/Book11.lean`; T2 starts after the user has approved it.
 
 ## Routine for every task
 
@@ -29,25 +29,6 @@ How Book 11 differs from the books before it:
 - **Space, not the plane.** System E is one plane, with global sorts `Point`, `Line`, `Circle`. Book 11 needs points, lines and planes in space, and it cites Books 1 and 6 for figures that lie in any plane (1.4, 1.8 and 1.26 for triangles in space, 6.2 in 11.17, 1.35 and 6.14 in 11.31).
 - **New axioms.** This is the first book since Book 3 to need them. They go in `lean/Elements/Book11/Axioms.lean`, each true in ℝ³, and the primer lists them all.
 - **Solids as magnitudes.** From 11.25 on, solids are equal, added, and in ratio (Def. 5.5 in 11.25, cubed ratio in 11.33). A volume is a Book 5 magnitude, so Book 5 is cited as Lean terms, as Books 6 and 10 do.
-
-## T1. Design note (stop for review)
-
-Write the design note as the header comment of `lean/Elements/Book11.lean` (not yet imported anywhere), commit it, and give the user a summary. Settle these choices, with the reasons:
-- **Sorts.** Points, lines and planes of space, with names that don't clash with System E's global `Point` and `Line` (say `Space.Point`, `Space.Line`, `Plane`, or a namespace). Incidence (`onLine`, `onPlane`), betweenness, and length and angle in space.
-- **Incidence axioms.** Hilbert's spatial axioms I.4–I.8: three non-collinear points determine one plane; a line with two points in a plane lies in it; two planes with a common point have another; four points not in a plane exist. Decide how 11.1–11.3 relate to them. Following Fitzpatrick's note, they may be stated as theorems that cite the axioms rather than Euclid's argument, with a doc comment saying so; or Euclid's argument is followed where it can be made to work.
-- **The plane's geometry in every plane.** Following the Roadmap: an axiom that each plane carries System E's plane, by a map from System E's `Point` onto the plane's points that preserves betweenness, lines, length, angle and area. Then a triangle in space lies in a plane (11.2), is pulled back to System E, Book 1 or Book 6 is applied there, and the result is pushed forward. Write the transport lemmas (a figure of k points in a plane, pulled back) so that each citation of Book 1 is one step. Check that saturation closes the plane steps after the pull-back. Steps in space are Lean terms that cite the axioms and the propositions, as Book 5 and Book 10 do.
-- **Definitions.** Def. 11.3 (a line at right angles to a plane: to every line in the plane through its foot), Def. 11.4 (planes at right angles), Def. 11.8 (parallel planes do not meet), parallel lines in space (in one plane and not meeting, Fitzpatrick's note to 11.6), the solid angle of three plane angles (Def. 11.11, for 11.20–11.23, 11.26), the parallelepiped (six faces in three pairs of parallel planes), its height, and the prism (Def. 11.13, for 11.28 and 11.39). Defs. 11.5–11.7 (inclinations) and 11.14–11.28 (sphere, cone, cylinder, the regular solids) are not used in Book 11. Leave them to Books 12 and 13, and say so.
-- **Volume.** Choose between:
-  - `volume` of a tetrahedron as the primitive, with axioms like System E's area of a triangle (zero for four points in a plane, symmetric in the vertices, additive when a tetrahedron is split at a point on an edge or a face, equal for equal and similar tetrahedra). Solids are then sums of tetrahedra, as figures are sums of triangles in Books 1, 2 and 6, and Book 12's pyramids are the same sort. The parallelepiped is a fixed sum of tetrahedra, and a cut by a plane (11.25, 11.28) must be shown to be additive.
-  - `volume` of a parallelepiped and of a prism, with axioms for the cuts Euclid makes.
-
-  Recommended: the first, since Book 12 is about pyramids. Def. 11.10 ("equal and similar") is how Euclid shows solids equal (11.25, 11.28, 11.31); say whether it becomes the congruence axiom for tetrahedra or a lemma built from it. Fitzpatrick's notes to 11.34 (equal solids on equal bases have equal heights) and 11.37 (equal ratios have equal cubed ratios) name steps Euclid takes for granted; they are proved and marked `-- Missed by Euclid.`. A volume is a positive real (`Volume`, next to `Length` and `Area` in `Elements/Book5/Plane.lean`), so it is a Book 5 magnitude.
-- **The model.** Check every axiom against ℝ³ in the note, one line each. Proving them in Mathlib's `EuclideanSpace ℝ (Fin 3)` is not required, but if it is cheap for the incidence axioms, it is worth doing in `tmp/` as a check.
-- **Statements to try.** Before writing the note, write in scratch (`tmp/`, with `sorry`, not committed) the statements of 11.1, 11.4, 11.6, 11.11, 11.17, 11.20, 11.23, 11.25, 11.29, 11.31, 11.33, 11.35 and 11.39, and check that the sorts and definitions carry them. Put three of them in the note as examples.
-
-Stop after the note. The user reviews it, and T2 starts only after that.
-
-Risk: high. Every later task depends on these choices, and a wrong axiom is not caught by the kernel.
 
 ## T2. Axioms, definitions and scaffolding
 
