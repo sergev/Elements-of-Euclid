@@ -32,3 +32,4 @@
     [Thus, a circle has been completed from the given segment of a circle. (Which is) the very thing it was required to do.],
   )
 ]
+#lean-proof("/lean/Elements/Book3/Prop25.lean")

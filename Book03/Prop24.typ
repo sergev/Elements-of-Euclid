@@ -20,3 +20,4 @@
     [Thus, similar segments of circles on equal straight-lines are equal to one another. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book3/Prop24.lean")

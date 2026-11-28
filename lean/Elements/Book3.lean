@@ -21,6 +21,9 @@ import Elements.Book3.Prop19
 import Elements.Book3.Prop20
 import Elements.Book3.Prop21
 import Elements.Book3.Prop22
+import Elements.Book3.Prop23
+import Elements.Book3.Prop24
+import Elements.Book3.Prop25
 
 /-
 Book 3: circles.
@@ -37,10 +40,20 @@ they *cut*, at two points. Book 3's definitions are in `SystemE/Book3.lean`:
 - Defs. 3.6 and 3.8, segments, `c.onSegment α a b AB s`: `c` is on the circumference of
   the segment of `α` on the chord `AB`, on the side of `s`; the angle in the segment is
   `∠ a:c:b`.
+- Def. 3.11, similar segments, `similarSegments α a b AB x β c d CD y`: the segments of `α`
+  on `AB` toward `x` and of `β` on `CD` toward `y` admit equal angles, `∠ a:x:b = ∠ c:y:d`;
+  by Prop. 3.21 one point of each segment is enough.
 
 Prop. 3.20 is proved in the position Euclid treats, the center on the side of the angle
 at the circumference, and in those he leaves out (`proposition_20'`, `proposition_20''`);
 Prop. 3.21 needs them for segments not greater than a semicircle.
+
+Props. 3.23–3.24. Unequal segments on one straight line are on different circles, so 3.23
+concludes that the circles are the same. In 3.24 Euclid applies one segment to the
+other; System E's superposition moves triangles, so the triangle on the chord with apex
+the center is applied, and the circle about the image of the center is shown to be the
+other segment's by 3.23. "Equal segments" are segments on equal chords of equal circles
+(Def. 3.1), which coincide when applied.
 
 The corollaries to 3.1 and 3.16 are `proposition_1_corollary` and `proposition_16_corollary`.
 -/

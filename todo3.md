@@ -19,16 +19,6 @@ When the solvers struggle:
 - **Segment orientation:** when a goal compares products of the same segments written in different orders (`|(a─b)|` against `|(b─a)|`), add the symmetric step as an assert.
 - **`simp_all`:** if it blows up, turn it off for that step with `set_option systemE.simpAll false in`.
 
-## T9. Props. 3.23–3.25: similar segments
-
-- **Def. 3.11:** similar segments admit equal angles. Define it with T8's angle in a segment.
-- **3.23–3.24:** similar segments on the same, or equal, straight lines are equal. Euclid moves one segment onto the other.
-  - System E's `superposition` handles triangles only, so decide how to state "the segments coincide" before proving these.
-  - If it needs a new rule, discuss it first.
-- **3.25:** complete the circle of a given segment (a construction).
-
-Risk: high. Write a short design note before any proof.
-
 ## T10. Props. 3.26–3.30: circumferences (arcs)
 
 Euclid's "equal circumferences" have no counterpart in System E.

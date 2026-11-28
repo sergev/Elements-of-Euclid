@@ -20,3 +20,4 @@
     [Thus, two similar and unequal segments of circles cannot be constructed on the same side of the same straight-line.],
   )
 ]
+#lean-proof("/lean/Elements/Book3/Prop23.lean")

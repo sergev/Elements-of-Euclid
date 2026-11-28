@@ -81,3 +81,12 @@ chord `AB` on the side of `s`; the angle in the segment is then `∠ a:c:b`.
 @[simp]
 abbrev Point.onSegment (c : Point) (α : Circle) (a b : Point) (AB : Line) (s : Point) : Prop :=
   distinctPointsOnLine a b AB ∧ a.onCircle α ∧ b.onCircle α ∧ c.onCircle α ∧ c.sameSide s AB
+
+/--
+Def. 3.11: similar segments admit equal angles. The segment of `α` on the chord `AB` on
+the side of `x`, and that of `β` on `CD` on the side of `y`, with `x`, `y` on them.
+-/
+@[simp]
+abbrev similarSegments (α : Circle) (a b : Point) (AB : Line) (x : Point)
+    (β : Circle) (c d : Point) (CD : Line) (y : Point) : Prop :=
+  x.onSegment α a b AB x ∧ y.onSegment β c d CD y ∧ ∠ a:x:b = ∠ c:y:d
