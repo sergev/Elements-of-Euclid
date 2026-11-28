@@ -35,5 +35,57 @@ The propositions come with their diagrams.
 ## Make the PDFs yourself
 
 Install [Typst](https://typst.app/open-source/#download), then run `make` in this folder.
-To check the Lean proofs, install [Lean](https://lean-lang.org/), Z3, CVC5
-and `smt-portfolio`, then run `make cache` once and `make check`.
+
+## Check the Lean proofs
+
+The proofs of Books 1 and 2 are in [`lean/`](lean). They are written in System E,
+a formal system for Euclid's style of geometry, and every step is checked by
+the Lean kernel.
+
+### Install Lean on Debian or Ubuntu
+
+Lean is installed with its version manager, `elan`:
+
+```sh
+sudo apt install git curl
+curl https://elan.lean-lang.org/elan-init.sh -sSf | sh
+source ~/.elan/env
+```
+
+The Lean version is read from `lean/lean-toolchain`; `elan` downloads it on the
+first build. The only Lean library used is Mathlib.
+
+### Run the check
+
+```sh
+make cache          # download prebuilt Mathlib (a few GB, once)
+make check          # check Books 1 and 2
+make check BOOK=1   # check one book
+```
+
+The first `make check` builds the System E library and then the proofs; it takes
+several minutes and about 6 GB of memory. A build that finishes without errors means
+that every proposition is proved. To check one file while working on it:
+
+```sh
+cd lean
+lake env lean --load-dynlib=.lake/build/lib/libelements_SaturateCore.so Elements/Book1/Prop47.lean
+```
+
+### SMT solvers (optional)
+
+Each step of a proof is first closed by a built-in search that produces a proof
+Lean can check. Only when that fails is the step handed to the SMT solvers Z3 and
+CVC5, and the solvers' answer is then taken on trust. Books 1 and 2 need no solver,
+so you can check them without installing any. To write new proofs, install the
+solvers and `smt-portfolio`, which runs them in parallel:
+
+```sh
+sudo apt install z3 cvc5 pipx
+pipx install git+https://github.com/yangky11/smt-portfolio
+```
+
+If your release has no `cvc5` package, take the Linux binary from the
+[cvc5 releases](https://github.com/cvc5/cvc5/releases) and put it on your `PATH`
+(for example in `~/.local/bin`). To see which theorems depend on a solver, run
+`cd lean && lake env lean ../tools/SmtFree.lean`.
