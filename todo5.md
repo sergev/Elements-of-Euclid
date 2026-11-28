@@ -27,15 +27,6 @@ How Book 5 differs from Books 1–4:
   - Mathlib's lemmas may be used for what Euclid takes for granted: arithmetic of the counting numbers, and the algebra of addition (C.N. 1–5).
 - **No reals, no division.** Ratios are not numbers. "A : B :: C : D" is Def. 5.5, over equimultiples. Don't define a ratio as `a / b`, which would make the book trivial.
 
-## T6. Props. 5.20–5.25: ex aequali, perturbed proportion, and the last two
-
-- **5.20–5.21:** the comparison lemmas for ex aequali, ordinary and perturbed. Uses 5.8, 5.10, 5.13, and 5.16 or 5.11.
-- **5.22–5.23:** ex aequali, ordinary and perturbed.
-  - 5.22 is for any number of magnitudes, per T1: induction on the chain, with Euclid's three-term case as its step.
-  - 5.23 is for three, as Euclid states it.
-- **5.24:** adding magnitudes with the same ratio to the same magnitude.
-- **5.25:** in a proportion, the largest and the smallest together exceed the other two.
-
 ## T7. Magnitudes in the plane
 
 The bridge to Book 6: instances of T1's class for magnitudes of System E.

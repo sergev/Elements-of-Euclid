@@ -24,3 +24,4 @@
     [Thus, if there are three magnitudes, and others of equal number to them, (being) in the same ratio taken two by two, and (if) their proportion is perturbed, (then) they will also be in the same ratio via equality. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book5/Prop23.lean")

@@ -20,3 +20,4 @@
     [Thus, if there are three magnitudes, and others of equal number to them, (being) also in the same ratio taken two by two, and (if), via equality, the first is greater than the third, (then) the fourth will also be greater than the sixth. And if (the first is) equal (to the third then the fourth will also be) equal (to the sixth). And if (the first is) less (than the third then the fourth will also be) less (than the sixth). (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book5/Prop20.lean")

@@ -24,3 +24,4 @@
     [Thus, if four magnitudes are proportional, (then) the (sum of the) largest and the smallest of them is greater than the (sum of the) remaining two (magnitudes). (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book5/Prop25.lean")

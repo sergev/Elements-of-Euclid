@@ -20,3 +20,4 @@
     [Thus, if a first (magnitude) has to a second the same ratio that a third (has) to a fourth, and a fifth (magnitude) also has to the second the same ratio that a sixth (has) to the fourth, (then) the first (magnitude) and the fifth, added together, will also have the same ratio to the second that the third (magnitude) and the sixth (added together, have) to the fourth. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book5/Prop24.lean")
