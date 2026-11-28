@@ -13,20 +13,11 @@ Books 1–3 are done (Milestones 1–3): Book 1's 48 propositions from LeanEucli
 - **System E.** It is our own copy in `lean/SystemE/`. New relations or rules a book needs go there, in files named for the book that introduces them. Lemmas proved from earlier propositions, such as repeated constructions, go in `lean/Elements/BookN/Lemmas.lean`.
 - **Toolchain.** Lean 4.36 and Mathlib v4.36. Upgrade Lean and Mathlib together, between milestones, not during one.
 
-## Milestone 3 — Book 3: circles (37 propositions) — done
-
-Chords, tangents, angles in segments, the angle in a semicircle (3.31), the power of a point (3.35–3.37).
-
-- **Basis.** System E covers circles: centers, inside/on/outside, line–circle and circle–circle intersection. Avigad, Dean and Mumma designed it for Books 1–4.
-- **New.** Tangency ("touches"): a line or circle meets a circle without cutting it, defined from the existing relations. Segments of circles and "angle in a segment", and similar segments (Def. 3.11) for 3.23–3.24. Arcs, defined via the angles that stand on them, for 3.26–3.29.
-- **Risk.** Medium. Definitions of arcs and segments are not primitive in E, and Euclid reasons about them freely. Several proofs (3.2, 3.10, 3.13) are proofs by contradiction from impossible diagrams, which may need many `-- Missed by Euclid.` steps.
-- **Done.** All 37, SMT-free. Arcs became magnitudes with axioms (`Elements/Book3/Axioms.lean`) rather than definitions; touching circles internally and externally are defined by their insides; 3.24 superposes the triangle on the chord with apex the center. The horn angles of 3.16 and 3.31 are left out.
-
 ## Milestone 4 — Book 4: inscribed and circumscribed figures (16 propositions)
 
 Inscribing triangles, squares, the regular pentagon (4.10–4.11), hexagon (4.15) and 15-gon (4.16) in circles, and circles in them.
 
-- **Basis.** System E with the Milestone 3 extensions. 4.10 (the golden triangle) uses 2.11 and 3.37.
+- **Basis.** System E with the Book 3 extensions. 4.10 (the golden triangle) uses 2.11 and 3.37.
 - **New.** A "polygon inscribed in a circle" given as a list of points, all `onCircle`, each side a chord, with equal sides and angles for regular ones. Statements about n points need finite indexing, which E's flat style doesn't have. Write them out for n ≤ 6, and for the 15-gon prove only what Euclid proves (one side).
 - **Risk.** Medium. The pentagon construction is long, and SMT time may grow with the number of points; split it into `have` steps.
 
@@ -44,7 +35,7 @@ Eudoxus's theory of ratios of magnitudes: equimultiples (Def. 5.5), alternation,
 
 - **Basis.** System E plus Book 5 proportion, through the Milestone 5 instance for lengths and areas.
 - **New.** Similar rectilinear figures (Def. 6.1), reciprocally proportional figures, duplicate ratio (Def. 5.9 used here). Areas of general rectilinear figures as sums of triangles.
-- **Risk.** High. 6.1 is the bridge between geometry and Book 5, and its proof by equimultiples needs constructing m copies of a segment for arbitrary m. That requires induction, which is outside E's style. 6.27–6.29 are long. 6.33 needs arcs from Milestone 3.
+- **Risk.** High. 6.1 is the bridge between geometry and Book 5, and its proof by equimultiples needs constructing m copies of a segment for arbitrary m. That requires induction, which is outside E's style. 6.27–6.29 are long. 6.33 needs Book 3's arcs.
 
 ## Milestone 7 — Book 7: numbers (39 propositions)
 

@@ -9,7 +9,7 @@ Get the free PDF books from the [latest release](https://github.com/sergev/Eleme
 
 - [ElementsEnglish.pdf](https://github.com/sergev/Elements-of-Euclid/releases/latest/download/ElementsEnglish.pdf) — in English
 - [ElementsGreekEnglish.pdf](https://github.com/sergev/Elements-of-Euclid/releases/latest/download/ElementsGreekEnglish.pdf) — the original Greek and the English side by side, with a small Greek–English dictionary
-- [ElementsLean.pdf](https://github.com/sergev/Elements-of-Euclid/releases/latest/download/ElementsLean.pdf) — Books 1 and 2 in English, each proposition followed by its proof in the [Lean](https://lean-lang.org/) proof assistant
+- [ElementsLean.pdf](https://github.com/sergev/Elements-of-Euclid/releases/latest/download/ElementsLean.pdf) — Books 1–3 in English, each proposition followed by its proof in the [Lean](https://lean-lang.org/) proof assistant
 
 ## What's inside
 
@@ -28,7 +28,7 @@ The propositions come with their diagrams.
   by L. Murphy, K. Yang et al. (MIT license), written in the formal system E
   of Avigad, Dean and Mumma. The interface to the SMT solvers comes from
   [lean-smt](https://github.com/ufmg-smite/lean-smt) (Apache 2.0).
-  Book 2's proofs were written for this edition in the same system.
+  The proofs of Books 2 and 3 were written for this edition in the same system.
 - Title picture: detail of Raphael's *School of Athens*.
 - Book title pictures are drawn in the colorful style of Oliver Byrne's 1847 Euclid.
 
@@ -38,7 +38,7 @@ Install [Typst](https://typst.app/open-source/#download), then run `make` in thi
 
 ## Check the Lean proofs
 
-The proofs of Books 1 and 2 are in [`lean/`](lean). They are written in System E,
+The proofs of Books 1–3 are in [`lean/`](lean). They are written in System E,
 a formal system for Euclid's style of geometry, and every step is checked by
 the Lean kernel.
 
@@ -59,7 +59,7 @@ first build. The only Lean library used is Mathlib.
 
 ```sh
 make cache          # download prebuilt Mathlib (a few GB, once)
-make check          # check Books 1 and 2
+make check          # check Books 1–3
 make check BOOK=1   # check one book
 ```
 
@@ -76,7 +76,7 @@ lake env lean --load-dynlib=.lake/build/lib/libelements_SaturateCore.so Elements
 
 Each step of a proof is first closed by a built-in search that produces a proof
 Lean can check. Only when that fails is the step handed to the SMT solvers Z3 and
-CVC5, and the solvers' answer is then taken on trust. Books 1 and 2 need no solver,
+CVC5, and the solvers' answer is then taken on trust. Books 1–3 need no solver,
 so you can check them without installing any. To write new proofs, install the
 solvers and `smt-portfolio`, which runs them in parallel:
 

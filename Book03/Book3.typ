@@ -2,7 +2,7 @@
 
 #chapter([Book 3], [ELEMENTS BOOK 3])
 
-== _Fundamentals of Plane Geometry Involving_
+== _Fundamentals of Plane Geometry Involving Circles_
 
 #v(2cm)
 #align(center, image("front.svg", height: 4.5in))
