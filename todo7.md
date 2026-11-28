@@ -1,0 +1,172 @@
+# Milestone 7 — Book 7: tasks
+
+Book 7 is the first book on numbers: 39 propositions, with a corollary to 7.2.
+- 7.1–7.3: the Euclidean algorithm, the greatest common measure.
+- 7.4–7.10: part and parts.
+- 7.11–7.15: proportion of numbers: remainders, sums, alternation, via equality, the unit.
+- 7.16–7.19: multiplication: commutativity, products in the ratio of their factors, cross-multiplication.
+- 7.20–7.22: the least numbers in a ratio.
+- 7.23–7.28: numbers prime to one another.
+- 7.29–7.32: prime numbers.
+- 7.33–7.39: least numbers in given ratios, the least common multiple, parts.
+
+The tasks run in order. The common rules in [Roadmap.md](Roadmap.md) apply throughout, and so does Milestone 7 there.
+
+## Routine for every task
+
+- Each task ends with these steps:
+  - `make check BOOK=7` and `make` pass;
+  - `grep -r sorry lean/Elements/Book7` finds nothing;
+  - commit, and remove the task from this file.
+- A proposition's `lean/Elements/Book7/PropNN.lean` and its `#lean-proof(...)` line in `Book07/PropNN.typ` go in together.
+- Inside `namespace Elements.Book7`, write `Elements.BookN.proposition_M` in full for other books' propositions.
+- Keep Lean lines to 90 characters, so that they don't wrap in the PDF.
+- Run every check under `systemd-run --user --scope -q -p MemoryMax=6G -p MemorySwapMax=0`. Never use `maxHeartbeats 0`; a finite limit is fine.
+
+How Book 7 differs from Books 1–6:
+- **Plain Lean over `ℕ`, as Book 5 is over magnitudes.** No System E, no saturation, no SMT: `tools/gaps.sh` does not apply. Proofs are Lean terms and ordinary tactics.
+- **Mathlib only for what Euclid takes for granted.** Linear facts about addition and order (`omega`, `linarith`) are his common notions. What Book 7 proves is never taken from Mathlib:
+  - the algorithm and the greatest common measure (`Nat.gcd` and its lemmas);
+  - the laws of multiplication, until he proves them (`mul_comm` is 7.16; `ring` uses it);
+  - cross-multiplication (7.19);
+  - `Nat.Coprime`, `Nat.Prime`, `Nat.lcm` and their lemmas (7.23–7.39).
+  
+  Once a proposition is proved, cite it, or a tactic that does the same, with a comment naming the proposition.
+- **No division, no rationals.** A ratio of numbers is never `a / b`, in `ℕ` or `ℚ`.
+
+## T1. Definitions and scaffolding
+
+Decide the basis before any proof, and write the decisions in the header comment of `lean/Elements/Book7.lean`.
+- **Numbers and the unit (Defs. 7.1, 7.2).** A number is a multitude of units, at least two; the unit is separate. Many results still use the unit, e.g. "until a unit remains" (7.1), "as many units as" (7.15), or a quotient that may be one. Choose:
+  - `ℕ` with hypotheses `1 < a` where Euclid says "number" and `0 < n` for "as many times"; or
+  - a subtype.
+
+  Recommended: `ℕ` with hypotheses. Say in the doc comments where a statement admits the unit.
+- **Multiplication (Def. 7.15).** "A multiplies B" means B added to itself as many times as there are units in A. Decide which Lean term it is, `a * b` or `b * a`, and keep to it, because 7.16 proves the two equal. Decide how proofs before 7.16 compute: no `mul_comm` and no `ring`, which uses it; `Nat.mul_succ` and `Nat.add_mul` are allowed only where they are Def. 7.15 itself. Record which Mathlib lemmas count as definitional.
+- **Measuring (Defs. 7.3–7.5).** "A measures B" is `a ∣ b`. "A measures B according to the units in C" is `b = c * a` (in the order chosen above).
+  - Part: the lesser measures the greater.
+  - Parts: the lesser is `m` parts `e` of the greater `n e`, with `1 < m < n` and `e` not the lesser itself.
+
+  Define `part` and `parts` with doc comments. "The same part" and "the same parts" mean the same `n`, or the same `m` and `n`; take the choice of `m`, `n` from Euclid's proofs (7.5, 7.6).
+- **Proportion of numbers (Def. 7.20).** The first is the same multiple, the same part, or the same parts of the second as the third is of the fourth. Define it so, as a disjunction of the three cases, with a doc comment.
+  - It is not Book 5's `Proportion`, and not `a * d = b * c`. That equality is Prop. 7.19, which is not used before it is proved.
+  - Euclid allows "parts" with any `m`, `n`. Check whether the definition needs a lemma that the choice doesn't matter, and prove it from Def. 7.20 only.
+- **Primes and the rest (Defs. 7.11–7.14, 7.16–7.19, 7.21, 7.22).** Write them as `def`s with doc comments:
+  - prime, prime to one another, composite, composite to one another;
+  - plane and solid numbers, square and cube;
+  - similar plane and solid numbers, perfect.
+
+  Odd and even (Defs. 7.6–7.10) wait for Book 9.
+- **"Any multitude of numbers"** (7.12, 7.14, 7.33). Book 5 writes it `Fin (n + 1) → M`. Use the same for numbers unless Book 8 needs `List ℕ`; decide once for Books 8 and 9 (Roadmap, Milestone 8) and record it. Where Euclid takes three numbers (7.3, 7.36), state it for three.
+- **Book 5 in Book 7.** Euclid cites Prop. 5.7 and 5.9 in 7.19, and 5.13 in 7.33, for numbers. Proportion of numbers is not Book 5's, so these are gaps. Prove each one for Def. 7.20 as a lemma marked `-- Missed by Euclid.`, in `lean/Elements/Book7/Lemmas.lean`. Don't link Def. 7.20 to Def. 5.5 to get them.
+- **Unstated common notions.** Fitzpatrick's notes to 7.1 name two of them: measuring is transitive, and a measure of the whole and of a part measures the remainder. Put them in `Lemmas.lean`, proved by `omega`-level arithmetic, as Euclid's common notions, with doc comments.
+
+Scaffolding:
+- `lean/Elements/Book7.lean` with the header comment, imported in `lean/Elements.lean`; `lean/Elements/Book7/Definitions.lean` and `Lemmas.lean`.
+- Add `7` to `lean-books` in `functions.typ`. The subtitle becomes "Books 1–7". Check that `ElementsEnglish.pdf` and `ElementsGreekEnglish.pdf` don't change: compare their `pdftotext` output.
+- In `Book07/Book7.typ`, typeset `Definitions.lean` and `Lemmas.lean` after the definitions, as Books 5 and 6 do (`lean-proof(..., title: ...)`).
+- Add the Book 7 names to `lean/lean4.sublime-syntax` and check the glyphs in the code font. Use `fc-match "DejaVu Sans Mono"` and fontTools.
+
+## T2. Props. 7.1–7.3: the Euclidean algorithm
+
+- **7.1:** if the lesser, subtracted continually from the greater, leaves a unit before any remainder measures the one before it, the numbers are prime to one another.
+  - The repeated subtraction is a recursion that terminates. Write it as Euclid's process, with well-founded recursion or induction on the greater, and not as `Nat.gcd`.
+  - The proof is by contradiction, with a common measure greater than the unit.
+- **7.2:** to find the greatest common measure of two numbers not prime to one another.
+  - The construction is the same process stopped at the remainder that measures the one before it.
+  - Prove that it is common, and greatest by contradiction.
+  - The corollary, that a common measure measures the greatest common measure, is `proposition_2_corollary`.
+- **7.3:** the greatest common measure of three numbers, through 7.2 twice, with Euclid's cases.
+
+Risk: medium. 7.1 and 7.2 are the only processes in the book. Decide the shape of the recursion once, in `Lemmas.lean`, so that 7.2 reuses 7.1's.
+
+## T3. Props. 7.4–7.10: part and parts
+
+- **7.4:** any number is part or parts of any greater number. The cases are "measures", "prime to it" and "neither", through 7.2.
+- **7.5, 7.6:** the same part (parts) of two numbers: their sum is the same part (parts) of the sum.
+- **7.7, 7.8:** the same with a part taken away: the remainder of the remainder.
+- **7.9, 7.10:** alternately: what part (parts) the first is of the third, the second is of the fourth.
+  - 7.10 has "part, or parts" in both directions. State the cases as Euclid does.
+
+These are distributive laws over numbers in disguise. Prove them from the definitions of T1, not with `Nat.add_mul` or `ring`.
+
+## T4. Props. 7.11–7.15: proportion of numbers
+
+- **7.11:** as whole to whole, so a part taken away to a part taken away: the remainder to the remainder.
+- **7.12:** any number of proportionals: as one leading number to its following one, so the sum of the leading numbers to the sum of the following. Use the "any multitude" of T1.
+- **7.13:** alternately.
+- **7.14:** via equality (ex aequali), for any number of numbers.
+- **7.15:** if the unit measures a number as many times as another number measures a fourth, then alternately. This is the start of multiplication.
+
+## T5. Props. 7.16–7.19: multiplication
+
+- **7.16:** `a * b = b * a`: Euclid's proof by 7.15. From here on `mul_comm` may be cited, with a comment.
+- **7.17, 7.18:** a number multiplying two numbers makes numbers in their ratio; two numbers multiplying a number make numbers in their ratio.
+- **7.19:** four numbers are proportional exactly when the product of the outer equals the product of the middle. The steps that cite Props. 5.7 and 5.9 use T1's number versions in `Lemmas.lean`.
+
+Associativity of multiplication is used by Euclid without proof, e.g. in 7.19 and in Book 8. Wherever it is needed, mark it `-- Missed by Euclid.` and say once in the header that it is taken from Mathlib.
+
+## T6. Props. 7.20–7.22: least numbers in a ratio
+
+- **7.20:** the least numbers in a ratio measure those in the same ratio an equal number of times. The proof is by contradiction through "parts" and 7.13; follow it.
+- **7.21:** numbers prime to one another are the least in their ratio.
+- **7.22:** the least numbers in their ratio are prime to one another.
+
+Define "the least numbers having the same ratio as them" once, in `Definitions.lean`, as Euclid uses it: least among all pairs in the same ratio.
+
+## T7. Props. 7.23–7.28: numbers prime to one another
+
+- **7.23:** a measure of one of two numbers prime to one another is prime to the other.
+- **7.24, 7.25:** a product of two numbers prime to a third is prime to it; so is the square of one prime to it.
+- **7.26:** products of numbers prime to each of two numbers are prime to one another.
+- **7.27:** squares and cubes of numbers prime to one another are prime to one another.
+- **7.28:** two numbers are prime to one another exactly when their sum is prime to each. Prove both directions.
+
+Don't use `Nat.Coprime` lemmas. If `Nat.Coprime` is the definition chosen in T1, prove each fact from Euclid's steps.
+
+## T8. Props. 7.29–7.32: primes
+
+- **7.29:** a prime is prime to every number it does not measure.
+- **7.30:** a prime measuring a product measures one of the factors. Euclid's proof goes through 7.19 and 7.20. Don't use `Nat.Prime.dvd_mul`.
+- **7.31:** every composite number is measured by some prime.
+  - Euclid argues by infinite descent: "an infinite series of numbers will measure the number, each less than the other, which is impossible in numbers."
+  - Write the descent as well-founded induction on the number. A comment should say that this is Euclid's "impossible in numbers".
+- **7.32:** every number is prime or measured by a prime.
+
+## T9. Props. 7.33–7.39: least numbers, least common multiple, parts
+
+- **7.33:** to find the least numbers in the ratio of any given numbers.
+  - The construction divides by the greatest common measure: by 7.3 for three numbers, as in Euclid's figure. State it for three, or for any number if T1's "any multitude" makes that no harder.
+  - The step that cites Prop. 5.13 uses T1's number version.
+- **7.34:** to find the least number measured by two numbers, with Euclid's two cases (prime to one another or not).
+- **7.35:** a number measured by two numbers is measured by the least one they measure.
+- **7.36:** the least number measured by three numbers.
+- **7.37, 7.38:** a number measured by a number has a part called the same as it, and conversely.
+- **7.39:** to find the least number that has given parts.
+
+Constructions ("to find") are stated as existence with the property, as in Book 6, plus "least" where Euclid proves it. Don't use `Nat.lcm`.
+
+## T10. Primer and docs
+
+- **`Book00/Lean.typ`:** a section on Book 7:
+  - numbers over `ℕ`, the unit, and Def. 7.15's multiplication;
+  - part, parts, and proportion by Def. 7.20, and why it is not Book 5's;
+  - what is taken from Mathlib, and from which proposition on;
+  - the gaps marked `Missed by Euclid`: the Book 5 citations, associativity, the common notions.
+- **`CLAUDE.md`:** Book 7 notes: the basis, the rule about Mathlib, where the definitions are. Update "Books 1–6".
+- **`Roadmap.md`:** delete Milestone 7. Record in Milestone 8 the choices Books 8 and 9 inherit: the "any multitude" representation, the definitions of similar plane and solid numbers, square and cube.
+- **README:** Books 1–7.
+
+## T11. Final check
+
+- `make check` from a clean build, all books, under the cap. Note the time.
+- `tools/gaps.sh N` for N = 1–4 and 6: no failing steps, since Book 7 must not disturb the geometry. `tools/SmtFree.lean`: no theorem with SMT.
+- `grep -r sorry lean/Elements lean/SystemE` finds nothing.
+- `grep -rn "Nat.gcd\|Nat.lcm\|Nat.Coprime\|Nat.Prime\|ring\b" lean/Elements/Book7`: each hit is allowed by the rule above, with a comment.
+- Inspect `ElementsLean.pdf`:
+  - the subtitle "Books 1–7";
+  - Book 7's title page, definitions and lemmas;
+  - the algorithm (7.1, 7.2), 7.20 and 7.31;
+  - the corollary to 7.2.
+- `ElementsEnglish.pdf` and `ElementsGreekEnglish.pdf` are unchanged.
+- Commit and push.
