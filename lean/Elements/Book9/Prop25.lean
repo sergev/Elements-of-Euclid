@@ -11,8 +11,8 @@ theorem proposition_25 {a b : ℕ} (ha : EvenNumber a) (hb : OddNumber b) (hba :
   · -- the unit taken from an even number leaves an odd number [Def. 7.7]
     exact ha.sub_unit
   · -- let the unit be taken from `b`: the remainder is even [Def. 7.7], and taken from
-    -- `a` it leaves an even number [Prop. 9.24]; and the unit taken from that leaves `a - b`,
-    -- odd [Def. 7.7]
+    -- `a` it leaves an even number [Prop. 9.24]; and the unit taken from that leaves
+    -- `a - b`, odd [Def. 7.7]
     have h := proposition_24 ha (hb.sub_unit hb1) (by omega)
     have := h.sub_unit
     rwa [show a - (b - 1) - 1 = a - b by omega] at this
