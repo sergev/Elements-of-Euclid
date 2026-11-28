@@ -24,3 +24,4 @@
     [For, with the same construction, since $E$ is equal to $F$, thus as $G$ is to $E$, so $G$ (is) to $F$ [Prop.~5.7]. But, as $G$ (is) to $E$, so $C$ (is) to $D$ [Prop.~7.17]. And as $G$ (is) to $F$, so $A$ (is) to $B$ [Prop.~7.18]. And, thus, as $A$ (is) to $B$, so $C$ (is) to $D$. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book7/Prop19.lean")

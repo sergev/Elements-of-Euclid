@@ -16,3 +16,4 @@
     [For since $A$ has made $D$ (by) multiplying $B$, $B$ thus measures $D$ according to the units in $A$ [Def.~7.15]. And the unit $F$ also measures the number $A$ according to the units in it. Thus, the unit $F$ measures the number $A$ as many times as $B$ (measures) $D$. Thus, as the unit $F$ is to the number $A$, so $B$ (is) to $D$ [Def.~7.20]. And so, for the same (reasons), as the unit $F$ (is) to the number $A$, so $C$ (is) to $E$. And thus, as $B$ (is) to $D$, so $C$ (is) to $E$. Thus, alternately, as $B$ is to $C$, so $D$ (is) to $E$ [Prop.~7.13]. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book7/Prop17.lean")

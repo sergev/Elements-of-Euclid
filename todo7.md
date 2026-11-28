@@ -34,14 +34,6 @@ How Book 7 differs from Books 1–6:
   Once a proposition is proved, cite it, or a tactic that does the same, with a comment naming the proposition.
 - **No division, no rationals.** A ratio of numbers is never `a / b`, in `ℕ` or `ℚ`.
 
-## T5. Props. 7.16–7.19: multiplication
-
-- **7.16:** `a * b = b * a`: Euclid's proof by 7.15. From here on `mul_comm` may be cited, with a comment.
-- **7.17, 7.18:** a number multiplying two numbers makes numbers in their ratio; two numbers multiplying a number make numbers in their ratio.
-- **7.19:** four numbers are proportional exactly when the product of the outer equals the product of the middle. The steps that cite Props. 5.7 and 5.9 use T1's number versions in `Lemmas.lean`.
-
-Associativity of multiplication is used by Euclid without proof, e.g. in 7.19 and in Book 8. Wherever it is needed, mark it `-- Missed by Euclid.` and say once in the header that it is taken from Mathlib.
-
 ## T6. Props. 7.20–7.22: least numbers in a ratio
 
 - **7.20:** the least numbers in a ratio measure those in the same ratio an equal number of times. The proof is by contradiction through "parts" and 7.13; follow it.
@@ -99,7 +91,7 @@ Constructions ("to find") are stated as existence with the property, as in Book 
 - `tools/gaps.sh N` for N = 1–4 and 6: no failing steps, since Book 7 must not disturb the geometry. `tools/SmtFree.lean`: no theorem with SMT.
 - `grep -r sorry lean/Elements lean/SystemE` finds nothing.
 - `grep -rn "Nat.gcd\|Nat.lcm\|Nat.Coprime\|Nat.Prime\|ring\b" lean/Elements/Book7`: each hit is allowed by the rule above, with a comment.
-- Inspect `LeanElements.pdf`:
+- Inspect `LeanElementsOfEuclid.pdf`:
   - the subtitle "Books 1–7";
   - Book 7's title page, definitions and lemmas;
   - the algorithm (7.1, 7.2), 7.20 and 7.31;

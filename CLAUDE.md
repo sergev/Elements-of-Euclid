@@ -9,7 +9,7 @@ A Typst port of Richard Fitzpatrick's LaTeX edition of Euclid's Elements (Greek 
 ## Build
 
 ```sh
-make                       # ElementsGreekEnglish.pdf, ElementsEnglish.pdf, LeanElements.pdf
+make                       # ElementsGreekEnglish.pdf, ElementsEnglish.pdf, LeanElementsOfEuclid.pdf
 make check                 # check the Lean proofs (needs z3, cvc5, smt-portfolio)
 make check BOOK=1          # one book
 make cache                 # fetch prebuilt Mathlib (once, and after a Mathlib bump)

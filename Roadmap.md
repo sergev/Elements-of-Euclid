@@ -1,6 +1,6 @@
 # Roadmap: Lean proofs for Books 7–13
 
-Books 1–6 are done (Milestones 1–6): Book 1's 48 propositions from LeanEuclid and Books 2, 3 and 4 (14, 37 and 16) written here in System E, Book 5's 25 in plain Lean over a class of magnitudes, and Book 6's 33 in System E with Book 5's proportion, typeset in `LeanElements.pdf` and checked by `make check`. This file plans the remaining books, one milestone per book, numbered to match: Milestone N is Book N. A book depends on the books before it, so the milestones run in sequence. Only Milestones 7–9 (Books 7–9) can be done in parallel with the geometry.
+Books 1–6 are done (Milestones 1–6): Book 1's 48 propositions from LeanEuclid and Books 2, 3 and 4 (14, 37 and 16) written here in System E, Book 5's 25 in plain Lean over a class of magnitudes, and Book 6's 33 in System E with Book 5's proportion, typeset in `LeanElementsOfEuclid.pdf` and checked by `make check`. This file plans the remaining books, one milestone per book, numbered to match: Milestone N is Book N. A book depends on the books before it, so the milestones run in sequence. Only Milestones 7–9 (Books 7–9) can be done in parallel with the geometry.
 
 ## Common rules for every milestone
 

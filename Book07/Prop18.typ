@@ -16,3 +16,4 @@
     [For since $A$ has made $D$ (by) multiplying $C$, $C$ has thus also made $D$ (by) multiplying $A$ [Prop.~7.16]. So, for the same (reasons), $C$ has also made $E$ (by) multiplying $B$. So the number $C$ has made $D$ and $E$ (by) multiplying the two numbers $A$ and $B$ (respectively). Thus, as $A$ is to $B$, so $D$ (is) to $E$ [Prop.~7.17]. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book7/Prop18.lean")
