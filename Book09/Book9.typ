@@ -1,4 +1,4 @@
-#import "../functions.typ": parallel, no-footer, chapter, content-box, content-box-note, running-header
+#import "../functions.typ": parallel, no-footer, chapter, content-box, content-box-note, running-header, lean-proof, with-lean
 
 #chapter([Book 9], [ELEMENTS BOOK 9])
 
@@ -12,6 +12,12 @@
 #pagebreak()
 
 #set page(header: running-header([ΣΤΟΙΧΕΙΩΝ θʹ.], [ELEMENTS BOOK 9]))
+
+#lean-proof("/lean/Elements/Book9/Definitions.lean", title: [Definitions, for the Lean proofs])
+
+#lean-proof("/lean/Elements/Book9/Lemmas.lean", title: [Lemmas for the Lean proofs])
+
+#if with-lean { pagebreak() }
 
 #include "Prop01.typ"
 #include "Prop02.typ"

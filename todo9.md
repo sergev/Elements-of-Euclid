@@ -30,24 +30,6 @@ How Book 9 differs from Book 8:
 - **From a unit.** "Continuously proportional, from a unit" is `Continued a` with `a 0 = 1`; `a 1` is "the number after the unit", and Euclid's "third from the unit" is `a 2`, counting the unit as first. `eq_powers_one` (Book 8, Prop. 8.10) makes such numbers `powers 1 (a 1)`.
 - **Squares and cubes.** `a * a`, `a * a * a`, never `^`. `SquareNumber`, `CubeNumber` need the side greater than the unit; where the side may be the unit (as in 8.20), state the product with positive sides, and say so.
 
-## T1. Definitions and scaffolding
-
-Book 9's notions go in `lean/Elements/Book9/Definitions.lean`, with doc comments. Write the decisions in the header comment of `lean/Elements/Book9.lean`.
-- **Even and odd (Defs. 7.6, 7.7).** Our own definitions, not Mathlib's.
-  - Even: divided in half, `a = h + h`. Odd: not divided in half. Def. 7.7's second reading, "differs from an even number by a unit", is a lemma.
-  - Decide whether the unit is odd. Euclid's sums of odd numbers (9.22, 9.23) and 9.29 need it to be, or a hypothesis. Write the decision in the header.
-- **Even-times-even, even-times-odd, odd-times-odd (Defs. 7.8–7.10).** Measured by an even (odd) number according to an even (odd) number: `a = e * f` with the stated kinds.
-  - Is the odd number in Def. 7.9 a number (greater than the unit)? 9.32 depends on it: `2 * 1` must not make a dyad even-times-odd. Decide, and check 9.32–9.34 against the choice before going on.
-- **Doubled from a dyad (9.32).** `powers 1 2 n`: the unit, the dyad, and so on. Reuse it; don't define a new power.
-- **The least number measured by any multitude (9.14, 9.20).** Book 7 has `LeastMeasured` for two and `LeastMeasured₃` for three. Define it for `Fin (n + 1) → ℕ`, and prove its existence by induction from 7.34 and 7.35 (Euclid's 7.36, done once more). Put this in `lean/Elements/Book9/Lemmas.lean`.
-- **The sum (9.35, 9.36).** Book 7's `sum`. Add the lemmas the series need (`sum` of a prefix, `sum` of `powers 1 2 n`) to `Lemmas.lean`.
-
-Scaffolding:
-- `lean/Elements/Book9.lean` with the header comment, imported in `lean/Elements.lean`.
-- Add `9` to `lean-books` in `functions.typ`. The subtitle becomes "Books 1–9". Check that `ElementsEnglish.pdf` and `ElementsGreekEnglish.pdf` don't change: compare their `pdftotext` output.
-- `Book09/Book9.typ` has no definitions section. Typeset `Definitions.lean` and `Lemmas.lean` after the title page, as Book 8 does. The page break goes in the Lean edition only: `#if with-lean { pagebreak() }`.
-- Add the Book 9 names to `lean/lean4.sublime-syntax`.
-
 ## T2. Props. 9.1–9.7: products of similar plane numbers, squares and cubes
 
 - **9.1:** similar plane numbers multiplied make a square, through 8.18, 8.8 and 8.22. Take the sides as Book 8 does (8.18): products with `c ∶ d ∷ e ∶ f`.
