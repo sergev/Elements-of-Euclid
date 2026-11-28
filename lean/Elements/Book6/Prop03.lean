@@ -53,18 +53,19 @@ by
   -- [Props. 6.2, 5.7 corollary]
   obtain ⟨hcd, hdb, hea, hab, h₁⟩ := proposition_2 b c e d a BC CE AB AD
     ⟨by euclid_finish, ‹_›, ‹_›, ‹_›, ‹_›, by euclid_finish⟩
-  have h₁ := proposition_7_corollary h₁
+  have h₁ := Elements.Book5.proposition_7_corollary h₁
   -- `BA : AE :: BA : AC` [Prop. 5.7], so `BD : DC :: BA : AC` [Prop. 5.11]
   have hac : 0 < size (a─c) := size_segment_pos.mpr (by euclid_finish)
-  have h₂ := (proposition_7 (mag (a─b) hab) (mag_congr (hp := hea) (hq := hac)
-    (by rw [size_segment, size_segment]; euclid_finish))).2
+  have h₂ := (Elements.Book5.proposition_7 (mag (a─b) hab)
+    (mag_congr (hp := hea) (hq := hac)
+      (by rw [size_segment, size_segment]; euclid_finish))).2
   have hbd : 0 < size (b─d) := by rw [size_segment_symm]; exact hdb
   have hdc : 0 < size (d─c) := by rw [size_segment_symm]; exact hcd
   have hba : 0 < size (b─a) := by rw [size_segment_symm]; exact hab
   refine ⟨hbd, hdc, hba, hac, ?_⟩
   rw [mag_congr (hq := hdb) (size_segment_symm b d), mag_congr (hq := hcd)
     (size_segment_symm d c), mag_congr (hq := hab) (size_segment_symm b a)]
-  exact proposition_11 h₁ h₂
+  exact Elements.Book5.proposition_11 h₁ h₂
 
 /--
 If the segments of the base have the same ratio as the remaining sides of the triangle,
@@ -80,12 +81,12 @@ by
   -- `BD : DC :: BA : AE` [Props. 6.2, 5.7 corollary]
   obtain ⟨hcd, hdb, hea, hab, h₁⟩ := proposition_2 b c e d a BC CE AB AD
     ⟨by euclid_finish, ‹_›, ‹_›, ‹_›, ‹_›, by euclid_finish⟩
-  have h₁ := proposition_7_corollary h₁
+  have h₁ := Elements.Book5.proposition_7_corollary h₁
   obtain ⟨hbd, hdc, hba, hac, h₂⟩ := ‹(b─d) ∶ (d─c) ∷ (b─a) ∶ (a─c)›
   rw [mag_congr (hq := hdb) (size_segment_symm b d), mag_congr (hq := hcd)
     (size_segment_symm d c), mag_congr (hq := hab) (size_segment_symm b a)] at h₂
   -- so `BA : AC :: BA : AE` [Prop. 5.11], and `AC` is equal to `AE` [Prop. 5.9]
-  have h₃ := proposition_9' (proposition_11 h₂.symm h₁)
+  have h₃ := Elements.Book5.proposition_9' (Elements.Book5.proposition_11 h₂.symm h₁)
   have : |(a─c)| = |(e─a)| := mag_inj.mp h₃
   -- so `AEC` is equal to `ACE` [Prop. 1.5], and they are equal to `BAD`, `CAD`
   -- [Prop. 1.29]

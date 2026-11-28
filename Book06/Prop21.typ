@@ -16,3 +16,4 @@
     [For since $A$ is similar to $C$, ($A$) is equiangular to ($C$), and has the sides about the equal angles proportional [Def.~6.1]. Again, since $B$ is similar to $C$, ($B$) is equiangular to ($C$), and has the sides about the equal angles proportional [Def.~6.1]. Thus, $A$ and $B$ are each equiangular to $C$, and have the sides about the equal angles proportional [hence, $A$ is also equiangular to $B$, and has the sides about the equal angles proportional]. Thus, $A$ is similar to $B$ [Def.~6.1]. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book6/Prop21.lean")

@@ -104,6 +104,105 @@ by
   · rw [mag_lt] at hmn ⊢
     exact proposition_1_lt a c h l BD ⟨hBD, ‹_›, lBD, ‹_›, hhcl, hmn⟩
 
+/-- Points `h`, `l` beyond `c`, `g` from `b`, or at them, with `c`, `g` on one ray from
+`b`, are on one ray from `b`. -/
+theorem proposition_1_ray_side : ∀ (b c g h l : Point) (L : Line),
+  b.onLine L ∧ c.onLine L ∧ g.onLine L ∧ h.onLine L ∧ l.onLine L ∧ b ≠ c ∧ b ≠ g ∧
+  ¬(between c b g) ∧ (between b c h ∨ h = c) ∧ (between b g l ∨ l = g) →
+  ¬(between h b l) :=
+by
+  euclid_intros
+  rcases ‹between b c h ∨ h = c› with h₁ | h₁ <;>
+  rcases ‹between b g l ∨ l = g› with h₂ | h₂
+  · euclid_finish
+  · subst h₂
+    euclid_finish
+  · subst h₁
+    euclid_finish
+  · subst h₁ h₂
+    euclid_finish
+
+/-- On one ray from `b`, if `bh` is less than `bl`, the triangle `abh` is less than `abl`,
+a part of it. -/
+theorem proposition_1_ray_lt : ∀ (a b h l : Point) (L : Line),
+  b.onLine L ∧ h.onLine L ∧ l.onLine L ∧ ¬(a.onLine L) ∧ b ≠ h ∧ ¬(between h b l) ∧
+  |(b─h)| < |(b─l)| → Triangle.area △a:b:h < Triangle.area △a:b:l :=
+by
+  euclid_intros
+  have : h ≠ l := by
+    intro e
+    subst e
+    linarith
+  euclid_apply (between_points b h l L)
+  have : between b h l := by
+    rcases ‹between b h l ∨ between h b l ∨ between b l h› with e | e | e
+    · exact e
+    · exact absurd e ‹_›
+    · euclid_apply (between_if b l h)
+      have := segment_gte_zero (l─h)
+      linarith
+  euclid_apply (sum_areas_if b l h a L)
+  have : 0 < Triangle.area △a:h:l :=
+    size_triangle_pos' ⟨‹h.onLine L›, ‹l.onLine L›, ‹h ≠ l›⟩ ‹¬(a.onLine L)›
+  euclid_finish
+
+/-- On one ray from `b`, if `bh` is equal to `bl`, `h` is `l`. -/
+theorem proposition_1_ray_eq : ∀ (b h l : Point) (L : Line),
+  b.onLine L ∧ h.onLine L ∧ l.onLine L ∧ b ≠ h ∧ ¬(between h b l) ∧
+  |(b─h)| = |(b─l)| → h = l :=
+by
+  euclid_intros
+  by_contra
+  euclid_apply (between_points b h l L)
+  rcases ‹between b h l ∨ between h b l ∨ between b l h› with e | e | e
+  · euclid_apply (between_if b h l)
+    euclid_finish
+  · exact ‹¬(between h b l)› e
+  · euclid_apply (between_if b l h)
+    euclid_finish
+
+/--
+Prop. 6.1 for bases `bc`, `bg` on one ray from `b`, as Prop. 6.19 uses it: the triangles
+`abc`, `abg` are as their bases. The same proof: equal multiples [Def. 5.5].
+-/
+theorem proposition_1_ray : ∀ (a b c g : Point) (L : Line),
+  b.onLine L ∧ c.onLine L ∧ g.onLine L ∧ ¬(a.onLine L) ∧ b ≠ c ∧ b ≠ g ∧
+  ¬(between c b g) → (b─c) ∶ (b─g) ∷ △a:b:c ∶ △a:b:g :=
+by
+  euclid_intros
+  have hbc : 0 < size (b─c) := size_segment_pos.mpr ‹_›
+  have hbg : 0 < size (b─g) := size_segment_pos.mpr ‹_›
+  have habc : 0 < size (△a:b:c) := size_triangle_pos' ⟨‹_›, ‹_›, ‹_›⟩ ‹_›
+  have habg : 0 < size (△a:b:g) := size_triangle_pos' ⟨‹_›, ‹_›, ‹_›⟩ ‹_›
+  refine ⟨hbc, hbg, habc, habg, ?_⟩
+  -- equal multiples `bh` of `bc` and `abh` of `abc`, and `bl` of `bg` and `abl` of `abg`
+  have copies : ∀ m n : ℕ+, ∃ (h l : Point) (hh : 0 < size (b─h)) (hl : 0 < size (b─l))
+      (hah : 0 < size (△a:b:h)) (hal : 0 < size (△a:b:l)),
+      h.onLine L ∧ l.onLine L ∧ ¬(between h b l) ∧
+      mag (b─h) hh = m • mag (b─c) hbc ∧ mag (△a:b:h) hah = m • mag (△a:b:c) habc ∧
+      mag (b─l) hl = n • mag (b─g) hbg ∧ mag (△a:b:l) hal = n • mag (△a:b:g) habg := by
+    intro m n
+    obtain ⟨h, hh, hah, hL, hch, h₁, h₂⟩ := multiple_on_line m ‹b.onLine L›
+      ‹c.onLine L› ‹_› hbc habc
+    obtain ⟨l, hl, hal, lL, hgl, h₃, h₄⟩ := multiple_on_line n ‹b.onLine L›
+      ‹g.onLine L› ‹_› hbg habg
+    exact ⟨h, l, hh, hl, hah, hal, hL, lL, proposition_1_ray_side b c g h l L
+      ⟨‹_›, ‹_›, ‹_›, hL, lL, ‹_›, ‹_›, ‹_›, hch, hgl⟩, h₁, h₂, h₃, h₄⟩
+  -- if `bh` exceeds `bl`, `abh` exceeds `abl`; if equal, equal; if less, less
+  apply Proportion.of_imp <;> intro m n hmn <;>
+    obtain ⟨h, l, hh, hl, hah, hal, hL, lL, hhl, h₁, h₂, h₃, h₄⟩ := copies m n <;>
+    rw [← h₁, ← h₃] at hmn <;> rw [← h₂, ← h₄]
+  · rw [mag_lt] at hmn ⊢
+    exact proposition_1_ray_lt a b l h L ⟨‹_›, lL, hL, ‹_›,
+      size_segment_pos.mp hl, fun e => hhl (by euclid_finish), hmn⟩
+  · rw [mag_inj] at hmn ⊢
+    have := proposition_1_ray_eq b h l L ⟨‹_›, hL, lL, size_segment_pos.mp hh, hhl, hmn⟩
+    subst this
+    rfl
+  · rw [mag_lt] at hmn ⊢
+    exact proposition_1_ray_lt a b h l L ⟨‹_›, hL, lL, ‹_›,
+      size_segment_pos.mp hh, hhl, hmn⟩
+
 /-- A parallelogram `ebca` is double the triangle `abc` of its diagonal [Prop. 1.34]. -/
 theorem proposition_1_double : ∀ (a b c e : Point) (EA BC EB AC : Line),
   formParallelogram e a b c EA BC EB AC →
@@ -139,10 +238,10 @@ by
   have hFC : 0 < size (□f:a:c:d) := s₃ ▸ add_pos hacd hacd
   refine ⟨hbc, hcd, hEC, hFC, ?_⟩
   -- parts have the same ratio as equal multiples [Prop. 5.15]: `ABC : ACD :: EC : FC`
-  have h₄ := proposition_15 (mag (△a:b:c) habc) (mag (△a:c:d) hacd) 2
+  have h₄ := Elements.Book5.proposition_15 (mag (△a:b:c) habc) (mag (△a:c:d) hacd) 2
   rw [show (2 : ℕ+) = 1 + 1 from rfl, mult_succ, one_mult, mult_succ, one_mult,
     mag_add (hr := hEC) s₂.symm, mag_add (hr := hFC) s₃.symm] at h₄
   -- so `BC : CD :: EC : FC` [Prop. 5.11]
-  exact proposition_11 h₁ h₄
+  exact Elements.Book5.proposition_11 h₁ h₄
 
 end Elements.Book6

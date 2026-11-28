@@ -20,3 +20,4 @@
     [Thus, the rectilinear figure $A H$, similar, and similarly laid down, to the given rectilinear figure $C E$ has been constructed on the given straight-line $A B$. (Which is) the very thing it was required to do.],
   )
 ]
+#lean-proof("/lean/Elements/Book6/Prop18.lean")

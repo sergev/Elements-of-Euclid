@@ -43,11 +43,12 @@ by
   obtain ⟨hbd, hda, hbde, hade, h₁⟩ := h₁
   obtain ⟨hce, hea, hcde, hade', h₂⟩ := h₂
   -- `BDE` and `CDE` have the same ratio to `ADE` [Prop. 5.7]
-  have h₃ := (proposition_7 (mag (△a:d:e) hade)
+  have h₃ := (Elements.Book5.proposition_7 (mag (△a:d:e) hade)
     (mag_congr (hp := hbde) (hq := hcde) ‹_›)).1
   -- `BD : DA :: BDE : ADE` and `CE : EA :: CDE : ADE` [Prop. 6.1]; so
   -- `BD : DA :: CE : EA` [Prop. 5.11]
-  exact ⟨hbd, hda, hce, hea, proposition_11 (proposition_11 h₁ h₃) h₂.symm⟩
+  exact ⟨hbd, hda, hce, hea,
+    Elements.Book5.proposition_11 (Elements.Book5.proposition_11 h₁ h₃) h₂.symm⟩
 
 /--
 If the sides `ab`, `ac` of the triangle `abc` are cut proportionally at `d` and `e`,
@@ -62,11 +63,11 @@ by
   obtain ⟨hbd, hda, hbde, hade, h₁⟩ := h₁
   obtain ⟨hce, hea, hcde, hade', h₂⟩ := h₂
   -- `BDE : ADE :: CDE : ADE` [Props. 6.1, 5.11]
-  have h₃ := proposition_11 (proposition_11 h₁.symm
+  have h₃ := Elements.Book5.proposition_11 (Elements.Book5.proposition_11 h₁.symm
     (‹(b─d) ∶ (d─a) ∷ (c─e) ∶ (e─a)›.elim hbd hda hce hea)) h₂
   -- so `BDE` is equal to `CDE` [Prop. 5.9]
   have h₄ : Triangle.area △b:d:e = Triangle.area △c:d:e :=
-    mag_inj.mp (proposition_9 h₃)
+    mag_inj.mp (Elements.Book5.proposition_9 h₃)
   -- and they are on the same base `DE`: so between the same parallels [Prop. 1.39]
   euclid_apply (line_from_points b e) as BE
   euclid_apply (line_from_points c d) as CD

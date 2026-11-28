@@ -29,16 +29,6 @@ How Book 6 differs from Books 1–5:
 - **Faithfulness to Book 5.** Every ratio step cites a Book 5 proposition or Def. 5.5. Don't use `Positive.proportion_of_mul_eq`, `Positive.mult_val` or `Length.fourth` where Euclid has an argument; they are facts of the model. Record each use, with the reason, in a comment.
 - **No reals for ratios.** A ratio of lines or areas is never `|(a─b)| / |(c─d)|`.
 
-## T7. Props. 6.18–6.22: similar figures
-
-- **6.18:** to describe on a given line a figure similar and similarly laid down to a given one. Do it for a quadrilateral, as in Euclid's figure, and for a triangle; a pentagon if 6.20 needs it.
-- **6.19:** similar triangles are in the squared ratio of corresponding sides. The corollary is `proposition_19_corollary`.
-- **6.20:** similar polygons divide into similar triangles, and are in the squared ratio of corresponding sides. Pentagons, as in Euclid's figure; say so in the doc comment. The corollary is `proposition_20_corollary`.
-- **6.21:** figures similar to the same figure are similar to one another.
-- **6.22:** four lines are proportional iff similar figures on them are.
-
-Risk: medium to high. Pentagon proofs carry many facts: build the figure in a lemma and argue in lemmas that take only what they need, as in Book 4.
-
 ## T8. Props. 6.23–6.26: the compounded ratio, parallelograms about the diagonal
 
 - **6.23:** equiangular parallelograms are in the ratio compounded of their sides. Uses T1's definition.

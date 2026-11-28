@@ -1,6 +1,7 @@
 import SystemE
 import Elements.Book1.Prop01
 import Elements.Book1.Prop03
+import Elements.Book1.Prop13
 import Elements.Book1.Prop17
 import Elements.Book1.Prop23
 import Elements.Book1.Prop31
@@ -9,6 +10,7 @@ import Elements.Book1.Prop38
 import Elements.Book5.Prop07
 import Elements.Book5.Prop09
 import Elements.Book5.Prop11
+import Elements.Book5.Prop14
 import Elements.Book5.Prop16
 import Elements.Book5.Prop22
 import Elements.Book6.Definitions
@@ -35,21 +37,25 @@ variable {X Y Z W X' Y' Z' W' : Type} {K L : Type} [Magnitude K] [Kind K] [Magni
 theorem symm {p : X} {q : Y} {r : Z} {s : W} (h : p ∶ q ∷ r ∶ s) : r ∶ s ∷ p ∶ q :=
   let ⟨hp, hq, hr, hs, h⟩ := h; ⟨hr, hs, hp, hq, h.symm⟩
 
+/-- A ratio is the same as itself (Def. 5.5). -/
+theorem refl {p : X} {q : Y} (hp : 0 < size p) (hq : 0 < size q) : p ∶ q ∷ p ∶ q :=
+  ⟨hp, hq, hp, hq, Proportion.refl _ _⟩
+
 /-- Inversely, `q ∶ p ∷ s ∶ r` [Prop. 5.7 corollary]. -/
 theorem inv {p : X} {q : Y} {r : Z} {s : W} (h : p ∶ q ∷ r ∶ s) : q ∶ p ∷ s ∶ r :=
-  let ⟨hp, hq, hr, hs, h⟩ := h; ⟨hq, hp, hs, hr, proposition_7_corollary h⟩
+  let ⟨hp, hq, hr, hs, h⟩ := h; ⟨hq, hp, hs, hr, Elements.Book5.proposition_7_corollary h⟩
 
 /-- Ratios the same as the same ratio are the same [Prop. 5.11]. -/
 theorem trans {M : Type} [Magnitude M] [Kind M] {U V : Type} [Figure U M] [Figure V M]
     {p : X} {q : Y} {r : Z} {s : W} {u : U} {v : V} (h₁ : p ∶ q ∷ r ∶ s)
     (h₂ : r ∶ s ∷ u ∶ v) : p ∶ q ∷ u ∶ v :=
   let ⟨hp, hq, hr, hs, h₁⟩ := h₁
-  ⟨hp, hq, h₂.2.2.1, h₂.2.2.2.1, proposition_11 h₁ (h₂.elim hr hs _ _)⟩
+  ⟨hp, hq, h₂.2.2.1, h₂.2.2.2.1, Elements.Book5.proposition_11 h₁ (h₂.elim hr hs _ _)⟩
 
 /-- Alternately, `p ∶ r ∷ q ∶ s`, the four of one kind [Prop. 5.16]. -/
 theorem alt [Figure Z K] [Figure W K] {p : X} {q : Y} {r : Z} {s : W}
     (h : p ∶ q ∷ r ∶ s) : p ∶ r ∷ q ∶ s :=
-  let ⟨hp, hq, hr, hs, h⟩ := h; ⟨hp, hr, hq, hs, proposition_16 h⟩
+  let ⟨hp, hq, hr, hs, h⟩ := h; ⟨hp, hr, hq, hs, Elements.Book5.proposition_16 h⟩
 
 /-- Via equality (ex aequali): from `p ∶ q ∷ u ∶ v` and `q ∶ r ∷ v ∶ w`, `p ∶ r ∷ u ∶ w`
 [Prop. 5.22]. -/
@@ -58,28 +64,108 @@ theorem exAequali {Q R U V T : Type} [Figure Q K] [Figure R K] [Figure U L]
     (h₁ : p ∶ q ∷ u ∶ v) (h₂ : q ∶ r ∷ v ∶ w) : p ∶ r ∷ u ∶ w :=
   let ⟨hp, _, hu, _, h₁⟩ := h₁
   let ⟨_, hr, _, hw, h₂⟩ := h₂
-  ⟨hp, hr, hu, hw, proposition_22' h₁ h₂⟩
+  ⟨hp, hr, hu, hw, Elements.Book5.proposition_22' h₁ h₂⟩
 
 /-- Magnitudes with the same ratio to equal magnitudes are equal [Prop. 5.9]. -/
 theorem eq_left {A B C D : Type} [Figure A K] [Figure B K] [Figure C K] [Figure D K]
     {p : A} {q : B} {r : C} {r' : D} (h : p ∶ r ∷ q ∶ r') (hr : size r = size r') :
     size p = size q :=
   let ⟨hp, hr₀, hq, hr', h⟩ := h
-  mag_inj.mp (proposition_9 (by rwa [mag_congr (hp := hr') (hq := hr₀) hr.symm] at h))
+  mag_inj.mp (Elements.Book5.proposition_9
+    (by rwa [mag_congr (hp := hr') (hq := hr₀) hr.symm] at h))
 
 /-- Magnitudes to which equal magnitudes have the same ratio are equal [Prop. 5.9]. -/
 theorem eq_right {A B C D : Type} [Figure A K] [Figure B K] [Figure C K] [Figure D K]
     {p : A} {q : B} {r : C} {r' : D} (h : r ∶ p ∷ r' ∶ q) (hr : size r = size r') :
     size p = size q :=
   let ⟨hr₀, hp, hr', hq, h⟩ := h
-  mag_inj.mp (proposition_9' (by rwa [mag_congr (hp := hr') (hq := hr₀) hr.symm] at h))
+  mag_inj.mp (Elements.Book5.proposition_9'
+    (by rwa [mag_congr (hp := hr') (hq := hr₀) hr.symm] at h))
 
 /-- Equal magnitudes have the same ratio to the same [Prop. 5.7]. -/
 theorem of_eq {A B C : Type} [Figure A K] [Figure B K] [Figure C K] {p : A} {q : B}
     {r : C} (hp : 0 < size p) (hr : 0 < size r) (h : size p = size q) : p ∶ r ∷ q ∶ r :=
-  ⟨hp, hr, h ▸ hp, hr, (proposition_7 (mag r hr) (mag_congr (hq := h ▸ hp) h)).1⟩
+  ⟨hp, hr, h ▸ hp, hr,
+    (Elements.Book5.proposition_7 (mag r hr) (mag_congr (hq := h ▸ hp) h)).1⟩
 
 end Proportional
+
+/-- Two magnitudes `x`, `y`, as Prop. 5.12 takes them. -/
+def two {M : Type} (x y : M) : Fin 2 → M := fun i => match i with | 0 => x | 1 => y
+
+/-- Three magnitudes `x`, `y`, `z`, as Prop. 5.12 takes them. -/
+def three {M : Type} (x y z : M) : Fin 3 → M :=
+  fun i => match i with | 0 => x | 1 => y | 2 => z
+
+theorem sum_two {M : Type} [Magnitude M] (x y : M) :
+    Magnitude.sum (two x y) = x + y := rfl
+
+theorem sum_three {M : Type} [Magnitude M] (x y z : M) :
+    Magnitude.sum (three x y z) = x + y + z := rfl
+
+/-! The squared ratio (Def. 5.9) of figures. -/
+
+namespace SquaredRatio'
+
+variable {X Y Z W : Type} {K L : Type} [Magnitude K] [Kind K] [Magnitude L] [Kind L]
+  [Figure X K] [Figure Y K] [Figure Z L] [Figure W L]
+
+/--
+Ratios squared of the same ratio are the same: if `p : q` is the squared ratio of `r : s`,
+and `p' : q'` of `r' : s'`, with `r : s :: r' : s'`, then `p : q :: p' : q'`. Of the third
+proportionals `z`, `z'`, `s : z :: s' : z'` [Prop. 5.11], so `r : z :: r' : z'`
+[Prop. 5.22].
+-/
+theorem same {X' Y' Z' W' : Type} {K' L' : Type} [Magnitude K'] [Kind K'] [Magnitude L']
+    [Kind L'] [Figure X' K'] [Figure Y' K'] [Figure Z' L'] [Figure W' L']
+    {p : X} {q : Y} {r : Z} {s : W} {p' : X'} {q' : Y'} {r' : Z'} {s' : W'}
+    (h : SquaredRatio' p q r s) (h' : SquaredRatio' p' q' r' s') (hr : r ∶ s ∷ r' ∶ s') :
+    p ∶ q ∷ p' ∶ q' := by
+  obtain ⟨hp, hq, hr₀, hs, z, h₁, h₂⟩ := h
+  obtain ⟨hp', hq', hr₀', hs', z', h₁', h₂'⟩ := h'
+  have hr := hr.elim hr₀ hs hr₀' hs'
+  have h₃ := Elements.Book5.proposition_11 (Elements.Book5.proposition_11 h₁.symm hr) h₁'
+  have h₄ := Elements.Book5.proposition_22' hr h₃
+  exact ⟨hp, hq, hp', hq',
+    Elements.Book5.proposition_11 (Elements.Book5.proposition_11 h₂ h₄) h₂'.symm⟩
+
+/-- If `p : q` is the squared ratio of `r : s`, and `r : s :: s : t`, then
+`r : t :: p : q` [Def. 5.9, Props. 5.11, 5.9]. -/
+theorem third {T : Type} [Figure T L] {p : X} {q : Y} {r : Z} {s : W} {t : T}
+    (h : SquaredRatio' p q r s) (ht : r ∶ s ∷ s ∶ t) : r ∶ t ∷ p ∶ q := by
+  obtain ⟨hp, hq, hr, hs, z, h₁, h₂⟩ := h
+  obtain ⟨hr', hs', hs'', htt, h₃⟩ := ht
+  have := Elements.Book5.proposition_9' (Elements.Book5.proposition_11 h₁.symm h₃)
+  subst this
+  exact ⟨hr, htt, hp, hq, h₂.symm⟩
+
+/-- A ratio the same as a squared ratio of `r : s` is one too [Prop. 5.11]. -/
+theorem congr {X' Y' : Type} [Figure X' K] [Figure Y' K] {p : X} {q : Y} {p' : X'}
+    {q' : Y'} {r : Z} {s : W} (h : SquaredRatio' p q r s) (hp : p ∶ q ∷ p' ∶ q') :
+    SquaredRatio' p' q' r s := by
+  obtain ⟨hp₀, hq, hr, hs, z, h₁, h₂⟩ := h
+  obtain ⟨hp₁, hq₁, hp', hq', hp⟩ := hp
+  exact ⟨hp', hq', hr, hs, z, h₁, Elements.Book5.proposition_11 hp.symm h₂⟩
+
+/--
+Equal figures in the squared ratio of `r : s` have `r` equal to `s`: `r : s :: s : z`
+with `z` equal to `r` [Def. 5.5], and if `r` exceeded `s`, `s` would exceed `r`
+[Prop. 5.14].
+-/
+theorem eq {p : X} {q : Y} {r : Z} {s : W} (h : SquaredRatio' p q r s)
+    (hpq : size p = size q) : size r = size s := by
+  obtain ⟨hp, hq, hr, hs, z, h₁, h₂⟩ := h
+  have : mag r hr = z := by
+    have := (h₂.eq 1 1).mp (by rw [one_mult, one_mult]; exact mag_congr hpq)
+    rwa [one_mult, one_mult] at this
+  subst this
+  have h₃ := Elements.Book5.proposition_14 h₁
+  rcases lt_trichotomy (mag r hr) (mag s hs) with e | e | e
+  · exact absurd (h₃.2.2 e) (lt_asymm e)
+  · exact mag_inj.mp e
+  · exact absurd (h₃.1 e) (lt_asymm e)
+
+end SquaredRatio'
 
 /-- The angles of a triangle are equal to two right angles [Prop. 1.32]. -/
 theorem triangle_angles : ∀ (a b c : Point) (AB BC CA : Line),
@@ -118,30 +204,62 @@ by
   euclid_finish
 
 /--
-A straight line `BP` making with `BA` a lesser angle than `BC` does, on `c`'s side, cuts
-`ac` (the crossbar): `p` is inside the angle `abc`, or the angle `abp` would be `abc`
+A straight line `BP` making with `BA` a lesser angle than `BC` does, on `c`'s side, is
+inside the angle `abc`: `p` is on `a`'s side of `BC`, or the angle `abp` would be `abc`
 or exceed it.
 -/
-theorem crossbar : ∀ (a b c p : Point) (AB BC CA BP : Line),
-  formTriangle a b c AB BC CA ∧ distinctPointsOnLine b p BP ∧ p.sameSide c AB ∧
-  ∠ a:b:p < ∠ a:b:c → ∃ g : Point, g.onLine BP ∧ between a g c :=
+theorem inside_of_lt : ∀ (a b c p : Point) (AB BC BP : Line),
+  distinctPointsOnLine a b AB ∧ distinctPointsOnLine b c BC ∧
+  distinctPointsOnLine b p BP ∧ ¬(c.onLine AB) ∧ p.sameSide c AB ∧ ∠ a:b:p < ∠ a:b:c →
+  ¬(c.onLine BP) ∧ p.sameSide a BC :=
 by
   euclid_intros
   have : ¬(c.onLine BP) := by
     intro h
     euclid_apply (equal_angles b p c a a BP AB)
     euclid_finish
-  have : p.sameSide a BC := by
-    by_contra h
-    by_cases p.onLine BC
-    · euclid_finish
-    · euclid_apply (triple_incidence_2 AB BC BP b a c p)
-      euclid_apply (sum_angles_onlyif b a p c AB BP)
-      euclid_finish
+  refine ⟨this, ?_⟩
+  by_contra h
+  by_cases p.onLine BC
+  · euclid_finish
+  · euclid_apply (triple_incidence_2 AB BC BP b a c p)
+    euclid_apply (sum_angles_onlyif b a p c AB BP)
+    euclid_finish
+
+/-- The straight line `BP` of `inside_of_lt` cuts `ac` (the crossbar). -/
+theorem crossbar : ∀ (a b c p : Point) (AB BC CA BP : Line),
+  formTriangle a b c AB BC CA ∧ distinctPointsOnLine b p BP ∧ p.sameSide c AB ∧
+  ∠ a:b:p < ∠ a:b:c → ∃ g : Point, g.onLine BP ∧ between a g c :=
+by
+  euclid_intros
+  euclid_apply (inside_of_lt a b c p AB BC BP)
   euclid_apply (triple_incidence_1 AB BP BC b a p c)
   euclid_apply (intersection_lines_opposing a c BP CA)
   euclid_apply (intersection_lines BP CA) as g
   use g
+  euclid_finish
+
+/--
+Angles `agb`, `bgh` on either side of `GB`, together less than two right angles, make
+the angle `agh`: `b` is inside it. Produce `ag` to `a'`: `bgh` is less than `bga'`
+[Prop. 1.13], so `h` is inside the angle `bga'`.
+-/
+theorem inside_of_sum : ∀ (a b g h : Point) (GA GB GH : Line),
+  distinctPointsOnLine g a GA ∧ distinctPointsOnLine g b GB ∧
+  distinctPointsOnLine g h GH ∧ a.opposingSides h GB ∧ ∠ a:g:b + ∠ b:g:h < ∟ + ∟ →
+  b.sameSide h GA ∧ b.sameSide a GH ∧ ∠ a:g:h = ∠ a:g:b + ∠ b:g:h :=
+by
+  euclid_intros
+  euclid_apply (extend_point GA a g) as a'
+  euclid_apply (Elements.Book1.proposition_13 b g a' a GB GA)
+  euclid_apply (inside_of_lt b g a' h GB GA GH)
+  euclid_apply (triple_incidence_1 GB GH GA g b h a')
+  have : b.sameSide h GA ∧ b.sameSide a GH := by
+    constructor
+    · euclid_finish
+    · by_contra
+      euclid_finish
+  euclid_apply (sum_angles_onlyif g a h b GA GH)
   euclid_finish
 
 /-- A line `N` meeting `M` at `p` meets every parallel `L` to `M` (Post. 5): otherwise

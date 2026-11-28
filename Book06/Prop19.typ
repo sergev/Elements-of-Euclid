@@ -29,3 +29,4 @@
     [So it is clear, from this, that if three straight-lines are proportional, (then) as the first is to the third, so the figure (described) on the first (is) to the similar, and similarly described, (figure) on the second. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book6/Prop19.lean")

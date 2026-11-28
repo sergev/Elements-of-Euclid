@@ -28,3 +28,4 @@
     [Thus, if four straight-lines are proportional, (then) similar, and similarly described, rectilinear figures (drawn) on them will also be proportional. And if similar, and similarly described, rectilinear figures (drawn) on them are proportional, (then) the straight-lines themselves will also be proportional. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book6/Prop22.lean")

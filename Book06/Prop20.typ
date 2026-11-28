@@ -37,3 +37,4 @@
     [And, in the same manner, it can also be shown for [similar] quadrilaterals, (that) they are in the squared ratio of (their) corresponding sides. And it was also shown for triangles. Hence, in general, similar rectilinear figures are also to one another in the squared ratio of (their) corresponding sides. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book6/Prop20.lean")
