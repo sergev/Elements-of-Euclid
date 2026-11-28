@@ -12,16 +12,18 @@ contexts:
       push: block-comment
     - match: '--.*$'
       scope: comment.line.double-dash.lean
-    - match: '\b(theorem|lemma|def|axiom|by|have|show|from|fun|let|in|at|with|if|then|else|match|set_option|open|namespace|end|import)\b'
+    - match: '\b(theorem|lemma|def|axiom|class|instance|structure|extends|where|variable|abbrev|by|have|show|from|fun|let|in|at|with|if|then|else|match|set_option|open|namespace|end|import)\b'
       scope: keyword.other.lean
-    - match: '\b(euclid_intros|euclid_apply|euclid_assert|euclid_finish|use|by_contra|by_cases|constructor|exact|apply|intro|intros|rcases|obtain|simp|linarith|omega|rw|split_ands|assumption|contradiction|exfalso|left|right|refine|calc|repeat|all_goals|any_goals|first|try)\b'
+    - match: '\b(euclid_intros|euclid_apply|euclid_assert|euclid_finish|use|by_contra|by_cases|constructor|exact|apply|intro|intros|rcases|rintro|obtain|induction|cases|rfl|subst|simp|linarith|omega|rw|split_ands|assumption|contradiction|exfalso|left|right|refine|calc|repeat|all_goals|any_goals|first|try)\b'
       scope: entity.name.function.tactic.lean
     - match: '\bas\b'
       scope: keyword.other.lean
     - match: "\\b(proposition_[0-9]+'*)"
       scope: entity.name.lean
-    - match: '\b(Point|Line|Circle|Segment|Angle|Triangle|Prop|True|False)\b|ℝ'
+    - match: '\b(Point|Line|Circle|Segment|Angle|Triangle|Prop|Type|True|False|Fin|Magnitude|Proportion|GreaterRatio)\b|ℝ|ℕ\+?'
       scope: support.type.lean
+    - match: '•'
+      scope: keyword.operator.lean
     - match: '\b[0-9]+\b'
       scope: constant.numeric.lean
 

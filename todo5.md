@@ -27,31 +27,6 @@ How Book 5 differs from Books 1–4:
   - Mathlib's lemmas may be used for what Euclid takes for granted: arithmetic of the counting numbers, and the algebra of addition (C.N. 1–5).
 - **No reals, no division.** Ratios are not numbers. "A : B :: C : D" is Def. 5.5, over equimultiples. Don't define a ratio as `a / b`, which would make the book trivial.
 
-## T1. Magnitudes, definitions and scaffolding
-
-Decide the basis before any proof, and write the decisions in the header comment of `lean/Elements/Book5.lean`.
-- **Magnitudes.** A class for a kind of magnitude in `lean/Elements/Book5/Magnitude.lean`. It needs:
-  - addition, associative and commutative;
-  - a linear order, with each magnitude less than its sum with another;
-  - subtraction of the lesser from the greater (Euclid's "remainder");
-  - positivity: Euclid's magnitudes are never zero.
-
-  Choose between a Mathlib class (for example a linearly ordered, cancellative, commutative additive semigroup) and a small class of our own with just these laws. Prefer the smaller one if Mathlib's brings `0` and lemmas that do Euclid's work. Record the choice and the reason.
-- **Multiples.** Euclid's multiples are `m` times a magnitude, with `m ≥ 1`. Write them as `m • a` with `m : ℕ+`, or as a recursive `mult m a` of our own. A multiple of a sum and a multiple of a multiple are then 5.1–5.3, not lemmas.
-- **Def. 5.4,** having a ratio: each has a multiple exceeding the other. Decide between assuming it for every pair of one kind (Archimedes' axiom, as a class field) and carrying it as a hypothesis where Euclid uses it (5.8).
-- **Def. 5.5,** `Proportion a b c d` ("A : B :: C : D"):
-  - for all equimultiples `m`, `n`: `n•b < m•a ↔ n•d < m•c`, and the same for `=` and `>`;
-  - `a`, `b` are of one kind and `c`, `d` may be of another, so the definition takes two types.
-- **Def. 5.7,** `GreaterRatio a b c d`: some `m`, `n` with `n•b < m•a` and not `n•d < m•c`.
-- **Defs. 5.12–5.18** (alternate, inverse, composition, separation, conversion, ex aequali, perturbed proportion) are not separate notions: each is a way of forming a proportion. Write them out in the statements, as Euclid does, and give each a doc comment. Define only what reads more clearly with a name.
-- **"Any number of magnitudes"** (5.1, 5.12, 5.22). Euclid argues with two or three, and says "and so on". Choose `List`, `Fin n → M`, or Euclid's case. Ex aequali (5.22) for any number needs induction over the chain. Decide here, once for the book.
-- **Prop. 5.18** assumes, without proof, that a fourth proportional to three magnitudes exists (Fitzpatrick's note). It does not follow from the laws above. Either make it a class field or state it as a hypothesis of 5.18. Either way, mark it in the proof: `-- Missed by Euclid: a fourth proportional exists.` Record the choice in the header comment.
-
-Scaffolding:
-- `lean/Elements/Book5.lean` with the header comment, imported in `lean/Elements.lean`.
-- Add `5` to `lean-books` in `functions.typ`. Check that `ElementsEnglish.pdf` and `ElementsGreekEnglish.pdf` don't change (compare `pdftotext` output).
-- Check that `lean/lean4.sublime-syntax` highlights what Book 5 uses (`class`, `instance`, `•`, `ℕ+`, `induction`). Add what is missing.
-
 ## T2. Props. 5.1–5.6: multiples
 
 - **5.1:** a multiple of a sum is the sum of the multiples; "any number" by T1's decision.
