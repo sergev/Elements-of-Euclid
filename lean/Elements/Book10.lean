@@ -2,6 +2,14 @@ import Elements.Book10.Definitions
 import Elements.Book10.Definitions2
 import Elements.Book10.Definitions3
 import Elements.Book10.Lemmas
+import Elements.Book10.Prop001
+import Elements.Book10.Prop002
+import Elements.Book10.Prop003
+import Elements.Book10.Prop004
+import Elements.Book10.Prop005
+import Elements.Book10.Prop006
+import Elements.Book10.Prop007
+import Elements.Book10.Prop008
 
 /-
 Book 10: incommensurable magnitudes.

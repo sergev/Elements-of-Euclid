@@ -20,3 +20,4 @@
     [Thus, if two magnitudes ... to one another, and so on ....],
   )
 ]
+#lean-proof("/lean/Elements/Book10/Prop008.lean")

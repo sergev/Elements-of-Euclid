@@ -32,15 +32,6 @@ How Book 10 differs from the books before it:
 - **Numbers.** "The ratio which a number has to a number" joins Book 5's proportion with Books 7–9's numbers (`ℕ`, Def. 7.20). 10.5–10.9 make the bridge; after that, Book 7–9 propositions are cited as Lean terms (8.24, 8.26, 9.1, 9.2 for squares).
 - **Irrational means Euclid's irrational.** Rational and irrational are relative to an assigned line `ρ` (Def. 10.3), and a line is rational when commensurable with `ρ` in length or in square only. Incommensurability is proved as Euclid proves it, from the hypotheses (10.13, 10.16 and so on), not from the irrationality of a real number.
 
-## T2. Props. 10.1–10.8: exhaustion, measures, ratios of numbers
-
-- **10.1:** from the greater of two unequal magnitudes take more than half, and from the remainder more than half, and so on: some remainder is less than the lesser. Through Def. 5.4 (`Magnitude.archimedes`). "Continually" is a sequence `ℕ → M`; state it with the taking away as a hypothesis on each step. Euclid's closing remark (the same if halves are taken) is a variant.
-- **10.2:** if the process of 7.2 (the lesser taken in turn from the greater) never ends with a remainder measuring the one before it, the magnitudes are incommensurable. Define the process for magnitudes as Book 7's `remainder` is for numbers, but it need not stop: a sequence of pairs. The proof is by 10.1.
-- **10.3, 10.4:** the greatest common measure of two (three) commensurable magnitudes, with corollaries. As 7.2 and 7.3; the process stops because the magnitudes are commensurable.
-- **10.5–10.8:** commensurable magnitudes have the ratio of a number to a number, and conversely (10.6, with its corollary: to find a line in the ratio of numbers to a given line); incommensurable do not, and conversely. 10.5 goes through Def. 5.5 and Book 7's numbers; Fitzpatrick's notes on Euclid's use of Book 5 for numbers apply.
-
-Risk: medium. 10.2 is the first infinite process in the Lean edition.
-
 ## T3. Props. 10.9–10.16: squares; commensurability
 
 - **10.9:** squares on lines commensurable in length have the ratio of a square number to a square number, and conversely; lines with squares not so are incommensurable in length. Corollary: commensurable in length implies in square, not conversely. Through 6.20 (squares, in `Lemmas.lean`), 8.11 and 8.24, 8.26.

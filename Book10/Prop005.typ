@@ -24,3 +24,4 @@
     [Thus, the commensurable magnitudes $A$ and $B$ have to one another the ratio which the number $D$ (has) to the number $E$. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book10/Prop005.lean")

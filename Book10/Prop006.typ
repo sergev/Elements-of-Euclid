@@ -29,3 +29,4 @@
     [So it is clear, from this, that if there are two numbers, like $D$ and $E$, and a straight-line, like $A$, then it is possible to contrive that as the number $D$ (is) to the number $E$, so the straight-line (is) to (another) straight-line (i.e., $F$). And if the mean proportion, (say) $B$, is taken of $A$ and $F$, then as $A$ is to $F$, so the (square) on $A$ (will be) to the (square) on $B$. That is to say, as the first (is) to the third, so the (figure) on the first (is) to the similar, and similarly described, (figure) on the second [Prop.~6.19 corr.]. But, as $A$ (is) to $F$, so the number $D$ is to the number $E$. Thus, it has also been contrived that as the number $D$ (is) to the number $E$, so the (figure) on the straight-line $A$ (is) to the (similar figure) on the straight-line $B$. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book10/Prop006.lean")

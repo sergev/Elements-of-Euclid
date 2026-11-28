@@ -33,3 +33,4 @@
     [So, similarly, the greatest common measure of more (magnitudes) can also be taken, and the (above) corollary will go forward. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book10/Prop004.lean")

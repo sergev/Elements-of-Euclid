@@ -17,6 +17,10 @@ variable {M : Type*} [Magnitude M]
 
 /-! Measures and commensurable magnitudes. -/
 
+/-- A magnitude is not greater than any multiple of it. -/
+theorem le_mult (n : ℕ+) (a : M) : a ≤ n • a :=
+  mult_le_mult_left a (PNat.coe_le_coe 1 n |>.mp n.pos)
+
 theorem Measures.refl (a : M) : Measures a a := ⟨1, rfl⟩
 
 /-- What measures a measure measures the magnitude (5.3). -/
@@ -49,7 +53,7 @@ theorem Measures.sub {a b c : M} (h₁ : Measures a (b + c)) (h₂ : Measures a 
 /-- The measure is not greater than what it measures. -/
 theorem Measures.le {a b : M} (h : Measures a b) : a ≤ b := by
   obtain ⟨n, rfl⟩ := h
-  exact mult_le_mult_left a (PNat.coe_le_coe 1 n |>.mp n.pos)
+  exact le_mult n a
 
 theorem Commensurable.refl (a : M) : Commensurable a a := ⟨a, .refl a, .refl a⟩
 
@@ -61,6 +65,26 @@ theorem Commensurable.of_measures {a b : M} (h : Measures a b) : Commensurable a
 
 theorem not_commensurable_symm {a b : M} (h : ¬ Commensurable a b) :
     ¬ Commensurable b a := fun h' => h h'.symm
+
+/-- The greater multiple of a magnitude is greater, and conversely. -/
+theorem mult_lt_mult_iff {m n : ℕ+} {a : M} : m • a < n • a ↔ m < n :=
+  ⟨lt_of_mult_lt_mult_left, mult_lt_mult_left a⟩
+
+/--
+Def. 7.20 for magnitudes: if `c` measures `a` as many times as `u` measures `d`, then as
+`c` is to `a`, so `u` is to `d`. Euclid takes it from Def. 7.20 (10.5, 10.6, with `u` the
+unit and `d` a number); here it is proved from Def. 5.5.
+-/
+theorem proportion_mult {N : Type*} [Magnitude N] (m : ℕ+) (c : M) (u : N) :
+    Proportion c (m • c) u (m • u) := by
+  refine ⟨fun k l => ?_, fun k l => ?_, fun k l => ?_⟩
+  · rw [Elements.Book5.proposition_3, Elements.Book5.proposition_3, mult_lt_mult_iff,
+      mult_lt_mult_iff]
+  · rw [Elements.Book5.proposition_3, Elements.Book5.proposition_3]
+    exact ⟨fun h => congrArg (· • u) (mult_inj_left h),
+      fun h => congrArg (· • c) (mult_inj_left h)⟩
+  · rw [Elements.Book5.proposition_3, Elements.Book5.proposition_3, mult_lt_mult_iff,
+      mult_lt_mult_iff]
 
 theorem Rational.self (ρ : Length) : Rational ρ ρ := Or.inl (.refl ρ)
 

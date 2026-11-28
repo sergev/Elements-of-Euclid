@@ -24,3 +24,4 @@
     [Thus, the magnitude $A K$, which is less than the lesser laid out magnitude $C$, is left over from the magnitude $A B$. (Which is) the very thing it was required to show. --- (The theorem) can similarly be proved even if the (parts) subtracted are halves.],
   )
 ]
+#lean-proof("/lean/Elements/Book10/Prop001.lean")

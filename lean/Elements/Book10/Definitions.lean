@@ -28,38 +28,58 @@ def Commensurable (a b : M) : Prop := ∃ c, Measures c a ∧ Measures c b
 /--
 A number, a multitude of units, as a magnitude of its own kind (10.5–10.9: "the ratio
 which a number has to a number" is Book 5's `Proportion` between magnitudes and numbers).
-It is `ℕ+` under another name, so that `n • a` is Book 5's multiple, not Mathlib's
-product. Here the unit is a number too: Euclid takes it so in 10.5 (`C` is to `A` as the
-unit to `D`).
+It is `ℕ+` in a wrapper, `(m : Number)`, so that `n • a` is Book 5's multiple, not
+Mathlib's product. Here the unit is a number too: Euclid takes it so in 10.5 (`C` is to
+`A` as the unit to `D`).
 -/
-def Number := ℕ+
+structure Number where
+  /-- The number `n : ℕ+` as a magnitude. -/
+  ofPNat ::
+  /-- The number as an element of `ℕ+`. -/
+  toPNat : ℕ+
 
 namespace Number
 
-instance : AddCommSemigroup Number := inferInstanceAs (AddCommSemigroup ℕ+)
+attribute [coe] ofPNat
 
-instance : LinearOrder Number := inferInstanceAs (LinearOrder ℕ+)
+instance : Coe ℕ+ Number := ⟨ofPNat⟩
+
+theorem toPNat_injective : Function.Injective toPNat := fun a b h => by
+  cases a; cases b; cases h; rfl
+
+instance : Add Number := ⟨fun a b => ofPNat (a.toPNat + b.toPNat)⟩
+
+instance : AddCommSemigroup Number where
+  add_assoc a b c := congrArg ofPNat (add_assoc a.toPNat b.toPNat c.toPNat)
+  add_comm a b := congrArg ofPNat (add_comm a.toPNat b.toPNat)
+
+instance : LinearOrder Number := LinearOrder.lift' toPNat toPNat_injective
 
 /-- Def. 7.15: a number multiplying a number. -/
-instance : Mul Number := inferInstanceAs (Mul ℕ+)
+instance : Mul Number := ⟨fun a b => ofPNat (a.toPNat * b.toPNat)⟩
 
 /-- The number of `n` units. -/
-def of (n : ℕ) (h : 0 < n) : Number := (⟨n, h⟩ : ℕ+)
+def of (n : ℕ) (h : 0 < n) : Number := ofPNat ⟨n, h⟩
 
 /-- The units in a number. -/
-def val (n : Number) : ℕ := PNat.val n
+def val (n : Number) : ℕ := n.toPNat
 
-theorem val_add (a b : Number) : val (a + b) = val a + val b := PNat.add_coe (a : ℕ+) b
+/-- The unit. -/
+def unit : Number := ofPNat 1
 
-theorem val_mul (a b : Number) : val (a * b) = val a * val b := PNat.mul_coe (a : ℕ+) b
+@[simp] theorem val_coe (n : ℕ+) : val n = n := rfl
 
-theorem val_pos (a : Number) : 0 < val a := PNat.pos a
+theorem val_add (a b : Number) : val (a + b) = val a + val b := PNat.add_coe _ _
 
-theorem val_lt {a b : Number} : val a < val b ↔ a < b := PNat.coe_lt_coe a b
+theorem val_mul (a b : Number) : val (a * b) = val a * val b := PNat.mul_coe _ _
 
-theorem val_le {a b : Number} : val a ≤ val b ↔ a ≤ b := PNat.coe_le_coe a b
+theorem val_pos (a : Number) : 0 < val a := PNat.pos _
 
-theorem ext {a b : Number} (h : val a = val b) : a = b := PNat.eq h
+theorem val_lt {a b : Number} : val a < val b ↔ a < b := PNat.coe_lt_coe _ _
+
+theorem val_le {a b : Number} : val a ≤ val b ↔ a ≤ b := PNat.coe_le_coe _ _
+
+theorem ext {a b : Number} (h : val a = val b) : a = b := toPNat_injective (PNat.eq h)
 
 theorem val_inj {a b : Number} : val a = val b ↔ a = b := ⟨ext, congrArg val⟩
 
@@ -86,6 +106,9 @@ instance : Magnitude Number where
 theorem mult_val (m : ℕ+) (n : Number) : val (m • n) = m * val n := by
   show val ((· + n)^[m.natPred] n) = _
   rw [iter_val, PNat.natPred_add_one]
+
+/-- `m` times the unit is the number `m`. -/
+theorem mult_unit (m : ℕ+) : m • unit = m := ext (by rw [mult_val]; exact Nat.mul_one _)
 
 end Number
 

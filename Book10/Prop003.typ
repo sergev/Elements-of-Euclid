@@ -33,3 +33,4 @@
     [So (it is) clear, from this, that if a magnitude measures two magnitudes then it will also measure their greatest common measure.],
   )
 ]
+#lean-proof("/lean/Elements/Book10/Prop003.lean")
