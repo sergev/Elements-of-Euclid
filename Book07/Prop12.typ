@@ -16,3 +16,4 @@
     [For since as $A$ is to $B$, so $C$ (is) to $D$, thus which(ever) part, or parts, $A$ is of $B$, $C$ is also the same part, or parts, of $D$ [Def.~7.20]. Thus, the sum $A$, $C$ is also the same part, or the same parts, of the sum $B$, $D$ that $A$ (is) of $B$ [Props.~7.5, 7.6]. Thus, as $A$ is to $B$, so $A$, $C$ (is) to $B$, $D$ [Def.~7.20]. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book7/Prop12.lean")

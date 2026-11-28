@@ -10,6 +10,11 @@ import Elements.Book7.Prop07
 import Elements.Book7.Prop08
 import Elements.Book7.Prop09
 import Elements.Book7.Prop10
+import Elements.Book7.Prop11
+import Elements.Book7.Prop12
+import Elements.Book7.Prop13
+import Elements.Book7.Prop14
+import Elements.Book7.Prop15
 
 /-
 Book 7: numbers.

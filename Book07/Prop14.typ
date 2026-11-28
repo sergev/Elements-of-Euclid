@@ -16,3 +16,4 @@
     [For since as $A$ is to $B$, so $D$ (is) to $E$, thus, alternately, as $A$ is to $D$, so $B$ (is) to $E$ [Prop.~7.13]. Again, since as $B$ is to $C$, so $E$ (is) to $F$, thus, alternately, as $B$ is to $E$, so $C$ (is) to $F$ [Prop.~7.13]. And as $B$ (is) to $E$, so $A$ (is) to $D$. Thus, also, as $A$ (is) to $D$, so $C$ (is) to $F$. Thus, alternately, as $A$ is to $C$, so $D$ (is) to $F$ [Prop.~7.13]. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book7/Prop14.lean")

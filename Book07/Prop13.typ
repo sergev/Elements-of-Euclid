@@ -16,3 +16,4 @@
     [For since as $A$ is to $B$, so $C$ (is) to $D$, thus which(ever) part, or parts, $A$ is of $B$, $C$ is also the same part, or the same parts, of $D$ [Def.~7.20]. Thus, alternately, which(ever) part, or parts, $A$ is of $C$, $B$ is also the same part, or the same parts, of $D$ [Props.~7.9, 7.10]. Thus, as $A$ is to $C$, so $B$ (is) to $D$ [Def.~7.20]. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book7/Prop13.lean")

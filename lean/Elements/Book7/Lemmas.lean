@@ -51,6 +51,23 @@ theorem not_measures_of_lt {a b : ℕ} (hb : 0 < b) (h : b < a) : ¬ a ∣ b := 
 theorem le_of_measures {a b : ℕ} (hb : 0 < b) (h : a ∣ b) : a ≤ b :=
   Nat.le_of_not_lt fun hab => not_measures_of_lt hb hab h
 
+/-- All of any multitude of numbers are a number. -/
+theorem sum_pos {n : ℕ} {a : Fin (n + 1) → ℕ} (ha : ∀ i, 0 < a i) : 0 < sum a := by
+  induction n with
+  | zero => exact ha 0
+  | succ n ih =>
+    have := ih (a := fun i => a i.castSucc) fun i => ha _
+    simp only [sum]
+    omega
+
+/-- `n + 1` numbers each equal to `x` are `x` taken `n + 1` times. -/
+theorem sum_const (x : ℕ) {n : ℕ} : sum (fun _ : Fin (n + 1) => x) = x * (n + 1) := by
+  induction n with
+  | zero => exact (Nat.mul_one x).symm
+  | succ n ih =>
+    simp only [sum]
+    rw [ih, Nat.mul_succ x (n + 1)]
+
 /-! The process of 7.1 and 7.2. -/
 
 /--

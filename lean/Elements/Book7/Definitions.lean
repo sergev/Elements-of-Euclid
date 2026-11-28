@@ -43,6 +43,11 @@ def Proportion (a b c d : ℕ) : Prop :=
 @[inherit_doc] scoped notation:50 a:51 " ∶ " b:51 " ∷ " c:51 " ∶ " d:51 =>
   Proportion a b c d
 
+/-- Any multitude of numbers `a 0`, …, `a n`, all of them added (7.12). -/
+def sum : {n : ℕ} → (Fin (n + 1) → ℕ) → ℕ
+  | 0, a => a 0
+  | n + 1, a => sum (fun i : Fin (n + 1) => a i.castSucc) + a (Fin.last (n + 1))
+
 /-- Def. 7.11: a prime number is measured by a unit alone (and by itself). -/
 def PrimeNumber (p : ℕ) : Prop := 1 < p ∧ ∀ d, d ∣ p → d = 1 ∨ d = p
 

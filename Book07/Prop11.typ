@@ -16,3 +16,4 @@
     [(For) since as $A B$ is to $C D$, so $A E$ (is) to $C F$, thus which(ever) part, or parts, $A B$ is of $C D$, $A E$ is also the same part, or the same parts, of $C F$ [Def.~7.20]. Thus, the remainder $E B$ is also the same part, or parts, of the remainder $F D$ that $A B$ (is) of $C D$ [Props.~7.7, 7.8]. Thus, as $E B$ is to $F D$, so $A B$ (is) to $C D$ [Def.~7.20]. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book7/Prop11.lean")

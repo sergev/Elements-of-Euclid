@@ -34,14 +34,6 @@ How Book 7 differs from Books 1–6:
   Once a proposition is proved, cite it, or a tactic that does the same, with a comment naming the proposition.
 - **No division, no rationals.** A ratio of numbers is never `a / b`, in `ℕ` or `ℚ`.
 
-## T4. Props. 7.11–7.15: proportion of numbers
-
-- **7.11:** as whole to whole, so a part taken away to a part taken away: the remainder to the remainder.
-- **7.12:** any number of proportionals: as one leading number to its following one, so the sum of the leading numbers to the sum of the following. Use the "any multitude" of T1.
-- **7.13:** alternately.
-- **7.14:** via equality (ex aequali), for any number of numbers.
-- **7.15:** if the unit measures a number as many times as another number measures a fourth, then alternately. This is the start of multiplication.
-
 ## T5. Props. 7.16–7.19: multiplication
 
 - **7.16:** `a * b = b * a`: Euclid's proof by 7.15. From here on `mul_comm` may be cited, with a comment.
