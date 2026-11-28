@@ -24,3 +24,4 @@
     [For similarly, with the same construction, we can show that $A$, $H$, $K$, $B$ are continuously proportional in the ratio of $C$ to $D$. And since $C$ measures $D$, and as $C$ is to $D$, so $A$ (is) to $H$, $A$ thus also measures $H$ [Def.~7.20]. Hence, $A$ also measures $B$. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book8/Prop15.lean")

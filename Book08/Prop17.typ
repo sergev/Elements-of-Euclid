@@ -24,3 +24,4 @@
     [For if $A$ measures $B$ then $C$ will also measure $D$ [Prop.~8.15]. And $C$ does not measure $D$. Thus, $A$ will not measure $B$ either. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book8/Prop17.lean")

@@ -28,3 +28,4 @@
     [Thus, if a square (number) measures a(nother) square (number) then the side (of the former) will also measure the side (of the latter). And if the side (of a square number) measures the side (of another square number) then the (former) square (number) will also measure the (latter) square (number). (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book8/Prop14.lean")

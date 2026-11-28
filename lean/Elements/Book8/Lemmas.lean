@@ -79,29 +79,50 @@ theorem LeastSeq.eq {n : ℕ} {a b : Fin (n + 1) → ℕ} (ha : ∀ i, 0 < a i)
 
 /-! One or two numbers falling between: three or four numbers, as Euclid has them. -/
 
+/-- Three numbers `a`, `e`, `b`. -/
+def three (a e b : ℕ) : Fin 3 → ℕ :=
+  fun i => if i.val = 0 then a else if i.val = 1 then e else b
+
+/-- Four numbers `a`, `e`, `f`, `b`. -/
+def four (a e f b : ℕ) : Fin 4 → ℕ :=
+  fun i => if i.val = 0 then a else if i.val = 1 then e else if i.val = 2 then f else b
+
+theorem three_pos {a e b : ℕ} (ha : 0 < a) (he : 0 < e) (hb : 0 < b) :
+    ∀ i, 0 < three a e b i := fun i => by
+  unfold three
+  split_ifs <;> assumption
+
+theorem four_pos {a e f b : ℕ} (ha : 0 < a) (he : 0 < e) (hf : 0 < f) (hb : 0 < b) :
+    ∀ i, 0 < four a e f b i := fun i => by
+  unfold four
+  split_ifs <;> assumption
+
+/-- `a`, `e`, `b` are continuously proportional when `a ∶ e ∷ e ∶ b`. -/
+theorem three_continued {a e b : ℕ} (ha : 0 < a) (he : 0 < e) (h : a ∶ e ∷ e ∶ b) :
+    Continued (three a e b) := fun ⟨i, hi⟩ =>
+  match i, hi with
+  | 0, _ => Proportion.refl ha he
+  | 1, _ => h.symm
+
+/-- `a`, `e`, `f`, `b` are continuously proportional when `a ∶ e ∷ e ∶ f` and
+`e ∶ f ∷ f ∶ b`. -/
+theorem four_continued {a e f b : ℕ} (ha : 0 < a) (he : 0 < e) (hf : 0 < f) (hb : 0 < b)
+    (h₁ : a ∶ e ∷ e ∶ f) (h₂ : e ∶ f ∷ f ∶ b) : Continued (four a e f b) :=
+  fun ⟨i, hi⟩ => match i, hi with
+  | 0, _ => Proportion.refl ha he
+  | 1, _ => h₁.symm
+  | 2, _ => proportion_trans hf hb he hf h₂.symm h₁.symm
+
 /-- One number `e` falls between `a` and `b` when `a ∶ e ∷ e ∶ b`. -/
 theorem fallBetween_one {a e b : ℕ} (ha : 0 < a) (he : 0 < e) (hb : 0 < b)
-    (h : a ∶ e ∷ e ∶ b) : FallBetween 1 a b := by
-  refine ⟨fun i => if i.val = 0 then a else if i.val = 1 then e else b, fun i => ?_,
-    fun ⟨i, hi⟩ => ?_, rfl, rfl⟩
-  · dsimp only
-    split_ifs <;> assumption
-  · match i, hi with
-    | 0, _ => exact Proportion.refl ha he
-    | 1, _ => exact h.symm
+    (h : a ∶ e ∷ e ∶ b) : FallBetween 1 a b :=
+  ⟨three a e b, three_pos ha he hb, three_continued ha he h, rfl, rfl⟩
 
 /-- Two numbers `e`, `f` fall between `a` and `b` when `a ∶ e ∷ e ∶ f` and
 `e ∶ f ∷ f ∶ b`. -/
 theorem fallBetween_two {a e f b : ℕ} (ha : 0 < a) (he : 0 < e) (hf : 0 < f)
-    (hb : 0 < b) (h₁ : a ∶ e ∷ e ∶ f) (h₂ : e ∶ f ∷ f ∶ b) : FallBetween 2 a b := by
-  refine ⟨fun i => if i.val = 0 then a else if i.val = 1 then e else if i.val = 2 then f
-      else b, fun i => ?_, fun ⟨i, hi⟩ => ?_, rfl, rfl⟩
-  · dsimp only
-    split_ifs <;> assumption
-  · match i, hi with
-    | 0, _ => exact Proportion.refl ha he
-    | 1, _ => exact h₁.symm
-    | 2, _ => exact proportion_trans hf hb he hf h₂.symm h₁.symm
+    (hb : 0 < b) (h₁ : a ∶ e ∷ e ∶ f) (h₂ : e ∶ f ∷ f ∶ b) : FallBetween 2 a b :=
+  ⟨four a e f b, four_pos ha he hf hb, four_continued ha he hf hb h₁ h₂, rfl, rfl⟩
 
 /-- If one number falls between `a` and `b`, it is some `e` with `a ∶ e ∷ e ∶ b`. -/
 theorem FallBetween.one {a b : ℕ} (h : FallBetween 1 a b) :

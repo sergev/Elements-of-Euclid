@@ -32,11 +32,6 @@ How Book 8 differs from Book 7:
   - Where Euclid states only three or four numbers, the doc comment says so. A general statement is still preferred when the induction is natural.
 - **Squares and cubes.** A square is a number multiplying itself, `a * a`; a cube is `a * a * a` (Defs. 7.18, 7.19). Don't use `^`.
 
-## T6. Props. 8.14–8.17: squares and cubes measuring
-
-- **8.14, 8.15:** a square (cube) measures a square (cube) exactly when the side measures the side. Two directions each.
-- **8.16, 8.17:** the same with "does not measure" (the contrapositives, as Euclid proves them).
-
 ## T7. Props. 8.18–8.21: similar plane and solid numbers
 
 - **8.18:** one mean proportional falls between similar plane numbers, and plane has to plane the squared ratio of corresponding sides.

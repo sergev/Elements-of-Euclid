@@ -13,6 +13,10 @@ import Elements.Book8.Prop10
 import Elements.Book8.Prop11
 import Elements.Book8.Prop12
 import Elements.Book8.Prop13
+import Elements.Book8.Prop14
+import Elements.Book8.Prop15
+import Elements.Book8.Prop16
+import Elements.Book8.Prop17
 
 /-
 Book 8: numbers in continued proportion.
