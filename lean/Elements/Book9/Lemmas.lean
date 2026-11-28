@@ -48,6 +48,17 @@ theorem EvenNumber.add_unit {a : ℕ} (h : EvenNumber a) : OddNumber (a + 1) := 
   obtain ⟨k, -, rfl⟩ := h
   exact odd_iff.mpr ⟨k, rfl⟩
 
+/-- As the unit is to `a`, so `b` is to `b * a`: the unit measures `a`, and `b` measures
+`b * a`, according to the units in `a` (Defs. 7.15, 7.20). -/
+theorem unit_proportion {a : ℕ} (b : ℕ) (ha : 0 < a) : 1 ∶ a ∷ b ∶ b * a :=
+  proportion_iff.mpr ⟨1, a, 1, b, Nat.one_pos, ha, rfl, (Nat.one_mul a).symm,
+    (Nat.mul_one b).symm, rfl⟩
+
+/-- A cube of a number is a number. -/
+theorem one_lt_cube {c : ℕ} (hc : 1 < c) : 1 < c * c * c := by
+  have := Nat.mul_le_mul (Nat.mul_le_mul hc hc) hc
+  omega
+
 /-! The least number measured by any multitude: Euclid's 7.36, done once more for each
 number added. -/
 

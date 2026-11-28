@@ -16,3 +16,4 @@
     [For let $A$ make $D$ (by) multiplying itself. $D$ is thus square. Therefore, since $A$ has made $D$ (by) multiplying itself, and has made $C$ (by) multiplying $B$, thus as $A$ is to $B$, so $D$ (is) to $C$ [Prop.~7.17]. And since $A$ and $B$ are similar plane numbers, one number thus falls (between) $A$ and $B$ in mean proportion [Prop.~8.18]. And if (some) numbers fall between two numbers in continued proportion then, as many (numbers) as fall in (between) them (in continued proportion), so many also (fall) in (between numbers) having the same ratio (as them in continued proportion) [Prop.~8.8]. And hence one number falls (between) $D$ and $C$ in mean proportion. And $D$ is square. Thus, $C$ (is) also square [Prop.~8.22]. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book9/Prop01.lean")

@@ -1,5 +1,12 @@
 import Elements.Book9.Definitions
 import Elements.Book9.Lemmas
+import Elements.Book9.Prop01
+import Elements.Book9.Prop02
+import Elements.Book9.Prop03
+import Elements.Book9.Prop04
+import Elements.Book9.Prop05
+import Elements.Book9.Prop06
+import Elements.Book9.Prop07
 
 /-
 Book 9: applications of number theory.
@@ -13,8 +20,8 @@ in `Elements/Book9/Definitions.lean`:
   half (Def. 7.7). The unit is odd: it is not divided in half, and Euclid's "even or odd"
   (9.30) and his odd multitudes of odd numbers (9.23, 9.29) take it so. Def. 7.7's second
   reading, "differs from an even number by a unit", is the lemma `odd_iff`.
-- `EvenTimesEven`, `EvenTimesOdd`, `OddTimesOdd` (Defs. 7.8–7.10): `a = e * f`, measured by
-  `e` according to `f`, of the stated kinds. The odd numbers there are numbers, greater
+- `EvenTimesEven`, `EvenTimesOdd`, `OddTimesOdd` (Defs. 7.8–7.10): `a = e * f`, measured
+  by `e` according to `f`, of the stated kinds. The odd numbers there are numbers, greater
   than the unit: else every even number would be even-times-odd, measured by itself
   according to the unit, and 9.32 would fail. So "an odd half" in 9.33 is an odd number,
   not the unit (`2` is doubled from the unit, not even-times-odd).

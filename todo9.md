@@ -30,15 +30,6 @@ How Book 9 differs from Book 8:
 - **From a unit.** "Continuously proportional, from a unit" is `Continued a` with `a 0 = 1`; `a 1` is "the number after the unit", and Euclid's "third from the unit" is `a 2`, counting the unit as first. `eq_powers_one` (Book 8, Prop. 8.10) makes such numbers `powers 1 (a 1)`.
 - **Squares and cubes.** `a * a`, `a * a * a`, never `^`. `SquareNumber`, `CubeNumber` need the side greater than the unit; where the side may be the unit (as in 8.20), state the product with positive sides, and say so.
 
-## T2. Props. 9.1–9.7: products of similar plane numbers, squares and cubes
-
-- **9.1:** similar plane numbers multiplied make a square, through 8.18, 8.8 and 8.22. Take the sides as Book 8 does (8.18): products with `c ∶ d ∷ e ∶ f`.
-- **9.2:** the converse: if two numbers multiplied make a square, they are similar plane numbers, through 8.20. As in 8.20, the sides may be the unit; state it with positive sides.
-- **9.3–9.6:** a cube multiplying itself, or another cube, makes a cube (9.3, 9.4). If a cube multiplied by a number makes a cube, the number is a cube (9.5). If a number multiplied by itself makes a cube, it is a cube (9.6). These go through 8.19, 8.8 and 8.23. 8.23 takes four numbers with `1 < d`; keep track of where the unit could appear.
-- **9.7:** a composite number multiplying any number makes a solid number. Def. 7.17 needs all three sides greater than the unit, so the number multiplied must be one too.
-
-Risk: low.
-
 ## T3. Props. 9.8–9.13: continued proportion from a unit
 
 - **9.8:** from a unit, the third and every second after it are squares, the fourth and every third after it are cubes, and the seventh and every sixth after it are both. State it with indices: `a (2 * k)` is a square, `a (3 * k)` a cube. Euclid shows the first few and says "similarly"; prove it for every `k`.

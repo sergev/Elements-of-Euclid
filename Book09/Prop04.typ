@@ -16,3 +16,4 @@
     [For let $A$ make $D$ (by) multiplying itself. Thus, $D$ is cube [Prop.~9.3]. And since $A$ has made $D$ (by) multiplying itself, and has made $C$ (by) multiplying $B$, thus as $A$ is to $B$, so $D$ (is) to $C$ [Prop.~7.17]. And since $A$ and $B$ are cube, $A$ and $B$ are similar solid (numbers). Thus, two numbers fall (between) $A$ and $B$ in mean proportion [Prop.~8.19]. Hence, two numbers will also fall (between) $D$ and $C$ in mean proportion [Prop.~8.8]. And $D$ is cube. Thus, $C$ (is) also cube [Prop.~8.23]. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book9/Prop04.lean")
