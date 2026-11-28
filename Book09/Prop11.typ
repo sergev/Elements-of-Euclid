@@ -21,3 +21,4 @@
     [And (it is) clear that what(ever relative) place the measuring (number) has from the unit, the (number) according to which it measures has the same (relative) place from the measured (number), in (the direction of the number) before it. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book9/Prop11.lean")

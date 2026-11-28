@@ -7,6 +7,12 @@ import Elements.Book9.Prop04
 import Elements.Book9.Prop05
 import Elements.Book9.Prop06
 import Elements.Book9.Prop07
+import Elements.Book9.Prop08
+import Elements.Book9.Prop09
+import Elements.Book9.Prop10
+import Elements.Book9.Prop11
+import Elements.Book9.Prop12
+import Elements.Book9.Prop13
 
 /-
 Book 9: applications of number theory.

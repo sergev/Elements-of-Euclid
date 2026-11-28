@@ -30,17 +30,6 @@ How Book 9 differs from Book 8:
 - **From a unit.** "Continuously proportional, from a unit" is `Continued a` with `a 0 = 1`; `a 1` is "the number after the unit", and Euclid's "third from the unit" is `a 2`, counting the unit as first. `eq_powers_one` (Book 8, Prop. 8.10) makes such numbers `powers 1 (a 1)`.
 - **Squares and cubes.** `a * a`, `a * a * a`, never `^`. `SquareNumber`, `CubeNumber` need the side greater than the unit; where the side may be the unit (as in 8.20), state the product with positive sides, and say so.
 
-## T3. Props. 9.8–9.13: continued proportion from a unit
-
-- **9.8:** from a unit, the third and every second after it are squares, the fourth and every third after it are cubes, and the seventh and every sixth after it are both. State it with indices: `a (2 * k)` is a square, `a (3 * k)` a cube. Euclid shows the first few and says "similarly"; prove it for every `k`.
-- **9.9:** if `a 1` is a square (cube), all are squares (cubes).
-- **9.10:** if `a 1` is not a square, the squares are `a (2 * k)` alone; and the same for cubes, with `a (3 * k)`. The cube half goes through 8.25 and 9.6.
-- **9.11:** a lesser number measures a greater according to one of the proportionals, through 7.15. **9.11 corollary:** the number by which it measures is as far from the measured as the measuring is from the unit. State both by index: `a j = a i * a (j - i)`.
-- **9.12:** every prime measuring the last also measures `a 1`, through 7.29, 9.11 and 7.20. Euclid's proof is by contradiction, and long.
-- **9.13:** if `a 1` is prime, the last is measured by none except the proportionals. This is used by 9.32 and 9.36, so state it in the form they need: every number measuring `a n` is some `a i`.
-
-Risk: medium. The index arithmetic over `Fin (n + 1)` (`a (2 * k)` needs `2 * k ≤ n`) is the main cost: state it with `Fin` subscripts built from `Nat` indices, as 8.6 does.
-
 ## T4. Props. 9.14–9.20: primes and proportionals
 
 - **9.14:** a least number measured by primes is measured by no other prime, through 7.30. Euclid takes three primes; state it for any multitude, with T1's least number measured.

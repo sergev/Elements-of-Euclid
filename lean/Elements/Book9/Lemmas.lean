@@ -101,6 +101,68 @@ theorem LeastMeasuredSeq.measures {n c d : ℕ} {a : Fin (n + 1) → ℕ} (ha : 
   have : c' = c := Nat.le_antisymm (le_of_measures hc.1 h₁) h₂
   exact this ▸ hm d hd
 
+/-! Continued proportion, and from a unit (9.8–9.13). -/
+
+/-- Numbers continuously proportional are, any number of steps apart, in the same ratio:
+`a i ∶ a i'` as `a j ∶ a j'` when `i' - i = j' - j`, via equality [Prop. 7.14], a step at
+a time. -/
+theorem continued_ratio {n : ℕ} {a : Fin (n + 1) → ℕ} (ha : ∀ i, 0 < a i)
+    (hcon : Continued a) {i i' j j' : ℕ} (hi : i ≤ i') (hj : j ≤ j') (h : i' + j = j' + i)
+    (hi' : i' ≤ n) (hj' : j' ≤ n) :
+    a ⟨i, by omega⟩ ∶ a ⟨i', by omega⟩ ∷ a ⟨j, by omega⟩ ∶ a ⟨j', by omega⟩ := by
+  obtain ⟨r, rfl⟩ := Nat.exists_eq_add_of_le hi
+  obtain rfl : j' = j + r := by omega
+  induction r with
+  | zero => exact proportion_self _ _
+  | succ r ih =>
+    have h₁ := ih (by omega) (by omega) (by omega) (by omega) (by omega)
+    have hi₁ : a ⟨i + r, by omega⟩ ∶ a ⟨i + r + 1, by omega⟩ ∷ a 0 ∶ a 1 :=
+      hcon ⟨i + r, by omega⟩
+    have hj₁ : a ⟨j + r, by omega⟩ ∶ a ⟨j + r + 1, by omega⟩ ∷ a 0 ∶ a 1 :=
+      hcon ⟨j + r, by omega⟩
+    exact Elements.Book7.proposition_14' (ha _) (ha _) (ha _) (ha _) (ha _) (ha _) h₁
+      (proportion_trans (ha _) (ha _) (ha 0) (ha 1) hi₁ hj₁.symm)
+
+/-- The number after the unit, by its place. -/
+theorem fin_one_eq {n : ℕ} (h : 1 ≤ n) : (⟨1, by omega⟩ : Fin (n + 1)) = 1 :=
+  Fin.ext (Nat.mod_eq_of_lt (by omega)).symm
+
+/-- From a unit, each number is the one before multiplied by the number after the unit:
+as the unit is to `a 1`, so `a k` is to `a (k + 1)` [Def. 7.20]. -/
+theorem unit_succ {n : ℕ} {a : Fin (n + 1) → ℕ} (hcon : Continued a) (h0 : a 0 = 1)
+    {k : ℕ} (hk : k + 1 ≤ n) : a ⟨k + 1, by omega⟩ = a ⟨k, by omega⟩ * a 1 := by
+  have h : a ⟨k, by omega⟩ ∶ a ⟨k + 1, by omega⟩ ∷ a 0 ∶ a 1 := hcon ⟨k, by omega⟩
+  rw [h0] at h
+  exact eq_mul_of_unit h.symm
+
+/-- From a unit, the third is the number after the unit multiplied by itself. -/
+theorem unit_two {n : ℕ} {a : Fin (n + 1) → ℕ} (hcon : Continued a) (h0 : a 0 = 1)
+    (hn : 2 ≤ n) : a ⟨2, by omega⟩ = a 1 * a 1 := by
+  rw [unit_succ hcon h0 (k := 1) hn, fin_one_eq (by omega)]
+
+/-- From a unit, with a number after it, all are numbers but the unit. -/
+theorem unit_one_lt {n : ℕ} {a : Fin (n + 1) → ℕ} (hcon : Continued a) (h0 : a 0 = 1)
+    (h1 : 1 < a 1) {k : ℕ} (hk : k ≤ n) (hk0 : 0 < k) : 1 < a ⟨k, by omega⟩ := by
+  induction k with
+  | zero => omega
+  | succ k ih =>
+    rw [unit_succ hcon h0 hk]
+    rcases Nat.eq_zero_or_pos k with rfl | hk'
+    · rw [show (⟨0, by omega⟩ : Fin (n + 1)) = 0 from rfl, h0, Nat.one_mul]; exact h1
+    · have := Nat.mul_lt_mul_of_pos_left h1 (show 0 < a ⟨k, by omega⟩ by
+        have := ih (by omega) hk'; omega)
+      have := ih (by omega) hk'
+      omega
+
+/-- From a unit, with a number after it, all are positive. -/
+theorem unit_pos {n : ℕ} {a : Fin (n + 1) → ℕ} (hcon : Continued a) (h0 : a 0 = 1)
+    (h1 : 1 < a 1) (i : Fin (n + 1)) : 0 < a i := by
+  rcases Nat.eq_zero_or_pos i.val with h | h
+  · rw [show i = 0 from Fin.ext h, h0]; exact Nat.one_pos
+  · have := unit_one_lt hcon h0 h1 (k := i.val) (by omega) h
+    rw [Fin.eta] at this
+    omega
+
 /-! Sums (9.35, 9.36). -/
 
 /-- All of `n + 2` numbers are all but the last, and the last (Book 7's `sum`). -/
