@@ -114,7 +114,11 @@
 // Lean proof of a proposition, typeset from its .lean file (Lean edition only)
 #let lean-proof(path, title: [Formalization]) = if with-lean {
   let skip(l) = l.starts-with("import ") or l.starts-with("namespace ") or l.starts-with("open ") or l.starts-with("end ")
-  let lines = read(path).split("\n").filter(l => not skip(l))
+  let lines = ()
+  for l in read(path).split("\n").filter(l => not skip(l)) {
+    // one blank line where skipped lines leave two
+    if not (l.trim() == "" and lines.len() > 0 and lines.last().trim() == "") { lines.push(l) }
+  }
   while lines.len() > 0 and lines.first().trim() == "" { lines.remove(0) }
   while lines.len() > 0 and lines.last().trim() == "" { let _ = lines.pop() }
   heading(depth: 3, outlined: false, title)

@@ -27,19 +27,6 @@ How Book 5 differs from Books 1–4:
   - Mathlib's lemmas may be used for what Euclid takes for granted: arithmetic of the counting numbers, and the algebra of addition (C.N. 1–5).
 - **No reals, no division.** Ratios are not numbers. "A : B :: C : D" is Def. 5.5, over equimultiples. Don't define a ratio as `a / b`, which would make the book trivial.
 
-## T8. Primer and docs
-
-- **`Book00/Lean.typ`:** a section on Book 5:
-  - magnitudes and their class, and multiples;
-  - Defs. 5.4, 5.5, 5.7 as written in Lean;
-  - why there are no reals or division;
-  - the assumption of 5.18;
-  - how "any number of magnitudes" is written.
-- **Typesetting:** typeset `Magnitude.lean` (and any `Lemmas.lean`) after Book 5's definitions, as Books 2–4 do. Update the Lean edition's subtitle, which comes from `lean-books`, if needed.
-- **`CLAUDE.md`:** the Book 5 notes: plain Lean, Mathlib's `nsmul` lemmas not used for Euclid's facts, and where the class is. Change "Books 1–4 are SMT-free" to what holds now.
-- **`Roadmap.md`:** delete Milestone 5, and add T7's decisions to Milestone 6.
-- **README:** Books 1–5.
-
 ## T9. Final check
 
 - `make check` from clean, all books, under the cap. Note the time.

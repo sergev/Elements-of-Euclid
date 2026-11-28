@@ -4,7 +4,7 @@
 
 #v(1em)
 
-This edition gives each proposition of the books it contains twice. First comes Euclid's text in Richard Fitzpatrick's translation, then a formal version written in Lean 4, a programming language and proof assistant. Each proposition's formal statement and proof is printed after the English, under the heading _Formalization_. The proofs of Book 1 come from LeanEuclid, by L. Murphy, K. Yang, J. Sun, Z. Li, A. Anandkumar and X. Si, "Autoformalizing Euclidean Geometry", ICML 2024, distributed under the MIT license. The proofs of Books 2–4 were written for this edition, in the same system.
+This edition gives each proposition of the books it contains twice. First comes Euclid's text in Richard Fitzpatrick's translation, then a formal version written in Lean 4, a programming language and proof assistant. Each proposition's formal statement and proof is printed after the English, under the heading _Formalization_. The proofs of Book 1 come from LeanEuclid, by L. Murphy, K. Yang, J. Sun, Z. Li, A. Anandkumar and X. Si, "Autoformalizing Euclidean Geometry", ICML 2024, distributed under the MIT license. The proofs of Books 2–5 were written for this edition: Books 2–4 in the same system, and Book 5 in plain Lean.
 
 The Lean proofs are written in System E, a formal system that J. Avigad, E. Dean and J. Mumma designed to follow Euclid closely ("A formal system for Euclid's Elements", _Review of Symbolic Logic_ 2, 2009). In particular, it can draw the conclusions that Euclid reads off his diagrams. The result is that a formal proof reads step for step like Euclid's text, and seldom like an exercise in coordinates.
 
@@ -159,8 +159,32 @@ Book 4 adds lemmas of its own, printed after its definitions. Most are facts Euc
 
 Euclid's remarks after Props.~4.15 and 4.16 are left out. He says, without proof, that a hexagon and a fifteen-sided figure can be circumscribed about a circle, and a circle inscribed in and circumscribed about them, "similarly to the pentagon". For the fifteen-sided figure he also says that the other sides follow by inserting lines equal to the first.
 
+== Proportion
+
+Book 5 is not about figures. Its straight lines stand for magnitudes of any kind, lines, areas or angles, so System E is not used: the proofs are plain Lean, without diagram rules. They are printed like the others.
+
+A kind of magnitude is a type `M` with the class `Magnitude M`, printed after Book 5's definitions. Magnitudes of one kind can be added, in any order and grouping, and compared. Each is less than its sum with another, so none is zero. The lesser can be taken away from the greater, leaving a remainder. And some multiple of each exceeds any other (Def.~5.4, Archimedes' axiom). A multiple `n • a`, with `n : ℕ+`, is $a$ taken $n$ times, $n gt.eq 1$; equal multiples are taken the same number of times. Euclid proves what multiples do: a multiple of a sum, a sum of multiples, and a multiple of a multiple are Props.~5.1–5.3. They are proved here by induction on the multiple, the formal form of Euclid's dividing the multiple into parts equal to the magnitude, and not taken from Mathlib, whose lemmas on multiples would do his work for him. What he takes for granted, that equal multiples of equal magnitudes are equal and that the greater multiple is greater, is proved once with the class.
+
+#table(
+  columns: (auto, 1fr),
+  stroke: none,
+  inset: (x: 0pt, y: 3pt),
+  column-gutter: 1.5em,
+  [`Proportion a b c d`], [$a : b :: c : d$ (Def.~5.5): for all $m$, $n$, `n • b < m • a ↔ n • d < m • c`, `m • a = n • b ↔ m • c = n • d` and `m • a < n • b ↔ m • c < n • d`],
+  [`GreaterRatio a b c d`], [$a : b$ is greater than $c : d$ (Def.~5.7): `∃ m n, n • b < m • a ∧ ¬ n • d < m • c`],
+  [`sum a`], [the magnitudes `a 0`, …, `a n` added together],
+)
+
+There are no real numbers here, and no division. A ratio is never a number: $a : b :: c : d$ is a statement about multiples, as in Euclid. Defining it as $a slash b = c slash d$ would turn most of the book into a line of algebra, and would take for granted the numbers that Eudoxus's theory was made to do without. In `Proportion a b c d`, $a$ and $b$ are of one kind and $c$ and $d$ of another, or the same; where Euclid compares the first with the third (Props.~5.14, 5.16, 5.19, 5.23, 5.25), all four are of one kind. A lesser ratio is a greater one read the other way. Defs.~5.12–5.18 (alternate and inverse ratios, composition, separation, conversion, ex aequali, perturbed proportion) are ways of forming a proportion, and the statements write them out.
+
+"Any number of magnitudes" (Props.~5.1, 5.12, 5.22) is a function on `Fin (n + 1)`, the magnitudes `a 0`, …, `a n`. Euclid argues with two or three of them and says that the rest are alike. His case is proved first, as `proposition_1'` or `proposition_22'`, and then any number by induction, with his case as the step.
+
+Euclid assumes, in Prop.~5.18, that a fourth proportional to three magnitudes exists. It does not follow from the laws of magnitudes, so Prop.~5.18 takes it as a hypothesis, `fourth`, and so does Prop.~5.24, which uses it. Other steps he leaves out are marked as usual. In Prop.~5.5 he divides a magnitude into equal parts, which the laws do not allow; the proof takes a multiple instead, as Simson does. In Prop.~5.8, the case of equal parts goes with the first. Props.~5.9 and 5.10 need that a ratio is not both greater and less than another (`proposition_10_lemma`).
+
+The magnitudes of Book 6 are lengths and areas, printed at the end of Book 5. `Length` and `Area` are two kinds, each the positive reals, with `Length.of a b h` the length $|a b|$ of System E and `Area.triangle`, `Area.parallelogram` the areas. That their sums and remainders exist, and Def.~5.4, here are facts of the reals, not things Euclid proves.
+
 == What is checked, and what is assumed
 
 Euclid often passes over small steps without comment. He says that two circles cut one another, or that a point falls inside an angle, because the figure shows it. In System E, such facts follow by a fixed set of diagrammatic, metric and transfer rules. The tactics `euclid_apply`, `euclid_assert` and `euclid_finish` find these small steps automatically. They apply the rules to the facts at hand, and to the facts so obtained, until the step follows or nothing new appears. Each rule they apply is recorded, so the result is an ordinary Lean proof of the step. When a gap is larger than that, the formal proof has to fill it explicitly. The comment `-- Missed by Euclid.` marks such places, where Euclid relied on a fact that he never proved.
 
-One thing is taken on trust: the points, lines and circles of System E and its rules are _axioms_, as are Book 3's circumferences. They are not derived from a model of the plane, such as pairs of real numbers. Everything else, every step, the order of the steps and the use of each proposition and rule, is checked by Lean. The proofs in this book were checked with Lean 4.36, using a version of System E taken from LeanEuclid and extended for this edition. The command `make check` in the source repository repeats the check.
+One thing is taken on trust: the points, lines and circles of System E and its rules are _axioms_, as are Book 3's circumferences. They are not derived from a model of the plane, such as pairs of real numbers. Book 5 adds no axioms: the laws of magnitudes are the class `Magnitude`, so each proposition holds for every kind of magnitude that obeys them. Everything else, every step, the order of the steps and the use of each proposition and rule, is checked by Lean. The proofs in this book were checked with Lean 4.36, using a version of System E taken from LeanEuclid and extended for this edition. The command `make check` in the source repository repeats the check.

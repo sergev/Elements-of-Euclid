@@ -1,4 +1,4 @@
-#import "../functions.typ": parallel, no-footer, chapter, content-box, content-box-note, running-header
+#import "../functions.typ": parallel, no-footer, chapter, content-box, content-box-note, running-header, lean-proof
 
 #chapter([Book 5], [ELEMENTS BOOK 5])
 
@@ -14,6 +14,8 @@
 #set page(header: running-header([ΣΤΟΙΧΕΙΩΝ εʹ.], [ELEMENTS BOOK 5]))
 
 #include "Definitions.typ"
+
+#lean-proof("/lean/Elements/Book5/Magnitude.lean", title: [Magnitudes, for the Lean proofs])
 
 #pagebreak()
 
@@ -42,3 +44,5 @@
 #include "Prop23.typ"
 #include "Prop24.typ"
 #include "Prop25.typ"
+
+#lean-proof("/lean/Elements/Book5/Plane.lean", title: [Magnitudes in the plane])

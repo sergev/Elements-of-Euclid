@@ -1,6 +1,6 @@
 # Roadmap: Lean proofs for Books 5–13
 
-Books 1–4 are done (Milestones 1–4): Book 1's 48 propositions from LeanEuclid and Books 2, 3 and 4 (14, 37 and 16) written here, all in System E, typeset in `ElementsLean.pdf` and checked by `make check`. This file plans the remaining books, one milestone per book, numbered to match: Milestone N is Book N. A book depends on the books before it, so the milestones run in sequence. Only Milestones 7–9 (Books 7–9) can be done in parallel with the geometry.
+Books 1–5 are done (Milestones 1–5): Book 1's 48 propositions from LeanEuclid and Books 2, 3 and 4 (14, 37 and 16) written here in System E, and Book 5's 25 in plain Lean over a class of magnitudes, typeset in `ElementsLean.pdf` and checked by `make check`. This file plans the remaining books, one milestone per book, numbered to match: Milestone N is Book N. A book depends on the books before it, so the milestones run in sequence. Only Milestones 7–9 (Books 7–9) can be done in parallel with the geometry.
 
 ## Common rules for every milestone
 
@@ -12,14 +12,6 @@ Books 1–4 are done (Milestones 1–4): Book 1's 48 propositions from LeanEucli
 - **Done.** `make check` passes (`make check BOOK=N` checks one book while working on it). `make` builds the PDF with the book included, and its pages have been inspected. The primer (`Book00/Lean.typ`) covers any new notation.
 - **System E.** It is our own copy in `lean/SystemE/`. New relations or rules a book needs go there, in files named for the book that introduces them. Lemmas proved from earlier propositions, such as repeated constructions, go in `lean/Elements/BookN/Lemmas.lean`.
 - **Toolchain.** Lean 4.36 and Mathlib v4.36. Upgrade Lean and Mathlib together, between milestones, not during one.
-
-## Milestone 5 — Book 5: proportion (25 propositions)
-
-Eudoxus's theory of ratios of magnitudes: equimultiples (Def. 5.5), alternation, composition, separation, ex aequali.
-
-- **Basis.** Not System E. Formalize magnitudes abstractly, as an ordered additive structure with the Archimedean property (Def. 5.4). Define "A : B :: C : D" by Def. 5.5 over equimultiples `m • A`, `n • B`, and prove the propositions from that. Avoid reals and division, which would make the book trivial.
-- **New.** A `Magnitude` class, `Proportion` (5.5), `GreaterRatio` (5.7), and an instance for segment lengths and areas in E. That instance connects the book to Book 6.
-- **Risk.** Medium. The proofs are algebraic, not diagrammatic; SMT is of no help, and they are ordinary Lean. Euclid's 5.18 has a known gap (existence of a fourth proportional); mark it `-- Missed by Euclid.` and prove it, or state it as the assumption he makes.
 
 ## Milestone 6 — Book 6: similar figures (33 propositions)
 
