@@ -19,12 +19,6 @@ When the solvers struggle:
 - **Segment orientation:** when a goal compares products of the same segments written in different orders (`|(a─b)|` against `|(b─a)|`), add the symmetric step as an assert.
 - **`simp_all`:** if it blows up, turn it off for that step with `set_option systemE.simpAll false in`.
 
-## T2. Scaffolding
-
-- `lean/Elements/Book3.lean` with a header comment (conventions from T1), imported by `lean/Elements.lean`.
-- Add `3` to `lean-books` in `functions.typ`. The subtitle then reads "Books 1–3".
-- Check that the other two editions don't change.
-
 ## T3. Props. 3.1–3.4: center and chords
 
 - **3.1:** find the center, with its corollary: a line bisecting a chord at right angles passes through the center. This uses Props. 1.10, 1.11 and 1.8, by contradiction.
