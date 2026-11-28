@@ -29,12 +29,6 @@ How Book 6 differs from Books 1–5:
 - **Faithfulness to Book 5.** Every ratio step cites a Book 5 proposition or Def. 5.5. Don't use `Positive.proportion_of_mul_eq`, `Positive.mult_val` or `Length.fourth` where Euclid has an argument; they are facts of the model. Record each use, with the reason, in a comment.
 - **No reals for ratios.** A ratio of lines or areas is never `|(a─b)| / |(c─d)|`.
 
-## T3. Props. 6.1–6.3: equal heights, parallels, the bisector
-
-- **6.1:** triangles and parallelograms of the same height are as their bases. The bridge to Book 5: the multiples of T2, then Def. 5.5. The parallelograms follow by Prop. 1.34 (double the triangles) and Prop. 5.15, 5.11.
-- **6.2:** a parallel to one side cuts the others proportionally, and conversely. Two statements, `proposition_2` and `proposition_2'`.
-- **6.3:** the bisector of an angle cuts the base in the ratio of the sides, and conversely.
-
 ## T4. Props. 6.4–6.8: similar triangles
 
 - **6.4:** equiangular triangles have proportional sides. Euclid's figure places the triangles side by side; build it.

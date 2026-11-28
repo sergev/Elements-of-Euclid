@@ -32,3 +32,4 @@
     [Thus, if some straight-line is drawn parallel to one of the sides of a triangle, (then) it will cut the (other) sides of the triangle proportionally. And if (two of) the sides of a triangle are cut proportionally, (then) the straight-line joining the cutting (points) will be parallel to the remaining side of the triangle. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book6/Prop02.lean")

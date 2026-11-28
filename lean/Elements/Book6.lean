@@ -1,6 +1,9 @@
 import SystemE
 import Elements.Book6.Definitions
 import Elements.Book6.Lemmas
+import Elements.Book6.Prop01
+import Elements.Book6.Prop02
+import Elements.Book6.Prop03
 
 /-
 Book 6: similar figures.

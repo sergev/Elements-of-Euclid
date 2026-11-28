@@ -32,3 +32,4 @@
     [Thus, if an angle of a triangle is cut in half, and the straight-line cutting the angle also cuts the base, (then) the segments of the base will have the same ratio as the remaining sides of the triangle. And if the segments of the base have the same ratio as the remaining sides of the triangle, (then) the straight-line joining the vertex to the cutting (point) will cut the angle of the triangle in half. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book6/Prop03.lean")

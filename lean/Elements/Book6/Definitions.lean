@@ -147,6 +147,15 @@ theorem size_triangle_pos' {a b c : Point} {L : Line} (h : distinctPointsOnLine 
   rw [size_triangle_rot]
   exact size_triangle_pos h ha
 
+/-- `size △… = size △…` for the same vertices in any order. -/
+macro "triangle_perm" : tactic => `(tactic| first
+  | rfl
+  | exact size_triangle_rot _ _ _
+  | exact (size_triangle_rot _ _ _).symm
+  | exact size_triangle_swap _ _ _
+  | exact (size_triangle_swap _ _ _).trans (size_triangle_rot _ _ _)
+  | exact (size_triangle_rot _ _ _).trans (size_triangle_swap _ _ _))
+
 namespace Proportional
 
 theorem intro {p : X} {q : Y} {r : Z} {s : W} (hp : 0 < size p) (hq : 0 < size q)

@@ -28,3 +28,4 @@
     [Thus, triangles and parallelograms which are of the same height are to one another as their bases. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book6/Prop01.lean")
