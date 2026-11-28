@@ -30,16 +30,6 @@ How Book 9 differs from Book 8:
 - **From a unit.** "Continuously proportional, from a unit" is `Continued a` with `a 0 = 1`; `a 1` is "the number after the unit", and Euclid's "third from the unit" is `a 2`, counting the unit as first. `eq_powers_one` (Book 8, Prop. 8.10) makes such numbers `powers 1 (a 1)`.
 - **Squares and cubes.** `a * a`, `a * a * a`, never `^`. `SquareNumber`, `CubeNumber` need the side greater than the unit; where the side may be the unit (as in 8.20), state the product with positive sides, and say so.
 
-## T7. Props. 9.35–9.36: the sum of a continued proportion; perfect numbers
-
-- **9.35:** for continuous proportionals, as the excess of the second over the first is to the first, so the excess of the last over the first is to the sum of all before it. Euclid's proof is through separation (7.11, 7.13) and 7.12, over any multitude. The numbers increase ("beginning from the least"), so the subtractions are in `ℕ`.
-- **9.36:** if the sum of the unit and the numbers doubled from it is prime, that sum times the last is perfect (Def. 7.22).
-  - Book 7's `Perfect` is the sum of `(List.range a).filter (· ∣ a)`. Euclid shows that the number is the sum of the numbers he names, and that it is measured by no others (9.13, 7.19, 7.20).
-  - Connecting those parts with the filtered list is the work: prove a lemma in `Lemmas.lean` that the parts of `a` are exactly a given list of distinct numbers, then the sums agree.
-  - Euclid's "measured by no other" is by contradiction through 7.19 and 7.20; keep it.
-
-Risk: high for 9.36 (the bridge to `Perfect`); low for 9.35.
-
 ## T8. Primer and docs
 
 - **`Book00/Lean.typ`:** a section on Book 9:

@@ -34,6 +34,8 @@ import Elements.Book9.Prop31
 import Elements.Book9.Prop32
 import Elements.Book9.Prop33
 import Elements.Book9.Prop34
+import Elements.Book9.Prop35
+import Elements.Book9.Prop36
 
 /-
 Book 9: applications of number theory.

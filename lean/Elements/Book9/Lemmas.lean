@@ -185,6 +185,37 @@ theorem sum_add {n : ℕ} (f g : Fin (n + 1) → ℕ) :
       ih (fun i => f i.castSucc) (fun i => g i.castSucc)]
     omega
 
+/-- The excesses of each over the one before, added together, and the first, make the
+last, for numbers `g 0`, …, `g (n + 1)` increasing. -/
+theorem sum_excess_nat {n : ℕ} {g : ℕ → ℕ} (h : ∀ k, k ≤ n → g k ≤ g (k + 1)) :
+    sum (fun i : Fin (n + 1) => g (i.val + 1) - g i.val) + g 0 = g (n + 1) := by
+  induction n with
+  | zero => have := h 0 le_rfl; show g (0 + 1) - g 0 + g 0 = g (0 + 1); omega
+  | succ n ih =>
+    rw [sum_succ]
+    have := ih fun k hk => h k (by omega)
+    have := h (n + 1) le_rfl
+    simp only [Fin.val_castSucc, Fin.val_last] at *
+    omega
+
+/-- The excesses of each over the one before, added together, and the first, make the
+last: `a 0`, …, `a (n + 1)` increasing. -/
+theorem sum_excess {n : ℕ} {a : Fin (n + 2) → ℕ}
+    (h : ∀ i : Fin (n + 1), a i.castSucc ≤ a i.succ) :
+    sum (fun i : Fin (n + 1) => a i.succ - a i.castSucc) + a 0 =
+      a (Fin.last (n + 1)) := by
+  let g : ℕ → ℕ := fun k => if hk : k < n + 2 then a ⟨k, hk⟩ else 0
+  have hg : ∀ i : Fin (n + 2), a i = g i.val := fun i => by
+    simp only [g, i.isLt, ↓reduceDIte, Fin.eta]
+  have := sum_excess_nat (n := n) (g := g) fun k hk => by
+    have := h ⟨k, by omega⟩
+    rwa [hg, hg] at this
+  have hs : (fun i : Fin (n + 1) => a i.succ - a i.castSucc) =
+      fun i : Fin (n + 1) => g (i.val + 1) - g i.val := funext fun i => by
+    rw [hg, hg, Fin.val_succ, Fin.val_castSucc]
+  rw [hs, hg (Fin.last _), hg 0]
+  exact this
+
 /-- The unit and the numbers doubled from it, up to the last, are a unit less than the
 last doubled once more. -/
 theorem sum_powers_two (n : ℕ) :
@@ -197,5 +228,43 @@ theorem sum_powers_two (n : ℕ) :
       funext i; rw [powers_castSucc, Nat.mul_one]
     rw [this, powers_last] at *
     omega
+
+/-- All of `n + 2` numbers are the first, and the rest. -/
+theorem sum_succ' {n : ℕ} (a : Fin (n + 2) → ℕ) :
+    sum a = a 0 + sum (fun i : Fin (n + 1) => a i.succ) := by
+  induction n with
+  | zero => rfl
+  | succ n ih =>
+    rw [sum_succ, ih, sum_succ (fun i : Fin (n + 2) => a i.succ)]
+    simp only [Fin.succ_last, Fin.castSucc_zero, Fin.succ_castSucc, Nat.succ_eq_add_one]
+    omega
+
+/-! Def. 7.22: the parts of a number, as a list. -/
+
+/-- The numbers `a 0`, …, `a n` as a list have the same sum. -/
+theorem sum_ofFn {n : ℕ} (a : Fin (n + 1) → ℕ) : (List.ofFn a).sum = sum a := by
+  induction n with
+  | zero => rw [List.ofFn_succ, List.ofFn_zero, List.sum_cons, List.sum_nil]; rfl
+  | succ n ih => rw [List.ofFn_succ, List.sum_cons, ih, sum_succ']
+
+/-- Numbers each less than the next are distinct. -/
+theorem nodup_ofFn_of_lt {n : ℕ} {a : Fin n → ℕ} (h : ∀ i j, i < j → a i < a j) :
+    (List.ofFn a).Nodup := by
+  induction n with
+  | zero => rw [List.ofFn_zero]; exact List.nodup_nil
+  | succ n ih =>
+    rw [List.ofFn_succ, List.nodup_cons, List.mem_ofFn]
+    refine ⟨fun ⟨i, hi⟩ => ?_, ih fun i j hij => h _ _ (Fin.succ_lt_succ_iff.mpr hij)⟩
+    have := h 0 i.succ (Fin.succ_pos i)
+    omega
+
+/-- If the parts of `a` (the numbers less than `a` measuring it, Def. 7.22) are the
+distinct numbers of a list `l`, their sum is the sum of `l`. -/
+theorem sum_parts {a : ℕ} {l : List ℕ} (hl : l.Nodup)
+    (h : ∀ x, x ∈ l ↔ x < a ∧ x ∣ a) : ((List.range a).filter (· ∣ a)).sum = l.sum := by
+  apply List.Perm.sum_nat
+  rw [List.perm_ext_iff_of_nodup (List.nodup_range.sublist List.filter_sublist) hl]
+  intro x
+  rw [List.mem_filter, List.mem_range, decide_eq_true_eq, h]
 
 end Elements.Book9
