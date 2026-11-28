@@ -19,12 +19,6 @@ When the solvers struggle:
 - **Segment orientation:** when a goal compares products of the same segments written in different orders (`|(a─b)|` against `|(b─a)|`), add the symmetric step as an assert.
 - **`simp_all`:** if it blows up, turn it off for that step with `set_option systemE.simpAll false in`.
 
-## T7. Props. 3.17–3.19: tangents
-
-- **3.17:** draw a tangent from a given point. This is a construction: `∃` a line touching the circle.
-- **3.18:** the radius to the point of contact is perpendicular to the tangent.
-- **3.19:** the perpendicular to a tangent at the point of contact passes through the center.
-
 ## T8. Props. 3.20–3.22: angles in segments
 
 First, define the segment of a circle (Def. 3.6) and the angle in a segment (Def. 3.8), in `lean/SystemE/Book3.lean` or as hypotheses. A segment is a chord `ab` with the points of the circle on one side of line `ab`.

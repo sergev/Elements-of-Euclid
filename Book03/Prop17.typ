@@ -24,3 +24,4 @@
     [Thus, the straight-line $A B$ has been drawn touching the given circle $B C D$ from the given point $A$. (Which is) the very thing it was required to do.],
   )
 ]
+#lean-proof("/lean/Elements/Book3/Prop17.lean")

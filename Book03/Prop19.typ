@@ -24,3 +24,4 @@
     [Thus, if some straight-line touches a circle, and a straight-line is drawn from the point of contact, at right-angles to the tangent, (then) the center (of the circle) will be on the (straight-line) so drawn. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book3/Prop19.lean")
