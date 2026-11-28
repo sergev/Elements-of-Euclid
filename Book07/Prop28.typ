@@ -24,3 +24,4 @@
     [For if $A B$ and $B C$ are not prime to one another, (then) some number will measure $A B$ and $B C$. Let it (so) measure (them), and let it be $D$. And since $D$ measures each of $A B$ and $B C$, it will thus also measure the whole of $C A$. And it also measures $A B$. Thus, $D$ measures $C A$ and $A B$, which are prime to one another. The very thing is impossible. Thus, some number cannot measure (both) the numbers $A B$ and $B C$. Thus, $A B$ and $B C$ are prime to one another. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book7/Prop28.lean")

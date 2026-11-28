@@ -16,3 +16,4 @@
     [For if $C$ and $B$ are not prime to one another, (then) [some] number will measure $C$ and $B$. Let it (so) measure (them), and let it be $D$. Since $D$ measures $C$, and $C$ measures $A$, $D$ thus also measures $A$. And ($D$) also measures $B$. Thus, $D$ measures $A$ and $B$, which are prime to one another. The very thing is impossible. Thus, some number does not measure the numbers $C$ and $B$. Thus, $C$ and $B$ are prime to one another. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book7/Prop23.lean")

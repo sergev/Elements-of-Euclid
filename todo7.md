@@ -34,16 +34,6 @@ How Book 7 differs from Books 1–6:
   Once a proposition is proved, cite it, or a tactic that does the same, with a comment naming the proposition.
 - **No division, no rationals.** A ratio of numbers is never `a / b`, in `ℕ` or `ℚ`.
 
-## T7. Props. 7.23–7.28: numbers prime to one another
-
-- **7.23:** a measure of one of two numbers prime to one another is prime to the other.
-- **7.24, 7.25:** a product of two numbers prime to a third is prime to it; so is the square of one prime to it.
-- **7.26:** products of numbers prime to each of two numbers are prime to one another.
-- **7.27:** squares and cubes of numbers prime to one another are prime to one another.
-- **7.28:** two numbers are prime to one another exactly when their sum is prime to each. Prove both directions.
-
-Don't use `Nat.Coprime` lemmas. If `Nat.Coprime` is the definition chosen in T1, prove each fact from Euclid's steps.
-
 ## T8. Props. 7.29–7.32: primes
 
 - **7.29:** a prime is prime to every number it does not measure.

@@ -22,6 +22,12 @@ import Elements.Book7.Prop19
 import Elements.Book7.Prop20
 import Elements.Book7.Prop21
 import Elements.Book7.Prop22
+import Elements.Book7.Prop23
+import Elements.Book7.Prop24
+import Elements.Book7.Prop25
+import Elements.Book7.Prop26
+import Elements.Book7.Prop27
+import Elements.Book7.Prop28
 
 /-
 Book 7: numbers.

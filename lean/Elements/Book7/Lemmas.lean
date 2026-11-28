@@ -73,6 +73,10 @@ theorem sum_const (x : ℕ) {n : ℕ} : sum (fun _ : Fin (n + 1) => x) = x * (n 
 theorem lt_mul {a n : ℕ} (ha : 0 < a) (hn : 1 < n) : a < a * n :=
   by simpa only [Nat.mul_one] using Nat.mul_lt_mul_of_pos_left hn ha
 
+/-- Numbers prime to one another, either way round (Def. 7.12). -/
+theorem PrimeTo.symm {a b : ℕ} (h : PrimeTo a b) : PrimeTo b a :=
+  fun d hb ha => h d ha hb
+
 /-! The process of 7.1 and 7.2. -/
 
 /--

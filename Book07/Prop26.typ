@@ -16,3 +16,4 @@
     [For since $A$ and $B$ are each prime to $C$, the (number) created from (multiplying) $A$ and $B$ will thus also be prime to $C$ [Prop.~7.24]. And $E$ is the (number) created from (multiplying) $A$ and $B$. Thus, $E$ and $C$ are prime to one another. So, for the same (reasons), $E$ and $D$ are also prime to one another. Thus, $C$ and $D$ are each prime to $E$. Thus, the (number) created from (multiplying) $C$ and $D$ will also be prime to $E$ [Prop.~7.24]. And $F$ is the (number) created from (multiplying) $C$ and $D$. Thus, $E$ and $F$ are prime to one another. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book7/Prop26.lean")

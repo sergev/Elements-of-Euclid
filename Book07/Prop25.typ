@@ -16,3 +16,4 @@
     [For let $D$ be made equal to $A$. Since $A$ and $B$ are prime to one another, and $A$ (is) equal to $D$, $D$ and $B$ are thus also prime to one another. Thus, $D$ and $A$ are each prime to $B$. Thus, the (number) created from (multiplying) $D$ and $A$ will also be prime to $B$ [Prop.~7.24]. And $C$ is the number created from (multiplying) $D$ and $A$. Thus, $C$ and $B$ are prime to one another. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book7/Prop25.lean")

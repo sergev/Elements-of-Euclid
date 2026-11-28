@@ -16,3 +16,4 @@
     [For since $A$ and $B$ are prime to one another, and $A$ has made $C$ (by) multiplying itself, $C$ and $B$ are thus prime to one another [Prop.~7.25]. Therefore, since $C$ and $B$ are prime to one another, and $B$ has made $E$ (by) multiplying itself, $C$ and $E$ are thus prime to one another [Prop.~7.25]. Again, since $A$ and $B$ are prime to one another, and $B$ has made $E$ (by) multiplying itself, $A$ and $E$ are thus prime to one another [Prop.~7.25]. Therefore, since the two numbers $A$ and $C$ are both prime to each of the two numbers $B$ and $E$, the (number) created from (multiplying) $A$ and $C$ is thus prime to the (number created) from (multiplying) $B$ and $E$ [Prop.~7.26]. And $D$ is the (number created) from (multiplying) $A$ and $C$, and $F$ the (number created) from (multiplying) $B$ and $E$. Thus, $D$ and $F$ are prime to one another. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book7/Prop27.lean")
