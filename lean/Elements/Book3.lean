@@ -1,4 +1,7 @@
-import SystemE
+import Elements.Book3.Prop01
+import Elements.Book3.Prop02
+import Elements.Book3.Prop03
+import Elements.Book3.Prop04
 
 /-
 Book 3: circles.

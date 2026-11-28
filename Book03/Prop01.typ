@@ -29,3 +29,4 @@
     [So, from this, (it is) manifest that if any straight-line in a circle cuts any (other) straight-line in half, and at right-angles, (then) the center of the circle is on the former (straight-line). --- (Which is) the very thing it was required to do.],
   )
 ]
+#lean-proof("/lean/Elements/Book3/Prop01.lean")

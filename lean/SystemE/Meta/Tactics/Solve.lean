@@ -129,14 +129,20 @@ def preprocess : TacticM Unit := do
       evalTactic $ ← `(tactic| try unfold Triangle.congruent at $(mkIdent hname):ident)
       evalTactic $ ← `(tactic| try simp at $(mkIdent hname):ident)
 
+/-- ` (line N)` of the current step, for stats. -/
+def stepLine : TacticM String := do
+  match (← getRef).getPos? with
+  | some p => return s!" (line {(← getFileMap).toPosition p |>.line})"
+  | none => return ""
+
 def EuclidFinish (isApply : Bool) : TacticM Unit := do
   if !isApply then preprocess
   if ← Saturate.getSaturateOption then
     if ← Saturate.close (← getMainGoal) then
-      if systemE.stats.get (← getOptions) then logInfo "stats: saturated"
+      if systemE.stats.get (← getOptions) then logInfo m!"stats: saturated{← stepLine}"
       replaceMainGoal []
       return
-  if systemE.stats.get (← getOptions) then logInfo "stats: smt"
+  if systemE.stats.get (← getOptions) then logInfo m!"stats: smt{← stepLine}"
   withMainContext do
     let subGoals ← evalTacticAt (← simpAndSplit) (← getMainGoal)
     replaceMainGoal subGoals

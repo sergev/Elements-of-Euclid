@@ -19,15 +19,6 @@ When the solvers struggle:
 - **Segment orientation:** when a goal compares products of the same segments written in different orders (`|(a─b)|` against `|(b─a)|`), add the symmetric step as an assert.
 - **`simp_all`:** if it blows up, turn it off for that step with `set_option systemE.simpAll false in`.
 
-## T3. Props. 3.1–3.4: center and chords
-
-- **3.1:** find the center, with its corollary: a line bisecting a chord at right angles passes through the center. This uses Props. 1.10, 1.11 and 1.8, by contradiction.
-- **3.2:** a chord falls inside the circle.
-- **3.3:** a diameter bisecting a chord cuts it at right angles, and conversely.
-- **3.4:** two chords not through the center don't bisect each other.
-
-Expect `-- Missed by Euclid.` steps where Euclid reads a position off the figure. In 3.1, for instance, the bisector meets the circle at two points.
-
 ## T4. Props. 3.5–3.9: centers, and lines from a point to the circle
 
 - **3.5–3.6:** circles that cut, or touch, don't share a center. 3.6 uses T1.

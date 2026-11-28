@@ -32,3 +32,4 @@
     [Thus, in a circle, if any straight-line through the center cuts in half any straight-line not through the center, (then) it also cuts it at right-angles. And (conversely) if it cuts it at right-angles, (then) it also cuts it in half. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book3/Prop03.lean")

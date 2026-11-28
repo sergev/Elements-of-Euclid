@@ -24,3 +24,4 @@
     [Thus, in a circle, if two straight-lines, which are not through the center, cut one another, (then) they do not cut one another in half. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book3/Prop04.lean")

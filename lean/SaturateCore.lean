@@ -1636,9 +1636,10 @@ def closure (objs : Objects) (facts0 : Array Fact) : MetaM (Array Fact) := do
     out := if moved.isEmpty then c.out else
       c.out.map fun f => { f with proof := f.proof.replace (moved[·]?) }
     if !extra.isEmpty || newObjs then
-      out ← saturate objs out (mkConst ``False) extra (closed := true) (metric := false) (newObjs := newObjs)
+      out ← saturate objs out (mkConst ``False) extra (conflict := true) (closed := true)
+        (metric := false) (newObjs := newObjs)
   else
-    out ← saturate objs facts0 (mkConst ``False) (metric := false)
+    out ← saturate objs facts0 (mkConst ``False) (conflict := true) (metric := false)
   let c : Closure := ⟨have_, objs, out⟩
   closuresRef.modify fun m =>
     let m := if m.size > 8 && !m.contains decl then {} else m
@@ -1672,6 +1673,13 @@ partial def attempt (g : MVarId) (phase : IO.Ref MessageData) (last : IO.Ref Exp
   let objs ← contextObjects
   phase.set m!"saturating {facts0.size} facts"
   let diag ← closure objs facts0
+  -- contradictory facts (the closure stops at the first): the goal follows
+  let dmap : Std.HashMap Expr Expr :=
+    diag.foldl (fun m f => if m.contains f.type then m else m.insert f.type f.proof) {}
+  for f in diag do
+    if let some q := dmap[← negLit f.type]? then
+      g.assign (← mkAppOptM ``False.elim #[goal, contra f.type f.proof q])
+      return true
   let mut facts ← saturate objs diag goal (closed := true) (metric := true)
   let mut ctx ← Ctx.new facts objs
   let new ← guarded ctx

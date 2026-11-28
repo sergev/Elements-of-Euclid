@@ -24,3 +24,4 @@
     [Thus, if two points are taken at random on the circumference of a circle, (then) the straight-line joining the points will fall inside the circle. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book3/Prop02.lean")
