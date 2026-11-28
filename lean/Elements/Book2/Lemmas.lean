@@ -25,7 +25,7 @@ theorem rectangle_on : ∀ (a b x a₁ a₂ : Point) (AB : Line),
   ∃ (d e : Point) (DE AD BE : Line), d.opposingSides x AB ∧ formParallelogram d e a b DE AB AD BE ∧
   |(d─e)| = |(a─b)| ∧ |(a─d)| = |(a₁─a₂)| ∧ |(b─e)| = |(a₁─a₂)| ∧
   (∠ b:a:d : ℝ) = ∟ ∧ (∠ a:d:e : ℝ) = ∟ ∧ (∠ a:b:e : ℝ) = ∟ ∧ (∠ b:e:d : ℝ) = ∟ ∧
-  Triangle.area △ d:a:b + Triangle.area △ d:e:b = |(a─b)| * |(a₁─a₂)| :=
+  ▱ d:e:a:b = |(a─b)| * |(a₁─a₂)| :=
 by
   euclid_intros
   euclid_apply (line_from_points a₁ a₂) as A₁₂
@@ -54,7 +54,7 @@ theorem rectangle_on' : ∀ (a b a₁ a₂ : Point) (AB : Line),
   ∃ (d e : Point) (DE AD BE : Line), formParallelogram d e a b DE AB AD BE ∧
   |(d─e)| = |(a─b)| ∧ |(a─d)| = |(a₁─a₂)| ∧ |(b─e)| = |(a₁─a₂)| ∧
   (∠ b:a:d : ℝ) = ∟ ∧ (∠ a:d:e : ℝ) = ∟ ∧ (∠ a:b:e : ℝ) = ∟ ∧ (∠ b:e:d : ℝ) = ∟ ∧
-  Triangle.area △ d:a:b + Triangle.area △ d:e:b = |(a─b)| * |(a₁─a₂)| :=
+  ▱ d:e:a:b = |(a─b)| * |(a₁─a₂)| :=
 by
   euclid_intros
   euclid_apply (Elements.Book1.proposition_1 a b AB) as x

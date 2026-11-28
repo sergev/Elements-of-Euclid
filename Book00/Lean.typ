@@ -22,6 +22,7 @@ System E has six sorts of objects: `Point`, `Line`, `Circle`, segments, angles a
   [`∠ a:b:c`], [the size of the angle at $b$ contained by $b a$ and $b c$],
   [`∟`], [a right-angle],
   [`△ a:b:c`], [the triangle $a b c$, whose `area` is a real number],
+  [`▱ a:b:c:d`], [the area of the parallelogram with sides $a b$, $c d$, $a c$, $b d$: the triangles $a c d$ and $a b d$ cut off by the diagonal $a d$],
 )
 
 Points are written in lowercase and lines in capitals. The names match Euclid's letters, so the point $C$ of the figure is `c` and the straight-line through $A$ and $B$ is `AB`. A line in System E is the whole infinite line, and Euclid's finite straight-lines are segments.
@@ -97,7 +98,7 @@ The proof of Proposition 1 then reads like Euclid's:
 
 == Rectangles and squares
 
-Book 2 speaks of "the rectangle contained by $A B$ and $C D$" and "the square on $A B$". The formal statements write these as products of lengths: `|(a─b)| * |(c─d)|` and `|(a─b)| * |(a─b)|`. "Twice" is `2 * …`. Prop.~1.47 already uses this form. The bridge to figures is the rule `rectangle_area`, which says that the area of a constructed rectangle, as two triangles cut off by a diagonal, is the product of its sides. The rules `parallelogram_area` and `sum_parallelograms_area` say that a parallelogram has the same area whichever diagonal cuts it, and that a parallelogram cut by a parallel to two of its sides is the sum of the two parts.
+Book 2 speaks of "the rectangle contained by $A B$ and $C D$" and "the square on $A B$". The formal statements write these as products of lengths: `|(a─b)| * |(c─d)|` and `|(a─b)| * |(a─b)|`. "Twice" is `2 * …`. Prop.~1.47 already uses this form. The bridge to figures is the rule `rectangle_area`, which says that the area of a constructed rectangle, as two triangles cut off by a diagonal, is the product of its sides. The rules `parallelogram_area` and `sum_parallelograms_area` say that a parallelogram has the same area whichever diagonal cuts it, and that a parallelogram cut by a parallel to two of its sides is the sum of the two parts. The proofs write the area of a parallelogram as `▱ a:b:c:d`, so that `▱ d:e:a:b = |(a─b)| * |(a─d)|` reads "the rectangle $D B$ is the rectangle contained by $A B$, $A D$".
 
 Written this way, most of Book 2 consists of identities of algebra, which could be proved without any figure. The proofs in this edition do not take that shortcut. Each one draws Euclid's figure and argues with its areas, as he does.
 

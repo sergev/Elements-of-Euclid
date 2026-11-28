@@ -27,11 +27,10 @@ by
   euclid_apply (rectangle_area d f a c DE AB AD CF)
   euclid_apply (rectangle_area f e c b DE AB CF BE)
   euclid_apply (sum_parallelograms_area d e a b f c DE AB AD BE)
-  euclid_assert Triangle.area △ d:a:b + Triangle.area △ d:e:b = |(a─b)| * |(a─b)|
-  euclid_assert Triangle.area △ d:a:c + Triangle.area △ d:f:c = |(b─a)| * |(a─c)|
-  euclid_assert Triangle.area △ f:c:b + Triangle.area △ f:e:b = |(a─b)| * |(b─c)|
-  euclid_assert Triangle.area △ d:a:b + Triangle.area △ d:e:b =
-    (Triangle.area △ d:a:c + Triangle.area △ d:f:c) + (Triangle.area △ f:c:b + Triangle.area △ f:e:b)
+  euclid_assert ▱ d:e:a:b = |(a─b)| * |(a─b)|
+  euclid_assert ▱ d:f:a:c = |(b─a)| * |(a─c)|
+  euclid_assert ▱ f:e:c:b = |(a─b)| * |(b─c)|
+  euclid_assert ▱ d:e:a:b = ▱ d:f:a:c + ▱ f:e:c:b
   euclid_finish
 
 end Elements.Book2

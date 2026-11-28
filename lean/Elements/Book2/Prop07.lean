@@ -37,7 +37,7 @@ by
   euclid_apply (proposition_29_interior d g a c AD CF AB)
   euclid_apply (right_angle_on_lines g c a g b CF AB)
   euclid_apply (rectangle_area g k c b HK AB CF BE)
-  euclid_assert Triangle.area △ g:c:b + Triangle.area △ g:k:b = |(c─b)| * |(c─b)|
+  euclid_assert ▱ g:k:c:b = |(c─b)| * |(c─b)|
   -- HF is a square on AC
   euclid_apply (proposition_34' h g a c HK AB AD CF)
   euclid_apply (proposition_34' d f h g DE HK AD CF)
@@ -46,28 +46,24 @@ by
   euclid_assert |(d─h)| = |(a─c)|
   euclid_assert |(d─f)| = |(a─c)|
   euclid_apply (rectangle_area d f h g DE HK AD CF)
-  euclid_assert Triangle.area △ d:h:g + Triangle.area △ d:f:g = |(a─c)| * |(a─c)|
+  euclid_assert ▱ d:f:h:g = |(a─c)| * |(a─c)|
   -- AG = GE; add CK: AK = CE
   euclid_apply (rectangle_area h g a c HK AB AD CF)
   euclid_apply (proposition_43 b e d a k h f c g AB DE BE AD BD HK CF)
   euclid_apply (sum_parallelograms_area h k a b g c HK AB AD BE)
   euclid_apply (sum_parallelograms_area f c e b g k CF BE DE AB)
-  euclid_assert Triangle.area △ h:a:b + Triangle.area △ h:k:b = Triangle.area △ f:c:b + Triangle.area △ f:e:b
+  euclid_assert ▱ h:k:a:b = ▱ f:e:c:b
   -- AK is the rectangle on AB, BC
   euclid_apply (proposition_34' h k a b HK AB AD BE)
   euclid_apply (rectangle_area h k a b HK AB AD BE)
-  euclid_assert Triangle.area △ h:a:b + Triangle.area △ h:k:b = |(a─b)| * |(b─c)|
+  euclid_assert ▱ h:k:a:b = |(a─b)| * |(b─c)|
   -- the gnomon and CK are twice AK; add HF, the square on AC
-  euclid_assert (Triangle.area △ h:a:c + Triangle.area △ h:g:c) + (Triangle.area △ g:c:b + Triangle.area △ g:k:b) +
-    (Triangle.area △ k:e:f + Triangle.area △ k:f:g) + (Triangle.area △ g:c:b + Triangle.area △ g:k:b) =
-    2 * (Triangle.area △ h:a:b + Triangle.area △ h:k:b)
+  euclid_assert ▱ h:g:a:c + ▱ g:k:c:b + ▱ k:g:e:f + ▱ g:k:c:b = 2 * ▱ h:k:a:b
   euclid_apply (rectangle_area d e a b DE AB AD BE)
   euclid_apply (sum_parallelograms_area d e a b f c DE AB AD BE)
   euclid_apply (sum_parallelograms_area d a f c h g AD CF DE AB)
-  euclid_assert Triangle.area △ d:a:b + Triangle.area △ d:e:b = |(a─b)| * |(a─b)|
-  euclid_assert Triangle.area △ d:a:b + Triangle.area △ d:e:b =
-    (Triangle.area △ h:a:c + Triangle.area △ h:g:c) + (Triangle.area △ g:c:b + Triangle.area △ g:k:b) +
-    (Triangle.area △ k:e:f + Triangle.area △ k:f:g) + (Triangle.area △ d:h:g + Triangle.area △ d:f:g)
+  euclid_assert ▱ d:e:a:b = |(a─b)| * |(a─b)|
+  euclid_assert ▱ d:e:a:b = ▱ h:g:a:c + ▱ g:k:c:b + ▱ k:g:e:f + ▱ d:f:h:g
   euclid_assert |(b─c)| * |(b─c)| = |(c─b)| * |(c─b)|
   euclid_assert |(c─a)| * |(c─a)| = |(a─c)| * |(a─c)|
   euclid_finish

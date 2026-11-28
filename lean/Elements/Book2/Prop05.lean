@@ -72,18 +72,13 @@ by
   euclid_apply (sum_parallelograms_area g d f b h m DG BF EF AB)
   euclid_apply (sum_parallelograms_area k h a d l c KM AB AK DG)
   euclid_apply (sum_parallelograms_area l m c b h d KM AB CE BF)
-  euclid_assert Triangle.area △ l:c:d + Triangle.area △ l:h:d = Triangle.area △ m:f:g + Triangle.area △ m:g:h
-  euclid_assert Triangle.area △ k:a:c + Triangle.area △ k:l:c =
-    (Triangle.area △ l:c:d + Triangle.area △ l:h:d) + (Triangle.area △ h:d:b + Triangle.area △ h:m:b)
-  euclid_assert Triangle.area △ k:a:d + Triangle.area △ k:h:d =
-    (Triangle.area △ l:c:d + Triangle.area △ l:h:d) + (Triangle.area △ h:d:b + Triangle.area △ h:m:b) +
-    (Triangle.area △ m:f:g + Triangle.area △ m:g:h)
-  euclid_assert Triangle.area △ k:a:d + Triangle.area △ k:h:d = |(a─d)| * |(d─b)|
-  euclid_assert Triangle.area △ e:l:h + Triangle.area △ e:g:h = |(c─d)| * |(c─d)|
-  euclid_assert Triangle.area △ e:c:b + Triangle.area △ e:f:b =
-    (Triangle.area △ l:c:d + Triangle.area △ l:h:d) + (Triangle.area △ h:d:b + Triangle.area △ h:m:b) +
-    (Triangle.area △ m:f:g + Triangle.area △ m:g:h) + (Triangle.area △ e:l:h + Triangle.area △ e:g:h)
-  euclid_assert Triangle.area △ e:c:b + Triangle.area △ e:f:b = |(c─b)| * |(c─b)|
+  euclid_assert ▱ l:h:c:d = ▱ m:h:f:g
+  euclid_assert ▱ k:l:a:c = ▱ l:h:c:d + ▱ h:m:d:b
+  euclid_assert ▱ k:h:a:d = ▱ l:h:c:d + ▱ h:m:d:b + ▱ m:h:f:g
+  euclid_assert ▱ k:h:a:d = |(a─d)| * |(d─b)|
+  euclid_assert ▱ e:g:l:h = |(c─d)| * |(c─d)|
+  euclid_assert ▱ e:f:c:b = ▱ l:h:c:d + ▱ h:m:d:b + ▱ m:h:f:g + ▱ e:g:l:h
+  euclid_assert ▱ e:f:c:b = |(c─b)| * |(c─b)|
   euclid_finish
 
 end Elements.Book2

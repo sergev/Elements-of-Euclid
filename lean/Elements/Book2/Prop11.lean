@@ -84,7 +84,7 @@ by
   set_option systemE.simpAll false in
     euclid_assert |(f─g)| * |(f─c)| = |(c─f)| * |(f─a)|
   set_option systemE.simpAll false in
-    euclid_assert Triangle.area △ f:c:k + Triangle.area △ f:g:k = |(c─f)| * |(f─a)|
+    euclid_assert ▱ f:g:c:k = |(c─f)| * |(f─a)|
   -- take away AK: FH = HD
   euclid_apply (sum_parallelograms_area f c g k a h AC GH FG CD)
   euclid_apply (sum_parallelograms_area a b c d h k AB CD AC BD)
@@ -92,17 +92,17 @@ by
   euclid_apply (rectangle_area h b k d AB CD GH BD)
   euclid_apply (rectangle_area f g a h FG AB AC GH)
   set_option systemE.simpAll false in
-    euclid_assert Triangle.area △ f:a:h + Triangle.area △ f:g:h = Triangle.area △ h:k:d + Triangle.area △ h:b:d
+    euclid_assert ▱ f:g:a:h = ▱ h:b:k:d
   -- HD is the rectangle on AB, BH; FH the square on AH
   euclid_assert |(h─k)| = |(a─b)| ∧ |(h─b)| = |(b─h)| ∧ |(a─h)| = |(f─a)| ∧ |(f─g)| = |(f─a)|
   set_option systemE.simpAll false in
-    euclid_assert Triangle.area △ h:k:d + Triangle.area △ h:b:d = |(a─b)| * |(b─h)|
+    euclid_assert ▱ h:b:k:d = |(a─b)| * |(b─h)|
   set_option systemE.simpAll false in
-    euclid_assert Triangle.area △ f:a:h + Triangle.area △ f:g:h = |(f─g)| * |(f─a)|
+    euclid_assert ▱ f:g:a:h = |(f─g)| * |(f─a)|
   set_option systemE.simpAll false in
     euclid_assert |(f─g)| * |(f─a)| = |(a─h)| * |(a─h)|
   set_option systemE.simpAll false in
-    euclid_assert Triangle.area △ f:a:h + Triangle.area △ f:g:h = |(a─h)| * |(a─h)|
+    euclid_assert ▱ f:g:a:h = |(a─h)| * |(a─h)|
   use h
   set_option systemE.simpAll false in euclid_finish
 

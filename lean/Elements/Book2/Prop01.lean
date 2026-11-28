@@ -36,13 +36,11 @@ by
   euclid_apply (rectangle_area l h e c GH BC EL CH)
   euclid_apply (sum_parallelograms_area g h b c k d GH BC BG CH)
   euclid_apply (sum_parallelograms_area k h d c l e GH BC DK CH)
-  euclid_assert Triangle.area △ g:b:c + Triangle.area △ g:h:c = |(a₁─a₂)| * |(b─c)|
-  euclid_assert Triangle.area △ g:b:d + Triangle.area △ g:k:d = |(a₁─a₂)| * |(b─d)|
-  euclid_assert Triangle.area △ k:d:e + Triangle.area △ k:l:e = |(a₁─a₂)| * |(d─e)|
-  euclid_assert Triangle.area △ l:e:c + Triangle.area △ l:h:c = |(a₁─a₂)| * |(e─c)|
-  euclid_assert Triangle.area △ g:b:c + Triangle.area △ g:h:c =
-    (Triangle.area △ g:b:d + Triangle.area △ g:k:d) + (Triangle.area △ k:d:e + Triangle.area △ k:l:e) +
-    (Triangle.area △ l:e:c + Triangle.area △ l:h:c)
+  euclid_assert ▱ g:h:b:c = |(a₁─a₂)| * |(b─c)|
+  euclid_assert ▱ g:k:b:d = |(a₁─a₂)| * |(b─d)|
+  euclid_assert ▱ k:l:d:e = |(a₁─a₂)| * |(d─e)|
+  euclid_assert ▱ l:h:e:c = |(a₁─a₂)| * |(e─c)|
+  euclid_assert ▱ g:h:b:c = ▱ g:k:b:d + ▱ k:l:d:e + ▱ l:h:e:c
   euclid_finish
 
 end Elements.Book2

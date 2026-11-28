@@ -37,7 +37,7 @@ by
   euclid_apply (proposition_29_interior d g a c AD CF AB)
   euclid_apply (right_angle_on_lines g c a g b CF AB)
   euclid_apply (rectangle_area g k c b HK AB CF BE)
-  euclid_assert Triangle.area △ g:c:b + Triangle.area △ g:k:b = |(c─b)| * |(c─b)|
+  euclid_assert ▱ g:k:c:b = |(c─b)| * |(c─b)|
   -- HF is a square on AC
   euclid_apply (proposition_34' h g a c HK AB AD CF)
   euclid_apply (proposition_34' d f h g DE HK AD CF)
@@ -46,21 +46,19 @@ by
   euclid_assert |(d─h)| = |(a─c)|
   euclid_assert |(d─f)| = |(a─c)|
   euclid_apply (rectangle_area d f h g DE HK AD CF)
-  euclid_assert Triangle.area △ d:h:g + Triangle.area △ d:f:g = |(a─c)| * |(a─c)|
+  euclid_assert ▱ d:f:h:g = |(a─c)| * |(a─c)|
   -- AG = GE, and AG is the rectangle on AC, CB
   euclid_apply (rectangle_area h g a c HK AB AD CF)
-  euclid_assert Triangle.area △ h:a:c + Triangle.area △ h:g:c = |(a─c)| * |(c─b)|
+  euclid_assert ▱ h:g:a:c = |(a─c)| * |(c─b)|
   euclid_apply (proposition_43 b e d a k h f c g AB DE BE AD BD HK CF)
-  euclid_assert Triangle.area △ k:e:f + Triangle.area △ k:f:g = |(a─c)| * |(c─b)|
+  euclid_assert ▱ k:g:e:f = |(a─c)| * |(c─b)|
   -- the four make up the square on AB
   euclid_apply (rectangle_area d e a b DE AB AD BE)
   euclid_apply (sum_parallelograms_area d e a b f c DE AB AD BE)
   euclid_apply (sum_parallelograms_area d a f c h g AD CF DE AB)
   euclid_apply (sum_parallelograms_area f c e b g k CF BE DE AB)
-  euclid_assert Triangle.area △ d:a:b + Triangle.area △ d:e:b = |(a─b)| * |(a─b)|
-  euclid_assert Triangle.area △ d:a:b + Triangle.area △ d:e:b =
-    (Triangle.area △ d:h:g + Triangle.area △ d:f:g) + (Triangle.area △ g:c:b + Triangle.area △ g:k:b) +
-    (Triangle.area △ h:a:c + Triangle.area △ h:g:c) + (Triangle.area △ k:e:f + Triangle.area △ k:f:g)
+  euclid_assert ▱ d:e:a:b = |(a─b)| * |(a─b)|
+  euclid_assert ▱ d:e:a:b = ▱ d:f:h:g + ▱ g:k:c:b + ▱ h:g:a:c + ▱ k:g:e:f
   euclid_finish
 
 end Elements.Book2

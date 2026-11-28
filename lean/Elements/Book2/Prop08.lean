@@ -29,9 +29,9 @@ theorem proposition_8_sums : ∀ (a b c d e f g h k l m n o p q r : Point),
   Triangle.area △ h:q:l + Triangle.area △ l:q:r = Triangle.area △ l:r:f + Triangle.area △ f:r:p ∧
   Triangle.area △ r:l:h + Triangle.area △ r:h:q = Triangle.area △ g:q:o + Triangle.area △ g:o:m ∧
   -- AK, OH, AEFD as rectangles
-  Triangle.area △ m:a:b + Triangle.area △ m:k:b = |(m─k)| * |(m─a)| ∧
-  Triangle.area △ e:o:q + Triangle.area △ e:h:q = |(e─h)| * |(e─o)| ∧
-  Triangle.area △ e:a:d + Triangle.area △ e:f:d = |(e─f)| * |(e─a)| ∧
+  ▱ m:k:a:b = |(m─k)| * |(m─a)| ∧
+  ▱ e:h:o:q = |(e─h)| * |(e─o)| ∧
+  ▱ e:f:a:d = |(e─f)| * |(e─a)| ∧
   -- how the pieces make up AK and the whole
   Triangle.area △ m:a:c + Triangle.area △ m:c:g + Triangle.area △ g:c:b + Triangle.area △ g:b:k = Triangle.area △ m:a:b + Triangle.area △ m:b:k ∧
   Triangle.area △ e:a:c + Triangle.area △ e:c:h + Triangle.area △ h:c:d + Triangle.area △ h:d:f = Triangle.area △ e:a:d + Triangle.area △ e:d:f ∧
@@ -61,9 +61,9 @@ by
   euclid_assert |(m─a)| = |(b─c)|
   euclid_assert |(e─h)| = |(a─c)| ∧ |(e─o)| = |(a─c)|
   euclid_assert |(e─f)| = |(a─b)| + |(b─c)| ∧ |(e─a)| = |(a─b)| + |(b─c)|
-  euclid_assert Triangle.area △ m:a:b + Triangle.area △ m:k:b = |(a─b)| * |(b─c)|
-  euclid_assert Triangle.area △ e:o:q + Triangle.area △ e:h:q = |(a─c)| * |(a─c)|
-  euclid_assert Triangle.area △ e:a:d + Triangle.area △ e:f:d = (|(a─b)| + |(b─c)|) * (|(a─b)| + |(b─c)|)
+  euclid_assert ▱ m:k:a:b = |(a─b)| * |(b─c)|
+  euclid_assert ▱ e:h:o:q = |(a─c)| * |(a─c)|
+  euclid_assert ▱ e:f:a:d = (|(a─b)| + |(b─c)|) * (|(a─b)| + |(b─c)|)
   -- the four squares are equal, and so are the four rectangles
   euclid_assert Triangle.area △ g:c:k + Triangle.area △ k:c:b = Triangle.area △ k:b:n + Triangle.area △ n:b:d
   euclid_assert Triangle.area △ g:c:k + Triangle.area △ k:c:b = Triangle.area △ q:g:r + Triangle.area △ r:g:k
@@ -72,10 +72,9 @@ by
   euclid_assert Triangle.area △ m:g:a + Triangle.area △ a:g:c = Triangle.area △ h:q:l + Triangle.area △ l:q:r
   euclid_assert Triangle.area △ m:g:a + Triangle.area △ a:g:c = Triangle.area △ l:r:f + Triangle.area △ f:r:p
   -- AK is AG and CK; the eight are four AK; with OH they are the whole
-  euclid_assert Triangle.area △ m:a:b + Triangle.area △ m:k:b =
+  euclid_assert ▱ m:k:a:b =
     (Triangle.area △ m:g:a + Triangle.area △ a:g:c) + (Triangle.area △ g:c:k + Triangle.area △ k:c:b)
-  euclid_assert Triangle.area △ e:a:d + Triangle.area △ e:f:d =
-    4 * (Triangle.area △ m:a:b + Triangle.area △ m:k:b) + (Triangle.area △ e:o:q + Triangle.area △ e:h:q)
+  euclid_assert ▱ e:f:a:d = 4 * ▱ m:k:a:b + ▱ e:h:o:q
   euclid_finish
 
 
