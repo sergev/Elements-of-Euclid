@@ -427,9 +427,123 @@ def oracle (hyps : Array Expr) (e : Expr) : Option (Option (Array Nat)) := Id.ru
 /-- Goals and hypothesis sets (hashed) `arithWith` failed on in this step. -/
 initialize arithFails : IO.Ref (Std.HashSet (Expr × UInt64 × Bool)) ← IO.mkRef {}
 
+/-- Products `u * v` of non-constant terms occurring in `e`. -/
+partial def products (e : Expr) (acc : Array Expr := #[]) : Array Expr :=
+  match e.getAppFnArgs with
+  | (``HMul.hMul, #[_, _, _, _, a, b]) =>
+    let acc := products b (products a acc)
+    if a.isAppOf ``OfNat.ofNat || b.isAppOf ``OfNat.ofNat || acc.contains e then acc else acc.push e
+  | _ => match e with
+    | .app f a => products a (products f acc)
+    | _ => acc
+
+def isAtomTerm (e : Expr) : Bool :=
+  e.isAppOfArity `Segment.length 1 || e.isAppOfArity `Angle.degree 1 ||
+    e.isAppOfArity `Triangle.area 1
+
+/-- The least term equal to `u` along `edges`, and a proof of `u = it`. -/
+def representative (edges : Std.HashMap Expr (Array (Expr × Expr))) (u : Expr) :
+    MetaM (Expr × Expr) := do
+  let mut queue := #[(u, ← mkEqRefl u)]
+  let mut best := (u, ← mkEqRefl u)
+  let mut i := 0
+  while i < queue.size do
+    let (x, px) := queue[i]!
+    i := i + 1
+    if Expr.lt x best.1 then best := (x, px)
+    for (y, h) in edges.getD x #[] do
+      unless queue.any (·.1 == y) do queue := queue.push (y, ← mkEqTrans px h)
+  return best
+
+/-- For each product, `u * v = u' * v'` with each factor replaced by its class
+representative under the atom equalities `ts`, the factors in a fixed order. -/
+def productEqs (ts : Array (Expr × Expr)) (prods : Array Expr) : MetaM (Array Expr) := do
+  let mut edges : Std.HashMap Expr (Array (Expr × Expr)) := {}
+  for (t, p) in ts do
+    if let some (_, x, y) := t.eq? then
+      if isAtomTerm x && isAtomTerm y && x != y then
+        let q ← mkEqSymm p
+        edges := edges.alter x (fun a => some ((a.getD #[]).push (y, p)))
+        edges := edges.alter y (fun a => some ((a.getD #[]).push (x, q)))
+  let mut out := #[]
+  for m in prods do
+    let some (u, v) := (match m.getAppFnArgs with
+      | (``HMul.hMul, #[_, _, _, _, a, b]) => some (a, b) | _ => none) | continue
+    let (u', pu) ← representative edges u
+    let (v', pv) ← representative edges v
+    let f := m.appFn!.appFn!
+    let mut p ← mkCongr (← mkCongrArg f pu) pv
+    let mut r := mkApp2 f u' v'
+    if Expr.lt v' u' then
+      r := mkApp2 f v' u'
+      -- stated with the product as written, not `mul_comm`'s instances
+      let c ← mkExpectedTypeHint (← mkAppM `mul_comm #[u', v']) (← mkEq (mkApp2 f u' v') r)
+      p ← mkEqTrans p c
+    unless r == m do out := out.push p
+  return out
+
+/-- `¬between b a b'` from the facts: stated, `b = b'`, or `b`, `b'` in order from `a`. -/
+def notBetween (look : Expr → MetaM (Option Expr)) (b a b' : Expr) : MetaM (Option Expr) := do
+  if b == b' then return some (mkApp2 (mkConst `not_between_self) a b)
+  if let some p ← look (mkNot (mkApp3 (mkConst `between) b a b')) then return some p
+  if let some p ← look (mkApp3 (mkConst `between) a b b') then
+    return some (mkApp4 (mkConst `not_between_of_between_1) a b b' p)
+  if let some p ← look (mkApp3 (mkConst `between) a b' b) then
+    return some (mkApp4 (mkConst `not_between_of_between_2) a b b' p)
+  return none
+
+/-- Right-nested `And.intro` of the proofs. -/
+def mkAnds : List Expr → MetaM Expr
+  | [] => return mkConst ``True.intro
+  | [p] => return p
+  | p :: ps => do mkAppM ``And.intro #[p, ← mkAnds ps]
+
+/-- `∠ x:y:z = ∠ x':y:z'` when `x'`, `z'` are on the rays `yx`, `yz` (`equal_angles`),
+for the angles at a common vertex; the premises are looked up among the facts. -/
+def angleEqs (angs : Array (Expr × Expr × Expr)) (lines : Array Expr)
+    (look : Expr → MetaM (Option Expr)) : MetaM (Array Expr) := do
+  let on := fun (p l : Expr) => look (mkApp2 (mkConst `Point.onLine) p l)
+  let through := fun (y x x' : Expr) => do
+    for l in lines do
+      let some p1 ← on y l | continue
+      let some p2 ← on x l | continue
+      let some p3 ← on x' l | continue
+      return some (l, p1, p2, p3)
+    return none
+  let ne := fun (x y : Expr) => do look (← mkAppM ``Ne #[x, y])
+  let mut out := #[]
+  for i in [0:angs.size] do
+    for j in [i+1:angs.size] do
+      let (x, y, z) := angs[i]!
+      let (x', y', z') := angs[j]!
+      if y != y' || (x == z' && z == x') then continue
+      for (u, w, rev) in [(x', z', false), (z', x', true)] do
+        if x == u && z == w then continue
+        let some (l, hyl, hxl, hul) ← through y x u | continue
+        let some (m, hym, hzm, hwm) ← through y z w | continue
+        if l == m then continue
+        let some n1 ← ne x y | continue
+        let some n2 ← ne u y | continue
+        let some n3 ← ne z y | continue
+        let some n4 ← ne w y | continue
+        let some b1 ← notBetween look x y u | continue
+        let some b2 ← notBetween look z y w | continue
+        let h ← mkAnds [hyl, hxl, hul, hym, hzm, hwm, n1, n2, n3, n4, b1, b2]
+        let p := mkApp (mkAppN (mkConst `equal_angles) #[y, x, u, z, w, l, m]) h
+        out := out.push p
+        if rev then
+          -- `∠ z':y:x' = ∠ x':y:z'`
+          let some s1 ← ne x' y | continue
+          let some s2 ← ne y z' | continue
+          out := out.push (mkApp4 (mkConst `angle_symm) z' y x'
+            (mkApp4 (mkConst ``And.intro) (← mkAppM ``Ne #[z', y]) (← mkAppM ``Ne #[y, x'])
+              (← mkAppM ``Ne.symm #[s2]) (← mkAppM ``Ne.symm #[s1])))
+        break
+  return out
+
 /-- `linarith only` over `hyps`, plus the symmetries of the segments and angles. -/
 def arithWith (hyps : Array Fact) (ne : Expr → MetaM (Option Expr)) (e : Expr)
-    (split := true) : MetaM (Option Expr) := do
+    (split := true) (lines : Array Expr := #[]) : MetaM (Option Expr) := do
   let neqs ← hyps.filterM (isRealNe ·.type)
   let hyps ← hyps.filterM (fun f => return !(← isRealNe f.type))
   let mut segs := segments e
@@ -458,6 +572,8 @@ def arithWith (hyps : Array Fact) (ne : Expr → MetaM (Option Expr)) (e : Expr)
       let some h2 ← ne t2 | continue
       proofs := proofs.push
         (mkApp4 (mkConst `angle_symm) x y z (mkApp4 (mkConst ``And.intro) t1 t2 h1 h2))
+  -- angles at one vertex with their sides on the same rays
+  for p in ← angleEqs angs lines ne do proofs := proofs.push p
   -- each triangle's area equals that of its first occurrence in another order
   let mut tris := triangles e
   for f in hyps do tris := triangles f.type tris
@@ -473,6 +589,12 @@ def arithWith (hyps : Array Fact) (ne : Expr → MetaM (Option Expr)) (e : Expr)
   let lin0 := (← configRef.get).linarith
   let mut types := hyps.map (·.type)
   for p in proofs.extract hyps.size proofs.size do types := types.push (← inferType p)
+  -- products of equal factors, in either order, are one term
+  let prods := hyps.foldl (fun acc f => products f.type acc) (products e)
+  unless prods.isEmpty do
+    for p in ← productEqs (types.zip proofs) prods do
+      proofs := proofs.push p
+      types := types.push (← inferType p)
   -- `linarith` on the facts of the oracle's certificate, or not at all
   let lin := fun (ps : List Expr) (ts : Array Expr) => do
     match oracle ts e with
@@ -515,7 +637,7 @@ partial def root (uf : Std.HashMap (Array Expr) (Array Expr)) (k : Array Expr) :
 /-- Prove a metric literal by `linarith only`, over the metric facts connected
 to it by shared atoms, plus `ab = ba` and `∠abc = ∠cba` where both orders occur. -/
 def arith (pool : Array (Fact × Array (Array Expr))) (ne : Expr → MetaM (Option Expr))
-    (e : Expr) (seeds := atoms e) : MetaM (Option Expr) := do
+    (e : Expr) (seeds := atoms e) (lines : Array Expr := #[]) : MetaM (Option Expr) := do
   -- of the equalities between atoms, keep a spanning forest, and one of
   -- each symmetric pair `∠abc = ∠cba`
   let mut uf : Std.HashMap (Array Expr) (Array Expr) := {}
@@ -535,16 +657,21 @@ def arith (pool : Array (Fact × Array (Array Expr))) (ne : Expr → MetaM (Opti
           if rx == ry then continue
           uf := uf.insert rx ry
     forest := forest.push (f, ks)
-  if seeds.isEmpty then return ← arithWith (forest.map (·.1)) ne e
+  if seeds.isEmpty then return ← arithWith (forest.map (·.1)) ne e (lines := lines)
   -- facts in layers by distance from the goal's atoms; try the nearest first
   let mut pool := forest
   let mut keys : Std.HashSet (Array Expr) := seeds.foldl (·.insert ·) {}
+  -- angles at one vertex are connected (their sides may lie on the same rays)
+  let vertex := fun (k : Array Expr) => if k.size == 3 && !k[0]!.isConst then some k[0]! else none
+  let mut verts : Std.HashSet Expr := seeds.foldl (fun s k => (vertex k).elim s s.insert) {}
   let mut hyps := #[]
   for _ in [0:maxLayers] do
     let mut layer := #[]
     let mut rest := #[]
     for (f, ks) in pool do
-      if ks.any keys.contains then layer := layer.push (f, ks) else rest := rest.push (f, ks)
+      if ks.any (fun k => keys.contains k || (vertex k).any verts.contains) then
+        layer := layer.push (f, ks)
+      else rest := rest.push (f, ks)
     if layer.isEmpty then break
     pool := rest
     -- over the cap: the first facts of the layer (context facts come first)
@@ -552,16 +679,19 @@ def arith (pool : Array (Fact × Array (Array Expr))) (ne : Expr → MetaM (Opti
     layer := layer.extract 0 (maxHyps - hyps.size)
     hyps := hyps ++ layer.map (·.1)
     keys := layer.foldl (fun s (_, ks) => ks.foldl (·.insert ·) s) keys
+    verts := layer.foldl (fun s (_, ks) => ks.foldl (fun s k => (vertex k).elim s s.insert) s) verts
     -- every atom of the goal must occur in some fact
     let seen := hyps.foldl (fun s f => (atoms f.type).foldl (·.insert ·) s) ({} : Std.HashSet (Array Expr))
     unless (atoms e).all seen.contains do continue
-    if let some p ← arithWith hyps ne e (split := false) then return some p
+    if let some p ← arithWith hyps ne e (split := false) (lines := lines) then return some p
     if full then break
   -- case splits only over all the facts
   let neq ← hyps.anyM (isRealNe ·.type)
   if neq && (atoms e).all (hyps.foldl (fun s f => (atoms f.type).foldl (·.insert ·) s)
       ({} : Std.HashSet (Array Expr))).contains then
-    return ← arithWith hyps ne e
+    return ← arithWith hyps ne e (lines := lines)
+  -- a goal about products may need no facts, or facts sharing none of its atoms
+  if !(products e).isEmpty then return ← arithWith hyps ne e (split := false) (lines := lines)
   return none
 
 /-- Ground objects (points, lines, circles) of the context, by sort. -/
@@ -1023,6 +1153,8 @@ def Ctx.fact? (ctx : Ctx) (cache : Array Fact) (l : Expr) : MetaM (Option Expr) 
   return none
 
 /-- A fact `l`, or `b ≠ a` for `l = (a ≠ b)`; side conditions of angle symmetry. -/
+def Ctx.lines (ctx : Ctx) : Array Expr := objectsOf ctx.objs (mkConst `Line)
+
 def Ctx.neFact (ctx : Ctx) (l : Expr) : MetaM (Option Expr) := do
   if let some p := ctx.store.map[l]? then return some p
   if let some (t, x, y) := l.ne? then
@@ -1057,7 +1189,7 @@ def neByMetric (ctx : Ctx) (x y : Expr) : MetaM (Option Expr) := do
       let z := mkApp2 (mkConst `zero_segment_onlyif) u v
       eqs := eqs.push ⟨← inferType (mkApp z hh), mkApp z hh⟩
     let seeds := eqs.foldl (fun acc f => acc ++ atoms f.type) #[]
-    let some p ← arith (eqs.map (fun f => (f, atoms f.type)) ++ pool) ctx.neFact
+    let some p ← arith (eqs.map (fun f => (f, atoms f.type)) ++ pool) ctx.neFact (lines := ctx.lines)
       (mkConst ``False) seeds | return none
     return some (← mkLambdaFVars #[h] p)
 
@@ -1162,7 +1294,7 @@ def guarded (ctx : Ctx) (fresh : Option (Std.HashSet Expr) := none) : MetaM (Arr
       let leaf := fun l => do
         if let some p := ctx.store.map[l]? then return some p
         unless (← isArith l) && (atoms l).all ctx.known.contains && linked l do return none
-        arith ctx.pool ctx.neFact l
+        arith ctx.pool ctx.neFact l (lines := ctx.lines)
       if let some pf ← cl.build σ leaf then out.modify (·.push ⟨res, pf⟩)) lits {}
   out.get
 
@@ -1279,14 +1411,14 @@ partial def proveLitCore (ctx : Ctx) (depth : Nat) (e : Expr) : MetaM (Option Ex
       if let some p := ctx.store.map[← negLit f.type]? then return some (contra f.type f.proof p)
     -- a metric contradiction
     ctx.ariths.modify (· + 1)
-    if let some p ← arith ctx.pool ctx.neFact e then return some p
+    if let some p ← arith ctx.pool ctx.neFact e (lines := ctx.lines) then return some p
     -- expand at most `maxSubst` atoms, of the newest facts first
     let mut ts : Array Expr := #[]
     for (f, _) in ctx.pool.reverse do
       for a in atomTerms f.type do
         if !ts.contains a && ts.size < maxSubst then ts := ts.push a
     let seeds := ctx.pool.foldl (fun acc (_, ks) => acc ++ ks) #[]
-    return ← arith (← metricFor ctx ts 0) ctx.neFact e seeds
+    return ← arith (← metricFor ctx ts 0) ctx.neFact e seeds (lines := ctx.lines)
   if ← isArith e then
     ctx.ariths.modify (· + 1)
     if (← ctx.ariths.get) > maxAriths then return none
@@ -1296,7 +1428,7 @@ partial def proveLitCore (ctx : Ctx) (depth : Nat) (e : Expr) : MetaM (Option Ex
     if let some (_, x, y) := e.eq? then
       if let some p := ctx.store.map[← mkEq y x]? then return some (← mkEqSymm p)
     let t0 ← IO.monoNanosNow
-    let mut r ← arith ctx.pool ne e
+    let mut r ← arith ctx.pool ne e (lines := ctx.lines)
     if r.isNone then
       let mut size := ctx.pool.size
       for level in [0:2] do
@@ -1304,7 +1436,7 @@ partial def proveLitCore (ctx : Ctx) (depth : Nat) (e : Expr) : MetaM (Option Ex
         -- nothing new
         if pool.size == size then continue
         size := pool.size
-        if let some p ← arith pool ne e then r := some p; break
+        if let some p ← arith pool ne e (lines := ctx.lines) then r := some p; break
     if systemE.stats.get (← getOptions) then
       let dt := (← IO.monoNanosNow) - t0
       profRef.modify fun m => m.alter s!"arith {r.isSome}" fun v =>

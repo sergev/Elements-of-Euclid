@@ -185,6 +185,47 @@ theorem same_side_of_parallel : ∀ (a b : Point) (L M : Line),
   by_contra h
   exact hML (intersection_symm _ _ (intersection_lines_opposing a b L M ⟨⟨haL, hbL, h⟩, ha, hb⟩))
 
+theorem not_between_self : ∀ (a b : Point), ¬(between b a b) := fun a b h =>
+  (between_symm b a b h).2.2.1 rfl
+
+theorem not_between_of_between_1 : ∀ (a b c : Point), between a b c → ¬(between b a c) :=
+  fun a b c h => (between_symm a b c h).2.2.2
+
+theorem not_between_of_between_2 : ∀ (a b c : Point), between a c b → ¬(between b a c) :=
+  fun a b c h h' => (between_symm a c b h).2.2.2 (between_symm b a c h').1
+
+/-- A right angle at `y` with a side on `L` stays right when that side is moved along `L`. -/
+theorem right_angle_move : ∀ (x y z x' : Point) (L : Line),
+    y.onLine L ∧ x.onLine L ∧ x'.onLine L ∧ x ≠ y ∧ x' ≠ y ∧ ¬(z.onLine L) ∧ ∠ x:y:z = ∟ →
+    ∠ x':y:z = ∟ := by
+  intro x y z x' L ⟨hy, hx, hx', hxy, hx'y, hz, h⟩
+  have hzy : z ≠ y := fun e => hz (e ▸ hy)
+  by_cases hb : between x y x'
+  · have := perpendicular_onlyif x x' y z L ⟨hx, hx', hb, hz, h⟩
+    have := angle_symm z y x' ⟨hzy, hx'y.symm⟩
+    linarith
+  · obtain ⟨M, hyM, hzM⟩ := line_from_points y z hzy.symm
+    have := equal_angles y x x' z z L M
+      ⟨hy, hx, hx', hyM, hzM, hzM, hxy, hx'y, hzy, hzy, hb, not_between_self y z⟩
+    linarith
+
+/-- Lines meeting at `y` in a right angle make right angles all round `y`. -/
+theorem right_angle_on_lines : ∀ (x y z x' z' : Point) (L M : Line),
+    y.onLine L ∧ x.onLine L ∧ x'.onLine L ∧ y.onLine M ∧ z.onLine M ∧ z'.onLine M ∧
+    x ≠ y ∧ x' ≠ y ∧ z ≠ y ∧ z' ≠ y ∧ L ≠ M ∧ ∠ x:y:z = ∟ → ∠ x':y:z' = ∟ := by
+  intro x y z x' z' L M ⟨hyL, hxL, hx'L, hyM, hzM, hz'M, hxy, hx'y, hzy, hz'y, hLM, h⟩
+  have hzL : ¬(z.onLine L) := fun hzL =>
+    hLM (two_points_determine_line z y L M ⟨⟨hzL, hyL, hzy⟩, hzM, hyM⟩)
+  have hx'M : ¬(x'.onLine M) := fun hx'M =>
+    hLM (two_points_determine_line x' y L M ⟨⟨hx'L, hyL, hx'y⟩, hx'M, hyM⟩)
+  have h1 := right_angle_move x y z x' L ⟨hyL, hxL, hx'L, hxy, hx'y, hzL, h⟩
+  have h1' : ∠ z:y:x' = ∟ := by
+    have := angle_symm z y x' ⟨hzy, hx'y.symm⟩
+    linarith
+  have h2 := right_angle_move z y x' z' M ⟨hyM, hzM, hz'M, hzy, hz'y, hx'M, h1'⟩
+  have := angle_symm x' y z' ⟨hx'y, hz'y.symm⟩
+  linarith
+
 theorem line_ne_symm : ∀ (L M : Line), L ≠ M → M ≠ L := fun _ _ h => h.symm
 
 theorem circle_ne_symm : ∀ (α β : Circle), α ≠ β → β ≠ α := fun _ _ h => h.symm
@@ -217,7 +258,7 @@ initialize configRef.set {
     ``same_side_of_opposite, ``same_side_of_parallel]
   backwardLemmas := #[
     ``ne_of_lines_ne, ``not_between_of_same_side, ``not_on_line_of_triangle,
-    ``eq_of_same_ray, ``on_line_of_eq_angle]
+    ``eq_of_same_ray, ``on_line_of_eq_angle, ``right_angle_on_lines]
   guardedLemmas := #[``between_of_lt, ``between_of_eq_dist]
   linarith := fun hyps e => do
     let m ← mkFreshExprMVar e
