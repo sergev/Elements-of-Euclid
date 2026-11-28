@@ -24,3 +24,4 @@
     [Thus, any number is either part or parts of any (other) number, the lesser of the greater. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book7/Prop04.lean")

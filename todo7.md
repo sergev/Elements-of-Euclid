@@ -117,7 +117,7 @@ Constructions ("to find") are stated as existence with the property, as in Book 
 - `tools/gaps.sh N` for N = 1–4 and 6: no failing steps, since Book 7 must not disturb the geometry. `tools/SmtFree.lean`: no theorem with SMT.
 - `grep -r sorry lean/Elements lean/SystemE` finds nothing.
 - `grep -rn "Nat.gcd\|Nat.lcm\|Nat.Coprime\|Nat.Prime\|ring\b" lean/Elements/Book7`: each hit is allowed by the rule above, with a comment.
-- Inspect `ElementsLean.pdf`:
+- Inspect `LeanElements.pdf`:
   - the subtitle "Books 1–7";
   - Book 7's title page, definitions and lemmas;
   - the algorithm (7.1, 7.2), 7.20 and 7.31;

@@ -20,3 +20,4 @@
     [And since the numbers $B G$ and $G C$ are equal to one another, and the numbers $E H$ and $H F$ are also equal to one another, and the multitude of (divisions) $B G$, $G C$ is equal to the multitude of (divisions) $E H$, $H F$, thus which(ever) part, or parts, $B G$ is of $E H$, $G C$ is also the same part, or the same parts, of $H F$. And hence, which(ever) part, or parts, $B G$ is of $E H$, the sum $B C$ is also the same part, or the same parts, of the sum $E F$ [Props.~7.5, 7.6]. And $B G$ (is) equal to $A$, and $E H$ to $D$. Thus, which(ever) part, or parts, $A$ is of $D$, $B C$ is also the same part, or the same parts, of $E F$. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book7/Prop09.lean")

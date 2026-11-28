@@ -2,7 +2,7 @@ TYPST	= typst
 MAIN	= Elements
 SRCS	= $(MAIN).typ functions.typ $(wildcard Book*/*.typ) $(wildcard Book*/*.svg) $(wildcard *.jpg) \
 	  $(wildcard lean/Elements/Book*/*.lean) lean/lean4.sublime-syntax
-PDFS	= ElementsGreekEnglish.pdf ElementsEnglish.pdf ElementsLean.pdf
+PDFS	= ElementsGreekEnglish.pdf ElementsEnglish.pdf LeanElements.pdf
 
 all:	$(PDFS)
 
@@ -12,7 +12,7 @@ ElementsGreekEnglish.pdf: $(SRCS)
 ElementsEnglish.pdf: $(SRCS)
 	$(TYPST) compile --input greek=no $(MAIN).typ $@
 
-ElementsLean.pdf: $(SRCS)
+LeanElements.pdf: $(SRCS)
 	$(TYPST) compile --input greek=no --input lean=yes $(MAIN).typ $@
 
 # Check the Lean proofs; needs z3, cvc5 and smt-portfolio.

@@ -9,7 +9,7 @@ Get the free PDF books from the [latest release](https://github.com/sergev/Eleme
 
 - [ElementsEnglish.pdf](https://github.com/sergev/Elements-of-Euclid/releases/latest/download/ElementsEnglish.pdf) — in English
 - [ElementsGreekEnglish.pdf](https://github.com/sergev/Elements-of-Euclid/releases/latest/download/ElementsGreekEnglish.pdf) — the original Greek and the English side by side, with a small Greek–English dictionary
-- [ElementsLean.pdf](https://github.com/sergev/Elements-of-Euclid/releases/latest/download/ElementsLean.pdf) — Books 1–6 in English, each proposition followed by its proof in the [Lean](https://lean-lang.org/) proof assistant
+- [LeanElements.pdf](https://github.com/sergev/Elements-of-Euclid/releases/latest/download/LeanElements.pdf) — Books 1–6 in English, each proposition followed by its proof in the [Lean](https://lean-lang.org/) proof assistant
 
 ## What's inside
 

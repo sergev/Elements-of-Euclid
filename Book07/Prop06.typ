@@ -16,3 +16,4 @@
     [For since which(ever) parts $A B$ is of $C$, $D E$ (is) also the same parts of $F$, thus as many parts of $C$ as are in $A B$, so many parts of $F$ are also in $D E$. Let $A B$ be divided into the parts of $C$, $A G$ and $G B$, and $D E$ into the parts of $F$, $D H$ and $H E$. So the multitude of (divisions) $A G$, $G B$ will be equal to the multitude of (divisions) $D H$, $H E$. And since which(ever) part $A G$ is of $C$, $D H$ is also the same part of $F$, thus which(ever) part $A G$ is of $C$, the sum $A G$, $D H$ is also the same part of the sum $C$, $F$ [Prop.~7.5]. And so, for the same (reasons), which(ever) part $G B$ is of $C$, the sum $G B$, $H E$ is also the same part of the sum $C$, $F$. Thus, which(ever) parts $A B$ is of $C$, the sum $A B$, $D E$ is also the same parts of the sum $C$, $F$. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book7/Prop06.lean")

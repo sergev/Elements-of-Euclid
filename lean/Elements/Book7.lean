@@ -3,6 +3,13 @@ import Elements.Book7.Lemmas
 import Elements.Book7.Prop01
 import Elements.Book7.Prop02
 import Elements.Book7.Prop03
+import Elements.Book7.Prop04
+import Elements.Book7.Prop05
+import Elements.Book7.Prop06
+import Elements.Book7.Prop07
+import Elements.Book7.Prop08
+import Elements.Book7.Prop09
+import Elements.Book7.Prop10
 
 /-
 Book 7: numbers.
