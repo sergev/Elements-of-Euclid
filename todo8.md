@@ -32,17 +32,6 @@ How Book 8 differs from Book 7:
   - Where Euclid states only three or four numbers, the doc comment says so. A general statement is still preferred when the induction is natural.
 - **Squares and cubes.** A square is a number multiplying itself, `a * a`; a cube is `a * a * a` (Defs. 7.18, 7.19). Don't use `^`.
 
-## T9. Primer and docs
-
-- **`Book00/Lean.typ`:** a section on Book 8:
-  - continued proportion and the "any multitude" representation;
-  - how Euclid's "similarly" becomes induction;
-  - the squared, cubed and compounded ratios of numbers, carried over from Books 5 and 6;
-  - the gap in 8.20.
-- **`CLAUDE.md`:** Book 8 notes: the basis, the representation, where the definitions are. Update "Books 1–7".
-- **`Roadmap.md`:** delete Milestone 8. Record in Milestone 9 what Book 9 inherits: continued proportion from a unit, squares and cubes, the step lemmas.
-- **README:** Books 1–8.
-
 ## T10. Final check
 
 - `make check` from a clean build, all books, under the cap. Note the time.

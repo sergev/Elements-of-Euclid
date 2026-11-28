@@ -1,6 +1,6 @@
-# Roadmap: Lean proofs for Books 8–13
+# Roadmap: Lean proofs for Books 9–13
 
-Books 1–7 are done (Milestones 1–7): Book 1's 48 propositions from LeanEuclid and Books 2, 3 and 4 (14, 37 and 16) written here in System E, Book 5's 25 in plain Lean over a class of magnitudes, Book 6's 33 in System E with Book 5's proportion, and Book 7's 39 in plain Lean over `ℕ`, typeset in `LeanElementsOfEuclid.pdf` and checked by `make check`. This file plans the remaining books, one milestone per book, numbered to match: Milestone N is Book N. A book depends on the books before it, so the milestones run in sequence. Only Milestones 8 and 9 (Books 8, 9) can be done in parallel with the geometry.
+Books 1–8 are done (Milestones 1–8): Book 1's 48 propositions from LeanEuclid and Books 2, 3 and 4 (14, 37 and 16) written here in System E, Book 5's 25 in plain Lean over a class of magnitudes, Book 6's 33 in System E with Book 5's proportion, and Books 7 and 8 (39 and 27) in plain Lean over `ℕ`, typeset in `LeanElementsOfEuclid.pdf` and checked by `make check`. This file plans the remaining books, one milestone per book, numbered to match: Milestone N is Book N. A book depends on the books before it, so the milestones run in sequence. Only Milestone 9 (Book 9) can be done in parallel with the geometry.
 
 ## Common rules for every milestone
 
@@ -13,25 +13,17 @@ Books 1–7 are done (Milestones 1–7): Book 1's 48 propositions from LeanEucli
 - **System E.** It is our own copy in `lean/SystemE/`. New relations or rules a book needs go there, in files named for the book that introduces them. Lemmas proved from earlier propositions, such as repeated constructions, go in `lean/Elements/BookN/Lemmas.lean`.
 - **Toolchain.** Lean 4.36 and Mathlib v4.36. Upgrade Lean and Mathlib together, between milestones, not during one.
 
-## Milestone 8 — Book 8: continued proportions (27 propositions)
-
-Numbers in continued proportion, mean proportionals between numbers, square and cube numbers.
-
-- **Basis.** Milestone 7, `lean/Elements/Book7.lean` and its `Definitions.lean`, `Lemmas.lean`. Inherited:
-  - numbers are `ℕ` with `1 < a`, `a * b` is `a` taken `b` times, "measures" is `∣`; proportion is Def. 7.20, `a ∶ b ∷ c ∶ d` (scoped in `Elements.Book7`), with `proportion_iff`, `proportion_trans` and Prop. 7.19 to move to and from `d * a = c * b`;
-  - "any multitude of numbers" is `Fin (n + 1) → ℕ` with `sum`, as in Book 5 and Props. 7.12, 7.14; three numbers with the same ratio as three are `SameRatio₃` (the same parts, each of each), the least such `Least₃`;
-  - plane and solid numbers (`PlaneNumber`, `SolidNumber`, sides greater than the unit), `SquareNumber` `p * p` and `CubeNumber` `p * p * p`, and `SimilarPlane`, `SimilarSolid`: the sides proportional, `p ∶ q ∷ r ∶ s` (and `q ∶ r ∷ t ∶ u` for solids);
-  - mul_comm is Prop. 7.16 and may be cited; associativity is Mathlib's, marked `-- Missed by Euclid.`
-- **New.** Continued proportion of a sequence of numbers, over `Fin (n + 1) → ℕ`.
-- **Risk.** Low to medium. The arbitrary-length sequences need induction, where Euclid argues with three or four named numbers and "similarly".
-
 ## Milestone 9 — Book 9: primes and series (36 propositions)
 
 Uniqueness of prime factors (9.14), infinitude of primes (9.20), odd and even numbers (9.21–9.34), sums of geometric series (9.35), perfect numbers (9.36).
 
-- **Basis.** Milestones 7 and 8.
+- **Basis.** Milestones 7 and 8: `lean/Elements/Book7.lean`, `lean/Elements/Book8.lean` and their `Definitions.lean`, `Lemmas.lean`. Inherited from Book 8:
+  - continued proportion over `Fin (n + 1) → ℕ`: `ContinuedIn a r s`, `Continued a`, `SameRatios`, `LeastSeq`; the unit may be among the numbers, so "continuously proportional from a unit" (9.8–9.13, 9.35) is `Continued a` with `a 0 = 1`, and `eq_powers_one` (Prop. 8.10) says such numbers are `powers 1 (a 1)`, each the one before multiplied by `a 1`;
+  - 8.2's numbers `powers a b n` (with `powers_castSucc`, `powers_last`, `powers_zero`, `powers_primeTo`), `eq_powers` (least continuously proportional numbers are `powers` of the least numbers of their ratio), `continued_outer` (Prop. 8.22: the outermost are those of `powers`, taken the same number of times);
+  - the step lemmas: ex aequali along a sequence (`SameRatios.extremes`, `.alt`), `LeastSeq.eq`, `three`/`four` and `fallBetween_one`/`_two` with `FallBetween.one`/`.two`, `eq_mul_of_unit` (`1 ∶ d ∷ x ∶ y` gives `y = x * d`);
+  - squares and cubes are `a * a`, `a * a * a` (`SquareNumber`, `CubeNumber` when the side is greater than the unit), never `^`; squares and cubes measuring (8.14–8.17), squares and cubes in continued proportion (8.22–8.25).
 - **New.** Odd and even numbers as Euclid defines them (7.Def.6–10), and the sum of a sequence for 9.35–9.36.
-- **Risk.** Low to medium, for the same reason as Book 8.
+- **Risk.** Low to medium: sequences of any length, by induction, as in Book 8.
 
 ## Milestone 10 — Book 10: incommensurable magnitudes (115 propositions)
 
@@ -80,7 +72,7 @@ The golden section (13.1–13.6), pentagon and decagon side relations (13.7–13
 | 5 | 5 | 25 | abstract magnitudes | medium |
 | 6 | 6 | 33 | E + Book 5 | done |
 | 7 | 7 | 39 | Mathlib `ℕ` | done |
-| 8 | 8 | 27 | Book 7 | low–medium |
+| 8 | 8 | 27 | Book 7 | done |
 | 9 | 9 | 36 | Books 7–8 | low–medium |
 | 10 | 10 | 115 | `ℝ` + Book 5 | high (size) |
 | 11 | 11 | 39 | new solid system | high |
