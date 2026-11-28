@@ -16,3 +16,4 @@
     [For since the sum of the squares on $A B$ and $B C$ is medial, and twice the (rectangle contained) by $A B$ and $B C$ rational, the (sum of the squares) on $A B$ and $B C$ is thus incommensurable with twice the (rectangle contained) by $A B$ and $B C$. Thus, the remaining (square) on $A C$ is also incommensurable with twice the (rectangle contained) by $A B$ and $B C$ [Props.~2.7, 10.16]. And twice the (rectangle contained) by $A B$ and $B C$ is rational. Thus, the (square) on $A C$ is irrational. Thus, $A C$ is an irrational (straight-line) [Def.~10.4]. And let it be called that which makes with a rational (area) a medial whole.#content-box-note[See footnote to Prop.~10.40.] (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book10/Prop077.lean")

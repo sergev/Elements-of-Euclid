@@ -20,3 +20,4 @@
     [Thus, the fifth apotome $B C$ has been found. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book10/Prop089.lean")

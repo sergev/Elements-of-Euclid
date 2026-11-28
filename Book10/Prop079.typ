@@ -20,3 +20,4 @@
     [Thus, only one rational (straight-line), which is commensurable in square only with the whole, can be attached to an apotome. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book10/Prop079.lean")

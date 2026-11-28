@@ -20,3 +20,4 @@
     [Thus, only one medial (straight-line), which is commensurable in square only with the whole, and contains a rational (area) with the whole, can be attached to a first apotome of a medial (straight-line). (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book10/Prop080.lean")

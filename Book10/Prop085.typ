@@ -20,3 +20,4 @@
     [Thus, the first apotome $B C$ has been found. (Which is) the very thing it was required to find.],
   )
 ]
+#lean-proof("/lean/Elements/Book10/Prop085.lean")

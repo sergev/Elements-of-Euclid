@@ -20,3 +20,4 @@
     [Thus, only one straight-line, which is incommensurable in square with the whole, and (together) with the whole makes the squares on them (added) together medial, and twice the (rectangle contained) by them medial, and, moreover, the (sum of the) squares on them incommensurable with twice the (rectangle contained) by them, can be attached to $A B$. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book10/Prop084.lean")

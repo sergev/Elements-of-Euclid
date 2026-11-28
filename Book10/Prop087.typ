@@ -20,3 +20,4 @@
     [Thus, the third apotome $F H$ has been found. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book10/Prop087.lean")

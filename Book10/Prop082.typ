@@ -20,3 +20,4 @@
     [Thus, only one straight-line, which is incommensurable in square with the whole, and (with the whole) makes the squares on them (added) together rational, and twice the (rectangle contained) by them medial, can be attached to a minor (straight-line). (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book10/Prop082.lean")

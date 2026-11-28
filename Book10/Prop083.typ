@@ -20,3 +20,4 @@
     [Thus, another straight-line cannot be attached to $A B$, which is incommensurable in square with the whole, and fulfills the (other) aforementioned (conditions) with the whole. Thus, only one (such straight-line) can be (so) attached. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book10/Prop083.lean")

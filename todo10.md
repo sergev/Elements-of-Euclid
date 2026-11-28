@@ -32,14 +32,6 @@ How Book 10 differs from the books before it:
 - **Numbers.** "The ratio which a number has to a number" joins Book 5's proportion with Books 7–9's numbers (`ℕ`, Def. 7.20). 10.5–10.9 make the bridge; after that, Book 7–9 propositions are cited as Lean terms (8.24, 8.26, 9.1, 9.2 for squares).
 - **Irrational means Euclid's irrational.** Rational and irrational are relative to an assigned line `ρ` (Def. 10.3), and a line is rational when commensurable with `ρ` in length or in square only. Incommensurability is proved as Euclid proves it, from the hypotheses (10.13, 10.16 and so on), not from the irrationality of a real number.
 
-## T9. Props. 10.73–10.90: the six differences, and the six apotomes
-
-- **10.73–10.78:** the difference of the terms of each kind is irrational (apotome, first and second apotome of a medial, minor, that which with a rational area makes a medial whole, that which with a medial area makes a medial whole). Mirror 10.36–10.41, through the lemmas of T6.
-- **10.79–10.84:** only one line can be attached to each (the uniqueness of 10.42–10.47 with minus). Fitzpatrick notes 10.82 is 10.45 with minus signs.
-- **10.85–10.90:** to find the first to sixth apotome. Fitzpatrick's footnotes to 10.48, 10.50, 10.53 apply.
-
-Risk: medium, if T6's lemmas are over the terms; high otherwise.
-
 ## T10. Props. 10.91–10.110: apotomes and areas
 
 - **10.91–10.96:** the square root of a rectangle of a rational line and an apotome of order k is the k-th difference (mirror of 10.54–10.59).

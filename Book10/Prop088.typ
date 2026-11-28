@@ -20,3 +20,4 @@
     [Thus, a fourth apotome has been found. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book10/Prop088.lean")

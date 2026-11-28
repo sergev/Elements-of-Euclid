@@ -16,3 +16,4 @@
     [For since $A B$ and $B C$ are medial (straight-lines), the (sum of the squares) on $A B$ and $B C$ is also medial. And twice the (rectangle contained) by $A B$ and $B C$ (is) rational. The (sum of the squares) on $A B$ and $B C$ (is) thus incommensurable with twice the (rectangle contained) by $A B$ and $B C$. Thus, twice the (rectangle contained) by $A B$ and $B C$ is also incommensurable with the remaining (square) on $A C$ [Prop.~2.7], since if the whole is incommensurable with one of the (constituent magnitudes) then the original magnitudes will also be incommensurable (with one another) [Prop.~10.16]. And twice the (rectangle contained) by $A B$ and $B C$ (is) rational. Thus, the (square) on $A C$ is irrational. Thus, $A C$ is an irrational (straight-line) [Def.~10.4]. Let it be called a first apotome of a medial (straight-line).#content-box-note[See footnote to Prop.~10.37.]],
   )
 ]
+#lean-proof("/lean/Elements/Book10/Prop074.lean")

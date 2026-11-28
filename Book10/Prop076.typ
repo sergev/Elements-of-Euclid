@@ -16,3 +16,4 @@
     [For since the sum of the squares on $A B$ and $B C$ is rational, and twice the (rectangle contained) by $A B$ and $B C$ (is) medial, the (sum of the squares) on $A B$ and $B C$ is thus incommensurable with twice the (rectangle contained) by $A B$ and $B C$. And, via conversion, the (sum of the squares) on $A B$ and $B C$ is incommensurable with the remaining (square) on $A C$ [Props.~2.7, 10.16]. And the (sum of the squares) on $A B$ and $B C$ (is) rational. The (square) on $A C$ (is) thus irrational. Thus, $A C$ (is) an irrational (straight-line) [Def.~10.4]. Let it be called a minor (straight-line).#content-box-note[See footnote to Prop.~10.39.] (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book10/Prop076.lean")

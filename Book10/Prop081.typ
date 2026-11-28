@@ -20,3 +20,4 @@
     [Thus, only one medial straight-line, which is commensurable in square only with the whole, and contains a medial (area) with the whole, can be attached to a second apotome of a medial (straight-line). (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book10/Prop081.lean")
