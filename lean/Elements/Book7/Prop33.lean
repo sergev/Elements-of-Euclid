@@ -19,7 +19,7 @@ theorem least_of_greatest {a b c d e f g : ℕ} (hd : 0 < d) (he : 0 < e) (hae :
   -- Euclid.]
   have hM : ∀ w, w * n * d = n * d * w := fun w => by ring
   -- `x` taken `n` times, and `x`, make `a` with `d` and `M`: as `x * n` is to `x`, so is
-  -- `M` to `d` [Prop. 7.19]
+  -- `M` to `d` [Prop. 7.19; the products by Prop. 7.16 and associativity]
   have h19 : x * n ∶ x ∷ n * d ∶ d :=
     (proposition_19 he hx (Nat.mul_pos (by omega) hd) hd).mpr (by ring)
   -- `x * n` is greater than `x`, so `M` is greater than `d` [Prop. 5.13]
