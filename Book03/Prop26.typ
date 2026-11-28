@@ -24,3 +24,4 @@
     [Thus, in equal circles, equal angles stand upon equal circumferences, whether they are standing at the center or at the circumference. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book3/Prop26.lean")

@@ -24,3 +24,4 @@
     [Thus, in equal circles, equal straight-lines subtend equal circumferences. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book3/Prop29.lean")

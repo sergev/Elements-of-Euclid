@@ -24,3 +24,4 @@
     [Thus, in equal circles, equal straight-lines cut off equal circumferences, the greater (circumference being equal) to the greater, and the lesser to the lesser. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book3/Prop28.lean")

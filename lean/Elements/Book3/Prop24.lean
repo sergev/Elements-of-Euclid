@@ -16,12 +16,10 @@ coincide; that is what "equal" means here.
 /-- Applied with its center `O'` on the side of `Y` of `CD`, the circle is `β`. -/
 theorem proposition_24_apply :
   ∀ (a b c d x y o o' p : Point) (AB CD : Line) (α β : Circle),
-  similarSegments α a b AB x β c d CD y ∧ |(a─b)| = |(c─d)| ∧
-  o.isCentre α ∧ p.isCentre β ∧
-  |(o─a)| = |(o'─c)| ∧ |(o─b)| = |(o'─d)| ∧ ∠ a:o:b = ∠ c:o':d ∧ ¬(o'.onLine CD) ∧
-  ((o.sameSide x AB ∧ o'.sameSide y CD) ∨
-   (o.opposingSides x AB ∧ o'.opposingSides y CD)) →
-  |(o─a)| = |(p─c)| :=
+  similarSegments α a b AB x β c d CD y ∧ |(a─b)| = |(c─d)| ∧ o.isCentre α ∧
+  p.isCentre β ∧ |(o─a)| = |(o'─c)| ∧ |(o─b)| = |(o'─d)| ∧ ∠ a:o:b = ∠ c:o':d ∧
+  ¬(o'.onLine CD) ∧ ((o.sameSide x AB ∧ o'.sameSide y CD) ∨ (o.opposingSides x AB ∧
+  o'.opposingSides y CD)) → |(o─a)| = |(p─c)| :=
 by
   euclid_intros
   -- the circle γ with center O' through C passes through D

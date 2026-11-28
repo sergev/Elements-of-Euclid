@@ -19,20 +19,6 @@ When the solvers struggle:
 - **Segment orientation:** when a goal compares products of the same segments written in different orders (`|(a─b)|` against `|(b─a)|`), add the symmetric step as an assert.
 - **`simp_all`:** if it blows up, turn it off for that step with `set_option systemE.simpAll false in`.
 
-## T10. Props. 3.26–3.30: circumferences (arcs)
-
-Euclid's "equal circumferences" have no counterpart in System E.
-
-- **Design note first.** Write a short note on how to state arcs, reviewed before any proof. Choose between:
-  - an arc as two endpoints plus the side of their chord, with "equal circumferences" defined from the angles standing on them;
-  - a new primitive (an arc's size) with rules, which means new axioms.
-
-  The first keeps everything inside System E, but risks making 3.26–3.27 restate their own definition.
-- **3.26–3.29:** in equal circles, equal angles stand on equal circumferences, and conversely; equal chords cut off equal circumferences, and conversely.
-- **3.30:** bisect a given circumference.
-
-Risk: high.
-
 ## T11. Props. 3.31–3.34: semicircle, tangent and chord, segment on an angle
 
 - **3.31:** the angle in a semicircle is right; in a greater segment it's less than right, and in a lesser segment greater. The horn-angle clauses (angle of the segment) are left out, as in 3.16.

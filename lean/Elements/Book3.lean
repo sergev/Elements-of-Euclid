@@ -1,3 +1,4 @@
+import Elements.Book3.Axioms
 import Elements.Book3.Lemmas
 import Elements.Book3.Prop01
 import Elements.Book3.Prop02
@@ -24,6 +25,11 @@ import Elements.Book3.Prop22
 import Elements.Book3.Prop23
 import Elements.Book3.Prop24
 import Elements.Book3.Prop25
+import Elements.Book3.Prop26
+import Elements.Book3.Prop27
+import Elements.Book3.Prop28
+import Elements.Book3.Prop29
+import Elements.Book3.Prop30
 
 /-
 Book 3: circles.
@@ -54,6 +60,12 @@ other; System E's superposition moves triangles, so the triangle on the chord wi
 the center is applied, and the circle about the image of the center is shown to be the
 other segment's by 3.23. "Equal segments" are segments on equal chords of equal circles
 (Def. 3.1), which coincide when applied.
+
+Props. 3.26–3.30. Circumferences are magnitudes, `α.arc b c s`, the circumference of `α`
+from `b` to `c` away from `s` (where an angle at `s` stands on it, Def. 3.9), with the
+axioms in `Elements/Book3/Axioms.lean`: what Euclid assumes of magnitudes (C.N. 2, 4),
+and that equal segments (Prop. 3.24) have equal circumferences. Prop. 3.27 at the
+circumference assumes, as Euclid's figure, circumferences less than semicircles.
 
 The corollaries to 3.1 and 3.16 are `proposition_1_corollary` and `proposition_16_corollary`.
 -/

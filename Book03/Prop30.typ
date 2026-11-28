@@ -24,3 +24,4 @@
     [Thus, the given circumference has been cut in half at point $D$. (Which is) the very thing it was required to do.],
   )
 ]
+#lean-proof("/lean/Elements/Book3/Prop30.lean")

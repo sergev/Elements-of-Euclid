@@ -13,10 +13,9 @@ point `C` of `α` inside `β`. Then `AC` produced meets `β` at `D`, and the ang
 greater than `ADB` [Prop. 1.16]; they cannot admit equal angles.
 -/
 theorem proposition_23_lemma : ∀ (a b c y o : Point) (AB : Line) (α β : Circle),
-  distinctPointsOnLine a b AB ∧ a.onCircle α ∧ b.onCircle α ∧
-  a.onCircle β ∧ b.onCircle β ∧
-  c.onCircle α ∧ c.insideCircle β ∧ c.sameSide y AB ∧ y.onCircle β ∧ o.isCentre β ∧
-  ∠ a:c:b = ∠ a:y:b → False :=
+  distinctPointsOnLine a b AB ∧ a.onCircle α ∧ b.onCircle α ∧ a.onCircle β ∧
+  b.onCircle β ∧ c.onCircle α ∧ c.insideCircle β ∧ c.sameSide y AB ∧ y.onCircle β ∧
+  o.isCentre β ∧ ∠ a:c:b = ∠ a:y:b → False :=
 by
   euclid_intros
   -- let ACD be drawn through the segments, and CB, DB joined
