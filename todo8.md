@@ -32,26 +32,6 @@ How Book 8 differs from Book 7:
   - Where Euclid states only three or four numbers, the doc comment says so. A general statement is still preferred when the induction is natural.
 - **Squares and cubes.** A square is a number multiplying itself, `a * a`; a cube is `a * a * a` (Defs. 7.18, 7.19). Don't use `^`.
 
-## T1. Definitions and scaffolding
-
-Book 8's notions go in `lean/Elements/Book8/Definitions.lean`, with doc comments. Write the decisions in the header comment of `lean/Elements/Book8.lean`.
-- **Continued proportion.** Numbers `a 0, a 1, …, a n` with each to the next as the first to the second, by Def. 7.20.
-  - Use the "any multitude" representation chosen in Milestone 7 (`Fin (n + 1) → ℕ` or `List ℕ`). Check that Book 9 can use it too: 9.8–9.13 and 9.35 take continued proportionals from a unit.
-  - Write "continuously proportional in the ratio of `a` to `b`" as a separate definition, if 8.2 and 8.4 need it.
-- **The least numbers continuously proportional.** Least among all sequences of the same length in the same ratios, as 7.20–7.22 define "least" for two numbers. Reuse Book 7's definition of "least in their ratio" where it fits.
-- **Numbers falling between in continued proportion.** `n` numbers fall between `a` and `b` when `a, c 1, …, c n, b` are continuously proportional. Prefer a definition that states 8.8–8.10 as Euclid does: "as many numbers as …, so many …".
-- **Squared and cubed ratio (Defs. 5.9, 5.10, for numbers).** Euclid cites Book 5's definitions in 8.11, 8.12, 8.18 and 8.19, for numbers.
-  - Book 5's `SquaredRatio` is over magnitudes, and proportion of numbers is Def. 7.20, not Def. 5.5. Define both ratios for numbers, with Def. 7.20: `a` has to `c` the squared ratio of `a : b` when `a : b :: b : c`, and the cubed ratio through two middle terms.
-  - The doc comments say these are Book 5's definitions carried over to numbers by Euclid without comment.
-- **The compounded ratio of numbers (8.5).** Book 6's `CompoundRatio` is over magnitudes. Define the numbers' version as Euclid builds it in 8.5: through a middle term, with the least numbers continuously proportional of 8.4.
-- **"Similarly".** If several propositions need the same induction (8.2, 8.4, 8.8, 8.13), put a lemma for the step in `lean/Elements/Book8/Lemmas.lean`.
-
-Scaffolding:
-- `lean/Elements/Book8.lean` with the header comment, imported in `lean/Elements.lean`.
-- Add `8` to `lean-books` in `functions.typ`. The subtitle becomes "Books 1–8". Check that `ElementsEnglish.pdf` and `ElementsGreekEnglish.pdf` don't change: compare their `pdftotext` output.
-- `Book08/Book8.typ` has no definitions section. Typeset `Definitions.lean` and `Lemmas.lean` after the title page (`lean-proof(..., title: ...)`).
-- Add the Book 8 names to `lean/lean4.sublime-syntax`.
-
 ## T2. Props. 8.1–8.4: least numbers in continued proportion
 
 - **8.1:** continuous proportionals whose outermost are prime to one another are the least in their ratio. The proof is by contradiction, through 7.14 and 7.20.
