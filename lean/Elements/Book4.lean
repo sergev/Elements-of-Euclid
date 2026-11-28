@@ -14,6 +14,8 @@ import Elements.Book4.Prop11
 import Elements.Book4.Prop12
 import Elements.Book4.Prop13
 import Elements.Book4.Prop14
+import Elements.Book4.Prop15
+import Elements.Book4.Prop16
 
 /-
 Book 4: figures inscribed in and circumscribed about circles.
@@ -43,6 +45,14 @@ each side's line has the other vertices on one side. The definitions are in
 
 Prop. 4.16. Euclid constructs one side of the fifteen-sided figure and says the rest
 follow. The statement is that the side `BE` cuts off a fifteenth of the circumference,
-`α.arc b e x * 15 = α.circumference` (Book 3's circumferences); the proof has it, as
-Euclid does, as half the difference of the triangle's and the pentagon's circumferences.
+`α.arc b e c * 15 = α.circumference`, the circumference `BE` away from a point `C` of the
+circle (Book 3's circumferences). The proof has it, as Euclid does, as half the
+difference of the triangle's and the pentagon's circumferences.
+
+Prop. 4.1 inserts the line from a given point of the circle, the end of Euclid's
+diameter, so that Prop. 4.10 can insert it from `B`. Props. 4.11 and 4.15 need Prop. 3.27
+for circumferences greater than semicircles (`proposition_11_greater`), proved from the
+Book 3 case by Prop. 3.22. The figures Euclid reads positions off are proved convex
+(`pentagon_of_circle`, `proposition_12_pentagon`, `proposition_15_hexagon`); his remarks
+after 4.15 and 4.16, given without proof, are left out.
 -/

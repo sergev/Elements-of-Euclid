@@ -30,17 +30,6 @@ Book 1–3 SMT-free rules hold for Book 4: every step closes by saturation. What
 - **Squares of lengths:** use `Elements/Book3/Lemmas.lean` (`length_eq_of_square_eq`, `lt_of_square_lt`). Add symmetric asserts when products are written in different orders.
 - **Circumferences:** use the Book 3 axioms (`arc_*`), and Props. 3.26–3.30.
 
-## T6. Props. 4.15–4.16: the hexagon and the fifteen-sided figure
-
-- **4.15:** inscribe a regular hexagon: equilateral triangles on the radius. It uses Props. 1.32, 1.13, 1.15, 3.26, 3.29.
-  - **Corollary:** the side of the hexagon equals the radius (`proposition_15_corollary`).
-  - Euclid's further remarks (circumscribing a hexagon, and a circle in and about it) are said "similarly", without proof. Leave them out, with a comment.
-- **4.16:** inscribe a regular fifteen-sided figure, by T1's decision.
-  - AC is a side of the inscribed equilateral triangle (4.2), and AB of the pentagon (4.11).
-  - The circumference BC is then 2/15 of the whole; bisect it (Prop. 3.30), and the half is a side.
-  - Euclid's remark that the rest follow "similarly" (4.1) is left out.
-  - With circumferences as magnitudes, the fractions come from the `arc_*` axioms: `arc_add`, `arc_whole`, and equal arcs for equal chords (Prop. 3.28).
-
 ## T7. Primer and docs
 
 - **`Book00/Lean.typ`:**

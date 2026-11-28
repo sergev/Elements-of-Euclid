@@ -24,3 +24,4 @@
     [And similarly to the pentagon, if we draw tangents to the circle through the (fifteenfold) divisions of the (circumference of the) circle, we can circumscribe an equilateral and equiangular fifteen-sided figure about the circle. And, further, through similar proofs to the pentagon, we can also inscribe and circumscribe a circle in (and about) a given fifteen-sided figure. (Which is) the very thing it was required to do.],
   )
 ]
+#lean-proof("/lean/Elements/Book4/Prop16.lean")

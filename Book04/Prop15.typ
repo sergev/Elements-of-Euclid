@@ -33,3 +33,4 @@
     [And similarly to a pentagon, if we draw tangents to the circle through the (sixfold) divisions of the (circumference of the) circle, an equilateral and equiangular hexagon can be circumscribed about the circle, analogously to the aforementioned pentagon. And, further, by (means) similar to the aforementioned pentagon, we can inscribe and circumscribe a circle in (and about) a given hexagon. (Which is) the very thing it was required to do.],
   )
 ]
+#lean-proof("/lean/Elements/Book4/Prop15.lean")
