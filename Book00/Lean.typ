@@ -106,7 +106,7 @@ Book 2 adds a few lemmas of its own, printed after its definitions:
 - `rectangle_on`, a rectangle on a given line with a given height, drawn as in Prop.~1.46;
 - `parallel_between`, which says that parallel lines keep the order of points.
 
-Euclid reads such orders off his figure, and the proofs mark the places with `-- Missed by Euclid.` Two proofs, 2.8 and 2.14, also have a lemma of their own: `proposition_8_sums` adds up the areas of Euclid's nine pieces, and `proposition_14_lemma` is the semicircle construction.
+Euclid reads such orders off his figure, and the proofs mark the places with `-- Missed by Euclid.` Three proofs also have a lemma of their own: `proposition_4_figure` is the figure of 2.4, which 2.7 uses again; `proposition_8_sums` adds up the areas of Euclid's nine pieces; and `proposition_14_lemma` is the semicircle construction. Prop.~2.13 has a second form, `proposition_13'`, for the case in which the perpendicular falls outside the triangle.
 
 == What is checked, and what is assumed
 

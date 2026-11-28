@@ -40,26 +40,46 @@ by
 
 theorem proposition_14 : ∀ (a b c d : Point) (AB BC CD AD DB : Line),
   formTriangle a b d AB DB AD ∧ formTriangle b c d BC CD DB ∧ a.opposingSides c DB →
-  ∃ (e h : Point), |(e─h)| * |(e─h)| = Triangle.area △ a:b:d + Triangle.area △ d:b:c :=
+  ∃ (e h l m : Point) (EH LM EL HM : Line), formParallelogram l m e h LM EH EL HM ∧
+  |(l─m)| = |(e─h)| ∧ |(e─l)| = |(e─h)| ∧ |(h─m)| = |(e─h)| ∧
+  (∠ h:e:l : ℝ) = ∟ ∧ (∠ e:l:m : ℝ) = ∟ ∧ (∠ e:h:m : ℝ) = ∟ ∧ (∠ h:m:l : ℝ) = ∟ ∧
+  ▱ l:m:e:h = Triangle.area △ a:b:d + Triangle.area △ d:b:c :=
 by
   euclid_intros
-  -- the right-angled parallelogram equal to the figure [Prop. 1.45]
-  euclid_apply (proposition_11_end d b DB) as x
-  euclid_apply (line_from_points x d) as XD
-  euclid_apply (proposition_45 a b c d x d b AB BC CD AD DB XD DB) as (f, l, k, m, FL, KM, FK, LM)
-  euclid_apply (proposition_34' f l k m FL KM FK LM)
-  euclid_apply (rectangle_area f l k m FL KM FK LM)
-  euclid_assert Triangle.area △ a:b:d + Triangle.area △ d:b:c = |(k─f)| * |(k─m)|
-  by_cases hq : |(k─f)| = |(k─m)|
-  · -- it is a square already
-    use k, f
-    euclid_finish
-  · rcases lt_or_gt_of_ne hq with hlt | hgt
-    · obtain ⟨h, hh⟩ := proposition_14_lemma m k f KM FK (by euclid_finish)
-      use k, h
+  -- a straight-line EH whose square is the figure
+  have : ∃ (e h : Point), |(e─h)| * |(e─h)| = Triangle.area △ a:b:d + Triangle.area △ d:b:c := by
+    -- the right-angled parallelogram equal to the figure [Prop. 1.45]
+    euclid_apply (proposition_11_end d b DB) as x
+    euclid_apply (line_from_points x d) as XD
+    euclid_apply (proposition_45 a b c d x d b AB BC CD AD DB XD DB) as (f, l, k, m, FL, KM, FK, LM)
+    euclid_apply (proposition_34' f l k m FL KM FK LM)
+    euclid_apply (rectangle_area f l k m FL KM FK LM)
+    euclid_assert Triangle.area △ a:b:d + Triangle.area △ d:b:c = |(k─f)| * |(k─m)|
+    by_cases hq : |(k─f)| = |(k─m)|
+    · -- it is a square already
+      use k, f
       euclid_finish
-    · obtain ⟨h, hh⟩ := proposition_14_lemma f k m FK KM (by euclid_finish)
-      use k, h
-      euclid_finish
+    · rcases lt_or_gt_of_ne hq with hlt | hgt
+      · obtain ⟨h, hh⟩ := proposition_14_lemma m k f KM FK (by euclid_finish)
+        use k, h
+        euclid_finish
+      · obtain ⟨h, hh⟩ := proposition_14_lemma f k m FK KM (by euclid_finish)
+        use k, h
+        euclid_finish
+  obtain ⟨e, h, heh⟩ := this
+  -- Missed by Euclid: E and H differ, since the figure has an area.
+  have : e ≠ h := fun heq => by
+    rw [heq, zero_segment_onlyif h h rfl] at heh
+    have := area_gte_zero (△ a:b:d)
+    have := area_gte_zero (△ d:b:c)
+    have : Triangle.area △ a:b:d = 0 := by linarith
+    exact not_on_line_of_triangle d a b AB DB AD (by euclid_finish)
+      (degenerated_area_if a b d AB ⟨by euclid_finish, this⟩)
+  -- the square on EH [Prop. 1.46]
+  euclid_apply (line_from_points e h) as EH
+  euclid_apply (proposition_46 e h EH) as (l, m, LM, EL, HM)
+  euclid_apply (rectangle_area l m e h LM EH EL HM)
+  use e, h, l, m, EH, LM, EL, HM
+  euclid_finish
 
 end Elements.Book2
