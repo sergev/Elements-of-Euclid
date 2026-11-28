@@ -24,3 +24,4 @@
     [And if the square on $H F$ is greater than (the square on) $F K$ by the (square) on (some straight-line which is) incommensurable (in length) with ($H F$), and (since) the whole of $F H$ is commensurable in length with the (previously) laid down rational (straight-line) $F G$, $K H$ is a fourth apotome [Def.~10.14]. And the square-root of an (area) contained by a rational (straight-line) and a fourth apotome is a minor (straight-line) [Prop.~10.94]. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book10/Prop108.lean")

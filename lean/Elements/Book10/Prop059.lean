@@ -6,13 +6,17 @@ open Elements.Book5
 
 variable {ρ : Length}
 
-/-- If an area is contained by a rational line `r` and a sixth binomial, the square root
-`z` of the area is the square root of two medial areas. -/
-theorem proposition_59 {r l z : Length} (hr : Rational ρ r) (hl : SixthBinomial ρ r l)
-    (hz : sq z = rect r l) : SideTwoMedials ρ z := by
+/-- The terms of 10.59: the terms `x > y` of a sixth binomial, applied to a rational line
+`r`, give terms `m > n` of the square root of two medial areas, the squares on them the
+rectangle contained by `r`, `x`, twice the rectangle contained by them that contained by
+`r`, `y`. Shared with 10.96. -/
+theorem proposition_59_terms {r x y : Length} (hr : Rational ρ r)
+    (h : SixthTerms ρ r x y) :
+    ∃ m n, TwoMedialTerms ρ m n ∧ sq m + sq n = rect r x ∧
+      (2 : ℕ+) • rect m n = rect r y := by
   -- the sixth binomial divided into its terms `x > y`, neither commensurable with `r`
   -- [Def. 10.II.6], and the construction of 10.54
-  obtain ⟨x, y, ⟨⟨hx, hy, hxy, hyx⟩, hexc, hxr, hyr⟩, rfl⟩ := hl
+  obtain ⟨⟨hx, hy, hxy, hyx⟩, hexc, hxr, hyr⟩ := h
   obtain ⟨x₁, x₂, f, m, n, hf, hx₁₂, hr₁₂, -, hm, hn, hmn, hnm, hsum, htwice⟩ :=
     proposition_54_construction r hyx
   -- `x₁`, `x₂` are incommensurable [Prop. 10.18], so `m`, `n` in square
@@ -29,8 +33,7 @@ theorem proposition_59 {r l z : Length} (hr : Rational ρ r) (hl : SixthBinomial
     (proposition_12 Length.divisible h' hfy.symm)
   have hi : ¬ Commensurable (sq m + sq n) (rect m n) := by
     rw [hsum, hmn, rect_commensurable_iff]; exact hxf
-  exact ⟨m, n, ⟨construction_incomm_sq h₁ hm hn, hs, hrect, hi, hnm⟩,
-    side_eq_add hsum htwice hz⟩
+  exact ⟨m, n, ⟨construction_incomm_sq h₁ hm hn, hs, hrect, hi, hnm⟩, hsum, htwice⟩
 
 /-- 10.59, lemma: if a line is cut unequally, the squares on the pieces exceed twice the
 rectangle contained by them. -/
@@ -50,5 +53,14 @@ theorem proposition_59_lemma {x y : Length} (h : y < x) :
   have h₁ : rect x y < sq e := (rect_add_sq ht hyt) ▸ Magnitude.lt_add _ _
   rw [sq_add_sq_half ht hyt]
   exact Magnitude.mult_lt_mult 2 (lt_trans h₁ (Magnitude.lt_add _ _))
+
+/-- If an area is contained by a rational line `r` and a sixth binomial, the square root
+`z` of the area is the square root of two medial areas. -/
+theorem proposition_59 {r l z : Length} (hr : Rational ρ r) (hl : SixthBinomial ρ r l)
+    (hz : sq z = rect r l) : SideTwoMedials ρ z := by
+  obtain ⟨x, y, h, rfl⟩ := hl
+  obtain ⟨m, n, hmn, hsum, htwice⟩ := proposition_59_terms hr h
+  -- `m + n` is the square root of the area [Props. 10.53 lem., 2.4]
+  exact ⟨m, n, hmn, side_eq_add hsum htwice hz⟩
 
 end Elements.Book10

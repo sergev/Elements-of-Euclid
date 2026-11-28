@@ -15,13 +15,17 @@ theorem construction_medial {r x x₁ m : Length} (hr : Rational ρ r) (hx : Rat
   rw [hm]; exact medial_rect hr (hx.of_comm h₁x)
     (proposition_13 Length.divisible h₁x.symm hxr)
 
-/-- If an area is contained by a rational line `r` and a second binomial, the square root
-`z` of the area is a first bimedial. -/
-theorem proposition_55 {r l z : Length} (hr : Rational ρ r) (hl : SecondBinomial ρ r l)
-    (hz : sq z = rect r l) : FirstBimedial ρ z := by
+/-- The terms of 10.55: the terms `x > y` of a second binomial, applied to a rational line
+`r`, give terms `m > n` of a first bimedial, the squares on them the rectangle contained
+by `r`, `x`, twice the rectangle contained by them that contained by `r`, `y`. Shared with
+10.92. -/
+theorem proposition_55_terms {r x y : Length} (hr : Rational ρ r)
+    (h : SecondTerms ρ r x y) :
+    ∃ m n, FirstBimedialTerms ρ m n ∧ sq m + sq n = rect r x ∧
+      (2 : ℕ+) • rect m n = rect r y := by
   -- the second binomial divided into its terms `x > y`, `y` commensurable with `r`
   -- [Def. 10.II.2], and the construction of 10.54
-  obtain ⟨x, y, ⟨⟨hx, hy, hxy, hyx⟩, hexc, hyr⟩, rfl⟩ := hl
+  obtain ⟨⟨hx, hy, hxy, hyx⟩, hexc, hyr⟩ := h
   obtain ⟨x₁, x₂, f, m, n, hf, hx₁₂, hr₁₂, -, hm, hn, hmn, hnm, hsum, htwice⟩ :=
     proposition_54_construction r hyx
   -- `x₁`, `x₂` are commensurable [Prop. 10.17], and with `x` [Prop. 10.15], so rational;
@@ -45,7 +49,16 @@ theorem proposition_55 {r l z : Length} (hr : Rational ρ r) (hl : SecondBinomia
   have hrect : RationalArea ρ (rect m n) := hmn ▸ proposition_19 hr
     (hr.of_comm hfr) hfr.symm
   -- `m`, `n` are incommensurable in length, as in 10.54: `m + n` is a first bimedial
-  exact ⟨m, n, ⟨hmm, hnm', ⟨hsq, construction_incomm hxy.2 h₁x hf hm hmn⟩, hrect, hnm⟩,
-    side_eq_add hsum htwice hz⟩
+  exact ⟨m, n, ⟨hmm, hnm', ⟨hsq, construction_incomm hxy.2 h₁x hf hm hmn⟩, hrect,
+    hnm⟩, hsum, htwice⟩
+
+/-- If an area is contained by a rational line `r` and a second binomial, the square root
+`z` of the area is a first bimedial. -/
+theorem proposition_55 {r l z : Length} (hr : Rational ρ r) (hl : SecondBinomial ρ r l)
+    (hz : sq z = rect r l) : FirstBimedial ρ z := by
+  obtain ⟨x, y, h, rfl⟩ := hl
+  obtain ⟨m, n, hmn, hsum, htwice⟩ := proposition_55_terms hr h
+  -- `m + n` is the square root of the area [Props. 10.53 lem., 2.4]
+  exact ⟨m, n, hmn, side_eq_add hsum htwice hz⟩
 
 end Elements.Book10

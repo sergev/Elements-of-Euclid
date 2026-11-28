@@ -24,3 +24,4 @@
     [Thus, $C D$ is an apotome, and (is) the same in order as $A B$ [Defs.~10.11--10.16]. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book10/Prop103.lean")

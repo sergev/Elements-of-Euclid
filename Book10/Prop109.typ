@@ -24,3 +24,4 @@
     [And if the square on $H F$ is greater than (the square on) $F K$ by the (square) on (some straight-line) incommensurable (in length with $H F$), and (since) the attachment $F K$ is commensurable in length with the (previously) laid down rational (straight-line) $F G$, $K H$ is a fifth apotome [Def.~10.15]. Hence, the square-root of $E C$ is that (straight-line) which with a rational (area) makes a medial whole [Prop.~10.95]. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book10/Prop109.lean")

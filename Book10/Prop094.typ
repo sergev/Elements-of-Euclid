@@ -28,3 +28,4 @@
     [Thus, the square-root of area $A B$ is a minor (straight-line). (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book10/Prop094.lean")

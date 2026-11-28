@@ -6,11 +6,14 @@ open Elements.Book5
 
 variable {ρ : Length}
 
-/-- The square on a first bimedial, applied to a rational line `r`, makes as breadth a
-second binomial. -/
-theorem proposition_61 {r l g : Length} (hl : FirstBimedial ρ l) (hr : Rational ρ r)
-    (hg : rect r g = sq l) : SecondBinomial ρ r g := by
-  obtain ⟨x, y, ⟨hx, -, hxy, hR, hyx⟩, rfl⟩ := hl
+/-- The terms of 10.61: the squares on the terms `x > y` of a first bimedial and twice the
+rectangle, applied to a rational line `r`, make as breadths the terms of a second
+binomial. Shared with 10.98. -/
+theorem proposition_61_terms {r x y : Length} (hr : Rational ρ r)
+    (h : FirstBimedialTerms ρ x y) :
+    ∃ e d, SecondTerms ρ r e d ∧ rect r e = sq x + sq y ∧
+      rect r d = (2 : ℕ+) • rect x y := by
+  obtain ⟨hx, -, hxy, hR, hyx⟩ := h
   -- the same construction as in 10.60
   obtain ⟨k₁, k₂, h, h₁, h₂, -, hk, hlt, hs, h2⟩ := proposition_60_construction r hyx
   -- the squares are medial [Props. 10.15, 10.23 corr.]: `k₁ + k₂` is rational,
@@ -28,6 +31,15 @@ theorem proposition_61 {r l g : Length} (hl : FirstBimedial ρ l) (hr : Rational
   have hk₁₂ : Commensurable k₁ k₂ := (rect_commensurable_iff r).mp
     (by rw [h₁, h₂]; exact hxy.1)
   exact ⟨k₁ + k₂, h + h, ⟨⟨her, hdr, ⟨her.inSquare_of hdr, hed⟩, hlt⟩,
-    (proposition_17 hlt rfl rfl hk).mp hk₁₂, hdρ⟩, breadth_eq_add hg hs h2⟩
+    (proposition_17 hlt rfl rfl hk).mp hk₁₂, hdρ⟩, hs, h2⟩
+
+/-- The square on a first bimedial, applied to a rational line `r`, makes as breadth a
+second binomial. -/
+theorem proposition_61 {r l g : Length} (hl : FirstBimedial ρ l) (hr : Rational ρ r)
+    (hg : rect r g = sq l) : SecondBinomial ρ r g := by
+  obtain ⟨x, y, h, rfl⟩ := hl
+  obtain ⟨e, d, hed, he, hd⟩ := proposition_61_terms hr h
+  -- the breadth is `e + d` [Prop. 2.4]
+  exact ⟨e, d, hed, breadth_eq_add hg he hd⟩
 
 end Elements.Book10

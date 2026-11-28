@@ -24,3 +24,4 @@
     [And if the square on $F H$ is greater than (the square on) $F K$ by the (square) on (some straight-line) incommensurable [in length] with ($F H$), and (since) neither of $H F$ and $F K$ is commensurable in length with $F G$, $K H$ is a sixth apotome [Def.~10.16]. And the square-root of the (rectangle contained) by a rational (straight-line) and a sixth apotome is that (straight-line) which with a medial (area) makes a medial whole [Prop.~10.96]. Thus, the square-root of $L H$---that is to say, (of) $E C$---is that (straight-line) which with a medial (area) makes a medial whole. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book10/Prop110.lean")

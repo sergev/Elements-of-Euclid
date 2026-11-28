@@ -20,3 +20,4 @@
     [Thus, $C D$ is a minor (straight-line) [Prop.~10.76]. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book10/Prop105.lean")

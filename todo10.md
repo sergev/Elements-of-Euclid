@@ -32,15 +32,6 @@ How Book 10 differs from the books before it:
 - **Numbers.** "The ratio which a number has to a number" joins Book 5's proportion with Books 7–9's numbers (`ℕ`, Def. 7.20). 10.5–10.9 make the bridge; after that, Book 7–9 propositions are cited as Lean terms (8.24, 8.26, 9.1, 9.2 for squares).
 - **Irrational means Euclid's irrational.** Rational and irrational are relative to an assigned line `ρ` (Def. 10.3), and a line is rational when commensurable with `ρ` in length or in square only. Incommensurability is proved as Euclid proves it, from the hypotheses (10.13, 10.16 and so on), not from the irrationality of a real number.
 
-## T10. Props. 10.91–10.110: apotomes and areas
-
-- **10.91–10.96:** the square root of a rectangle of a rational line and an apotome of order k is the k-th difference (mirror of 10.54–10.59).
-- **10.97–10.102:** the square on each difference, applied to a rational line, makes the apotome of the same order (mirror of 10.60–10.65).
-- **10.103–10.107:** commensurable with each kind is of the same kind and order (mirror of 10.66–10.70).
-- **10.108–10.110:** a medial taken from a rational area, a rational from a medial, a medial from a medial: the square roots of the remainders (mirror of 10.71, 10.72).
-
-Risk: medium.
-
 ## T11. Props. 10.111–10.115: binomial and apotome
 
 - **10.111:** an apotome is not the same as a binomial, with the corollary listing the thirteen irrational lines, all different from one another. State the corollary as: no line is of two of the thirteen kinds (or as Euclid has it, the kinds are different), with a doc comment on what is and is not proved.

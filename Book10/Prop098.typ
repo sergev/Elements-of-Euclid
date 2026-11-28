@@ -24,3 +24,4 @@
     [Thus, the (square) on a first apotome of a medial (straight-line), applied to a rational (straight-line), produces a second apotome as breadth. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book10/Prop098.lean")

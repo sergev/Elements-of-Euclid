@@ -24,3 +24,4 @@
     [Thus, the (square) on an apotome, applied to a rational (straight-line), produces a first apotome as breadth. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book10/Prop097.lean")

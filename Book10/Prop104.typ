@@ -24,3 +24,4 @@
     [Therefore, $C D$ is the apotome of a medial (straight-line), and is the same in order as $A B$ [Props.~10.74, 10.75]. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book10/Prop104.lean")

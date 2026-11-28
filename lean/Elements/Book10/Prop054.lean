@@ -79,12 +79,16 @@ theorem construction_incomm {r x y x₁ f m n : Length} (hxy : ¬ Commensurable 
   exact fun h' => h₄
     ((proposition_11 (proposition_21_lemma m n).1 Length.divisible Area.divisible).1 h')
 
-/-- If an area is contained by a rational line `r` and a first binomial, the square root
-`z` of the area is a binomial. -/
-theorem proposition_54 {r l z : Length} (hr : Rational ρ r) (hl : FirstBinomial ρ r l)
-    (hz : sq z = rect r l) : Binomial ρ z := by
+/-- The terms of 10.54: the terms `x > y` of a first binomial, applied to a rational
+line `r`, give terms `m > n` of a binomial, the squares on them the rectangle contained by
+`r`, `x`, twice the rectangle contained by them that contained by `r`, `y`. Shared with
+10.91. -/
+theorem proposition_54_terms {r x y : Length} (hr : Rational ρ r)
+    (h : FirstTerms ρ r x y) :
+    ∃ m n, BinomialTerms ρ m n ∧ sq m + sq n = rect r x ∧
+      (2 : ℕ+) • rect m n = rect r y := by
   -- let the first binomial be divided into its terms `x > y` [Def. 10.II.1]
-  obtain ⟨x, y, ⟨⟨hx, hy, hxy, hyx⟩, hexc, hxr⟩, rfl⟩ := hl
+  obtain ⟨⟨hx, hy, hxy, hyx⟩, hexc, hxr⟩ := h
   obtain ⟨x₁, x₂, f, m, n, hf, hx₁₂, hr₁₂, h₂₁, hm, hn, hmn, hnm, hsum, htwice⟩ :=
     proposition_54_construction r hyx
   -- the square on `x` exceeds that on `y` by the square on a line commensurable with `x`:
@@ -105,6 +109,15 @@ theorem proposition_54 {r l z : Length} (hr : Rational ρ r) (hl : FirstBinomial
   have h₅ := construction_incomm hxy.2 h₁x hf hm hmn
   -- `m`, `n` are rational, commensurable in square only: `m + n`, the square root of the
   -- area [Props. 10.53 lem., 2.4], is a binomial
-  exact ⟨m, n, ⟨hmr, hnr, ⟨hmr.inSquare_of hnr, h₅⟩, hnm⟩, side_eq_add hsum htwice hz⟩
+  exact ⟨m, n, ⟨hmr, hnr, ⟨hmr.inSquare_of hnr, h₅⟩, hnm⟩, hsum, htwice⟩
+
+/-- If an area is contained by a rational line `r` and a first binomial, the square root
+`z` of the area is a binomial. -/
+theorem proposition_54 {r l z : Length} (hr : Rational ρ r) (hl : FirstBinomial ρ r l)
+    (hz : sq z = rect r l) : Binomial ρ z := by
+  obtain ⟨x, y, h, rfl⟩ := hl
+  obtain ⟨m, n, hmn, hsum, htwice⟩ := proposition_54_terms hr h
+  -- `m + n` is the square root of the area [Props. 10.53 lem., 2.4]
+  exact ⟨m, n, hmn, side_eq_add hsum htwice hz⟩
 
 end Elements.Book10

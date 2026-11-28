@@ -54,10 +54,49 @@ theorem exceedsComm_transfers {x y x' y' : Length} (hp : Proportion x y x' y') :
 theorem exceedsIncomm_transfers {x y x' y' : Length} (hp : Proportion x y x' y') :
     ExceedsIncomm x y → ExceedsIncomm x' y' := (proposition_14' hp).2
 
-/-- A line commensurable in length with a binomial is a binomial, and of the same order:
-the square on the greater term exceeds that on the lesser by the square on a line
-commensurable or incommensurable with it, as before [Prop. 10.14], and the terms are
-commensurable with `r`, or not, as before [Props. 10.12, 10.13]. -/
+theorem comm_of_comm {a a' r : Length} (ha : Commensurable a a') (h : Commensurable a r) :
+    Commensurable a' r :=
+  proposition_12 Length.divisible ha.symm h.symm
+
+theorem incomm_of_comm {a a' r : Length} (ha : Commensurable a a')
+    (h : ¬ Commensurable a r) :
+    ¬ Commensurable a' r :=
+  proposition_13 Length.divisible ha h
+
+/-- The terms of the six binomials carry over (and of the six apotomes): the square on the
+greater term exceeds that on the lesser by the square on a line commensurable or
+incommensurable with it, as before [Prop. 10.14], and the terms are commensurable with
+`r`, or not, as before [Props. 10.12, 10.13]. -/
+theorem firstTerms_transfers {r : Length} : Transfers (FirstTerms ρ r) :=
+  fun ⟨h₁, h₂, h₃⟩ hp hx hy =>
+    ⟨binomialTerms_transfers h₁ hp hx hy, exceedsComm_transfers hp h₂, comm_of_comm hx h₃⟩
+
+theorem secondTerms_transfers {r : Length} : Transfers (SecondTerms ρ r) :=
+  fun ⟨h₁, h₂, h₃⟩ hp hx hy =>
+    ⟨binomialTerms_transfers h₁ hp hx hy, exceedsComm_transfers hp h₂, comm_of_comm hy h₃⟩
+
+theorem thirdTerms_transfers {r : Length} : Transfers (ThirdTerms ρ r) :=
+  fun ⟨h₁, h₂, h₃, h₄⟩ hp hx hy =>
+    ⟨binomialTerms_transfers h₁ hp hx hy, exceedsComm_transfers hp h₂,
+      incomm_of_comm hx h₃, incomm_of_comm hy h₄⟩
+
+theorem fourthTerms_transfers {r : Length} : Transfers (FourthTerms ρ r) :=
+  fun ⟨h₁, h₂, h₃⟩ hp hx hy =>
+    ⟨binomialTerms_transfers h₁ hp hx hy, exceedsIncomm_transfers hp h₂,
+      comm_of_comm hx h₃⟩
+
+theorem fifthTerms_transfers {r : Length} : Transfers (FifthTerms ρ r) :=
+  fun ⟨h₁, h₂, h₃⟩ hp hx hy =>
+    ⟨binomialTerms_transfers h₁ hp hx hy, exceedsIncomm_transfers hp h₂,
+      comm_of_comm hy h₃⟩
+
+theorem sixthTerms_transfers {r : Length} : Transfers (SixthTerms ρ r) :=
+  fun ⟨h₁, h₂, h₃, h₄⟩ hp hx hy =>
+    ⟨binomialTerms_transfers h₁ hp hx hy, exceedsIncomm_transfers hp h₂,
+      incomm_of_comm hx h₃, incomm_of_comm hy h₄⟩
+
+/-- A line commensurable in length with a binomial is a binomial, and of the same order.
+-/
 theorem proposition_66 {l l' : Length} (hl : Binomial ρ l) (h : Commensurable l l') :
     Binomial ρ l' ∧ ∀ r,
       (FirstBinomial ρ r l → FirstBinomial ρ r l') ∧
@@ -65,24 +104,10 @@ theorem proposition_66 {l l' : Length} (hl : Binomial ρ l) (h : Commensurable l
       (ThirdBinomial ρ r l → ThirdBinomial ρ r l') ∧
       (FourthBinomial ρ r l → FourthBinomial ρ r l') ∧
       (FifthBinomial ρ r l → FifthBinomial ρ r l') ∧
-      (SixthBinomial ρ r l → SixthBinomial ρ r l') := by
-  have hB : Transfers (BinomialTerms ρ) := binomialTerms_transfers
-  have hc : ∀ {a a' r : Length}, Commensurable a a' → Commensurable a r →
-      Commensurable a' r := fun ha h => proposition_12 Length.divisible ha.symm h.symm
-  have hi : ∀ {a a' r : Length}, Commensurable a a' → ¬ Commensurable a r →
-      ¬ Commensurable a' r := fun ha h => proposition_13 Length.divisible ha h
-  refine ⟨Transfers.sum hB h hl, fun r => ⟨?_, ?_, ?_, ?_, ?_, ?_⟩⟩
-  · exact Transfers.sum (fun ⟨h₁, h₂, h₃⟩ hp hx hy =>
-      ⟨hB h₁ hp hx hy, exceedsComm_transfers hp h₂, hc hx h₃⟩) h
-  · exact Transfers.sum (fun ⟨h₁, h₂, h₃⟩ hp hx hy =>
-      ⟨hB h₁ hp hx hy, exceedsComm_transfers hp h₂, hc hy h₃⟩) h
-  · exact Transfers.sum (fun ⟨h₁, h₂, h₃, h₄⟩ hp hx hy =>
-      ⟨hB h₁ hp hx hy, exceedsComm_transfers hp h₂, hi hx h₃, hi hy h₄⟩) h
-  · exact Transfers.sum (fun ⟨h₁, h₂, h₃⟩ hp hx hy =>
-      ⟨hB h₁ hp hx hy, exceedsIncomm_transfers hp h₂, hc hx h₃⟩) h
-  · exact Transfers.sum (fun ⟨h₁, h₂, h₃⟩ hp hx hy =>
-      ⟨hB h₁ hp hx hy, exceedsIncomm_transfers hp h₂, hc hy h₃⟩) h
-  · exact Transfers.sum (fun ⟨h₁, h₂, h₃, h₄⟩ hp hx hy =>
-      ⟨hB h₁ hp hx hy, exceedsIncomm_transfers hp h₂, hi hx h₃, hi hy h₄⟩) h
+      (SixthBinomial ρ r l → SixthBinomial ρ r l') :=
+  ⟨Transfers.sum binomialTerms_transfers h hl, fun _ =>
+    ⟨Transfers.sum firstTerms_transfers h, Transfers.sum secondTerms_transfers h,
+      Transfers.sum thirdTerms_transfers h, Transfers.sum fourthTerms_transfers h,
+      Transfers.sum fifthTerms_transfers h, Transfers.sum sixthTerms_transfers h⟩⟩
 
 end Elements.Book10

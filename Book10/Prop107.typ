@@ -20,3 +20,4 @@
     [Thus, $C D$ is a (straight-line) which with a medial (area) makes a medial whole [Prop.~10.78]. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book10/Prop107.lean")

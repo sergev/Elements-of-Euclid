@@ -22,14 +22,17 @@ theorem notInSquare_of_terms {x y x' y' : Length} (hp : Proportion x y x' y')
     (h : ¬ CommensurableInSquare x y) : ¬ CommensurableInSquare x' y' :=
   (proposition_11 (proportion_sq.mp hp) Area.divisible Area.divisible).2 h
 
+/-- The terms of a major line carry over: incommensurable in square, the squares
+commensurable with the squares, so rational, and the rectangles with the rectangles, so
+medial [Prop. 10.23 corr.]. -/
+theorem majorTerms_transfers : Transfers (MajorTerms ρ) :=
+  fun ⟨h₁, h₂, h₃, h₄⟩ hp hx _ =>
+    ⟨notInSquare_of_terms hp h₁, h₂.of_comm (squares_comm_of_terms hp hx).symm,
+      proposition_23_corollary h₃ (rect_comm_of_terms hp hx).symm, lt_of_proportion hp h₄⟩
+
 /-- A line commensurable in length with a major line is a major line. -/
 theorem proposition_68 {l l' : Length} (hl : Major ρ l) (h : Commensurable l l') :
     Major ρ l' :=
-  -- the terms are incommensurable in square, the squares commensurable with the squares,
-  -- so rational, and the rectangles with the rectangles, so medial [Prop. 10.23 corr.]
-  Transfers.sum (fun ⟨h₁, h₂, h₃, h₄⟩ hp hx _ =>
-    ⟨notInSquare_of_terms hp h₁, h₂.of_comm (squares_comm_of_terms hp hx).symm,
-      proposition_23_corollary h₃ (rect_comm_of_terms hp hx).symm,
-      lt_of_proportion hp h₄⟩) h hl
+  Transfers.sum majorTerms_transfers h hl
 
 end Elements.Book10

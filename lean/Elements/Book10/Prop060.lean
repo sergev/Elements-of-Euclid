@@ -32,18 +32,20 @@ theorem proposition_60_construction (r : Length) {x y : Length} (hyx : y < x) :
   refine ⟨k₁, k₂, h, h₁, h₂, h₃, rect_eq_sq_of_proportion h₆, ?_, h₇, h₄⟩
   exact rect_lt_rect.mp (by rw [h₄, h₇]; exact proposition_59_lemma hyx)
 
-/-- In the construction, the square on `x + y` applied to `r` makes `(k₁ + k₂) + (h + h)`
-as breadth [Prop. 2.4]. -/
-theorem breadth_eq_add {r x y g k₁ k₂ h : Length} (hg : rect r g = sq (x + y))
-    (h₁ : rect r (k₁ + k₂) = sq x + sq y) (h₂ : rect r (h + h) = (2 : ℕ+) • rect x y) :
-    g = (k₁ + k₂) + (h + h) :=
+/-- In the construction, the square on `x + y` applied to `r` makes as breadth the sum of
+the breadths of the squares and of twice the rectangle [Prop. 2.4]. -/
+theorem breadth_eq_add {r x y g e d : Length} (hg : rect r g = sq (x + y))
+    (h₁ : rect r e = sq x + sq y) (h₂ : rect r d = (2 : ℕ+) • rect x y) : g = e + d :=
   rect_inj (by rw [hg, rect_add, h₁, h₂, sq_add])
 
-/-- The square on a binomial, applied to a rational line `r`, makes as breadth a first
-binomial. -/
-theorem proposition_60 {r l g : Length} (hl : Binomial ρ l) (hr : Rational ρ r)
-    (hg : rect r g = sq l) : FirstBinomial ρ r g := by
-  obtain ⟨x, y, ⟨hx, hy, hxy, hyx⟩, rfl⟩ := hl
+/-- The terms of 10.60: the squares on the terms `x > y` of a binomial and twice the
+rectangle, applied to a rational line `r`, make as breadths the terms of a first
+binomial. Shared with 10.97. -/
+theorem proposition_60_terms {r x y : Length} (hr : Rational ρ r)
+    (h : BinomialTerms ρ x y) :
+    ∃ e d, FirstTerms ρ r e d ∧ rect r e = sq x + sq y ∧
+      rect r d = (2 : ℕ+) • rect x y := by
+  obtain ⟨hx, hy, hxy, hyx⟩ := h
   obtain ⟨k₁, k₂, h, h₁, h₂, -, hk, hlt, hs, h2⟩ := proposition_60_construction r hyx
   -- the squares on `x`, `y` are rational [Prop. 10.15]: `k₁ + k₂` is rational,
   -- commensurable in length with `r` [Prop. 10.20]
@@ -61,7 +63,15 @@ theorem proposition_60 {r l g : Length} (hl : Binomial ρ l) (hr : Rational ρ r
   have hk₁₂ : Commensurable k₁ k₂ := (rect_commensurable_iff r).mp
     (by rw [h₁, h₂]; exact hxy.1)
   have hexc := (proposition_17 hlt rfl rfl hk).mp hk₁₂
-  exact ⟨k₁ + k₂, h + h, ⟨⟨her, hdr, ⟨her.inSquare_of hdr, hed⟩, hlt⟩, hexc, heρ⟩,
-    breadth_eq_add hg hs h2⟩
+  exact ⟨k₁ + k₂, h + h, ⟨⟨her, hdr, ⟨her.inSquare_of hdr, hed⟩, hlt⟩, hexc, heρ⟩, hs, h2⟩
+
+/-- The square on a binomial, applied to a rational line `r`, makes as breadth a first
+binomial. -/
+theorem proposition_60 {r l g : Length} (hl : Binomial ρ l) (hr : Rational ρ r)
+    (hg : rect r g = sq l) : FirstBinomial ρ r g := by
+  obtain ⟨x, y, h, rfl⟩ := hl
+  obtain ⟨e, d, hed, he, hd⟩ := proposition_60_terms hr h
+  -- the breadth is `e + d` [Prop. 2.4]
+  exact ⟨e, d, hed, breadth_eq_add hg he hd⟩
 
 end Elements.Book10

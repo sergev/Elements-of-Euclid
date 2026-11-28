@@ -28,3 +28,4 @@
     [Thus, the square-root of area $A B$ is that (straight-line) which with a rational (area) makes a medial whole. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book10/Prop095.lean")
