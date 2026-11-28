@@ -119,9 +119,26 @@ def findDefEq (facts : Array Fact) (e : Expr) : MetaM (Option Expr) := do
     if ← withReducible (isDefEq e f.type) then return some f.proof
   return none
 
+/-- `¬(p ∧ q)` (up to reducible unfolding, as `¬x.outsideCircle α`) as `(p, q)`. -/
+def notAnd? (e : Expr) : MetaM (Option (Expr × Expr)) := do
+  let some x := e.not? | return none
+  return (← whnfR x).and?
+
 /-- Prove a conjunction, each literal by `leaf`. -/
 partial def prove (leaf : Expr → MetaM (Option Expr)) (e : Expr) : MetaM (Option Expr) := do
   let e ← instantiateMVars e
+  -- `¬(p ∧ q)` from `¬p` or `¬q`
+  if let some (p, q) ← notAnd? e then
+    let pq := mkApp2 (mkConst ``And) p q
+    for (r, pr) in [(p, mkApp2 (mkConst ``And.left) p q), (q, mkApp2 (mkConst ``And.right) p q)] do
+      if let some hr ← prove leaf (mkNot r) then
+        return some (← withLocalDeclD `h pq fun h => mkLambdaFVars #[h] (mkApp hr (mkApp pr h)))
+    return none
+  -- `¬¬p` from `p`
+  if let some x := e.not? then
+    if let some p := x.not? then
+      let some hp ← prove leaf p | return none
+      return some (← withLocalDeclD `h x fun h => mkLambdaFVars #[h] (mkApp h hp))
   match (← whnfR e).and? with
   | some (p, q) =>
     let some hp ← prove leaf p | return none
@@ -1577,6 +1594,10 @@ def conclusionHeads : MetaM (Array (Name × Bool)) := do
 
 /-- Worth trying: every goal literal is a fact, metric, or a rule conclusion. -/
 partial def disjuncts (e : Expr) : MetaM (List Expr) := do
+  -- `¬(p ∧ q)` and `¬¬p` are proved through `¬p`, `¬q` and `p`
+  if let some (p, q) ← notAnd? e then return (← disjuncts (mkNot p)) ++ (← disjuncts (mkNot q))
+  if let some x := e.not? then
+    if let some p := x.not? then return ← disjuncts p
   match (← whnfR e).app2? ``Or with
   | some (p, q) => return (← (← literals p).flatMapM disjuncts) ++ (← (← literals q).flatMapM disjuncts)
   | none => return [e]

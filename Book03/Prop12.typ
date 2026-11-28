@@ -24,3 +24,4 @@
     [Thus, if two circles touch one another externally, (then) the [straight-line] joining their centers will go through the point of union. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book3/Prop12.lean")

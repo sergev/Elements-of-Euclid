@@ -137,6 +137,23 @@ theorem between_of_lt : ∀ (a x y e : Point),
     have := segment_gte_zero (y─x)
     linarith
 
+/-- Of two points on a ray from `a` (away from `e`), the nearer is between `a` and the other. -/
+theorem between_of_lt_ray : ∀ (a x y e : Point),
+    between x a e ∧ between y a e ∧ |(a─x)| < |(a─y)| → between a x y := by
+  intro a x y e ⟨hx, hy, hlt⟩
+  have ⟨hex, hxa, hxe, _⟩ := between_symm x a e hx
+  have ⟨hey, hya, _, _⟩ := between_symm y a e hy
+  have hxy : x ≠ y := fun h => by subst h; exact lt_irrefl _ hlt
+  obtain ⟨L, haL, heL⟩ := line_from_points a e (between_symm e a x hex).2.1.symm
+  have hxL := between_same_line_out e a x L ⟨hex, heL, haL⟩
+  have hyL := between_same_line_out e a y L ⟨hey, heL, haL⟩
+  rcases between_points a x y L ⟨hxa.symm, hxy, hya, haL, hxL, hyL⟩ with h | h | h
+  · exact h
+  · exact absurd h (between_not_trans e a x y ⟨hex, hey⟩)
+  · have := between_if a y x h
+    have := segment_gte_zero (y─x)
+    linarith
+
 /-- An angle whose sides are on different lines is positive. -/
 theorem angle_pos_of_not_on_line : ∀ (a b c : Point) (L : Line),
     a ≠ b ∧ a ≠ c ∧ a.onLine L ∧ b.onLine L ∧ ¬(c.onLine L) → 0 < ∠ b:a:c := by
@@ -256,11 +273,12 @@ initialize configRef.set {
     ``length_pos_of_ne, ``ne_of_length_pos,
     ``not_inside_circle_of_ge, ``not_on_circle_of_gt, ``not_on_circle_of_lt,
     ``between_trans_in', ``angle_pos_of_not_on_line,
-    ``same_side_of_opposite, ``same_side_of_parallel, ``not_on_circle_of_touches, ``not_on_line_of_on_circle]
+    ``same_side_of_opposite, ``same_side_of_parallel, ``not_on_circle_of_touches, ``not_on_line_of_on_circle,
+    ``point_ne_of_centre]
   backwardLemmas := #[
     ``ne_of_lines_ne, ``not_between_of_same_side, ``not_on_line_of_triangle,
     ``eq_of_same_ray, ``on_line_of_eq_angle, ``right_angle_on_lines]
-  guardedLemmas := #[``between_of_lt, ``between_of_eq_dist]
+  guardedLemmas := #[``between_of_lt, ``between_of_lt_ray, ``between_of_eq_dist]
   linarith := fun hyps e => do
     let m ← mkFreshExprMVar e
     try

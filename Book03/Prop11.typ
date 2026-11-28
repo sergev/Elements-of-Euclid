@@ -24,3 +24,4 @@
     [Thus, if two circles touch one another internally, [and their centers are found], (then) the straight-line joining their centers, [being produced], will fall upon the point of union of the circles. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book3/Prop11.lean")

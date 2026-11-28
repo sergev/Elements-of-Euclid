@@ -19,14 +19,6 @@ When the solvers struggle:
 - **Segment orientation:** when a goal compares products of the same segments written in different orders (`|(a─b)|` against `|(b─a)|`), add the symmetric step as an assert.
 - **`simp_all`:** if it blows up, turn it off for that step with `set_option systemE.simpAll false in`.
 
-## T5. Props. 3.10–3.13: circles meeting circles
-
-- **3.10:** two circles don't cut at more than two points.
-- **3.11–3.12:** for circles touching internally or externally, the line of centers passes through the point of contact.
-- **3.13:** two circles touch at one point only.
-
-All four are proofs by contradiction from figures that cannot exist. System E's diagram rules may need extra steps to see the contradiction. Risk: medium to high; take each one alone.
-
 ## T6. Props. 3.14–3.16: chords and the line at the end of a diameter
 
 - **3.14–3.15:** equal chords are equally far from the center; the diameter is the greatest chord, and a nearer chord is greater. These use Prop. 1.47 with products.

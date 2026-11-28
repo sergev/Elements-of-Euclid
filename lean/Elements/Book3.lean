@@ -7,6 +7,10 @@ import Elements.Book3.Prop06
 import Elements.Book3.Prop07
 import Elements.Book3.Prop08
 import Elements.Book3.Prop09
+import Elements.Book3.Prop10
+import Elements.Book3.Prop11
+import Elements.Book3.Prop12
+import Elements.Book3.Prop13
 
 /-
 Book 3: circles.
@@ -18,8 +22,8 @@ they *cut*, at two points. Book 3's definitions are in `SystemE/Book3.lean`:
 - Def. 3.2, a line touching a circle, `L.touchesCircleAt α a`: `a` is on both and `L`
   does not cut `α`; every other point of `L` is then outside `α`.
 - Def. 3.3, circles touching, `α.touchesCircleAt β a`: distinct circles through `a` that
-  do not cut. `α.touchesInternallyAt β a`: apart from `a`, `α` is inside `β`;
-  `α.touchesExternallyAt β a`: apart from `a`, each is outside the other.
+  do not cut. `α.touchesInternallyAt β a`: `α` is within `β`, every point inside `α`
+  inside `β`; `α.touchesExternallyAt β a`: each is outside the other, no point inside both.
 
 The corollaries to 3.1 and 3.16 are `proposition_1_corollary` and `proposition_16_corollary`.
 -/

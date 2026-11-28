@@ -36,3 +36,4 @@
     [Thus, a circle does not touch a(nother) circle at more than one point, whether they touch internally or externally. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book3/Prop13.lean")

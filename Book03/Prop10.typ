@@ -20,3 +20,4 @@
     [Thus, a circle does not cut a(nother) circle at more than two points. (Which is) the very thing it was required to show.],
   )
 ]
+#lean-proof("/lean/Elements/Book3/Prop10.lean")

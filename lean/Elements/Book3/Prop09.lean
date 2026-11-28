@@ -49,9 +49,12 @@ by
   -- they meet only at D, which is thus the center
   euclid_finish
 
-/-- A point inside a circle with three equal lines to the circle is its center. -/
-theorem proposition_9 : ∀ (a b c d o : Point) (α : Circle),
-  a.onCircle α ∧ b.onCircle α ∧ c.onCircle α ∧ a ≠ b ∧ b ≠ c ∧ c ≠ a ∧ d.insideCircle α ∧
+/--
+A point from which three equal lines fall on a circle is its center. Euclid takes the
+point inside, but the proof does not use it; Prop. 3.10 needs this form.
+-/
+theorem proposition_9' : ∀ (a b c d o : Point) (α : Circle),
+  a.onCircle α ∧ b.onCircle α ∧ c.onCircle α ∧ a ≠ b ∧ b ≠ c ∧ c ≠ a ∧
   |(d─a)| = |(d─b)| ∧ |(d─b)| = |(d─c)| ∧ o.isCentre α → d.isCentre α :=
 by
   euclid_intros
@@ -67,5 +70,14 @@ by
       euclid_finish
     · euclid_apply (proposition_9_chords a b c d o AB BC α)
       euclid_finish
+
+/-- A point inside a circle with three equal lines to the circle is its center. -/
+theorem proposition_9 : ∀ (a b c d o : Point) (α : Circle),
+  a.onCircle α ∧ b.onCircle α ∧ c.onCircle α ∧ a ≠ b ∧ b ≠ c ∧ c ≠ a ∧ d.insideCircle α ∧
+  |(d─a)| = |(d─b)| ∧ |(d─b)| = |(d─c)| ∧ o.isCentre α → d.isCentre α :=
+by
+  euclid_intros
+  euclid_apply (proposition_9' a b c d o α)
+  euclid_finish
 
 end Elements.Book3

@@ -24,17 +24,15 @@ namespace Circle
 abbrev touchesCircleAt (α β : Circle) (a : Point) : Prop :=
   α ≠ β ∧ a.onCircle α ∧ a.onCircle β ∧ ¬(α.intersectsCircle β)
 
-/-- `α` touches `β` internally at `a`: apart from `a`, `α` is inside `β`. -/
+/-- `α` touches `β` internally at `a`: `α` is within `β`, its inside inside `β`'s. -/
 @[simp]
 abbrev touchesInternallyAt (α β : Circle) (a : Point) : Prop :=
-  α.touchesCircleAt β a ∧ ∀ x : Point, x.onCircle α → x ≠ a → x.insideCircle β
+  α.touchesCircleAt β a ∧ ∀ x : Point, x.insideCircle α → x.insideCircle β
 
-/-- `α` and `β` touch externally at `a`: apart from `a`, each is outside the other. -/
+/-- `α` and `β` touch externally at `a`: each is outside the other, no point inside both. -/
 @[simp]
 abbrev touchesExternallyAt (α β : Circle) (a : Point) : Prop :=
-  α.touchesCircleAt β a ∧
-  (∀ x : Point, x.onCircle α → x ≠ a → x.outsideCircle β) ∧
-  (∀ x : Point, x.onCircle β → x ≠ a → x.outsideCircle α)
+  α.touchesCircleAt β a ∧ ∀ x : Point, x.insideCircle α → ¬(x.insideCircle β)
 
 end Circle
 
@@ -72,3 +70,6 @@ theorem not_on_line_of_on_circle : ∀ (a b c : Point) (L : Line) (α : Circle),
   have h1 := circle_line_intersections m a c L α ⟨hmL, haL, hcL, hin, ha, hc, hca.symm⟩
   have h2 := circle_line_intersections m b c L α ⟨hmL, hbL, hcL, hin, hb, hc, hcb.symm⟩
   exact between_not_trans a m b c ⟨hm, h1⟩ h2
+
+theorem point_ne_of_centre : ∀ (a b : Point) (α : Circle),
+    a.isCentre α ∧ ¬(b.isCentre α) → a ≠ b := fun _ _ _ ⟨h, hn⟩ e => hn (e ▸ h)
