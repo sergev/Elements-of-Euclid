@@ -62,6 +62,9 @@ by
   -- the complements CH, HF are equal; CM = AL
   euclid_apply (proposition_43 b f e c m l g d h AB EF BF CE BE KM DG)
   euclid_apply (proposition_36' k a c l l c b m KM AB AK CE CE BF)
+  -- AL and CM, cut by either diagonal
+  euclid_apply (parallelogram_area k l a c KM AB AK CE)
+  euclid_apply (parallelogram_area l m c b KM AB CE BF)
   -- how the figures make up one another
   euclid_apply (parallel_between c d b e g f CE DG BF EF)
   euclid_apply (sum_parallelograms_area e f c b g d EF AB CE BF)

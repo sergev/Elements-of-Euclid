@@ -12,7 +12,7 @@ namespace Elements.Book1
 theorem proposition_35 : ∀ (a b c d e f g : Point) (AF BC AB CD EB FC : Line),
   formParallelogram a d b c AF BC AB CD ∧ formParallelogram e f b c AF BC EB FC ∧
   between a d e ∧ between d e f ∧ g.onLine CD ∧ g.onLine EB →
-  Triangle.area △ a:b:d + Triangle.area △ d:b:c = Triangle.area △ e:b:c + Triangle.area △ e:c:f :=
+  ▱ b:c:a:d = ▱ e:f:b:c :=
 by
   euclid_intros
   euclid_apply (proposition_34' a d b c AF BC AB CD)
@@ -26,7 +26,7 @@ by
 -- Prop. 35 when F falls beyond D: both parallelograms equal a third, PBCQ, beyond them.
 theorem proposition_35_beyond : ∀ (a b c d e f : Point) (AF BC AB CD EB FC : Line),
   formParallelogram a d b c AF BC AB CD ∧ formParallelogram e f b c AF BC EB FC ∧ between a d f →
-  Triangle.area △ a:b:d + Triangle.area △ d:b:c = Triangle.area △ e:b:c + Triangle.area △ e:c:f :=
+  ▱ b:c:a:d = ▱ e:f:b:c :=
 by
   euclid_intros
   euclid_apply (extend_point AF d f) as p
@@ -76,7 +76,7 @@ by
 
 theorem proposition_35' : ∀ (a b c d e f : Point) (AF BC AB CD EB FC : Line),
   formParallelogram a d b c AF BC AB CD ∧ formParallelogram e f b c AF BC EB FC →
-  Triangle.area △ a:b:d + Triangle.area △ d:b:c = Triangle.area △ e:b:c + Triangle.area △ e:c:f :=
+  ▱ b:c:a:d = ▱ e:f:b:c :=
 by
   euclid_intros
   by_cases (between a d f)
